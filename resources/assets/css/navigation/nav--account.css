@@ -1,0 +1,32 @@
+.menu--account menu {
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  transition:
+    width 0.3s ease-in-out,
+    height 0.3s ease-in-out;
+}
+
+.menu--account .menu-item {
+  text-align: right;
+}
+
+.menu--account .menu-link {
+  padding: 0.25rem;
+  text-transform: lowercase;
+  text-underline-offset: 0.25rem;
+  font-size: 0.8rem;
+}
+
+
+@media screen and (min-width: 42.5rem) {
+  .menu--account menu {
+    justify-content: flex-end;
+    gap: 0 1rem;
+  }
+
+  .menu--account menu .menu-item {
+    width: fit-content;
+  }
+}

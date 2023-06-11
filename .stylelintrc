@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "function-url-quotes": "always",
+    "linebreaks": "unix",
+    "max-empty-lines": 4,
+    "no-empty-first-line": true,
+    "number-leading-zero": "always",
+    "string-quotes": "double"
+  }
+}

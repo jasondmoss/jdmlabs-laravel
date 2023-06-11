@@ -1,0 +1,46 @@
+img {
+  max-width: 100%;
+  border-style: none;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+svg {
+  /**
+   * Workaround for the SVG overflow bug in IE10/11 is still required.
+   *
+   * @link  https://github.com/twbs/bootstrap/issues/26878
+   */
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+p {
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.site--content a {
+  padding: 0.25rem 0.025rem 0.15rem;
+  text-underline-offset: 0.27rem;
+}
+
+.site--content a,
+.site--content a:link,
+.site--content a:visited {
+  text-decoration: underline dotted;
+}
+
+.site--content a:active,
+.site--content a:hover,
+.site--content a:focus {
+  text-decoration: underline solid;
+}
+
+strong {
+  font-weight: 700;
+}

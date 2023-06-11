@@ -1,0 +1,37 @@
+.dialog-off-canvas-main-canvas button,
+.dialog-off-canvas-main-canvas .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  margin: 0;
+  box-shadow: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 2;
+  cursor: pointer;
+  appearance: none;
+}
+
+/** -- Close (Messages, Panels, etc.) */
+
+.button--close {
+  border: 0;
+  transform: scale(1);
+  transition: 0.125s ease-in-out;
+}
+
+.button--close .bg {
+  fill: none;
+}
+
+.button--close .x {
+  fill: var(--gray);
+}
+
+.button--close:hover,
+.button--close:focus {
+  transform: scale(1.5);
+}

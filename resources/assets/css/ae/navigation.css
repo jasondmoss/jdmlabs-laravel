@@ -1,0 +1,25 @@
+.ae--branding a {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  min-width: 16rem;
+}
+
+.menu--account menu,
+.menu--main menu {
+  gap: 1.5rem 2rem;
+}
+
+.menu--account .menu-item,
+.menu--account .menu-item span {
+  width: fit-content !important;
+}
+
+
+@media screen {
+  @media (min-width: 47.5rem) {
+    .menu--main menu {
+      flex-flow: column;
+    }
+  }
+}

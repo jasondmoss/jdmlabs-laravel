@@ -1,0 +1,148 @@
+.listing-wrapper,
+.listing-wrapper .listing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-content: start;
+  align-items: start;
+  gap: 1rem;
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.item:not(:last-of-type) {
+  border-bottom: 0.0125rem solid #ddd;
+}
+
+.item .item--id,
+.item .item--header,
+.item .item--taxonomy {
+  grid-column: 1/span 2;
+}
+
+.item .item--meta,
+.item .item--date,
+.item .item--actions {
+  grid-column: 2;
+}
+
+.item .item--image {
+  grid-column: 1;
+  grid-row: 4/span 3;
+  display: flex;
+  align-content: center;
+  justify-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.item .item--image a {
+  width: 100%;
+  height: auto;
+}
+
+.item .item--image .placeholder {
+  filter: blur(2px) opacity(0.4);
+}
+
+.item .item--image img {
+  width: 100%;
+  height: auto;
+}
+
+.item .item--header {
+  grid-row: 1;
+}
+
+.item .item--header .title  {
+  margin: 0;
+}
+
+.item .item--id {
+  grid-row: 3;
+  margin: 0;
+  padding-top: 0.15rem;
+  font-weight: bold;
+}
+
+.item .item--taxonomy {
+  grid-row: 2;
+}
+
+.item .item--meta  {
+  grid-row: 4;
+}
+
+.item .item--date  {
+  grid-row: 5;
+}
+
+.item .item--actions {
+  grid-row: 6;
+}
+
+.item .item--actions menu {
+  gap: 1rem;
+}
+
+.item .item--actions a {
+  width: fit-content;
+  text-decoration: none;
+}
+
+
+@media screen {
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 12rem 1fr;
+    }
+
+    .item .item--image {
+      grid-row: 2/span 5;
+    }
+
+    .item .item--id,
+    .item .item--taxonomy {
+      grid-column: 2;
+    }
+  }
+
+  @media (min-width: 75rem) {
+    .item {
+      grid-template-columns: 12rem 1fr 13rem;
+    }
+
+    .item .item--image {
+      grid-row: 1/span 4;
+    }
+
+    .item .item--header,
+    .item .item--actions {
+      grid-column: 2;
+    }
+
+    .item .item--meta,
+    .item .item--date {
+      grid-column: 3;
+      text-align: right;
+    }
+
+    .item .item--meta {
+      grid-row: 1;
+    }
+
+    .item .item--date {
+      grid-row: 2/span 2;
+    }
+
+    .item .item--actions {
+      grid-row: 4;
+    }
+  }
+}

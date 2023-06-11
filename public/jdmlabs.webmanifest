@@ -1,0 +1,13 @@
+{
+  "name": "JdmLabs: The online playground of Jason D. Moss",
+  "short_name": "JdmLabs",
+  "start_url": ".",
+  "display": "standalone",
+  "background_colour": "#fff",
+  "description": "I plan, develop, implement and maintain modern web sites and applications; adhering to strict standards and conventions. Compliant. Portable. Functional.",
+  "icons": [
+    { "src": "/icon-180.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-280.png", "type": "image/png", "sizes": "256x256" }
+  ]
+}

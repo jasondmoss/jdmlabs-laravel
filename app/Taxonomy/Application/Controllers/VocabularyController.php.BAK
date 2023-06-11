@@ -1,0 +1,161 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Taxonomy\Application\Controllers;
+
+use App\Taxonomy\Infrastructure\Term;
+use App\Taxonomy\Infrastructure\Vocabulary;
+use App\Taxonomy\Interface\VocabularyFormRequest;
+use Exception;
+use Illuminate\Contracts\Foundation\Application as ApplicationFoundation;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\View;
+
+class VocabularyController extends TaxonomyController {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(): Response
+    {
+        $models = Vocabulary::all()->sortBy('name');
+
+        return View::make('taxonomy::vocabularies.index')
+            ->with('vocabularies', $models);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(): Response
+    {
+        $this->authorize('create', Vocabulary::class);
+
+        return View::make('taxonomy::vocabularies.edit')
+            ->with('vocabulary', new Vocabulary())
+            ->with('formAction', action('VocabularyController@store'))
+            ->with('formMethod', 'POST');
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(VocabularyFormRequest $request)
+    {
+        $this->authorize('create', Vocabulary::class);
+
+        $vocabulary = new Vocabulary($request->input());
+
+        DB::beginTransaction();
+
+        if ($vocabulary->save()) {
+            try {
+                if ($request->has('terms')) {
+                    Term::makeFromText($request->get('terms', []), $vocabulary->id);
+                }
+
+                DB::commit();
+
+                return redirect()->action('VocabularyController@show', [$vocabulary->id]);
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+            }
+        }
+
+        DB::rollback();
+
+        return redirect()->action('VocabularyController@create')
+            ->withInput();
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Taxonomy\Infrastructure\Vocabulary $vocabulary
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function show(Vocabulary $vocabulary): ViewContract|Application|Factory|ApplicationFoundation
+    {
+        // lazy eager-loading of relations we will use
+        $vocabulary->load('terms', 'terms.children');
+
+        return view('taxonomy::vocabularies.item')->with('vocabulary', $vocabulary);
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param \App\Taxonomy\Infrastructure\Vocabulary $vocabulary
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Vocabulary $vocabulary): Response
+    {
+        $this->authorize('update', $vocabulary);
+
+        return View::make('taxonomy::vocabularies.edit')
+            ->with('vocabulary', $vocabulary)
+            ->with('formAction', action('VocabularyController@update', [
+                'id' => $vocabulary->id
+            ]))
+            ->with('formMethod', 'PUT');
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \App\Taxonomy\Interface\VocabularyFormRequest $request
+     * @param \App\Taxonomy\Infrastructure\Vocabulary $vocabulary
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(
+        VocabularyFormRequest $request,
+        Vocabulary $vocabulary
+    ): RedirectResponse
+    {
+        $this->authorize('update', $vocabulary);
+
+        $vocabulary->fill($request->input());
+
+        if ($vocabulary->save()) {
+            return redirect()->action('VocabularyController@show', [$vocabulary->id]);
+        }
+
+        return redirect()->action('VocabularyController@create')->withInput();
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Vocabulary $vocabulary
+     *
+     * @internal param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Vocabulary $vocabulary): RedirectResponse
+    {
+        $this->authorize('delete', $vocabulary);
+
+        return redirect()->action('VocabularyController@index');
+    }
+
+}

@@ -1,0 +1,86 @@
+.site--branding a {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem 5%;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  transition:
+    width 0.3s ease-in-out,
+    height 0.3s ease-in-out,
+    margin 0.3s ease-in-out;
+}
+
+.site--branding a .site-logo,
+.site--branding .site-name {
+  margin: 0;
+}
+
+.site--branding a .site-logo {
+  grid-column: 1;
+  grid-row: 1/span 2;
+}
+
+.site--branding a .site-logo,
+.site--branding a:link .site-logo,
+.site--branding a:visited .site-logo {
+  fill: var(--primary);
+}
+
+.site--branding a:active .site-logo,
+.site--branding a:focus .site-logo,
+.site--branding a:hover .site-logo {
+  animation-name: grow, spin;
+  animation-delay: 0s, 150ms;
+  animation-duration: 500ms, 1500ms;
+  animation-fill-mode: forwards, backwards;
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: linear, linear;
+}
+
+.site--branding .site-name {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  text-align: left;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.site--branding .site-name > span {
+  display: none;
+}
+
+.site--branding .site-slogan {
+  grid-column: 1/span 2;
+  grid-row: 3;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.8rem;
+  transition: font-size 0.3s ease-in-out;
+}
+
+
+@media screen {
+  @media (min-width: 23.125rem) {
+    .site--branding a {
+      gap: 0 5%;
+    }
+
+    .site--branding .site-name {
+      grid-row: 1;
+    }
+
+    .site--branding .site-slogan {
+      grid-column: 2;
+      grid-row: 2;
+      text-align: left;
+    }
+  }
+
+  @media (min-width: 37.5rem) {
+    .site--branding .site-slogan {
+      font-size: 1rem;
+    }
+  }
+}

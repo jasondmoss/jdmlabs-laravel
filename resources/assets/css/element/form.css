@@ -1,0 +1,88 @@
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem 0;
+  width: 100%;
+  padding: 1rem;
+  border-width: 0.125rem 0 0;
+}
+
+fieldset + fieldset {
+  margin-top: 1rem;
+}
+
+legend {
+  margin-bottom: 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem 0;
+}
+
+.form-field input,
+.form-field textarea {
+  max-width: 100%;
+  border: 0.0125rem solid hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) - 15%));
+  /*background-color: hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) + 3%));*/
+  background-color: #f6f6f6;
+  line-height: 2;
+  appearance: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  background-color: #fff;
+}
+
+input.upload {
+  margin-bottom: 1rem;
+}
+
+.form-input--text:focus {
+  border-color: hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) - 25%));
+  background-color: #fff;
+}
+
+.form-label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--gray-light);
+}
+
+
+fieldset.container--meta .form-field {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+@media screen and (min-width: 60rem) {
+  fieldset.container--signature-image {
+    display: grid;
+    grid-template-columns: 1fr 20rem;
+    align-content: start;
+    gap: 2rem;
+  }
+
+  fieldset.container--signature-image .form-field {
+    grid-column: 1;
+  }
+
+  fieldset.container--signature-image .item--image {
+    grid-column: 2;
+    grid-row: 1/span 4;
+    justify-self: end;
+    margin: 0;
+  }
+}
