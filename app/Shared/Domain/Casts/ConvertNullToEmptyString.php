@@ -23,8 +23,7 @@ final readonly class ConvertNullToEmptyString implements CastsInboundAttributes 
         string $key,
         mixed $value,
         array $attributes
-    ): string
-    {
+    ): string {
         if (is_null($value)) {
             return '';
         }

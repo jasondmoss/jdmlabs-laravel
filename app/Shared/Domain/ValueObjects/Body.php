@@ -6,22 +6,22 @@ namespace App\Shared\Domain\ValueObjects;
 
 final readonly class Body {
 
-    private Body $body;
+    private string $body;
 
 
     /**
-     * @param \App\Shared\Domain\ValueObjects\Body $body
+     * @param string $body
      */
-    public function __construct(Body $body)
+    public function __construct(string $body)
     {
         $this->body = $body;
     }
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Body
+     * @return string
      */
-    public function value(): Body
+    public function value(): string
     {
         return $this->body;
     }

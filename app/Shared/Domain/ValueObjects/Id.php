@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
-readonly final class Id {
+final readonly class Id {
 
     private string $id;
 

@@ -120,7 +120,7 @@ class Term extends Model {
 
             $terms[] = [
                 'name' => trim($parts[0]),
-                'description' => isset($parts[1]) ? trim($parts[1]) : '',
+                'description' => isset($parts[1]) ? trim($parts[1]) : ''
             ];
         }
 
@@ -169,11 +169,6 @@ class Term extends Model {
      */
     public static function form(array $attributes): View
     {
-        //        if (isset($attributes['id'])) {
-        //            $term = static::find($attributes['id']);
-        //        } else {
-        //            $term = new static($attributes);
-        //        }
         $term = isset($attributes['id'])
             ? static::find($attributes['id'])
             : new static($attributes);
@@ -182,8 +177,7 @@ class Term extends Model {
             throw new Exception('Vocabulary_id is required when adding a taxonomy term.');
         }
 
-        return View::make('taxonomy::terms.form')
-            ->with('term', $term);
+        return View::make('taxonomy::terms.form')->with('term', $term);
     }
 
 
@@ -195,8 +189,8 @@ class Term extends Model {
     public function hasUrl(): bool
     {
         return ($this->url && (
-                filter_var($this->url, FILTER_VALIDATE_URL) !== false
-            ));
+            filter_var($this->url, FILTER_VALIDATE_URL) !== false
+        ));
     }
 
 

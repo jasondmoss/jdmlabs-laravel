@@ -35,6 +35,9 @@ class TaxonomyEvent {
     }
 
 
+    /**
+     * @return \Illuminate\Broadcasting\PrivateChannel
+     */
     public function broadcastOn(): PrivateChannel
     {
         return new PrivateChannel('channel-name');

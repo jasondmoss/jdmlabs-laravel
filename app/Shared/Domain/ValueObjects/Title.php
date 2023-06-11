@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
-readonly final class Title {
+final readonly class Title {
 
     private string $title;
 

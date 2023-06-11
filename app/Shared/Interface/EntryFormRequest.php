@@ -22,8 +22,6 @@ class EntryFormRequest extends FormRequest {
      */
     public function authorize(): bool
     {
-//        dd($this->user());
-
         return true;
     }
 

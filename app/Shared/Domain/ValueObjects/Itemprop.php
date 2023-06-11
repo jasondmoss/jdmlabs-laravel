@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
-class Itemprop {
+final readonly class Itemprop {
 
     private string $itemprop;
 

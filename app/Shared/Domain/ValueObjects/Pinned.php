@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObjects;
 
 use Illuminate\Validation\Rules\Enum;
 
-readonly final class Pinned {
+final readonly class Pinned {
 
     private Enum $pinned;
 

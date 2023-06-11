@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
-class Website {
+final readonly class Website {
 
     private string $website;
 

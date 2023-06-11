@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObjects;
 
 use Illuminate\Validation\Rules\Enum;
 
-readonly final class Status {
+final readonly class Status {
 
     private Enum $status;
 
