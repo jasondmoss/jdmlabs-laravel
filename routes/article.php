@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([ 'web' ])->group(function () {
 
     // Public.
-    Route::get('/articles', Controllers\ArticlePublicIndexController::class);
-    Route::get('/article/{slug}', Controllers\ArticlePublicShowController::class);
+    Route::get('/articles', Controllers\PublishedController::class);
+    Route::get('/article/{slug}', Controllers\SingleController::class);
 
     // Admin.
     Route::prefix('ae')->name('admin.')->middleware([
         config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
     ])->group(function () {
-        Route::get('/articles', Controllers\ArticleAdminIndexController::class);
-        Route::get('/article/create', Controllers\ArticleAdminCreateController::class);
-        Route::post('/article/create', Controllers\ArticleAdminStoreController::class);
-        Route::get('/article/edit/{id}', Controllers\ArticleAdminEditController::class);
-        Route::put('/article/update/{id}', Controllers\ArticleAdminUpdateController::class);
-        Route::delete('/article/{id}', Controllers\ArticleAdminDestroyController::class);
+        Route::get('/articles', Controllers\IndexController::class);
+        Route::get('/article/create', Controllers\CreateController::class);
+        Route::post('/article/create', Controllers\StoreController::class);
+        Route::get('/article/edit/{id}', Controllers\EditController::class);
+        Route::put('/article/update/{id}', Controllers\UpdateController::class);
+        Route::delete('/article/{id}', Controllers\DestroyController::class);
     });
 
 });

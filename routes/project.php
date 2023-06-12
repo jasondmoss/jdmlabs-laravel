@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([ 'web' ])->group(function () {
 
     // Public.
-    Route::get('/projects', Controllers\ProjectPublicPublishedController::class);
-    Route::get('/project/{slug}', Controllers\ProjectPublicShowController::class);
+    Route::get('/projects', Controllers\PublishedController::class);
+    Route::get('/project/{slug}', Controllers\SingleController::class);
 
     // Admin.
     Route::prefix('ae')->name('admin.')->middleware([
         config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
     ])->group(function () {
-        Route::get('/projects', Controllers\ProjectAdminListController::class);
-        Route::get('/project/create', Controllers\ProjectAdminCreateController::class);
-        Route::post('/project/create', Controllers\ProjectAdminStoreController::class);
-        Route::get('/project/edit/{id}', Controllers\ProjectAdminEditController::class);
-        Route::put('/project/update/{id}', Controllers\ProjectAdminUpdateController::class);
-        Route::delete('/project/{id}', Controllers\ProjectAdminDestroyController::class);
+        Route::get('/projects', Controllers\IndexController::class);
+        Route::get('/project/create', Controllers\CreateController::class);
+        Route::post('/project/create', Controllers\StoreController::class);
+        Route::get('/project/edit/{id}', Controllers\EditController::class);
+        Route::put('/project/update/{id}', Controllers\UpdateController::class);
+        Route::delete('/project/{id}', Controllers\DestroyController::class);
     });
 
 });

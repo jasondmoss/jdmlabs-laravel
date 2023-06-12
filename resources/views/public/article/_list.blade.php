@@ -1,10 +1,10 @@
 @php
-  use App\Article\Application\Controllers\ArticleAdminEditController;use App\Article\Application\Controllers\ArticlePublicShowController;use App\Article\Application\Controllers\ArticlePublishedController;
+  use App\Article\Application\Controllers\EditController;use App\Article\Application\Controllers\SingleController;use App\Article\Application\Controllers\PublishedController;
 @endphp
 @if ($articles->count())
   <div class="listings article">
     @foreach ($articles as $article)
-      <article itemid="{{ action(ArticlePublishedController::class, $article->id) }}" itemscope itemtype="https://schema.org/" id="article_{{ $article->id }}" class="h-entry h-as-article card">
+      <article itemid="{{ action(PublishedController::class, $article->id) }}" itemscope itemtype="https://schema.org/" id="article_{{ $article->id }}" class="h-entry h-as-article card">
         {{--@if ($article->hasMedia('signatures'))
           <figure class="entry-image">
             <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
@@ -12,7 +12,7 @@
         @endif--}}
         <header class="entry-header">
           <time itemprop="datePublished" datetime="{{ date('c', strtotime($article->created_at)) }}" class="dt-published">{{ date('F jS, Y', strtotime($article->created_at)) }}</time>
-          <h3><a href="{{ action(ArticlePublicShowController::class, $article->slug) }}">{{ $article->title }}</a></h3>
+          <h3><a href="{{ action(SingleController::class, $article->slug) }}">{{ $article->title }}</a></h3>
           <nav class="taxonomy">
             {{--@foreach($article->categories as $category)
               {{ $loop->first ? '' : ', ' }}
@@ -25,7 +25,7 @@
         </div>
         <footer>
           @if (@auth()->check())
-            <a rel="nofollow" class="button" href="{{ action(ArticleAdminEditController::class, $article->id) }}">{{ __('Edit') }}</a>
+            <a rel="nofollow" class="button" href="{{ action(EditController::class, $article->id) }}">{{ __('Edit') }}</a>
           @endif
         </footer>
       </article>

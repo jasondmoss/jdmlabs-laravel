@@ -12,13 +12,13 @@
         <client id="item-{{ $client->id }}" class="item">
 
           <figure class="item--image">
-            <a href="{{ action(Controllers\ClientAdminEditController::class, $client->id) }}" title="{{ __('Edit') }}">
+            <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
               <img src="{{ asset('images/placeholder/logo.png') }}" width="100" height="100" alt=""></a>
           </figure>
 
           <header class="item--header">
             <h3 class="title">
-              <a href="{{ action(Controllers\ClientAdminEditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
+              <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
             </h3>
           </header>
 
@@ -55,20 +55,20 @@
           <footer class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(Controllers\ClientAdminEditController::class, $client->id) }}" title="{{ __('Edit client') }}">
+                <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit client') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a rel="external" href="{{ action(Controllers\ClientPublicSingleController::class, $client->slug) }}" title="{{ __('View client') }}">
+                <a rel="external" href="{{ action(Controllers\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
                   <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(Controllers\ClientAdminDestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
+                <a href="{{ action(Controllers\DestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Controllers\ClientAdminDestroyController::class, $client->id) }}">
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Controllers\DestroyController::class, $client->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

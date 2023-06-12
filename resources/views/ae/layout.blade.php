@@ -1,5 +1,5 @@
 @php
-  use App\Article\Application\Controllers\ArticleAdminIndexController;use App\Client\Application\Controllers\ClientAdminListController;use App\Project\Application\Controllers\ProjectAdminListController;
+  use App\Article\Application\Controllers\IndexController;use App\Client\Application\Controllers\IndexController;use App\Project\Application\Controllers\IndexController;
   //  use App\Taxonomy\Application\Controllers\Admin\ListTaxonomiesController;
 @endphp
   <!DOCTYPE html>
@@ -85,14 +85,14 @@
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
-        <a href="{{ action(ClientAdminListController::class) }}" class="menu-link"><span>{{ __('Clients') }}</span></a>
+        <a href="{{ action(IndexController::class) }}" class="menu-link"><span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
-        <a href="{{ action(ProjectAdminListController::class) }}" title="" class="menu-link">
+        <a href="{{ action(IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
-        <a href="{{ action(ArticleAdminIndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
       {{--<li class="menu-item">
