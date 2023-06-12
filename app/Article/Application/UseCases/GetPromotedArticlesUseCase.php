@@ -30,7 +30,7 @@ final class GetPromotedArticlesUseCase {
      */
     public function __invoke(string $column = 'id', int $pages = 10): Paginator|Builder
     {
-        return $this->repository->getPromotedArticles($column, $pages);
+        return $this->repository->getPromoted($column, $pages);
     }
 
 }

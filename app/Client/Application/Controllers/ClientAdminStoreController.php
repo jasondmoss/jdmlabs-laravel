@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 
 class ClientAdminStoreController extends Controller {
 
-    protected SaveClientUseCase $saveClient;
+    protected SaveClientUseCase $save;
 
 
     /**
-     * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
+     * @param \App\Client\Application\UseCases\SaveClientUseCase $save
      */
-    public function __construct(SaveClientUseCase $saveClient)
+    public function __construct(SaveClientUseCase $save)
     {
-        $this->saveClient = $saveClient;
+        $this->save = $save;
     }
 
 
@@ -33,7 +33,7 @@ class ClientAdminStoreController extends Controller {
     {
         $this->authorize('create', Client::class);
 
-        $this->saveClient->__invoke($request);
+        $this->save->__invoke($request);
 
         return redirect()
             ->route('admin.clients')

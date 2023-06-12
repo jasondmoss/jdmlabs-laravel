@@ -52,6 +52,7 @@ class ProjectServiceProvider extends ServiceProvider {
             ->needs(ProjectRepositoryContract::class)
             ->give(ProjectRepository::class);
 
+
         // Tell Laravel of our custom templates path.
         View::addNamespace('ProjectAdmin', resource_path('views/ae/project'));
         View::addNamespace('ProjectPublic', resource_path('views/public/project'));

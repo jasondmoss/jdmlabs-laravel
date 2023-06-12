@@ -11,15 +11,23 @@ class DeleteClientUseCase {
     protected ClientRepositoryContract $repository;
 
 
+    /**
+     * @param \App\Client\Domain\ClientRepositoryContract $repository
+     */
     public function __construct(ClientRepositoryContract $repository)
     {
         $this->repository = $repository;
     }
 
 
+    /**
+     * @param string $id
+     *
+     * @return void
+     */
     public function __invoke(string $id): void
     {
-        $this->repository->deleteClient($id);
+        $this->repository->delete($id);
     }
 
 }

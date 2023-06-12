@@ -20,9 +20,14 @@ class GetRelatedProjectsUseCase {
     }
 
 
+    /**
+     * @param mixed $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder
+     */
     public function __invoke(mixed $data): Model|Collection|Builder
     {
-        return $this->repository->getRelatedProjects($data);
+        return $this->repository->getRelated($data);
     }
 
 }

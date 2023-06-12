@@ -22,13 +22,13 @@ class Term extends Model {
      *
      * @var array
      */
-    public static $rules = [
+    public static array $rules = [
         'name' => 'required|max:80',
         'description' => 'nullable|max:1000',
         'url' => 'nullable|url|max:1000',
         'vocabulary_id' => 'required|integer',
         'is_active' => 'boolean',
-        'weight' => 'integer',
+        'weight' => 'integer'
     ];
 
     /**
@@ -53,11 +53,11 @@ class Term extends Model {
      *
      * @var array
      */
-    protected $dispatchesEvents = [
-        'created' => Events\TaxonomyCreatedEvent::class,
-        'updated' => Events\TaxonomyUpdatedEvent::class,
-        'deleted' => Events\TaxonomyDeletedEvent::class
-    ];
+//    protected $dispatchesEvents = [
+//        'created' => Events\TaxonomyCreatedEvent::class,
+//        'updated' => Events\TaxonomyUpdatedEvent::class,
+//        'deleted' => Events\TaxonomyDeletedEvent::class
+//    ];
 
 
     /**
@@ -277,7 +277,7 @@ class Term extends Model {
             'description' => $this->description,
             'url' => $this->url,
             'vocabulary_id' => $this->vocabulary_id,
-            'weight' => $this->weight,
+            'weight' => $this->weight
         ];
     }
 

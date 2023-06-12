@@ -13,15 +13,15 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticleAdminStoreController extends Controller {
 
-    protected SaveArticleUseCase $saveArticle;
+    protected SaveArticleUseCase $save;
 
 
     /**
-     * @param \App\Article\Application\UseCases\SaveArticleUseCase $saveArticle
+     * @param \App\Article\Application\UseCases\SaveArticleUseCase $save
      */
-    public function __construct(SaveArticleUseCase $saveArticle)
+    public function __construct(SaveArticleUseCase $save)
     {
-        $this->saveArticle = $saveArticle;
+        $this->save = $save;
     }
 
 
@@ -29,13 +29,14 @@ class ArticleAdminStoreController extends Controller {
      * @param \App\Shared\Interface\EntryFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
         $this->authorize('create', Article::class);
 
         // Store + return article.
-        $article = $this->saveArticle->__invoke($request);
+        $article = $this->save->__invoke($request);
 
         // Save + attach categories.
         //        $article->categories()->sync((array) $request->input('categories'));

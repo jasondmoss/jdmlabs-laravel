@@ -32,7 +32,7 @@ final class GetAllArticlesUseCase {
         mixed $key = null
     ): Collection|CollectionSupport
     {
-        return $this->repository->getAllArticles($pluck, $column, $key);
+        return $this->repository->getAll($pluck, $column, $key);
     }
 
 }

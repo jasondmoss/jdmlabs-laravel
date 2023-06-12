@@ -27,7 +27,7 @@ final class GetRelatedArticlesUseCase {
      */
     public function __invoke(mixed $data): Model|Collection|Builder
     {
-        return $this->repository->getRelatedArticles($data);
+        return $this->repository->getRelated($data);
     }
 
 }

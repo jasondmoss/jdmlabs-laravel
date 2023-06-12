@@ -13,19 +13,29 @@ class GetAllClientsUseCase {
     protected ClientRepositoryContract $repository;
 
 
+    /**
+     * @param \App\Client\Domain\ClientRepositoryContract $repository
+     */
     public function __construct(ClientRepositoryContract $repository)
     {
         $this->repository = $repository;
     }
 
 
+    /**
+     * @param bool $pluck
+     * @param string|null $column
+     * @param mixed|null $key
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+     */
     public function __invoke(
         bool $pluck = false,
         string $column = null,
         mixed $key = null
     ): Collection|CollectionSupport
     {
-        return $this->repository->getAllClients($pluck, $column, $key);
+        return $this->repository->getAll($pluck, $column, $key);
     }
 
 }

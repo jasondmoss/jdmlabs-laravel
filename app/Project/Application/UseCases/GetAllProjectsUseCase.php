@@ -35,7 +35,7 @@ final class GetAllProjectsUseCase {
         mixed $key = null
     ): Collection|CollectionSupport
     {
-        return $this->repository->getAllProjects($pluck, $column, $key);
+        return $this->repository->getAll($pluck, $column, $key);
     }
 
 }

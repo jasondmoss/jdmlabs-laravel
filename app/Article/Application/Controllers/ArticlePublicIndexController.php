@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ArticlePublicIndexController extends Controller {
 
-    private GetPublishedArticlesUseCase $GetPublishedArticles;
+    private GetPublishedArticlesUseCase $GetPublished;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetPublishedArticlesUseCase $GetPublishedArticles
+     * @param \App\Article\Application\UseCases\GetPublishedArticlesUseCase $GetPublished
      */
-    public function __construct(GetPublishedArticlesUseCase $GetPublishedArticles)
+    public function __construct(GetPublishedArticlesUseCase $GetPublished)
     {
-        $this->GetPublishedArticles = $GetPublishedArticles;
+        $this->GetPublished = $GetPublished;
     }
 
 
@@ -28,7 +28,7 @@ class ArticlePublicIndexController extends Controller {
      */
     public function __invoke(): View
     {
-        $articles = $this->GetPublishedArticles->__invoke();
+        $articles = $this->GetPublished->__invoke();
 
         return ViewFacade::make('ArticlePublic::show', [
             'articles' => $articles

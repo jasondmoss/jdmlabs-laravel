@@ -11,15 +11,15 @@ use Illuminate\View\View;
 
 class ProjectPublicShowController extends Controller {
 
-    private GetProjectUseCase $getProject;
+    private GetProjectUseCase $get;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
+     * @param \App\Project\Application\UseCases\GetProjectUseCase $get
      */
-    public function __construct(GetProjectUseCase $getProject)
+    public function __construct(GetProjectUseCase $get)
     {
-        $this->getProject = $getProject;
+        $this->get = $get;
     }
 
 
@@ -30,7 +30,7 @@ class ProjectPublicShowController extends Controller {
      */
     public function __invoke($project): View
     {
-        $project = $this->getProject->__invoke($project);
+        $project = $this->get->__invoke($project);
 //        $project->categories = $project->categories()->get();
 
         return ViewFacade::make('ProjectPublic::single', [

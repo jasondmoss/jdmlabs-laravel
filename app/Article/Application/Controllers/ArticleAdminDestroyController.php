@@ -13,19 +13,19 @@ use Illuminate\Routing\Redirector;
 
 class ArticleAdminDestroyController extends Controller {
 
-    protected DeleteArticleUseCase $delete;
-
     protected GetArticleUseCase $get;
+
+    protected DeleteArticleUseCase $delete;
 
 
     /**
      * @param \App\Article\Application\UseCases\DeleteArticleUseCase $delete
      * @param \App\Article\Application\UseCases\GetArticleUseCase $get
      */
-    public function __construct(DeleteArticleUseCase $delete, GetArticleUseCase $get)
+    public function __construct(GetArticleUseCase $get, DeleteArticleUseCase $delete)
     {
-        $this->delete = $delete;
         $this->get = $get;
+        $this->delete = $delete;
     }
 
 
@@ -33,6 +33,7 @@ class ArticleAdminDestroyController extends Controller {
      * @param string $id
      *
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): Redirector|RedirectResponse
     {

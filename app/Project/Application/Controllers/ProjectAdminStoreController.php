@@ -13,15 +13,15 @@ use Illuminate\Http\RedirectResponse;
 
 class ProjectAdminStoreController extends Controller {
 
-    protected SaveProjectUseCase $saveProject;
+    protected SaveProjectUseCase $save;
 
 
     /**
-     * @param \App\Project\Application\UseCases\SaveProjectUseCase $saveProject
+     * @param \App\Project\Application\UseCases\SaveProjectUseCase $save
      */
-    public function __construct(SaveProjectUseCase $saveProject)
+    public function __construct(SaveProjectUseCase $save)
     {
-        $this->saveProject = $saveProject;
+        $this->save = $save;
     }
 
 
@@ -36,7 +36,7 @@ class ProjectAdminStoreController extends Controller {
         $this->authorize('create', Project::class);
 
         // Store + return project.
-        $project = $this->saveProject->__invoke($request);
+        $project = $this->save->__invoke($request);
 
         // Save + attach categories.
 //        $project->categories()->sync((array) $request->input('categories'));

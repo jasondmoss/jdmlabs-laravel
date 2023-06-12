@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientAdminListController extends Controller {
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function __invoke(): View
     {
         return ViewFacade::make('ClientAdmin::show');

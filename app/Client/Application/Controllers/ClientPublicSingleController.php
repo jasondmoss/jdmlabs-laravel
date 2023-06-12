@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientPublicSingleController extends Controller {
 
-    private GetClientUseCase $getClient;
+    private GetClientUseCase $get;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
+     * @param \App\Client\Application\UseCases\GetClientUseCase $get
      */
-    public function __construct(GetClientUseCase $getClient)
+    public function __construct(GetClientUseCase $get)
     {
-        $this->getClient = $getClient;
+        $this->get = $get;
     }
 
 
@@ -30,7 +30,7 @@ class ClientPublicSingleController extends Controller {
      */
     public function __invoke(string $key): View
     {
-        $client = $this->getClient->__invoke($key);
+        $client = $this->get->__invoke($key);
 
         return ViewFacade::make('ClientPublic::single', [
             'client' => $client

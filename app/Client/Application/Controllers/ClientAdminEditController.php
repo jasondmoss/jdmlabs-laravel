@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientAdminEditController extends Controller {
 
-    protected GetClientUseCase $getClient;
+    protected GetClientUseCase $get;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
+     * @param \App\Client\Application\UseCases\GetClientUseCase $get
      */
-    public function __construct(GetClientUseCase $getClient)
+    public function __construct(GetClientUseCase $get)
     {
-        $this->getClient = $getClient;
+        $this->get = $get;
     }
 
 
@@ -30,7 +30,7 @@ class ClientAdminEditController extends Controller {
      */
     public function __invoke(string $id): View
     {
-        $client = $this->getClient->__invoke($id);
+        $client = $this->get->__invoke($id);
 //        $client->projects = Project::get()->pluck('title', 'id');
 
         $this->authorize('owner', $client);

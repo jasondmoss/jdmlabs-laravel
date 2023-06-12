@@ -35,7 +35,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      * @return \App\Article\Infrastructure\Article
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function getArticle(string $key): Article
+    public function get(string $key): Article
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -56,7 +56,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function getAllArticles(
+    public function getAll(
         bool $pluck = false,
         ?string $column = null,
         ?int $key = null
@@ -76,7 +76,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPromotedArticles(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPromoted(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('promoted', '=', 'promoted')
@@ -91,7 +91,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPublishedArticles(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('status', '=', 'published')
@@ -105,7 +105,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection
      */
-    public function getRelatedArticles(mixed $data): Model|Builder|Collection
+    public function getRelated(mixed $data): Model|Builder|Collection
     {
         /*return $this->model->where('category_id', $data->category_id)
             ->where('status', '=', 1)
@@ -152,7 +152,7 @@ class ArticleRepository implements ArticleRepositoryContract {
      * @return void
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function deleteArticle(string $id): void
+    public function delete(string $id): void
     {
         $modelId = (new Id($id))->value();
         $objectModel = $this->model->find($modelId);

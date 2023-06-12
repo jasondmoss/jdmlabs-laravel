@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ArticlePublicShowController extends Controller {
 
-    private GetArticleUseCase $getArticle;
+    private GetArticleUseCase $get;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
+     * @param \App\Article\Application\UseCases\GetArticleUseCase $get
      */
-    public function __construct(GetArticleUseCase $getArticle)
+    public function __construct(GetArticleUseCase $get)
     {
-        $this->getArticle = $getArticle;
+        $this->get = $get;
     }
 
 
@@ -30,7 +30,7 @@ class ArticlePublicShowController extends Controller {
      */
     public function __invoke(string $key): View
     {
-        $article = $this->getArticle->__invoke($key);
+        $article = $this->get->__invoke($key);
 //        $article->categories = $article->categories()->get();
 
         return ViewFacade::make('ArticlePublic::single', [

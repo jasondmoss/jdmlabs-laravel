@@ -28,7 +28,7 @@ final class GetArticleUseCase {
      */
     public function __invoke(string $key): Article
     {
-        return $this->repository->getArticle($key);
+        return $this->repository->get($key);
     }
 
 }

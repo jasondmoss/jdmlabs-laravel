@@ -19,6 +19,9 @@ class ProjectFactory extends Factory {
     protected $model = Project::class;
 
 
+    /**
+     * @return array
+     */
     public function definition(): array
     {
         $faker = FakerFactory::create();
@@ -48,20 +51,5 @@ class ProjectFactory extends Factory {
             'updated_at' => Date::now()
         ];
     }
-
-    /*public function configure()
-    {
-        return $this
-            ->afterMaking(function () {})
-            ->afterCreating(function () {
-                foreach (Project::all() as $project) {
-                    $categories = Category::inRandomOrder()
-                        ->limit(rand(1, 12))
-                        ->get();
-
-                    $project->categories()->sync($categories);
-                }
-            });
-    }*/
 
 }

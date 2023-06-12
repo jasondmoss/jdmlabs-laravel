@@ -13,27 +13,33 @@ use Illuminate\Routing\Redirector;
 
 class ClientAdminDestroyController extends Controller {
 
-    protected DeleteClientUseCase $deleteClient;
+    protected GetClientUseCase $get;
 
-    protected GetClientUseCase $getClient;
+    protected DeleteClientUseCase $delete;
 
 
-    public function __construct(
-        DeleteClientUseCase $deleteClient,
-        GetClientUseCase $getClient
-    )
+    /**
+     * @param \App\Client\Application\UseCases\GetClientUseCase $get
+     * @param \App\Client\Application\UseCases\DeleteClientUseCase $delete
+     */
+    public function __construct(GetClientUseCase $get, DeleteClientUseCase $delete)
     {
-        $this->deleteClient = $deleteClient;
-        $this->getClient = $getClient;
+        $this->get = $get;
+        $this->delete = $delete;
     }
 
 
+    /**
+     * @param string $id
+     *
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
     public function __invoke(string $id): Redirector|RedirectResponse
     {
-        $client = $this->getClient->__invoke((new Id($id))->value());
+        $client = $this->get->__invoke((new Id($id))->value());
         $this->authorize('create', $client);
 
-        $this->deleteClient->__invoke($id);
+        $this->delete->__invoke($id);
 
         return redirect()
             ->route('admin.clients')

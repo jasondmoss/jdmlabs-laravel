@@ -12,31 +12,33 @@ use Illuminate\Http\RedirectResponse;
 
 class ClientAdminUpdateController extends Controller {
 
-    protected SaveClientUseCase $saveClient;
+    protected GetClientUseCase $get;
 
-    protected GetClientUseCase $getClient;
+    protected SaveClientUseCase $save;
 
 
     /**
-     * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
+     * @param \App\Client\Application\UseCases\GetClientUseCase $get
+     * @param \App\Client\Application\UseCases\SaveClientUseCase $save
      */
-    public function __construct(
-        SaveClientUseCase $saveClient,
-        GetClientUseCase $getClient
-    )
+    public function __construct(GetClientUseCase $get, SaveClientUseCase $save)
     {
-        $this->saveClient = $saveClient;
-        $this->getClient = $getClient;
+        $this->get = $get;
+        $this->save = $save;
     }
 
 
+    /**
+     * @param \App\Shared\Interface\EntryFormRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
-        $client = $this->getClient->__invoke($request->id);
+        $client = $this->get->__invoke($request->id);
         $this->authorize('owner', $client);
 
-        $this->saveClient->__invoke($request);
+        $this->save->__invoke($request);
 
         return redirect()
             ->route('admin.clients')

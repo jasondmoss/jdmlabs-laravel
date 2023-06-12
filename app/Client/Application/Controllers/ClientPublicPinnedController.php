@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientPublicPinnedController extends Controller {
 
-    private GetPinnedClientsUseCase $getPinnedClients;
+    private GetPinnedClientsUseCase $getPinned;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetPinnedClientsUseCase $getPinnedClients
+     * @param \App\Client\Application\UseCases\GetPinnedClientsUseCase $getPinned
      */
-    public function __construct(GetPinnedClientsUseCase $getPinnedClients)
+    public function __construct(GetPinnedClientsUseCase $getPinned)
     {
-        $this->getPinnedClients = $getPinnedClients;
+        $this->getPinned = $getPinned;
     }
 
 
@@ -28,7 +28,7 @@ class ClientPublicPinnedController extends Controller {
      */
     public function __invoke(): View
     {
-        $clients = $this->getPinnedClients->__invoke();
+        $clients = $this->getPinned->__invoke();
 
         return ViewFacade::make('ClientPublic::show', [
             'clients' => $clients

@@ -25,7 +25,7 @@ class DeleteProjectUseCase {
      */
     public function __invoke(string $id): void
     {
-        $this->repository->deleteProject($id);
+        $this->repository->delete($id);
     }
 
 }

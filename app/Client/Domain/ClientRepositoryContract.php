@@ -18,7 +18,7 @@ interface ClientRepositoryContract {
      *
      * @return \App\Client\Infrastructure\Client
      */
-    public function getClient(string $key): Client;
+    public function get(string $key): Client;
 
 
     /**
@@ -28,7 +28,7 @@ interface ClientRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function getAllClients(
+    public function getAll(
         bool $pluck = false,
         string $column = null,
         mixed $key = null
@@ -41,7 +41,7 @@ interface ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPinnedClients(string $column = 'id', int $pages = 10): Paginator|Builder;
+    public function getPinned(string $column = 'id', int $pages = 10): Paginator|Builder;
 
 
     /**
@@ -50,7 +50,7 @@ interface ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPromotedClients(string $column = 'id', int $pages = 10): Paginator|Builder;
+    public function getPromoted(string $column = 'id', int $pages = 10): Paginator|Builder;
 
 
     /**
@@ -59,7 +59,7 @@ interface ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPublishedClients(string $column = 'id', int $pages = 10): Paginator|Builder;
+    public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder;
 
 
     /**
@@ -83,6 +83,6 @@ interface ClientRepositoryContract {
      *
      * @return void
      */
-    public function deleteClient(string $id): void;
+    public function delete(string $id): void;
 
 }

@@ -33,10 +33,6 @@ class ArticleServiceProvider extends ServiceProvider {
             ->needs(ArticleRepositoryContract::class)
             ->give(ArticleRepository::class);
 
-        $this->app->when(UseCases\GetPinnedArticlesUseCase::class)
-            ->needs(ArticleRepositoryContract::class)
-            ->give(ArticleRepository::class);
-
         $this->app->when(UseCases\GetPromotedArticlesUseCase::class)
             ->needs(ArticleRepositoryContract::class)
             ->give(ArticleRepository::class);
@@ -52,6 +48,7 @@ class ArticleServiceProvider extends ServiceProvider {
         $this->app->when(UseCases\SaveArticleUseCase::class)
             ->needs(ArticleRepositoryContract::class)
             ->give(ArticleRepository::class);
+
 
         // Tell Laravel of our custom templates path.
         View::addNamespace('ArticleAdmin', resource_path('views/ae/article'));

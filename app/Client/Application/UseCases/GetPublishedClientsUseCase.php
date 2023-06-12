@@ -13,15 +13,24 @@ class GetPublishedClientsUseCase {
     private ClientRepositoryContract $repository;
 
 
+    /**
+     * @param \App\Client\Domain\ClientRepositoryContract $repository
+     */
     public function __construct(ClientRepositoryContract $repository)
     {
         $this->repository = $repository;
     }
 
 
+    /**
+     * @param string $column
+     * @param int $pages
+     *
+     * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
+     */
     public function __invoke(string $column = 'id', int $pages = 10): Paginator|Builder
     {
-        return $this->repository->getPublishedClients($column, $pages);
+        return $this->repository->getPublished($column, $pages);
     }
 
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Application\Controllers\API;
+namespace App\Taxonomy\Application\Controllers\API\V1;
 
 use App\Taxonomy\Application\Controllers\TaxonomyController;
 use App\Taxonomy\Infrastructure\Term;

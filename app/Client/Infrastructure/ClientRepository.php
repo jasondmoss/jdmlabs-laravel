@@ -34,7 +34,7 @@ class ClientRepository implements ClientRepositoryContract {
      * @return \App\Client\Infrastructure\Client
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function getClient(string $key): Client
+    public function get(string $key): Client
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -55,7 +55,7 @@ class ClientRepository implements ClientRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function getAllClients(
+    public function getAll(
         bool $pluck = false,
         string $column = null,
         mixed $key = null
@@ -75,7 +75,7 @@ class ClientRepository implements ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPinnedClients(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPinned(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('pinned', 'pinned')
@@ -90,7 +90,7 @@ class ClientRepository implements ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPromotedClients(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPromoted(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('promoted', 'promoted')
@@ -105,7 +105,7 @@ class ClientRepository implements ClientRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPublishedClients(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('status', 'published')
@@ -162,7 +162,7 @@ class ClientRepository implements ClientRepositoryContract {
      * @return void
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function deleteClient(string $id): void
+    public function delete(string $id): void
     {
         $modelId = (new Id($id))->value();
         $objectModel = $this->model->find($modelId);

@@ -19,7 +19,7 @@ interface ArticleRepositoryContract {
      *
      * @return \App\Article\Infrastructure\Article
      */
-    public function getArticle(string $key): Article;
+    public function get(string $key): Article;
 
 
     /**
@@ -29,7 +29,7 @@ interface ArticleRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function getAllArticles(
+    public function getAll(
         bool $pluck = false,
         ?string $column = null,
         ?int $key = null
@@ -42,7 +42,7 @@ interface ArticleRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPromotedArticles(string $column = 'id', int $pages = 10): Paginator|Builder;
+    public function getPromoted(string $column = 'id', int $pages = 10): Paginator|Builder;
 
 
     /**
@@ -51,7 +51,7 @@ interface ArticleRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPublishedArticles(string $column = 'id', int $pages = 10): Paginator|Builder;
+    public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder;
 
 
     /**
@@ -59,7 +59,7 @@ interface ArticleRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection
      */
-    public function getRelatedArticles(mixed $data): Model|Builder|Collection;
+    public function getRelated(mixed $data): Model|Builder|Collection;
 
 
     /**
@@ -75,6 +75,6 @@ interface ArticleRepositoryContract {
      *
      * @return void
      */
-    public function deleteArticle(string $id): void;
+    public function delete(string $id): void;
 
 }

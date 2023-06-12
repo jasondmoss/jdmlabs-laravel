@@ -13,22 +13,19 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticleAdminUpdateController extends Controller {
 
-    protected SaveArticleUseCase $updateArticle;
+    protected GetArticleUseCase $get;
 
-    protected GetArticleUseCase $getArticle;
+    protected SaveArticleUseCase $update;
 
 
     /**
-     * @param \App\Article\Application\UseCases\SaveArticleUseCase $updateArticle
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
+     * @param \App\Article\Application\UseCases\GetArticleUseCase $get
+     * @param \App\Article\Application\UseCases\SaveArticleUseCase $update
      */
-    public function __construct(
-        GetArticleUseCase $getArticle,
-        SaveArticleUseCase $updateArticle
-    )
+    public function __construct(GetArticleUseCase $get, SaveArticleUseCase $update)
     {
-        $this->getArticle = $getArticle;
-        $this->updateArticle = $updateArticle;
+        $this->get = $get;
+        $this->update = $update;
     }
 
 
@@ -36,14 +33,16 @@ class ArticleAdminUpdateController extends Controller {
      * @param \App\Shared\Interface\EntryFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
-        $article = $this->getArticle->__invoke($request->id);
+        $article = $this->get->__invoke($request->id);
         $this->authorize('owner', $article);
 
         // Update + return article.
-        $article = $this->updateArticle->__invoke($request);
+//        $article = $this->update->__invoke($request);
+        $this->update->__invoke($request);
 
         // Save + attach categories.
 //        $article->categories()->sync((array) $request->input('categories'));

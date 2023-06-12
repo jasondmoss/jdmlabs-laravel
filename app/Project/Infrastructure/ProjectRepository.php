@@ -25,7 +25,7 @@ class ProjectRepository implements ProjectRepositoryContract {
 
     public function __construct()
     {
-        $this->model = new Project;
+        $this->model = new Project();
     }
 
 
@@ -35,7 +35,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      * @return \App\Project\Infrastructure\Project
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function getProject(string $key): Project
+    public function get(string $key): Project
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -56,7 +56,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public function getAllProjects(
+    public function getAll(
         bool $pluck = false,
         string $column = null,
         mixed $key = null
@@ -76,7 +76,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPinnedProjects(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPinned(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('pinned', '=', 'pinned')
@@ -91,7 +91,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPromotedProjects(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPromoted(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('promoted', '=', 'promoted')
@@ -106,7 +106,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @return \Illuminate\Pagination\Paginator|\Illuminate\Database\Eloquent\Builder
      */
-    public function getPublishedProjects(string $column = 'id', int $pages = 10): Paginator|Builder
+    public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder
     {
         return $this->model
             ->where('status', '=', 'published')
@@ -121,7 +121,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection
      */
-    public function getRelatedProjects(mixed $data): Model|Builder|Collection
+    public function getRelated(mixed $data): Model|Builder|Collection
     {
         /*return $this->model->where('category_id', $data->category_id)
             ->where('status', '=', 1)
@@ -171,7 +171,7 @@ class ProjectRepository implements ProjectRepositoryContract {
      *
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function deleteProject(string $id): void
+    public function delete(string $id): void
     {
         $objectId = (new Id($id))->value();
         $objectModel = $this->model->find($objectId);

@@ -11,18 +11,24 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientPublicPublishedController extends Controller {
 
-    private GetPublishedClientsUseCase $getPublishedClients;
+    private GetPublishedClientsUseCase $getPublished;
 
 
-    public function __construct(GetPublishedClientsUseCase $getPublishedClients)
+    /**
+     * @param \App\Client\Application\UseCases\GetPublishedClientsUseCase $getPublished
+     */
+    public function __construct(GetPublishedClientsUseCase $getPublished)
     {
-        $this->getPublishedClients = $getPublishedClients;
+        $this->getPublished = $getPublished;
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function __invoke(): View
     {
-        $clients = $this->getPublishedClients->__invoke();
+        $clients = $this->getPublished->__invoke();
 
         return ViewFacade::make('ClientPublic::show', [
             'clients' => $clients

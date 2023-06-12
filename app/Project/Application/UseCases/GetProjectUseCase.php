@@ -28,7 +28,7 @@ class GetProjectUseCase {
      */
     public function __invoke(string $key): Project
     {
-        return $this->repository->getProject($key);
+        return $this->repository->get($key);
     }
 
 }

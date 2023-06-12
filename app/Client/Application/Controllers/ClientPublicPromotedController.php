@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class ClientPublicPromotedController extends Controller {
 
-    private GetPromotedClientsUseCase $getPromotedClients;
+    private GetPromotedClientsUseCase $getPromoted;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetPromotedClientsUseCase $getPromotedClients
+     * @param \App\Client\Application\UseCases\GetPromotedClientsUseCase $getPromoted
      */
-    public function __construct(GetPromotedClientsUseCase $getPromotedClients)
+    public function __construct(GetPromotedClientsUseCase $getPromoted)
     {
-        $this->getPromotedClients = $getPromotedClients;
+        $this->getPromoted = $getPromoted;
     }
 
 
@@ -28,7 +28,7 @@ class ClientPublicPromotedController extends Controller {
      */
     public function __invoke(): View
     {
-        $clients = $this->getPromotedClients->__invoke();
+        $clients = $this->getPromoted->__invoke();
 
         return ViewFacade::make('ClientPublic::show', [
             'clients' => $clients

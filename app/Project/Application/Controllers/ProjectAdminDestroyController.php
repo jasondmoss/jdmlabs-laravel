@@ -12,21 +12,21 @@ use Illuminate\Http\RedirectResponse;
 
 class ProjectAdminDestroyController extends Controller {
 
-    protected DeleteProjectUseCase $deleteProject;
+    protected GetProjectUseCase $get;
 
-    protected GetProjectUseCase $getProject;
+    protected DeleteProjectUseCase $delete;
 
 
     /**
-     * @param \App\Project\Application\UseCases\DeleteProjectUseCase $deleteProject
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
+     * @param \App\Project\Application\UseCases\GetProjectUseCase $get
+     * @param \App\Project\Application\UseCases\DeleteProjectUseCase $delete
      */
     public function __construct(
-        DeleteProjectUseCase $deleteProject,
-        GetProjectUseCase $getProject
+        GetProjectUseCase $get,
+        DeleteProjectUseCase $delete
     ) {
-        $this->deleteProject = $deleteProject;
-        $this->getProject = $getProject;
+        $this->get = $get;
+        $this->delete = $delete;
     }
 
 
@@ -37,10 +37,10 @@ class ProjectAdminDestroyController extends Controller {
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $project = $this->getProject->__invoke((new Id($id))->value());
+        $project = $this->get->__invoke((new Id($id))->value());
         $this->authorize('create', $project);
 
-        $this->deleteProject->__invoke($id);
+        $this->delete->__invoke($id);
 
         return redirect()
             ->route('admin.projects')

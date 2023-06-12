@@ -28,7 +28,7 @@ final class DeleteArticleUseCase {
      */
     public function __invoke(string $id): void
     {
-        $this->repository->deleteArticle($id);
+        $this->repository->delete($id);
     }
 
 }

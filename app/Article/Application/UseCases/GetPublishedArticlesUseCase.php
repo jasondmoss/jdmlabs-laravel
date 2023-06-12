@@ -30,7 +30,7 @@ final class GetPublishedArticlesUseCase {
      */
     public function __invoke(string $column = 'id', int $pages = 10): Paginator|Builder
     {
-        return $this->repository->getPublishedArticles($column, $pages);
+        return $this->repository->getPublished($column, $pages);
     }
 
 }

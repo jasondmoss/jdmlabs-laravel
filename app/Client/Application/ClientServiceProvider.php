@@ -52,6 +52,7 @@ class ClientServiceProvider extends ServiceProvider {
             ->needs(ClientRepositoryContract::class)
             ->give(ClientRepository::class);
 
+
         // Tell Laravel of our custom templates path.
         View::addNamespace('ClientAdmin', resource_path('views/ae/client'));
         View::addNamespace('ClientPublic', resource_path('views/public/client'));

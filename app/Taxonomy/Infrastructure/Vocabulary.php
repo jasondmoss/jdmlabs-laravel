@@ -21,11 +21,11 @@ class Vocabulary extends Model {
     /**
      * Model events.
      */
-    protected $dispatchesEvents = [
-        'created' => Events\TaxonomyCreatedEvent::class,
-        'updated' => Events\TaxonomyUpdatedEvent::class,
-        'deleted' => Events\TaxonomyDeletedEvent::class
-    ];
+//    protected $dispatchesEvents = [
+//        'created' => Events\TaxonomyCreatedEvent::class,
+//        'updated' => Events\TaxonomyUpdatedEvent::class,
+//        'deleted' => Events\TaxonomyDeletedEvent::class
+//    ];
 
     /**
      * Validation rules
