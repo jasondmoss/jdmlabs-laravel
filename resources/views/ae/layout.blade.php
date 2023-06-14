@@ -1,8 +1,4 @@
-@php
-  use App\Article\Application\Controllers\IndexController;use App\Client\Application\Controllers\IndexController;use App\Project\Application\Controllers\IndexController;
-  //  use App\Taxonomy\Application\Controllers\Admin\ListTaxonomiesController;
-@endphp
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
@@ -85,14 +81,14 @@
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
-        <a href="{{ action(IndexController::class) }}" class="menu-link"><span>{{ __('Clients') }}</span></a>
+        <a href="{{ action(App\Client\Application\Controllers\IndexController::class) }}" class="menu-link"><span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
-        <a href="{{ action(IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(App\Project\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
-        <a href="{{ action(IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(App\Article\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
       {{--<li class="menu-item">
