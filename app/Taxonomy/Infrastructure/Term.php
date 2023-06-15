@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Infrastructure;
 
-use App\Taxonomy\Application\Events;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
@@ -14,7 +14,7 @@ use Kalnoy\Nestedset\NodeTrait;
 
 class Term extends Model {
 
-    use NodeTrait;
+    use HasFactory, NodeTrait;
 
 
     /**
@@ -43,7 +43,7 @@ class Term extends Model {
         'vocabulary_id',
         'parent_id',
         'is_active',
-        'legacy_id',
+        /*'legacy_id',*/
         'weight'
     ];
 
@@ -53,11 +53,20 @@ class Term extends Model {
      *
      * @var array
      */
-//    protected $dispatchesEvents = [
-//        'created' => Events\TaxonomyCreatedEvent::class,
-//        'updated' => Events\TaxonomyUpdatedEvent::class,
-//        'deleted' => Events\TaxonomyDeletedEvent::class
-//    ];
+    //    protected $dispatchesEvents = [
+    //        'created' => Events\TaxonomyCreatedEvent::class,
+    //        'updated' => Events\TaxonomyUpdatedEvent::class,
+    //        'deleted' => Events\TaxonomyDeletedEvent::class
+    //    ];
+
+
+    /**
+     * @return \App\Taxonomy\Infrastructure\TermFactory
+     */
+    protected static function newFactory(): TermFactory
+    {
+        return TermFactory::new();
+    }
 
 
     /**
@@ -189,8 +198,8 @@ class Term extends Model {
     public function hasUrl(): bool
     {
         return ($this->url && (
-            filter_var($this->url, FILTER_VALIDATE_URL) !== false
-        ));
+                filter_var($this->url, FILTER_VALIDATE_URL) !== false
+            ));
     }
 
 

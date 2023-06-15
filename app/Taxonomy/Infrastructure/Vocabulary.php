@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Infrastructure;
 
-use App\Taxonomy\Application\Events;
+//use App\Taxonomy\Application\Events;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
 class Vocabulary extends Model {
+
+    use HasFactory;
 
     public $timestamps = false;
 
@@ -21,11 +24,11 @@ class Vocabulary extends Model {
     /**
      * Model events.
      */
-//    protected $dispatchesEvents = [
-//        'created' => Events\TaxonomyCreatedEvent::class,
-//        'updated' => Events\TaxonomyUpdatedEvent::class,
-//        'deleted' => Events\TaxonomyDeletedEvent::class
-//    ];
+    //    protected $dispatchesEvents = [
+    //        'created' => Events\TaxonomyCreatedEvent::class,
+    //        'updated' => Events\TaxonomyUpdatedEvent::class,
+    //        'deleted' => Events\TaxonomyDeletedEvent::class
+    //    ];
 
     /**
      * Validation rules
@@ -37,6 +40,15 @@ class Vocabulary extends Model {
         'name' => 'required|max:80|unique:vocabularies',
         'description' => 'max:1000'
     ];
+
+
+    /**
+     * @return \App\Taxonomy\Infrastructure\VocabularyFactory
+     */
+    protected static function newFactory(): VocabularyFactory
+    {
+        return VocabularyFactory::new();
+    }
 
 
     /**

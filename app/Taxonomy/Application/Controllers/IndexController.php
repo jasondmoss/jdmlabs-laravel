@@ -7,7 +7,7 @@ namespace App\Taxonomy\Application\Controllers;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
-class ListController extends TaxonomyController {
+class IndexController extends TaxonomyController {
 
     /**
      * @return \Illuminate\View\View

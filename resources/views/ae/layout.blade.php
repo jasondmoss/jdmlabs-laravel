@@ -81,7 +81,8 @@
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
-        <a href="{{ action(App\Client\Application\Controllers\IndexController::class) }}" class="menu-link"><span>{{ __('Clients') }}</span></a>
+        <a href="{{ action(App\Client\Application\Controllers\IndexController::class) }}" class="menu-link">
+          <span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
         <a href="{{ action(App\Project\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
@@ -91,9 +92,10 @@
         <a href="{{ action(App\Article\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
-      {{--<li class="menu-item">
-        <a href="{{ action(ListTaxonomiesController::class) }}" title="" class="menu-link"><span>{{ __('Taxonomy') }}</span></a>
-      </li>--}}
+      <li class="menu-item">
+        <a href="{{ action(\App\Taxonomy\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
+          <span>{{ __('Taxonomy') }}</span></a>
+      </li>
     </menu>
   </nav>
 </aside>

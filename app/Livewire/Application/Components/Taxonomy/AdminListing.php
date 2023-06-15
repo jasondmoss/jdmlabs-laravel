@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Taxonomy;
 
+use App\Taxonomy\Infrastructure\Vocabulary;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,17 +32,17 @@ class AdminListing extends Component {
 
     public function render(): View
     {
-//        $taxes = Term::where('name', 'LIKE', '%' . $this->search . '%')
-//            ->latest('weight')
-//            ->paginate(50);
-//
-//        return view('ae.taxonomy._list', [
-//            'taxes' => $taxes
-//        ]);
+        $taxes = Vocabulary::where('name', 'LIKE', '%' . $this->search . '%')
+            ->latest('id')
+            ->paginate(50);
 
-        return view('ae.taxonomy._list.blade.php.BAK', [
-            'taxes' => []
+        return view('ae.taxonomy.vocabulary._list', [
+            'taxes' => $taxes
         ]);
+
+//        return view('ae.taxonomy.vocabulary._list', [
+//            'taxes' => []
+//        ]);
     }
 
 }

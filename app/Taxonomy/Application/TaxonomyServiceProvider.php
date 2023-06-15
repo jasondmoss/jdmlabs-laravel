@@ -6,6 +6,7 @@ namespace App\Taxonomy\Application;
 
 use App\Taxonomy\Application\UseCases;
 use App\Taxonomy\Domain\TaxonomyRepositoryContract;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,7 +33,8 @@ class TaxonomyServiceProvider extends ServiceProvider {
 
 
         // Tell Laravel of our custom templates path.
-        View::addNamespace('Vocabulary', resource_path('views/ae/taxonomy'));
+        View::addNamespace('Term', resource_path('views/ae/taxonomy/term'));
+        View::addNamespace('Vocabulary', resource_path('views/ae/taxonomy/vocabulary'));
     }
 
 
@@ -43,7 +45,8 @@ class TaxonomyServiceProvider extends ServiceProvider {
      */
     public function boot(): void
     {
-        //
+        // Tell Laravel of our custom HTTP routes path.
+        Route::middleware('web')->group(base_path('routes/taxonomy.php'));
     }
 
 }

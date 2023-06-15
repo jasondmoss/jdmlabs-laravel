@@ -26,7 +26,7 @@ return new class extends Migration
              * Column to use when moving data from old single-purpose tables to
              * taxonomy terms it will hold the primary key of the old table.
              */
-            $table->integer('legacy_id')->nullable();
+//            $table->integer('legacy_id')->nullable();
 
             // NestedSet package hierarchy columns
             $table->unsignedInteger('left')->default(0)->index();

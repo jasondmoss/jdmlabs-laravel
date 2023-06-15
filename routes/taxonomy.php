@@ -13,7 +13,7 @@ Route::middleware([ 'web' ])->group(function () {
     Route::prefix('ae')->name('admin.')->middleware([
         config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
     ])->group(function () {
-        Route::get('/taxonomies', Controllers\ListController::class);
+        Route::get('/taxonomies', Controllers\IndexController::class);
         // ...
     });
 
