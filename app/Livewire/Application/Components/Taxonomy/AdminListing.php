@@ -32,17 +32,13 @@ class AdminListing extends Component {
 
     public function render(): View
     {
-        $taxes = Vocabulary::where('name', 'LIKE', '%' . $this->search . '%')
-            ->latest('id')
+        $vocabularies = Vocabulary::where('name', 'LIKE', '%' . $this->search . '%')
+            ->latest('name')
             ->paginate(50);
 
         return view('ae.taxonomy.vocabulary._list', [
-            'taxes' => $taxes
+            'vocabularies' => $vocabularies
         ]);
-
-//        return view('ae.taxonomy.vocabulary._list', [
-//            'taxes' => []
-//        ]);
     }
 
 }

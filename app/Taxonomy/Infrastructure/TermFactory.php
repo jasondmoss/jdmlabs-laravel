@@ -7,6 +7,7 @@ namespace App\Taxonomy\Infrastructure;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
 
 class TermFactory extends Factory {
 
@@ -25,8 +26,8 @@ class TermFactory extends Factory {
                 return Vocabulary::all()->random()->id;
             },
 
-            'name' => $faker->unique()->text(80),
-            'description' => $faker->unique()->text(1000),
+            'name' => Str::title($faker->words(rand(1, 3), true)),
+            'description' => $faker->unique()->text(200),
 
             'created_at' => Date::today()->subDays(rand(0, 365)),
             'updated_at' => Date::now()

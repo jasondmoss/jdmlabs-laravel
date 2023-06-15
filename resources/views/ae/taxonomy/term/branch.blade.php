@@ -1,3 +1,7 @@
+<span>{{ $term->name }}</span>
+
+
+{{--
 <li id="term-{{ $term->id }}">
   <div class="taxonomy-term">
     <div class="drag-handle"><i class="fa-solid fa-up-down-left-right"></i></div>
@@ -21,3 +25,4 @@
     @endforeach
   </ol>
 </li>
+--}}

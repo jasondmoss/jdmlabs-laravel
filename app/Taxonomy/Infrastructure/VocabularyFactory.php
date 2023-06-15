@@ -6,6 +6,7 @@ namespace App\Taxonomy\Infrastructure;
 
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class VocabularyFactory extends Factory {
 
@@ -20,8 +21,8 @@ class VocabularyFactory extends Factory {
         $faker = FakerFactory::create();
 
         return [
-            'name' => $faker->unique()->text(80),
-            'description' => $faker->unique()->text(1000)
+            'name' => Str::title($faker->words(rand(1, 5), true)),
+            'description' => $faker->unique()->text(200)
         ];
     }
 
