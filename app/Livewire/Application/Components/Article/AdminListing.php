@@ -6,30 +6,40 @@ namespace App\Livewire\Application\Components\Article;
 
 use App\Article\Infrastructure\Article;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AdminListing extends Component {
 
-    use WithPagination;
+    use AuthorizesRequests, WithPagination;
 
     public string $search = '';
 
     protected string $paginationTheme = 'tailwind';
 
 
+    /**
+     * @return string
+     */
     public function paginationView(): string
     {
         return 'shared.pager';
     }
 
 
+    /**
+     * @return void
+     */
     public function updatingSearch(): void
     {
         $this->resetPage();
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render(): View
     {
         $articles = Article::where('user_id', auth()->user()->id)

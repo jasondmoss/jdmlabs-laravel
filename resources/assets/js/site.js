@@ -1,27 +1,25 @@
-// 3rd Party.
-import axios from "axios";
-window.axios = axios;
-window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-
+// 3rd party import.
 import Alpine from "alpinejs";
 window.Alpine = Alpine;
 Alpine.start();
+
+import axios from "axios";
+window.axios = axios;
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 import Choices from "choices.js";
 window.Choices = Choices;
 
 
-// Local Modules.
-import {exists} from "./modules/exists.js";
-import {newWindow} from "./modules/window.js";
+// Local modules.
+import { exists } from "./modules/exists.js";
+import { newWindow } from "./modules/window.js";
 
-import.meta.glob([
-    "../fonts/**",
-    "../images/**"
-]);
+import.meta.glob([ "../fonts/**", "../images/**" ]);
 
 (function (window) {
     window.addEventListener("load", () => {
+        const isAdmin = document.querySelector("body.admin");
 
         /**
          * Open external links in new tab/window.
@@ -50,36 +48,32 @@ import.meta.glob([
             }
         });
 
-        let categorySelect = document.getElementById('taxonomy');
-        if (exists(categorySelect)) {
-            new Choices(categorySelect, {
-                position: "bottom",
-                removeItemButton: true,
-                duplicateItemsAllowed: false
-            });
-        }
+        // Admin only.
+        // if (isAdmin) {
 
-        /**
-         * Temporary image preview.
-         */
-        const fileInput = document.getElementById("signature_image");
-        if (exists(fileInput)) {
-            fileInput.addEventListener('change', () => {
-                const file = fileInput.files;
+        //     /**
+        //      * Temporary image preview.
+        //      */
+        //     const fileInput = document.getElementById("signature_image");
+        //     if (exists(fileInput)) {
+        //         fileInput.addEventListener('change', () => {
+        //             const file = fileInput.files;
 
-                if (file) {
-                    const fileReader = new FileReader();
-                    const preview = document.getElementById("previewer");
+        //             if (file) {
+        //                 const fileReader = new FileReader();
+        //                 const preview = document.getElementById("previewer");
 
-                    fileReader.onload = event => {
-                        console.log(event.target.result);
-                        preview.setAttribute('src', event.target.result);
-                    };
+        //                 fileReader.onload = event => {
+        //                     console.log(event.target.result);
+        //                     preview.setAttribute('src', event.target.result);
+        //                 };
 
-                    fileReader.readAsDataURL(file[0]);
-                }
-            });
-        }
+        //                 fileReader.readAsDataURL(file[0]);
+        //             }
+        //         });
+        //     }
+
+        // }
 
     }, false);
 })(window);

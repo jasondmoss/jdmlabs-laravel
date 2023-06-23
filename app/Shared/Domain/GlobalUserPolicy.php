@@ -23,9 +23,9 @@ final readonly class GlobalUserPolicy {
      */
     public function owner(User $user, Model $model): Response
     {
-        return $model->user_id === $user->id
+        return $user->id === $model->user_id
             ? Response::allow()
-            : Response::deny('Not authorized');
+            : Response::deny('You are not the owner of this entry.');
     }
 
 
@@ -38,7 +38,7 @@ final readonly class GlobalUserPolicy {
     {
         return ($user->email === Config::get('jdmlabs.admin_email'))
             ? Response::allow()
-            : Response::deny('Not authorized');
+            : Response::deny('Not authorized to create a new entry.');
     }
 
 

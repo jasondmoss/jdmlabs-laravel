@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application;
 
-use App\Taxonomy\Application\UseCases;
-use App\Taxonomy\Domain\TaxonomyRepositoryContract;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -17,24 +15,11 @@ class TaxonomyServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register(): void
-    {
-        $this->app->when(UseCases\DeleteVocabularyUseCase::class)
-            ->needs(TaxonomyRepositoryContract::class)
-            ->give(TaxonomyRepositoryContract::class);
-
-        $this->app->when(UseCases\GetVocabularyUseCase::class)
-            ->needs(TaxonomyRepositoryContract::class)
-            ->give(TaxonomyRepositoryContract::class);
-
-        $this->app->when(UseCases\SaveVocabularyUseCase::class)
-            ->needs(TaxonomyRepositoryContract::class)
-            ->give(TaxonomyRepositoryContract::class);
-
+    public function register(): void {
 
         // Tell Laravel of our custom templates path.
-        View::addNamespace('Term', resource_path('views/ae/taxonomy/term'));
-        View::addNamespace('Vocabulary', resource_path('views/ae/taxonomy/vocabulary'));
+        View::addNamespace('TaxonomyAdmin', resource_path('views/ae/taxonomy'));
+        View::addNamespace('TaxonomyPublic', resource_path('views/public/taxonomy'));
     }
 
 
@@ -45,7 +30,7 @@ class TaxonomyServiceProvider extends ServiceProvider {
      */
     public function boot(): void
     {
-        // Tell Laravel of our custom HTTP routes path.
+        // Tell Laravel of our custom routes path.
         Route::middleware('web')->group(base_path('routes/taxonomy.php'));
     }
 

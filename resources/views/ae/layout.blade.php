@@ -92,10 +92,10 @@
         <a href="{{ action(App\Article\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
-      <li class="menu-item">
+      {{-- <li class="menu-item">
         <a href="{{ action(\App\Taxonomy\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Taxonomy') }}</span></a>
-      </li>
+      </li> --}}
     </menu>
   </nav>
 </aside>

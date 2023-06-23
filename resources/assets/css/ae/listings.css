@@ -22,6 +22,7 @@
 
 .item .item--id,
 .item .item--header,
+.item .item--vocabulary,
 .item .item--taxonomy {
   grid-column: 1/span 2;
 }
@@ -73,6 +74,29 @@
 
 .item .item--taxonomy {
   grid-row: 2;
+}
+
+.item .subitem .handle {
+  grid-column: 1;
+  text-align: center;
+  cursor: move;
+}
+
+.item .subitem .handle path {
+  fill: var(--gray-light);
+}
+
+.item .subitem .label {
+  grid-column: 2;
+}
+
+.item .subitem .button {
+  grid-column: 3;
+  background-color: transparent;
+}
+
+.item .subitem .button path {
+  fill: var(--system--danger);
 }
 
 .item .item--meta  {
