@@ -52,8 +52,8 @@ class UpdateController extends Controller {
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()
-            ->action(IndexController::class)
-            ->with('update', 'The project has been updated successfully.');
+            ->to($request->listing_page)
+            ->with('update', 'Project successfully updated');
     }
 
 }

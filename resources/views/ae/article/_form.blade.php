@@ -31,7 +31,7 @@ use App\Shared\Domain\Enums\Status;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New Article') }}</h1>
+    <h1>{{ __('Create New ArticleModel') }}</h1>
   @endif
 </header>
 
@@ -149,7 +149,7 @@ use App\Shared\Domain\Enums\Status;
   <fieldset class="container--actions">
     <legend class="sr-only">{{ __('Form Actions') }}</legend>
     <div class="form-field">
-      {{ html()->button('Save Article')->class('button submit') }}
+      {{ html()->button('Save ArticleModel')->class('button submit') }}
     </div>
   </fieldset>
 </aside>

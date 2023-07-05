@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Article;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\ArticleModel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -23,7 +23,7 @@ class PublishedArticles extends Component {
 
     public function render()
     {
-        $articles = Article::where('status', '=', 1)
+        $articles = ArticleModel::where('status', '=', 1)
             ->latest()
             ->orderBy('created_at', 'desc')
             ->paginate(10);

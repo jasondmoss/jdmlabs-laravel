@@ -7,6 +7,7 @@
     ->open()
   }}
     {{ html()->hidden('user_id', auth()->user()->id) }}
+    {{ html()->hidden('listing_page', URL::previous()) }}
     @include('ae.client._form', [
       'client' => $client,
       'mode' => 'edit'

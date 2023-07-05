@@ -43,8 +43,8 @@ class UpdateController extends Controller {
         $this->saveClient->__invoke($request);
 
         return redirect()
-            ->action(IndexController::class)
-            ->with('update', 'The client has been updated successfully.');
+            ->to($request->listing_page)
+            ->with('update', 'Client successfully updated');
     }
 
 }

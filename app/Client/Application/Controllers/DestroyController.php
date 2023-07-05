@@ -43,9 +43,7 @@ class DestroyController extends Controller {
 
         $this->deleteClient->__invoke($id);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('delete', 'The client has been successfully deleted.');
+        return redirect()->action(IndexController::class);
     }
 
 }

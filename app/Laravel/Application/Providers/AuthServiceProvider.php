@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Laravel\Application\Providers;
 
-//use App\Article\Domain\Article;
-//use App\Article\Domain\ArticlePolicy;
+//use App\ArticleModel\Domain\ArticleModel;
+//use App\ArticleModel\Domain\ArticlePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider {

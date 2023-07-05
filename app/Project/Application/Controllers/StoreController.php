@@ -44,9 +44,7 @@ class StoreController extends Controller {
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'The project has been successfully saved.');
+        return redirect()->action(IndexController::class);
     }
 
 }

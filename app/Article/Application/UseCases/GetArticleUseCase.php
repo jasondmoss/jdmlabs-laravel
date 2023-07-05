@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\UseCases;
 
 use App\Article\Domain\ArticleRepositoryContract;
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\ArticleModel;
 
 final class GetArticleUseCase {
 
@@ -24,9 +24,9 @@ final class GetArticleUseCase {
     /**
      * @param string $key
      *
-     * @return \App\Article\Infrastructure\Article
+     * @return \App\Article\Infrastructure\ArticleModel
      */
-    public function __invoke(string $key): Article
+    public function __invoke(string $key): ArticleModel
     {
         return $this->repository->get($key);
     }

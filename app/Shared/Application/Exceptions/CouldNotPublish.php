@@ -13,7 +13,7 @@ final class CouldNotPublish extends Exception {
      */
     public static function becauseAlreadyPublished(): self
     {
-        return new self('Article may not be published more than once.');
+        return new self('ArticleModel may not be published more than once.');
     }
 
 
@@ -22,7 +22,7 @@ final class CouldNotPublish extends Exception {
      */
     public static function becauseBodyIsMissing(): self
     {
-        return new self('Article body must not be empty.');
+        return new self('ArticleModel body must not be empty.');
     }
 
 
@@ -31,7 +31,7 @@ final class CouldNotPublish extends Exception {
      */
     /*public static function becauseTagsAreMissing(): self
     {
-        return new self('Article must have at least one tag.');
+        return new self('ArticleModel must have at least one tag.');
     }*/
 
 
@@ -40,7 +40,7 @@ final class CouldNotPublish extends Exception {
      */
     public static function becauseSummaryIsMissing(): self
     {
-        return new self('Article summary must not be empty.');
+        return new self('ArticleModel summary must not be empty.');
     }
 
 }

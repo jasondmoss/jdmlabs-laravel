@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\SaveArticleUseCase;
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\ArticleModel;
 use App\Laravel\Application\Controller;
 use App\Shared\Interface\EntryFormRequest;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +33,7 @@ class StoreController extends Controller {
      */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', Article::class);
+        $this->authorize('create', ArticleModel::class);
 
         // Store + return article.
         $article = $this->saveArticle->__invoke($request);
@@ -44,9 +44,7 @@ class StoreController extends Controller {
         // Save + attach signature image.
 //        $this->saveSignature->__invoke($request->image, $article, 'signatures');
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'The article has been successfully saved.');
+        return redirect()->action(IndexController::class);
     }
 
 }

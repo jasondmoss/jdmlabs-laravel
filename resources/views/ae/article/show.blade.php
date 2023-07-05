@@ -3,8 +3,8 @@
     <h1>{{ __('Articles') }}</h1>
   </header>
 
-  @if (session('error') or session('create') or session('update') or session('delete'))
-    @if (session('error'))
+  @if (session('errors') or session('create') or session('update') or session('delete'))
+    @if (session('errors'))
       <x-shared.message type="error" context="error" :message="session('errors')" />
     @elseif (session('create'))
       <x-shared.message type="status" context="create" :message="session('create')" />

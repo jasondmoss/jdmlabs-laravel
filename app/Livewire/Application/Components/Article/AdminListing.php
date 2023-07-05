@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Article;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\ArticleModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
@@ -42,7 +42,7 @@ class AdminListing extends Component {
      */
     public function render(): View
     {
-        $articles = Article::where('user_id', auth()->user()->id)
+        $articles = ArticleModel::where('user_id', auth()->user()->id)
             ->where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->paginate(5);

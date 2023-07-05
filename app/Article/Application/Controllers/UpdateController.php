@@ -43,7 +43,6 @@ class UpdateController extends Controller {
         $this->authorize('owner', $article);
 
         // Update + return article.
-//        $article = $this->update->__invoke($request);
         $this->updateArticle->__invoke($request);
 
         // Save + attach categories.
@@ -52,13 +51,9 @@ class UpdateController extends Controller {
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $article, 'signatures');
 
-//        return redirect()
-//            ->route('admin.articles')
-//            ->with('update', 'The article has been updated successfully.');
-
         return redirect()
-            ->action(IndexController::class)
-            ->with('update', 'The article has been updated successfully.');
+            ->to($request->listing_page)
+            ->with('update', 'Article successfully updated');
     }
 
 }

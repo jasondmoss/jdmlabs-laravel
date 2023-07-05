@@ -42,9 +42,7 @@ class DestroyController extends Controller {
 
         $this->deleteProject->__invoke($id);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('delete', 'The project has been successfully deleted.');
+        return redirect()->action(IndexController::class);
     }
 
 }

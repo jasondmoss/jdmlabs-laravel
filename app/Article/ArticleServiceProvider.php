@@ -7,7 +7,6 @@ namespace App\Article;
 use App\Article\Application\UseCases;
 use App\Article\Domain\ArticleRepositoryContract;
 use App\Article\Infrastructure\ArticleRepository;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -63,8 +62,7 @@ class ArticleServiceProvider extends ServiceProvider {
      */
     public function boot(): void
     {
-        // Tell Laravel of our custom HTTP routes path.
-//        Route::middleware('web')->group(base_path('routes/article.php'));
+        //
     }
 
 }

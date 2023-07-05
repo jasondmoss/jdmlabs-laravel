@@ -44,9 +44,7 @@ class DestroyController extends Controller {
 
         $this->deleteArticle->__invoke($id);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('delete', 'The article has been successfully deleted.');
+        return redirect()->action(IndexController::class);
     }
 
 }

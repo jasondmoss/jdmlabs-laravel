@@ -35,9 +35,7 @@ class StoreController extends Controller {
 
         $this->saveClient->__invoke($request);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'The client was created successfully.');
+        return redirect()->action(IndexController::class);
     }
 
 }

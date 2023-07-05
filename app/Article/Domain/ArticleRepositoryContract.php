@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Domain;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\ArticleModel;
 use App\Shared\Interface\EntryFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,9 +17,9 @@ interface ArticleRepositoryContract {
     /**
      * @param string $key
      *
-     * @return \App\Article\Infrastructure\Article
+     * @return \App\Article\Infrastructure\ArticleModel
      */
-    public function get(string $key): Article;
+    public function get(string $key): ArticleModel;
 
 
     /**
@@ -65,9 +65,9 @@ interface ArticleRepositoryContract {
     /**
      * @param \App\Shared\Interface\EntryFormRequest $data
      *
-     * @return \App\Article\Infrastructure\Article
+     * @return \App\Article\Infrastructure\ArticleModel
      */
-    public function save(EntryFormRequest $data): Article;
+    public function save(EntryFormRequest $data): ArticleModel;
 
 
     /**
