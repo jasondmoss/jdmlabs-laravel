@@ -12,19 +12,21 @@ use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller {
 
-    protected GetProjectUseCase $get;
+    protected GetProjectUseCase $getProject;
 
-    protected DeleteProjectUseCase $delete;
+    protected DeleteProjectUseCase $deleteProject;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $get
-     * @param \App\Project\Application\UseCases\DeleteProjectUseCase $delete
+     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
+     * @param \App\Project\Application\UseCases\DeleteProjectUseCase $deleteProject
      */
-    public function __construct(GetProjectUseCase $get, DeleteProjectUseCase $delete)
-    {
-        $this->get = $get;
-        $this->delete = $delete;
+    public function __construct(
+        GetProjectUseCase $getProject,
+        DeleteProjectUseCase $deleteProject
+    ) {
+        $this->getProject = $getProject;
+        $this->deleteProject = $deleteProject;
     }
 
 
@@ -35,13 +37,13 @@ class DestroyController extends Controller {
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $project = $this->get->__invoke((new Id($id))->value());
+        $project = $this->getProject->__invoke((new Id($id))->value());
         $this->authorize('create', $project);
 
-        $this->delete->__invoke($id);
+        $this->deleteProject->__invoke($id);
 
         return redirect()
-            ->route('admin.projects')
+            ->action(IndexController::class)
             ->with('delete', 'The project has been successfully deleted.');
     }
 

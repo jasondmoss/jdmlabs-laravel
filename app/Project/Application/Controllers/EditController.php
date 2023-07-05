@@ -13,15 +13,15 @@ use Illuminate\View\View;
 
 class EditController extends Controller {
 
-    protected GetProjectUseCase $get;
+    protected GetProjectUseCase $getProject;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $get
+     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
      */
-    public function __construct(GetProjectUseCase $get)
+    public function __construct(GetProjectUseCase $getProject)
     {
-        $this->get = $get;
+        $this->getProject = $getProject;
     }
 
 
@@ -32,7 +32,7 @@ class EditController extends Controller {
      */
     public function __invoke(string $id): View
     {
-        $project = $this->get->__invoke((new Id($id))->value());
+        $project = $this->getProject->__invoke((new Id($id))->value());
 
 //        $project->categories = Category::get()->pluck('name', 'id');
 

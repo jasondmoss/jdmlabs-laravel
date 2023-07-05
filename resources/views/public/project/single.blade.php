@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers;
+use App\Client\Application\Controllers;
 @endphp
 <x-public.layout title="{{ $project->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
   <header>

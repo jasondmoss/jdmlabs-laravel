@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Application;
+namespace App\Taxonomy;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -31,7 +31,7 @@ class TaxonomyServiceProvider extends ServiceProvider {
     public function boot(): void
     {
         // Tell Laravel of our custom routes path.
-        Route::middleware('web')->group(base_path('routes/taxonomy.php'));
+//        Route::middleware('web')->group(base_path('routes/taxonomy.php'));
     }
 
 }

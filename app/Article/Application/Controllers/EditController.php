@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller {
 
-    protected GetArticleUseCase $get;
+    protected GetArticleUseCase $getArticle;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $get
+     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
      */
-    public function __construct(GetArticleUseCase $get)
+    public function __construct(GetArticleUseCase $getArticle)
     {
-        $this->get = $get;
+        $this->getArticle = $getArticle;
     }
 
 
@@ -31,7 +31,7 @@ class EditController extends Controller {
      */
     public function __invoke(string $id): View
     {
-        $article = $this->get->__invoke((new Id($id))->value());
+        $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);
 
 //        $article->signature = $article->getMedia('signatures')->first();

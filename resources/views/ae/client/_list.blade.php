@@ -1,5 +1,7 @@
 @php
-  use App\Client\Application\Controllers;use App\Client\Application\Controllers\Admin;use App\Shared\Domain\Enums\Promoted;use App\Shared\Domain\Enums\Status;
+use App\Client\Application\Controllers as Client;
+use App\Shared\Domain\Enums\Promoted;
+use App\Shared\Domain\Enums\Status;
 @endphp
 <div class="listing-wrapper">
   <nav class="listing-search">
@@ -12,13 +14,13 @@
         <client id="item-{{ $client->id }}" class="item">
 
           <figure class="item--image">
-            <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
+            <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
               <img src="{{ asset('images/placeholder/logo.png') }}" width="100" height="100" alt=""></a>
           </figure>
 
           <header class="item--header">
             <h3 class="title">
-              <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
+              <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
             </h3>
           </header>
 
@@ -55,20 +57,20 @@
           <footer class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(Controllers\EditController::class, $client->id) }}" title="{{ __('Edit client') }}">
+                <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit client') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a rel="external" href="{{ action(Controllers\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
-                  <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
+                <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
+                  <i class="fa-solid fa-eye" style="color: #2ec27e;"> {{ __('View') }}</i>
                 </a>
               </li>
               <li>
-                <a href="{{ action(Controllers\DestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
+                <a href="{{ action(Client\DestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Controllers\DestroyController::class, $client->id) }}">
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Client\DestroyController::class, $client->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

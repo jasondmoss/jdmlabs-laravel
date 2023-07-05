@@ -1,5 +1,7 @@
 @php
-  use App\Shared\Domain\Enums\Promoted;use App\Shared\Domain\Enums\Status;
+use App\Article\Application\Controllers as Article;
+use App\Shared\Domain\Enums\Promoted;
+use App\Shared\Domain\Enums\Status;
 @endphp
 @push('scripts')
   @once
@@ -20,10 +22,17 @@
 @endpush
 
 <header class="editor--header">
-  <h1>
-    <i class="fa-solid fa-pen-to-square"></i>
-    {{ ('create' == $mode) ? __('Create New Article') : $article->title }}
-  </h1>
+  @if ('edit' == $mode)
+    <h1><i class="fa-solid fa-pen-to-square"></i> {{ $article->title }}</h1>
+    <p class="">
+      <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
+      <a rel="external" href="{{ action(Article\SingleController::class, $article->slug) }}" title="{{ __('View live entry') }}">
+        {{ $article->slug }}
+      </a>
+    </p>
+  @else
+    <h1>{{ __('Create New Article') }}</h1>
+  @endif
 </header>
 
 <div class="editor--content">
@@ -42,7 +51,7 @@
 
     <div class="form-field body">
       {{ html()->label('Body')->for('body') }}
-      {{ html()->textarea('body')->class('textarea full')->cols(90)->rows(15) }}>
+      {{ html()->textarea('body')->class('textarea full')->cols(90)->rows(15) }}
     </div>
   </fieldset>
 

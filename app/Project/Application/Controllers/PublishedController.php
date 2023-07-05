@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class PublishedController extends Controller {
 
-    private GetPublishedProjectsUseCase $get;
+    private GetPublishedProjectsUseCase $getProject;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetPublishedProjectsUseCase $get
+     * @param \App\Project\Application\UseCases\GetPublishedProjectsUseCase $getProject
      */
-    public function __construct(GetPublishedProjectsUseCase $get)
+    public function __construct(GetPublishedProjectsUseCase $getProject)
     {
-        $this->get = $get;
+        $this->getProject = $getProject;
     }
 
 
@@ -28,7 +28,7 @@ class PublishedController extends Controller {
      */
     public function __invoke(): View
     {
-        $projects = $this->get->__invoke();
+        $projects = $this->getProject->__invoke();
 
         return ViewFacade::make('ProjectPublic::show', [
             'projects' => $projects

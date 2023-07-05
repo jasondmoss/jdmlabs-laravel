@@ -13,15 +13,15 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller {
 
-    protected SaveProjectUseCase $save;
+    protected SaveProjectUseCase $saveProject;
 
 
     /**
-     * @param \App\Project\Application\UseCases\SaveProjectUseCase $save
+     * @param \App\Project\Application\UseCases\SaveProjectUseCase $saveProject
      */
-    public function __construct(SaveProjectUseCase $save)
+    public function __construct(SaveProjectUseCase $saveProject)
     {
-        $this->save = $save;
+        $this->saveProject = $saveProject;
     }
 
 
@@ -36,7 +36,7 @@ class StoreController extends Controller {
         $this->authorize('create', Project::class);
 
         // Store + return project.
-        $project = $this->save->__invoke($request);
+        $project = $this->saveProject->__invoke($request);
 
         // Save + attach categories.
 //        $project->categories()->sync((array) $request->input('categories'));
@@ -45,7 +45,7 @@ class StoreController extends Controller {
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()
-            ->route('admin.projects')
+            ->action(IndexController::class)
             ->with('create', 'The project has been successfully saved.');
     }
 

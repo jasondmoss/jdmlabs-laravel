@@ -13,15 +13,15 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller {
 
-    protected SaveArticleUseCase $save;
+    protected SaveArticleUseCase $saveArticle;
 
 
     /**
-     * @param \App\Article\Application\UseCases\SaveArticleUseCase $save
+     * @param \App\Article\Application\UseCases\SaveArticleUseCase $saveArticle
      */
-    public function __construct(SaveArticleUseCase $save)
+    public function __construct(SaveArticleUseCase $saveArticle)
     {
-        $this->save = $save;
+        $this->saveArticle = $saveArticle;
     }
 
 
@@ -36,16 +36,16 @@ class StoreController extends Controller {
         $this->authorize('create', Article::class);
 
         // Store + return article.
-        $article = $this->save->__invoke($request);
+        $article = $this->saveArticle->__invoke($request);
 
         // Save + attach categories.
-        //        $article->categories()->sync((array) $request->input('categories'));
+//        $article->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-        //        $this->saveSignature->__invoke($request->image, $article, 'signatures');
+//        $this->saveSignature->__invoke($request->image, $article, 'signatures');
 
         return redirect()
-            ->route('admin.articles')
+            ->action(IndexController::class)
             ->with('create', 'The article has been successfully saved.');
     }
 

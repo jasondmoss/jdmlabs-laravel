@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Application;
+namespace App\Shared;
 
 use App\Laravel\Application\Providers\AuthServiceProvider;
 use App\Shared\Domain\GlobalUserPolicy;

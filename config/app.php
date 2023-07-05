@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-use App\Article\Application\ArticleServiceProvider;
-use App\Auth\Application\FortifyServiceProvider;
-use App\Client\Application\ClientServiceProvider;
+use App\Article\ArticleServiceProvider;
+use App\Auth\FortifyServiceProvider;
+use App\Client\ClientServiceProvider;
 use App\Laravel\Application\Providers\AppServiceProvider;
 use App\Laravel\Application\Providers\AuthServiceProvider as AppAuthServiceProvider;
 use App\Laravel\Application\Providers\BroadcastServiceProvider as AppBroadcastServiceProvider;
 use App\Laravel\Application\Providers\EventServiceProvider;
 use App\Laravel\Application\Providers\RouteServiceProvider;
-use App\Project\Application\ProjectServiceProvider;
-use App\Shared\Application\GlobalAuthServiceProvider;
-use App\Shared\Application\GlobalServiceProvider;
-use App\Taxonomy\Application\TaxonomyServiceProvider;
+use App\Project\ProjectServiceProvider;
+use App\Shared\GlobalAuthServiceProvider;
+use App\Shared\GlobalServiceProvider;
+use App\Taxonomy\TaxonomyServiceProvider;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;

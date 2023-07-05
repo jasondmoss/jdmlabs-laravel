@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers;
+use App\Client\Application\Controllers as Client;
 @endphp
 @if ($clients->count())
   <div class="listings client">
@@ -7,7 +7,7 @@
       <article class="">
         <header>
           <h3 class="">
-            <a href="{{ route(Controllers\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
+            <a href="{{ action(Client\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
           </h3>
         </header>
         <div class="">

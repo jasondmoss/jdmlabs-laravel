@@ -13,19 +13,21 @@ use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller {
 
-    protected GetArticleUseCase $get;
+    protected GetArticleUseCase $getArticle;
 
-    protected SaveArticleUseCase $update;
+    protected SaveArticleUseCase $updateArticle;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $get
-     * @param \App\Article\Application\UseCases\SaveArticleUseCase $update
+     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
+     * @param \App\Article\Application\UseCases\SaveArticleUseCase $updateArticle
      */
-    public function __construct(GetArticleUseCase $get, SaveArticleUseCase $update)
-    {
-        $this->get = $get;
-        $this->update = $update;
+    public function __construct(
+        GetArticleUseCase $getArticle,
+        SaveArticleUseCase $updateArticle
+    ) {
+        $this->getArticle = $getArticle;
+        $this->updateArticle = $updateArticle;
     }
 
 
@@ -37,12 +39,12 @@ class UpdateController extends Controller {
      */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
-        $article = $this->get->__invoke($request->id);
+        $article = $this->getArticle->__invoke($request->id);
         $this->authorize('owner', $article);
 
         // Update + return article.
 //        $article = $this->update->__invoke($request);
-        $this->update->__invoke($request);
+        $this->updateArticle->__invoke($request);
 
         // Save + attach categories.
 //        $article->categories()->sync((array) $request->input('categories'));
@@ -50,8 +52,12 @@ class UpdateController extends Controller {
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $article, 'signatures');
 
+//        return redirect()
+//            ->route('admin.articles')
+//            ->with('update', 'The article has been updated successfully.');
+
         return redirect()
-            ->route('admin.articles')
+            ->action(IndexController::class)
             ->with('update', 'The article has been updated successfully.');
     }
 

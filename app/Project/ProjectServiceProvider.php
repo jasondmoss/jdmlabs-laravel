@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Application;
+namespace App\Project;
 
 use App\Project\Application\UseCases;
 use App\Project\Domain\ProjectRepositoryContract;
@@ -67,7 +67,7 @@ class ProjectServiceProvider extends ServiceProvider {
     public function boot(): void
     {
         // Tell Laravel of our custom routes path.
-        Route::middleware('web')->group(base_path('routes/project.php'));
+//        Route::middleware('web')->group(base_path('routes/project.php'));
     }
 
 }

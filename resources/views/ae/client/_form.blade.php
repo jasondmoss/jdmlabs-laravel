@@ -1,6 +1,7 @@
 @php
-  use App\Shared\Domain\Enums\Promoted;
-  use App\Shared\Domain\Enums\Status;
+use App\Client\Application\Controllers as Client;
+use App\Shared\Domain\Enums\Promoted;
+use App\Shared\Domain\Enums\Status;
 @endphp
 @push('scripts')
   @once
@@ -14,10 +15,17 @@
 @endpush
 
 <header class="editor--header">
-  <h1>
-    <i class="fa-solid fa-pen-to-square"></i>
-    {{ ('create' == $mode) ? __('Create New Client') : $client->title }}
-  </h1>
+  @if ('edit' == $mode)
+    <h1><i class="fa-solid fa-pen-to-square"></i> {{ $client->name }}</h1>
+    <p class="">
+      <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
+      <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+        {{ $client->slug }}
+      </a>
+    </p>
+  @else
+    <h1>{{ __('Create New Client') }}</h1>
+  @endif
 </header>
 
 <div class="editor--content">

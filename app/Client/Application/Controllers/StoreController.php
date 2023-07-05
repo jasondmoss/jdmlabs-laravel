@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller {
 
-    protected SaveClientUseCase $save;
+    protected SaveClientUseCase $saveClient;
 
 
     /**
-     * @param \App\Client\Application\UseCases\SaveClientUseCase $save
+     * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
      */
-    public function __construct(SaveClientUseCase $save)
+    public function __construct(SaveClientUseCase $saveClient)
     {
-        $this->save = $save;
+        $this->saveClient = $saveClient;
     }
 
 
@@ -33,10 +33,10 @@ class StoreController extends Controller {
     {
         $this->authorize('create', Client::class);
 
-        $this->save->__invoke($request);
+        $this->saveClient->__invoke($request);
 
         return redirect()
-            ->route('admin.clients')
+            ->action(IndexController::class)
             ->with('create', 'The client was created successfully.');
     }
 

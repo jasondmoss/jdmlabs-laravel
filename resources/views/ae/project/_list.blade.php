@@ -1,9 +1,13 @@
 @php
-  use App\Client\Application\Controllers\EditController;use App\Project\Application\Controllers;use App\Project\Application\Controllers\Admin;use App\Shared\Domain\Enums\Pinned;use App\Shared\Domain\Enums\Promoted;use App\Shared\Domain\Enums\Status;
+use App\Client\Application\Controllers as Client;
+use App\Project\Application\Controllers as Project;
+use App\Shared\Domain\Enums\Pinned;
+use App\Shared\Domain\Enums\Promoted;
+use App\Shared\Domain\Enums\Status;
 @endphp
 <div class="listing-wrapper">
   <nav class="listing-tools">
-    <a href="{{ action(Controllers\CreateController::class) }}">Create New Project</a>
+    <a href="{{ action(Project\CreateController::class) }}">Create New Project</a>
 
     <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
       <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
@@ -14,7 +18,7 @@
         <article id="item-{{ $project->id }}" class="item">
 
           <figure class="item--image">
-            <a href="{{ action(Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+            <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
               {{--@if ($project->hasMedia('signatures'))
                 <img src="{{ $project->getFirstMediaUrl('signatures', 'thumb') }}" alt="">
               @else
@@ -25,10 +29,10 @@
 
           <header class="item--header">
             <h3 class="title">
-              <a href="{{ action(Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+              <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
             </h3>
             <p class="subtitle">
-              <a href="{{ action(EditController::class, $project->clients->id) }}" title="{{ __('Edit Client') }}">{{ $project->clients->name }}</a>
+              <a href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit Client') }}">{{ $project->clients->name }}</a>
             </p>
           </header>
 
@@ -66,20 +70,20 @@
           <footer class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(Controllers\EditController::class, $project->id) }}" title="{{ __('Edit project') }}">
+                <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit project') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a rel="external" href="{{ action(Controllers\SingleController::class, $project->slug) }}" title="{{ __('View project') }}">
+                <a rel="external" href="{{ action(Project\SingleController::class, $project->slug) }}" title="{{ __('View project') }}">
                   <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(Controllers\DestroyController::class, $project->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete project') }}">
+                <a href="{{ action(Project\DestroyController::class, $project->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete project') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Controllers\DestroyController::class, $project->id) }}">@csrf {{ method_field('DELETE') }}</form>
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Project\DestroyController::class, $project->id) }}">@csrf {{ method_field('DELETE') }}</form>
               </li>
             </menu>
           </footer>

@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Client\Application;
+namespace App\Client;
 
 use App\Client\Application\UseCases;
 use App\Client\Domain\ClientRepositoryContract;
 use App\Client\Infrastructure\ClientRepository;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,11 +27,11 @@ class ClientServiceProvider extends ServiceProvider {
             ->needs(ClientRepositoryContract::class)
             ->give(ClientRepository::class);
 
-        $this->app->when(UseCases\GetClientUseCase::class)
+        $this->app->when(UseCases\GetClientProjectsUseCase::class)
             ->needs(ClientRepositoryContract::class)
             ->give(ClientRepository::class);
 
-        $this->app->when(UseCases\GetClientProjectsUseCase::class)
+        $this->app->when(UseCases\GetClientUseCase::class)
             ->needs(ClientRepositoryContract::class)
             ->give(ClientRepository::class);
 
@@ -66,8 +65,7 @@ class ClientServiceProvider extends ServiceProvider {
      */
     public function boot(): void
     {
-        // Tell Laravel of our custom HTTP routes path.
-        Route::middleware('web')->group(base_path('routes/client.php'));
+        //
     }
 
 }

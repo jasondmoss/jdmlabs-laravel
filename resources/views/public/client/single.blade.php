@@ -1,5 +1,5 @@
 @php
-  use App\Project\Application\Controllers;
+use App\Project\Application\Controllers as Project;
 @endphp
 <x-public.layout title="{{ $client->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
   <header>
@@ -15,7 +15,8 @@
     @if ($client->projects)
       @foreach ($client->projects as $project)
         <p class="">
-          <a href="{{ action(Controllers\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
+          <a href="{{ action(Project\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
+          {{--{{ $project->title }}--}}
         </p>
       @endforeach
     @endif

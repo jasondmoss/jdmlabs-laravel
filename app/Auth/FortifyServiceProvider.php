@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Application;
+namespace App\Auth;
 
 use App\Auth\Application\Actions\CreateNewUserAction;
 use App\Auth\Application\Actions\RedirectIfTwoFactorConfirmedAction;

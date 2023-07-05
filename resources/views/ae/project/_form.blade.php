@@ -1,7 +1,8 @@
 @php
-  use App\Shared\Domain\Enums\Pinned;
-  use App\Shared\Domain\Enums\Promoted;
-  use App\Shared\Domain\Enums\Status;
+use App\Project\Application\Controllers as Project;
+use App\Shared\Domain\Enums\Pinned;
+use App\Shared\Domain\Enums\Promoted;
+use App\Shared\Domain\Enums\Status;
 @endphp
 @push('scripts')
   @once
@@ -22,10 +23,17 @@
 @endpush
 
 <header class="editor--header">
-  <h1>
-    <i class="fa-solid fa-pen-to-square"></i>
-    {{ ('create' == $mode) ? __('Create New Project') : $project->title }}
-  </h1>
+  @if ('edit' == $mode)
+    <h1><i class="fa-solid fa-pen-to-square"></i> {{ $project->title }}</h1>
+    <p class="">
+      <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
+      <a rel="external" href="{{ action(Project\SingleController::class, $project->slug) }}" title="{{ __('View live entry') }}">
+        {{ $project->slug }}
+      </a>
+    </p>
+  @else
+    <h1>{{ __('Create New Project') }}</h1>
+  @endif
 </header>
 
 <div class="editor--content">

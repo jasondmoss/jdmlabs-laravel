@@ -13,19 +13,21 @@ use Illuminate\Routing\Redirector;
 
 class DestroyController extends Controller {
 
-    protected GetClientUseCase $get;
+    protected GetClientUseCase $getClient;
 
-    protected DeleteClientUseCase $delete;
+    protected DeleteClientUseCase $deleteClient;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $get
-     * @param \App\Client\Application\UseCases\DeleteClientUseCase $delete
+     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
+     * @param \App\Client\Application\UseCases\DeleteClientUseCase $deleteClient
      */
-    public function __construct(GetClientUseCase $get, DeleteClientUseCase $delete)
-    {
-        $this->get = $get;
-        $this->delete = $delete;
+    public function __construct(
+        GetClientUseCase $getClient,
+        DeleteClientUseCase $deleteClient
+    ) {
+        $this->getClient = $getClient;
+        $this->deleteClient = $deleteClient;
     }
 
 
@@ -36,13 +38,13 @@ class DestroyController extends Controller {
      */
     public function __invoke(string $id): Redirector|RedirectResponse
     {
-        $client = $this->get->__invoke((new Id($id))->value());
+        $client = $this->getClient->__invoke((new Id($id))->value());
         $this->authorize('create', $client);
 
-        $this->delete->__invoke($id);
+        $this->deleteClient->__invoke($id);
 
         return redirect()
-            ->route('admin.clients')
+            ->action(IndexController::class)
             ->with('delete', 'The client has been successfully deleted.');
     }
 

@@ -13,19 +13,21 @@ use Illuminate\Routing\Redirector;
 
 class DestroyController extends Controller {
 
-    protected GetArticleUseCase $get;
+    protected GetArticleUseCase $getArticle;
 
-    protected DeleteArticleUseCase $delete;
+    protected DeleteArticleUseCase $deleteArticle;
 
 
     /**
-     * @param \App\Article\Application\UseCases\DeleteArticleUseCase $delete
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $get
+     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
+     * @param \App\Article\Application\UseCases\DeleteArticleUseCase $deleteArticle
      */
-    public function __construct(GetArticleUseCase $get, DeleteArticleUseCase $delete)
-    {
-        $this->get = $get;
-        $this->delete = $delete;
+    public function __construct(
+        GetArticleUseCase $getArticle,
+        DeleteArticleUseCase $deleteArticle
+    ) {
+        $this->getArticle = $getArticle;
+        $this->deleteArticle = $deleteArticle;
     }
 
 
@@ -37,13 +39,13 @@ class DestroyController extends Controller {
      */
     public function __invoke(string $id): Redirector|RedirectResponse
     {
-        $article = $this->get->__invoke((new Id($id))->value());
+        $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);
 
-        $this->delete->__invoke($id);
+        $this->deleteArticle->__invoke($id);
 
         return redirect()
-            ->route('admin.articles')
+            ->action(IndexController::class)
             ->with('delete', 'The article has been successfully deleted.');
     }
 

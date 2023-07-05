@@ -39,11 +39,7 @@ trait HasTaxonomies {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function term(
-        $foreignKey = null,
-        $ownerKey = null,
-        $relation = null
-    ): BelongsTo
+    public function term($foreignKey = null, $ownerKey = null, $relation = null): BelongsTo
     {
         $related = Term::class;
 
@@ -58,11 +54,7 @@ trait HasTaxonomies {
      *
      * @return void
      */
-    public function scopeByTaxonomies(
-        $query,
-        array $taxonomies,
-        string $termKey = 'id'
-    ): void
+    public function scopeByTaxonomies($query, array $taxonomies, string $termKey = 'id'): void
     {
         foreach ($taxonomies as $vocabulary => $terms) {
             $terms = is_array($terms) ? $terms : [$terms];

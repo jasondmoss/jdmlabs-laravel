@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Application;
+namespace App\Article;
 
 use App\Article\Application\UseCases;
 use App\Article\Domain\ArticleRepositoryContract;
@@ -64,7 +64,7 @@ class ArticleServiceProvider extends ServiceProvider {
     public function boot(): void
     {
         // Tell Laravel of our custom HTTP routes path.
-        Route::middleware('web')->group(base_path('routes/article.php'));
+//        Route::middleware('web')->group(base_path('routes/article.php'));
     }
 
 }

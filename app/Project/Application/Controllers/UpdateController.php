@@ -13,19 +13,21 @@ use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller {
 
-    protected GetProjectUseCase $get;
+    protected GetProjectUseCase $getProject;
 
-    protected SaveProjectUseCase $update;
+    protected SaveProjectUseCase $updateProject;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $get
-     * @param \App\Project\Application\UseCases\SaveProjectUseCase $update
+     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
+     * @param \App\Project\Application\UseCases\SaveProjectUseCase $updateProject
      */
-    public function __construct(GetProjectUseCase $get, SaveProjectUseCase $update)
-    {
-        $this->get = $get;
-        $this->update = $update;
+    public function __construct(
+        GetProjectUseCase $getProject,
+        SaveProjectUseCase $updateProject
+    ) {
+        $this->getProject = $getProject;
+        $this->updateProject = $updateProject;
     }
 
 
@@ -37,11 +39,11 @@ class UpdateController extends Controller {
      */
     public function __invoke(EntryFormRequest $request): RedirectResponse
     {
-        $project = $this->get->__invoke($request->id);
+        $project = $this->getProject->__invoke($request->id);
         $this->authorize('owner', $project);
 
         // Update + return project.
-        $project = $this->update->__invoke($request);
+        $project = $this->updateProject->__invoke($request);
 
         // Save + attach categories.
 //        $project->categories()->sync((array) $request->input('categories'));
@@ -50,7 +52,7 @@ class UpdateController extends Controller {
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()
-            ->route('admin.projects')
+            ->action(IndexController::class)
             ->with('update', 'The project has been updated successfully.');
     }
 
