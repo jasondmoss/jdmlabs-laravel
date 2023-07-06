@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
-final class ArticleFactory extends Factory {
+final class ArticleFactory extends Factory
+{
 
     protected $model = ArticleModel::class;
 
@@ -39,7 +40,7 @@ final class ArticleFactory extends Factory {
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
-            'published_at' => $faker->randomElement([ null, Date::now() ]),
+            'published_at' => $faker->randomElement([null, Date::now()]),
 
             'created_at' => Date::today()->subDays(rand(0, 365)),
             'updated_at' => Date::now()

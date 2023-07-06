@@ -7,7 +7,8 @@ namespace App\Project\Application\UseCases;
 use App\Project\Domain\ProjectRepositoryContract;
 use App\Project\Infrastructure\ProjectModel;
 
-class GetProjectUseCase {
+class GetProjectUseCase
+{
 
     private ProjectRepositoryContract $repository;
 

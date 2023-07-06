@@ -11,7 +11,8 @@ use App\Project\Interface\ProjectFormRequest;
 use Illuminate\Http\RedirectResponse;
 
 
-class UpdateController extends Controller {
+class UpdateController extends Controller
+{
 
     protected GetProjectUseCase $getProject;
 
@@ -25,7 +26,8 @@ class UpdateController extends Controller {
     public function __construct(
         GetProjectUseCase $getProject,
         SaveProjectUseCase $updateProject
-    ) {
+    )
+    {
         $this->getProject = $getProject;
         $this->updateProject = $updateProject;
     }
@@ -46,10 +48,10 @@ class UpdateController extends Controller {
         $project = $this->updateProject->__invoke($request);
 
         // Save + attach categories.
-//        $project->categories()->sync((array) $request->input('categories'));
+        //        $project->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-//        $this->saveImage->__invoke($request->image, $project, 'signatures');
+        //        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()
             ->to($request->listing_page)

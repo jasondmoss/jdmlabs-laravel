@@ -11,7 +11,8 @@ use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
-class EditController extends Controller {
+class EditController extends Controller
+{
 
     protected GetProjectUseCase $getProject;
 
@@ -34,7 +35,7 @@ class EditController extends Controller {
     {
         $project = $this->getProject->__invoke((new Id($id))->value());
 
-//        $project->categories = Category::get()->pluck('name', 'id');
+        //        $project->categories = Category::get()->pluck('name', 'id');
 
         $project->clients = ClientModel::get()->pluck('name', 'id');
 

@@ -7,7 +7,8 @@ namespace App\Project\Infrastructure;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProjectSeeder extends Seeder {
+class ProjectSeeder extends Seeder
+{
 
     use RefreshDatabase;
 

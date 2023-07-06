@@ -6,7 +6,8 @@ namespace App\Shared\Application\Exceptions;
 
 use Exception;
 
-final class CouldNotPublish extends Exception {
+final class CouldNotPublish extends Exception
+{
 
     /**
      * @return self

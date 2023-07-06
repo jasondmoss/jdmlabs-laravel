@@ -8,7 +8,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class TaxonomySeeder extends Seeder {
+class TaxonomySeeder extends Seeder
+{
 
     /**
      * Run the database seeds.
@@ -96,7 +97,7 @@ class TaxonomySeeder extends Seeder {
                     'ottawa',
                     'places',
                     'yellowknife'
-               ]
+                ]
             ]
 
         ]);

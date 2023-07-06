@@ -9,7 +9,8 @@ use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class PromotedController extends Controller {
+class PromotedController extends Controller
+{
 
     private GetPromotedClientsUseCase $getPromoted;
 

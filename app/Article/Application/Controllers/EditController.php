@@ -10,7 +10,8 @@ use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class EditController extends Controller {
+class EditController extends Controller
+{
 
     protected GetArticleUseCase $getArticle;
 
@@ -34,7 +35,7 @@ class EditController extends Controller {
         $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);
 
-//        $article->signature = $article->getMedia('signatures')->first();
+        //        $article->signature = $article->getMedia('signatures')->first();
 
         return ViewFacade::make('ArticleAdmin::edit', [
             'article' => $article

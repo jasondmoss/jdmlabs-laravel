@@ -7,7 +7,8 @@ namespace App\Laravel\Application;
 use Illuminate\Foundation\Exceptions\Handler;
 use Throwable;
 
-class ExceptionHandler extends Handler {
+class ExceptionHandler extends Handler
+{
 
     /**
      * A list of exception types with their corresponding custom log levels.

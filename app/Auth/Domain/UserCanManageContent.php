@@ -8,7 +8,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserCanManageContent {
+class UserCanManageContent
+{
 
     /**
      * Show 401 error if \Auth::user()->UserCanManageContent() == false

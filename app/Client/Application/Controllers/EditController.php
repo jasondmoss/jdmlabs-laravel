@@ -9,7 +9,8 @@ use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class EditController extends Controller {
+class EditController extends Controller
+{
 
     protected GetClientUseCase $getClient;
 

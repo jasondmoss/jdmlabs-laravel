@@ -11,7 +11,8 @@ use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
-final readonly class GlobalUserPolicy {
+final readonly class GlobalUserPolicy
+{
 
     use HandlesAuthorization;
 

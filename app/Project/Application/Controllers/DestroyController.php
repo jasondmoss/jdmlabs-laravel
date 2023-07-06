@@ -10,7 +10,8 @@ use App\Project\Application\UseCases\GetProjectUseCase;
 use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
-class DestroyController extends Controller {
+class DestroyController extends Controller
+{
 
     protected GetProjectUseCase $getProject;
 
@@ -24,7 +25,8 @@ class DestroyController extends Controller {
     public function __construct(
         GetProjectUseCase $getProject,
         DeleteProjectUseCase $deleteProject
-    ) {
+    )
+    {
         $this->getProject = $getProject;
         $this->deleteProject = $deleteProject;
     }

@@ -10,7 +10,8 @@ use App\Client\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
-class StoreController extends Controller {
+class StoreController extends Controller
+{
 
     protected SaveClientUseCase $saveClient;
 

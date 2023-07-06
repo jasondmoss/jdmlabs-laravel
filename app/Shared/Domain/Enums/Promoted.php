@@ -7,7 +7,8 @@ namespace App\Shared\Domain\Enums;
 use App\Shared\Application\Traits\EnumOptions;
 use App\Shared\Application\Traits\EnumValues;
 
-enum Promoted: string {
+enum Promoted: string
+{
 
     use EnumValues, EnumOptions;
 
@@ -21,7 +22,7 @@ enum Promoted: string {
      *
      * @return string
      */
-    public  static function icon(self $status): string
+    public static function icon(self $status): string
     {
         if ('promoted' == $status->value) {
             return '<i class="fa-solid fa-award" style="color: #ff5542;"></i>';

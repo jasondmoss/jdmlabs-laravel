@@ -8,7 +8,8 @@ namespace App\Laravel\Application\Providers;
 //use App\ArticleModel\Domain\ArticlePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider {
+class AuthServiceProvider extends ServiceProvider
+{
 
     /**
      * The model to policy mappings for the application.

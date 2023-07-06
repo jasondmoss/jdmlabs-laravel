@@ -9,7 +9,8 @@ use App\Project\Application\UseCases\GetPublishedProjectsUseCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class PublishedController extends Controller {
+class PublishedController extends Controller
+{
 
     private GetPublishedProjectsUseCase $getProject;
 

@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection as CollectionSupport;
 
-interface ProjectRepositoryContract {
+interface ProjectRepositoryContract
+{
 
     /**
      * @param string $key

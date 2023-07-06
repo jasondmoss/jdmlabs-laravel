@@ -8,7 +8,8 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\ServiceProvider;
 
-class GlobalServiceProvider extends ServiceProvider {
+class GlobalServiceProvider extends ServiceProvider
+{
 
     /**
      * Register services.
@@ -23,7 +24,8 @@ class GlobalServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot(): void {
+    public function boot(): void
+    {
         Date::use(CarbonImmutable::class);
     }
 

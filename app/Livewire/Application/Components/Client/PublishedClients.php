@@ -12,7 +12,8 @@ use Illuminate\Foundation\Application as ApplicationFoundation;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PublishedClients extends Component {
+class PublishedClients extends Component
+{
 
     use WithPagination;
 

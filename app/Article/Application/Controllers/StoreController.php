@@ -6,12 +6,13 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\SaveArticleUseCase;
 use App\Article\Infrastructure\ArticleModel;
+use App\Article\Interface\ArticleFormRequest;
 use App\Laravel\Application\Controller;
-use App\Shared\Interface\EntryFormRequest;
 use Illuminate\Http\RedirectResponse;
 
 
-class StoreController extends Controller {
+class StoreController extends Controller
+{
 
     protected SaveArticleUseCase $saveArticle;
 
@@ -26,12 +27,12 @@ class StoreController extends Controller {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $request
+     * @param \App\Article\Interface\ArticleFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(EntryFormRequest $request): RedirectResponse
+    public function __invoke(ArticleFormRequest $request): RedirectResponse
     {
         $this->authorize('create', ArticleModel::class);
 
@@ -39,10 +40,10 @@ class StoreController extends Controller {
         $article = $this->saveArticle->__invoke($request);
 
         // Save + attach categories.
-//        $article->categories()->sync((array) $request->input('categories'));
+        //        $article->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-//        $this->saveSignature->__invoke($request->image, $article, 'signatures');
+        //        $this->saveSignature->__invoke($request->image, $article, 'signatures');
 
         return redirect()->action(IndexController::class);
     }

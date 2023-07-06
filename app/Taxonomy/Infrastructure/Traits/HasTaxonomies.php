@@ -8,18 +8,8 @@ use App\Taxonomy\Infrastructure\Term;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-trait HasTaxonomies {
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
-    public function terms(): MorphToMany
-    {
-        $related = Term::class;
-
-        return $this->morphToMany($related, 'termable');
-    }
-
+trait HasTaxonomies
+{
 
     /**
      * @param $vocabulary
@@ -29,6 +19,17 @@ trait HasTaxonomies {
     public function termsByVocabulary($vocabulary): MorphToMany
     {
         return $this->terms()->where('vocabulary', $vocabulary);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function terms(): MorphToMany
+    {
+        $related = Term::class;
+
+        return $this->morphToMany($related, 'termable');
     }
 
 

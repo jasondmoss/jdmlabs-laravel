@@ -7,7 +7,8 @@ namespace App\Article\Application\UseCases;
 use App\Article\Domain\ArticleRepositoryContract;
 use App\Article\Infrastructure\ArticleModel;
 
-final class GetArticleUseCase {
+final class GetArticleUseCase
+{
 
     private ArticleRepositoryContract $repository;
 

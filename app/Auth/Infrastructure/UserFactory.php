@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory {
+class UserFactory extends Factory
+{
 
     protected $model = User::class;
 

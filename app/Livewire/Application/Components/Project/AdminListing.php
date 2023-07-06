@@ -12,7 +12,8 @@ use Illuminate\Foundation\Application as ApplicationFoundation;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AdminListing extends Component {
+class AdminListing extends Component
+{
 
     use WithPagination;
 

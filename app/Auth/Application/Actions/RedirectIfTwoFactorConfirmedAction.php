@@ -8,7 +8,8 @@ use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class RedirectIfTwoFactorConfirmedAction
-    extends RedirectIfTwoFactorAuthenticatable {
+    extends RedirectIfTwoFactorAuthenticatable
+{
 
     /**
      * @param $request

@@ -10,7 +10,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AdminListing extends Component {
+class AdminListing extends Component
+{
 
     use AuthorizesRequests, WithPagination;
 

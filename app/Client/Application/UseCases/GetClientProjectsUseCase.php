@@ -7,7 +7,8 @@ namespace App\Client\Application\UseCases;
 use App\Client\Domain\ClientRepositoryContract;
 use Illuminate\Database\Eloquent\Collection;
 
-class GetClientProjectsUseCase {
+class GetClientProjectsUseCase
+{
 
     private ClientRepositoryContract $repository;
 

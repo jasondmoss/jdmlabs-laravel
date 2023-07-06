@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\Uid\Ulid;
 
-class ProjectRepository implements ProjectRepositoryContract {
+class ProjectRepository implements ProjectRepositoryContract
+{
 
     private ProjectModel $model;
 
 
     public function __construct()
     {
-        $this->model = new ProjectModel();
+        $this->model = new ProjectModel;
     }
 
 
@@ -140,9 +141,9 @@ class ProjectRepository implements ProjectRepositoryContract {
      */
     public function save(ProjectFormRequest $data): ProjectModel
     {
-        if (is_null($project = $this->model->find($data->id))) {
-            $project = new ProjectModel;
-        }
+        $project = isset($data->id)
+            ? $this->model->find($data->id)
+            : (new ProjectModel);
 
         try {
             $project->title = $data->title;
@@ -173,8 +174,9 @@ class ProjectRepository implements ProjectRepositoryContract {
      */
     public function delete(string $id): void
     {
-        $objectId = (new Id($id))->value();
-        $objectModel = $this->model->find($objectId);
+        $objectModel = $this->model->find(
+            (new Id($id))->value()
+        );
 
         $objectModel->delete();
     }

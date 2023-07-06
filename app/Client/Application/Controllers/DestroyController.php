@@ -11,7 +11,8 @@ use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 
-class DestroyController extends Controller {
+class DestroyController extends Controller
+{
 
     protected GetClientUseCase $getClient;
 
@@ -25,7 +26,8 @@ class DestroyController extends Controller {
     public function __construct(
         GetClientUseCase $getClient,
         DeleteClientUseCase $deleteClient
-    ) {
+    )
+    {
         $this->getClient = $getClient;
         $this->deleteClient = $deleteClient;
     }

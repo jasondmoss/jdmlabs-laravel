@@ -8,7 +8,8 @@ use App\Client\Domain\ClientRepositoryContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
-class GetPinnedClientsUseCase {
+class GetPinnedClientsUseCase
+{
 
     private ClientRepositoryContract $repository;
 

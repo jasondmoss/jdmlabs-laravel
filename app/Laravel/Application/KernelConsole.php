@@ -7,7 +7,8 @@ namespace App\Laravel\Application;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel;
 
-class KernelConsole extends Kernel {
+class KernelConsole extends Kernel
+{
 
     /**
      * Define the application's command schedule.

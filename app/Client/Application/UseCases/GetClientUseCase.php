@@ -7,7 +7,8 @@ namespace App\Client\Application\UseCases;
 use App\Client\Domain\ClientRepositoryContract;
 use App\Client\Infrastructure\ClientModel;
 
-class GetClientUseCase {
+class GetClientUseCase
+{
 
     private ClientRepositoryContract $repository;
 

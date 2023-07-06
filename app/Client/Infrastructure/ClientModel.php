@@ -11,6 +11,7 @@ use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
+use App\Shared\Domain\ValueObjects\Id;
 use App\Taxonomy\Infrastructure\Traits\HasTaxonomies;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -19,7 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ClientModel extends Model {
+class ClientModel extends Model
+{
 
     use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
@@ -48,7 +50,7 @@ class ClientModel extends Model {
         'promoted' => Promoted::class
     ];
 
-    protected $with = [ 'projects' ];
+    protected $with = ['projects'];
 
 
     /**
@@ -68,13 +70,15 @@ class ClientModel extends Model {
      */
     public function find(string $id): self
     {
-       $client = $this->newQuery()->find($id);
+        $client = $this->newQuery()->find(
+            (new Id($id))->value()
+        );
 
-       if (! $client instanceof self) {
-           throw CouldNotFindEntry::withId($id);
-       }
+        if (! $client instanceof self) {
+            throw CouldNotFindEntry::withId($id);
+        }
 
-       return $client;
+        return $client;
     }
 
 

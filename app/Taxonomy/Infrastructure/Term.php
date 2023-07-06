@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Term extends Model {
+class Term extends Model
+{
 
     use HasTaxonomies, HasTaxonomyablesToMany, HasUlids, NodeTrait;
 
@@ -58,10 +59,10 @@ class Term extends Model {
      */
     public function getVocabulary(): array
     {
-//        $vocabularies = config('jdmlabs.taxonomy.vocabularies', []);
+        //        $vocabularies = config('jdmlabs.taxonomy.vocabularies', []);
         $vocabularies = [];
 
-        return $vocabularies[$this->vocabulary] ?? [];
+        return $vocabularies[ $this->vocabulary ] ?? [];
     }
 
 }

@@ -6,7 +6,8 @@ namespace App\Article\Application\UseCases;
 
 use App\Article\Infrastructure\ArticleRepository;
 
-final class DeleteArticleUseCase {
+final class DeleteArticleUseCase
+{
 
     protected ArticleRepository $repository;
 

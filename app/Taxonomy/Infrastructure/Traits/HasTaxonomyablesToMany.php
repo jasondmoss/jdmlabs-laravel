@@ -7,7 +7,8 @@ namespace App\Taxonomy\Infrastructure\Traits;
 use App\Taxonomy\Infrastructure\Term;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-trait HasTaxonomyablesToMany {
+trait HasTaxonomyablesToMany
+{
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

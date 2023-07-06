@@ -9,7 +9,8 @@ use App\Project\Application\UseCases\GetProjectUseCase;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
-class SingleController extends Controller {
+class SingleController extends Controller
+{
 
     private GetProjectUseCase $getProject;
 
@@ -31,7 +32,8 @@ class SingleController extends Controller {
     public function __invoke($project): View
     {
         $project = $this->getProject->__invoke($project);
-//        $project->categories = $project->categories()->get();
+
+        //        $project->categories = $project->categories()->get();
 
         return ViewFacade::make('ProjectPublic::single', [
             'project' => $project

@@ -8,7 +8,8 @@ use App\Client\Domain\ClientRepositoryContract;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as CollectionSupport;
 
-class GetAllClientsUseCase {
+class GetAllClientsUseCase
+{
 
     protected ClientRepositoryContract $repository;
 

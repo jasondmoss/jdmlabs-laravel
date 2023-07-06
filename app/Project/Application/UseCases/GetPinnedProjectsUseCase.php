@@ -8,7 +8,8 @@ use App\Project\Domain\ProjectRepositoryContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
-class GetPinnedProjectsUseCase {
+class GetPinnedProjectsUseCase
+{
 
     private ProjectRepositoryContract $repository;
 

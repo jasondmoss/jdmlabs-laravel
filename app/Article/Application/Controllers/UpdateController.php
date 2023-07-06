@@ -6,12 +6,13 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\GetArticleUseCase;
 use App\Article\Application\UseCases\SaveArticleUseCase;
-use App\Article\Interface\ClientFormRequest;
+use App\Article\Interface\ArticleFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
 
-class UpdateController extends Controller {
+class UpdateController extends Controller
+{
 
     protected GetArticleUseCase $getArticle;
 
@@ -25,19 +26,20 @@ class UpdateController extends Controller {
     public function __construct(
         GetArticleUseCase $getArticle,
         SaveArticleUseCase $updateArticle
-    ) {
+    )
+    {
         $this->getArticle = $getArticle;
         $this->updateArticle = $updateArticle;
     }
 
 
     /**
-     * @param \App\Article\Interface\ClientFormRequest $request
+     * @param \App\Article\Interface\ArticleFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(ClientFormRequest $request): RedirectResponse
+    public function __invoke(ArticleFormRequest $request): RedirectResponse
     {
         if (! empty($request->id)) {
             $article = $this->getArticle->__invoke($request->id);
@@ -49,10 +51,10 @@ class UpdateController extends Controller {
         $article = $this->updateArticle->__invoke($request);
 
         // Save + attach categories.
-//        $article->categories()->sync((array) $request->input('categories'));
+        //        $article->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-//        $this->saveImage->__invoke($request->image, $article, 'signatures');
+        //        $this->saveImage->__invoke($request->image, $article, 'signatures');
 
         return redirect()
             ->to($request->listing_page)

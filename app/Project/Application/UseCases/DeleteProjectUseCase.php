@@ -6,7 +6,8 @@ namespace App\Project\Application\UseCases;
 
 use App\Project\Domain\ProjectRepositoryContract;
 
-class DeleteProjectUseCase {
+class DeleteProjectUseCase
+{
 
     protected ProjectRepositoryContract $repository;
 

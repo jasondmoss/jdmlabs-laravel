@@ -7,7 +7,8 @@ namespace App\Shared\Domain\Enums;
 use App\Shared\Application\Traits\EnumOptions;
 use App\Shared\Application\Traits\EnumValues;
 
-enum Pinned: string {
+enum Pinned: string
+{
 
     use EnumValues, EnumOptions;
 
@@ -21,7 +22,7 @@ enum Pinned: string {
      *
      * @return string
      */
-    public  static function icon(self $status): string
+    public static function icon(self $status): string
     {
         if ('pinned' == $status->value) {
             return '<i class="fa-solid fa-thumbtack"></i>';

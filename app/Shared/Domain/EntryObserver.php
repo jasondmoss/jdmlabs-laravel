@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
-final readonly class EntryObserver {
+final readonly class EntryObserver
+{
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model

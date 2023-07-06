@@ -8,7 +8,8 @@ use App\Laravel\Application\Controller;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
-class IndexController extends Controller {
+class IndexController extends Controller
+{
 
     /**
      * @return \Illuminate\View\View

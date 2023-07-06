@@ -6,17 +6,18 @@ namespace App\Shared\Application\Traits;
 
 use Illuminate\Support\Str;
 
-trait EnumOptions {
+trait EnumOptions
+{
 
     /**
      * @return array
      */
     public static function options(): array
     {
-        $cases   = static::cases();
+        $cases = static::cases();
         $options = [];
 
-        foreach($cases as $case){
+        foreach ($cases as $case) {
             $label = $case->name;
 
             if (Str::contains($label, '_')) {

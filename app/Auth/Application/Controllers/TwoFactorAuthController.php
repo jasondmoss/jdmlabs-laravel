@@ -8,7 +8,8 @@ use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class TwoFactorAuthController extends Controller {
+class TwoFactorAuthController extends Controller
+{
 
     /**
      * @param \Illuminate\Http\Request $request

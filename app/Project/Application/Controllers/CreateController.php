@@ -10,7 +10,8 @@ use App\Project\Infrastructure\ProjectModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class CreateController extends Controller {
+class CreateController extends Controller
+{
 
     public function __construct() {}
 
@@ -23,7 +24,8 @@ class CreateController extends Controller {
         $project = new ProjectModel();
 
         $project->clients = ClientModel::get()->pluck('name', 'id');
-//        $project->categories = Category::get()->pluck('name', 'id');
+
+        //        $project->categories = Category::get()->pluck('name', 'id');
 
         return ViewFacade::make('ProjectAdmin::create', [
             'project' => $project

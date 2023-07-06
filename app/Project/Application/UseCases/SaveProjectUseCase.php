@@ -8,7 +8,8 @@ use App\Project\Infrastructure\ProjectModel;
 use App\Project\Infrastructure\ProjectRepository;
 use App\Project\Interface\ProjectFormRequest;
 
-class SaveProjectUseCase {
+class SaveProjectUseCase
+{
 
     protected ProjectRepository $repository;
 

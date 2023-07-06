@@ -7,7 +7,8 @@ namespace App\Shared\Domain\Enums;
 use App\Shared\Application\Traits\EnumOptions;
 use App\Shared\Application\Traits\EnumValues;
 
-enum Status: string {
+enum Status: string
+{
 
     use EnumValues, EnumOptions;
 
@@ -21,7 +22,7 @@ enum Status: string {
      *
      * @return string
      */
-    public  static function icon(self $status): string
+    public static function icon(self $status): string
     {
         if ('published' == $status->value) {
             return '<i class="fa-solid fa-eye" style="color: #2ec27e;"></i>';

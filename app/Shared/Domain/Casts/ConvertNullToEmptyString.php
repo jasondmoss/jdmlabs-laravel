@@ -8,7 +8,8 @@ use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
-final readonly class ConvertNullToEmptyString implements CastsInboundAttributes {
+final readonly class ConvertNullToEmptyString implements CastsInboundAttributes
+{
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
@@ -23,7 +24,8 @@ final readonly class ConvertNullToEmptyString implements CastsInboundAttributes 
         string $key,
         mixed $value,
         array $attributes
-    ): string {
+    ): string
+    {
         if (is_null($value)) {
             return '';
         }

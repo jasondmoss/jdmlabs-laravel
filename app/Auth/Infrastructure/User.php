@@ -12,7 +12,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticationProvider;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
 
     use HasFactory, HasUlids, Notifiable, TwoFactorAuthenticatable;
 

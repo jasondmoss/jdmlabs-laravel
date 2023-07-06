@@ -7,7 +7,8 @@ namespace App\Auth\Application\Actions;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication as OrigDisableTwoFactorAuthentication;
 
 class DisableTwoFactorAuthenticationAction
-    extends OrigDisableTwoFactorAuthentication {
+    extends OrigDisableTwoFactorAuthentication
+{
 
     /**
      * @param $user

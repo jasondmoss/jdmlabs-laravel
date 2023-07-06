@@ -6,7 +6,8 @@ namespace App\Shared\Domain\ValueObjects;
 
 use Illuminate\Validation\Rules\Enum;
 
-final readonly class Promoted {
+final readonly class Promoted
+{
 
     private Enum $promoted;
 

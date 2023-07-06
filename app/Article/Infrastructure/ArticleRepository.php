@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure;
 
 use App\Article\Domain\ArticleRepositoryContract;
-use App\Article\Interface\ClientFormRequest;
+use App\Article\Interface\ArticleFormRequest;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
 use Exception;
@@ -15,10 +15,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection as CollectionSupport;
 use Illuminate\Support\Facades\Log;
-use Str;
+use Illuminate\Support\Str;
 use Symfony\Component\Uid\Ulid;
 
-class ArticleRepository implements ArticleRepositoryContract {
+class ArticleRepository implements ArticleRepositoryContract
+{
 
     private ArticleModel $model;
 
@@ -117,12 +118,11 @@ class ArticleRepository implements ArticleRepositoryContract {
 
 
     /**
-     * @param \App\Article\Interface\ClientFormRequest $data
      *
      * @return \App\Article\Infrastructure\ArticleModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(ClientFormRequest $data): ArticleModel
+    public function save(ArticleFormRequest $data): ArticleModel
     {
         $article = isset($data->id)
             ? $this->model->find($data->id)
@@ -154,8 +154,9 @@ class ArticleRepository implements ArticleRepositoryContract {
      */
     public function delete(string $id): void
     {
-        $modelId = (new Id($id))->value();
-        $objectModel = $this->model->find($modelId);
+        $objectModel = $this->model->find(
+            (new Id($id))->value()
+        );
 
         $objectModel->delete();
     }

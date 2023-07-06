@@ -10,7 +10,8 @@ use App\Client\Infrastructure\ClientRepository;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ClientServiceProvider extends ServiceProvider {
+class ClientServiceProvider extends ServiceProvider
+{
 
     /**
      * Register services.

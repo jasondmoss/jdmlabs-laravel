@@ -17,7 +17,8 @@ use Illuminate\Support\Collection as CollectionSupport;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Uid\Ulid;
 
-class ClientRepository implements ClientRepositoryContract {
+class ClientRepository implements ClientRepositoryContract
+{
 
     private ClientModel $model;
 
@@ -25,26 +26,6 @@ class ClientRepository implements ClientRepositoryContract {
     public function __construct()
     {
         $this->model = new ClientModel;
-    }
-
-
-    /**
-     * @param string $key
-     *
-     * @return \App\Client\Infrastructure\ClientModel
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
-     */
-    public function get(string $key): ClientModel
-    {
-        if (! Ulid::isValid($key)) {
-            $slug = (new Slug($key))->value();
-
-            return $this->model->firstWhere('slug', $slug);
-        }
-
-        $ulid = (new Id($key))->value();
-
-        return $this->model->find($ulid);
     }
 
 
@@ -126,6 +107,26 @@ class ClientRepository implements ClientRepositoryContract {
 
 
     /**
+     * @param string $key
+     *
+     * @return \App\Client\Infrastructure\ClientModel
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     */
+    public function get(string $key): ClientModel
+    {
+        if (! Ulid::isValid($key)) {
+            $slug = (new Slug($key))->value();
+
+            return $this->model->firstWhere('slug', $slug);
+        }
+
+        $ulid = (new Id($key))->value();
+
+        return $this->model->find($ulid);
+    }
+
+
+    /**
      * @param \App\Client\Interface\ClientFormRequest $data
      *
      * @return \App\Client\Infrastructure\ClientModel
@@ -133,9 +134,9 @@ class ClientRepository implements ClientRepositoryContract {
      */
     public function save(ClientFormRequest $data): ClientModel
     {
-        if (is_null($client = $this->model->find($data->id))) {
-            $client = new ClientModel;
-        }
+        $client = isset($data->id)
+            ? $this->model->find($data->id)
+            : (new ClientModel);
 
         try {
             $client->name = $data->name;
@@ -164,8 +165,9 @@ class ClientRepository implements ClientRepositoryContract {
      */
     public function delete(string $id): void
     {
-        $modelId = (new Id($id))->value();
-        $objectModel = $this->model->find($modelId);
+        $objectModel = $this->model->find(
+            (new Id($id))->value()
+        );
 
         $objectModel->delete();
     }

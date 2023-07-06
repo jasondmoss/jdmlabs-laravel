@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace App\Article\Domain;
 
 use App\Article\Infrastructure\ArticleModel;
-use App\Article\Interface\ClientFormRequest;
+use App\Article\Interface\ArticleFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection as CollectionSupport;
 
-interface ArticleRepositoryContract {
+interface ArticleRepositoryContract
+{
 
     /**
      * @param string $key
@@ -63,11 +64,11 @@ interface ArticleRepositoryContract {
 
 
     /**
-     * @param \App\Article\Interface\ClientFormRequest $data
+     * @param \App\Article\Interface\ArticleFormRequest $data
      *
      * @return \App\Article\Infrastructure\ArticleModel
      */
-    public function save(ClientFormRequest $data): ArticleModel;
+    public function save(ArticleFormRequest $data): ArticleModel;
 
 
     /**

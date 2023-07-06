@@ -12,6 +12,7 @@ use App\Shared\Domain\Casts\ConvertNullToEmptyString;
 use App\Shared\Domain\Enums\Pinned;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
+use App\Shared\Domain\ValueObjects\Id;
 use App\Taxonomy\Infrastructure\Traits\HasTaxonomies;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -19,7 +20,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ProjectModel extends Model {
+class ProjectModel extends Model
+{
 
     use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
@@ -73,7 +75,9 @@ class ProjectModel extends Model {
      */
     public function find(string $id): self
     {
-        $project = $this->newQuery()->find($id);
+        $project = $this->newQuery()->find(
+            (new Id($id))->value()
+        );
 
         if (! $project instanceof self) {
             throw CouldNotFindEntry::withId($id);

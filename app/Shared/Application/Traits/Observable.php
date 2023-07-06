@@ -6,7 +6,8 @@ namespace App\Shared\Application\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 
-trait Observable {
+trait Observable
+{
 
     /**
      * @return void
@@ -14,7 +15,7 @@ trait Observable {
     public static function bootObservable(): void
     {
         static::updating(function (Model $model) {
-//            dd('updating');
+            //            dd('updating');
         });
     }
 

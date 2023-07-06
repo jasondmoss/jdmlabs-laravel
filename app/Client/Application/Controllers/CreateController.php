@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 //use App\ProjectModel\Infrastructure\ProjectModel;
 
-class CreateController extends Controller {
+class CreateController extends Controller
+{
 
     protected ClientModel $client;
 
@@ -25,7 +26,8 @@ class CreateController extends Controller {
     public function __invoke(): View
     {
         $client = new ClientModel;
-//        $client->projects = ProjectModel::get()->pluck('title', 'id');
+
+        //        $client->projects = ProjectModel::get()->pluck('title', 'id');
 
         return ViewFacade::make('ClientAdmin::create', [
             'client' => $client

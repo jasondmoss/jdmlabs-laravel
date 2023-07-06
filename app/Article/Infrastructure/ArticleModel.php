@@ -10,6 +10,7 @@ use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
+use App\Shared\Domain\ValueObjects\Id;
 use App\Taxonomy\Infrastructure\Traits\HasTaxonomies;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -17,7 +18,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ArticleModel extends Model {
+class ArticleModel extends Model
+{
 
     use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
@@ -66,13 +68,15 @@ class ArticleModel extends Model {
      */
     public function find(string $id): self
     {
-       $article = $this->newQuery()->find($id);
+        $article = $this->newQuery()->find(
+            (new Id($id))->value()
+        );
 
-       if (! $article instanceof self) {
-           throw CouldNotFindEntry::withId($id);
-       }
+        if (! $article instanceof self) {
+            throw CouldNotFindEntry::withId($id);
+        }
 
-       return $article;
+        return $article;
     }
 
 

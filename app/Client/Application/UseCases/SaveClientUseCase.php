@@ -8,7 +8,8 @@ use App\Client\Domain\ClientRepositoryContract;
 use App\Client\Infrastructure\ClientModel;
 use App\Client\Interface\ClientFormRequest;
 
-class SaveClientUseCase {
+class SaveClientUseCase
+{
 
     protected ClientRepositoryContract $repository;
 

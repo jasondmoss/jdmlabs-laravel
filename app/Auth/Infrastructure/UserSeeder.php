@@ -7,7 +7,8 @@ namespace App\Auth\Infrastructure;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserSeeder extends Seeder {
+class UserSeeder extends Seeder
+{
 
     use RefreshDatabase;
 

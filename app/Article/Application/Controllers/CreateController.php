@@ -9,7 +9,8 @@ use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class CreateController extends Controller {
+class CreateController extends Controller
+{
 
     public function __construct() {}
 
@@ -22,7 +23,7 @@ class CreateController extends Controller {
         $article = new ArticleModel();
         $this->authorize('create', $article);
 
-//        $article->categories = Category::get()->pluck('id', 'name');
+        //        $article->categories = Category::get()->pluck('id', 'name');
 
         return ViewFacade::make('ArticleAdmin::create', [
             'article' => $article

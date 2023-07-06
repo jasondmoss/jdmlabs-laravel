@@ -8,7 +8,8 @@ use App\Article\Domain\ArticleRepositoryContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
-final class GetPublishedArticlesUseCase {
+final class GetPublishedArticlesUseCase
+{
 
     private ArticleRepositoryContract $repository;
 

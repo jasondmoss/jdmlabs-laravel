@@ -10,7 +10,8 @@ use App\Client\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
-class UpdateController extends Controller {
+class UpdateController extends Controller
+{
 
     protected GetClientUseCase $getClient;
 
@@ -24,7 +25,8 @@ class UpdateController extends Controller {
     public function __construct(
         GetClientUseCase $getClient,
         SaveClientUseCase $saveClient
-    ) {
+    )
+    {
         $this->getClient = $getClient;
         $this->saveClient = $saveClient;
     }

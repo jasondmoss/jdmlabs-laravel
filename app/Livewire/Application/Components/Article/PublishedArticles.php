@@ -8,7 +8,8 @@ use App\Article\Infrastructure\ArticleModel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PublishedArticles extends Component {
+class PublishedArticles extends Component
+{
 
     use WithPagination;
 

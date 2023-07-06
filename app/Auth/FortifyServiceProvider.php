@@ -21,7 +21,8 @@ use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
-class FortifyServiceProvider extends ServiceProvider {
+class FortifyServiceProvider extends ServiceProvider
+{
 
     /**
      * Register any application services.

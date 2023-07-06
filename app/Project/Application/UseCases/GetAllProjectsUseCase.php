@@ -8,7 +8,8 @@ use App\Project\Infrastructure\ProjectRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as CollectionSupport;
 
-final class GetAllProjectsUseCase {
+final class GetAllProjectsUseCase
+{
 
     private ProjectRepository $repository;
 

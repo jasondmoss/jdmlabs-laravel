@@ -8,7 +8,8 @@ use App\Article\Infrastructure\ArticleRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as CollectionSupport;
 
-final class GetAllArticlesUseCase {
+final class GetAllArticlesUseCase
+{
 
     private ArticleRepository $repository;
 

@@ -38,7 +38,6 @@ class ProjectFormRequest extends FormRequest
     private mixed $pinned;
 
 
-
     /**
      * Determine if the user is authorized to make this request.
      *
