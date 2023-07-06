@@ -69,7 +69,7 @@ class TaxonomySeeder extends Seeder {
                 'terms' => [
                     [
                         'name' => 'Technology',
-                        'description' => 'Project technology stacks.',
+                        'description' => 'ProjectModel technology stacks.',
                         'terms' => [
                             'Craft CMS',
                             'Drupal',

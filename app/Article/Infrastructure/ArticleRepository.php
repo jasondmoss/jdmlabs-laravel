@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure;
 
 use App\Article\Domain\ArticleRepositoryContract;
+use App\Article\Interface\ClientFormRequest;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
-use App\Shared\Interface\EntryFormRequest;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -117,12 +117,12 @@ class ArticleRepository implements ArticleRepositoryContract {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Article\Interface\ClientFormRequest $data
      *
      * @return \App\Article\Infrastructure\ArticleModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(EntryFormRequest $data): ArticleModel
+    public function save(ClientFormRequest $data): ArticleModel
     {
         $article = isset($data->id)
             ? $this->model->find($data->id)

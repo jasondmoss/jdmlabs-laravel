@@ -6,8 +6,8 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\GetArticleUseCase;
 use App\Article\Application\UseCases\SaveArticleUseCase;
+use App\Article\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
-use App\Shared\Interface\EntryFormRequest;
 use Illuminate\Http\RedirectResponse;
 
 
@@ -32,18 +32,21 @@ class UpdateController extends Controller {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $request
+     * @param \App\Article\Interface\ClientFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(EntryFormRequest $request): RedirectResponse
+    public function __invoke(ClientFormRequest $request): RedirectResponse
     {
-        $article = $this->getArticle->__invoke($request->id);
-        $this->authorize('owner', $article);
+        if (! empty($request->id)) {
+            $article = $this->getArticle->__invoke($request->id);
+
+            $this->authorize('owner', $article);
+        }
 
         // Update + return article.
-        $this->updateArticle->__invoke($request);
+        $article = $this->updateArticle->__invoke($request);
 
         // Save + attach categories.
 //        $article->categories()->sync((array) $request->input('categories'));

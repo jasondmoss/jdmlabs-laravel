@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Project\Infrastructure;
 
 use App\Project\Domain\ProjectRepositoryContract;
+use App\Project\Interface\ProjectFormRequest;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
-use App\Shared\Interface\EntryFormRequest;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,22 +20,22 @@ use Symfony\Component\Uid\Ulid;
 
 class ProjectRepository implements ProjectRepositoryContract {
 
-    private Project $model;
+    private ProjectModel $model;
 
 
     public function __construct()
     {
-        $this->model = new Project();
+        $this->model = new ProjectModel();
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\ProjectModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function get(string $key): Project
+    public function get(string $key): ProjectModel
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -133,15 +133,15 @@ class ProjectRepository implements ProjectRepositoryContract {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Project\Interface\ProjectFormRequest $data
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\ProjectModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(EntryFormRequest $data): Project
+    public function save(ProjectFormRequest $data): ProjectModel
     {
         if (is_null($project = $this->model->find($data->id))) {
-            $project = new Project;
+            $project = new ProjectModel;
         }
 
         try {
@@ -162,7 +162,7 @@ class ProjectRepository implements ProjectRepositoryContract {
         }
 
         // Return saved project.
-        return Project::findOrFail($project->id);
+        return ProjectModel::findOrFail($project->id);
     }
 
 

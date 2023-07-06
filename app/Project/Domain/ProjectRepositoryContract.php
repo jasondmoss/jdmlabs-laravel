@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Project\Domain;
 
-use App\Project\Infrastructure\Project;
-use App\Shared\Interface\EntryFormRequest;
+use App\Project\Infrastructure\ProjectModel;
+use App\Project\Interface\ProjectFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +17,9 @@ interface ProjectRepositoryContract {
     /**
      * @param string $key
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\ProjectModel
      */
-    public function get(string $key): Project;
+    public function get(string $key): ProjectModel;
 
 
     /**
@@ -72,11 +72,11 @@ interface ProjectRepositoryContract {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Project\Interface\ProjectFormRequest $data
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\ProjectModel
      */
-    public function save(EntryFormRequest $data): Project;
+    public function save(ProjectFormRequest $data): ProjectModel;
 
 
     /**

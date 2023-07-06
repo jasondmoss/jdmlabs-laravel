@@ -32,7 +32,7 @@ use App\Shared\Domain\Enums\Status;
               <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
             </h3>
             <p class="subtitle">
-              <a href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit Client') }}">{{ $project->clients->name }}</a>
+              <a href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit ClientModel') }}">{{ $project->clients->name }}</a>
             </p>
           </header>
 

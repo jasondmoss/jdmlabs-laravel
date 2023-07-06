@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Client\Infrastructure;
 
 use App\Client\Domain\ClientRepositoryContract;
-use App\Project\Infrastructure\Project;
+use App\Client\Interface\ClientFormRequest;
+use App\Project\Infrastructure\ProjectModel;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
-use App\Shared\Interface\EntryFormRequest;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,22 +19,22 @@ use Symfony\Component\Uid\Ulid;
 
 class ClientRepository implements ClientRepositoryContract {
 
-    private Client $model;
+    private ClientModel $model;
 
 
     public function __construct()
     {
-        $this->model = new Client;
+        $this->model = new ClientModel;
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Client\Infrastructure\Client
+     * @return \App\Client\Infrastructure\ClientModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function get(string $key): Client
+    public function get(string $key): ClientModel
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -121,20 +121,20 @@ class ClientRepository implements ClientRepositoryContract {
      */
     public function getClientProjects(string $id): Collection
     {
-        return Project::get()->where('client_id', '=', $id);
+        return ProjectModel::get()->where('client_id', '=', $id);
     }
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Client\Interface\ClientFormRequest $data
      *
-     * @return \App\Client\Infrastructure\Client
+     * @return \App\Client\Infrastructure\ClientModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(EntryFormRequest $data): Client
+    public function save(ClientFormRequest $data): ClientModel
     {
         if (is_null($client = $this->model->find($data->id))) {
-            $client = new Client;
+            $client = new ClientModel;
         }
 
         try {
@@ -151,8 +151,8 @@ class ClientRepository implements ClientRepositoryContract {
             Log::error($e->getMessage());
         }
 
-        // Return saved article.
-        return Client::findOrFail($client->id);
+        // Return saved client.
+        return ClientModel::findOrFail($client->id);
     }
 
 

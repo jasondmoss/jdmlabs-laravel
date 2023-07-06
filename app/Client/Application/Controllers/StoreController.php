@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Client\Application\Controllers;
 
 use App\Client\Application\UseCases\SaveClientUseCase;
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\ClientModel;
+use App\Client\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
-use App\Shared\Interface\EntryFormRequest;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller {
@@ -25,13 +25,13 @@ class StoreController extends Controller {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $request
+     * @param \App\Client\Interface\ClientFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(EntryFormRequest $request): RedirectResponse
+    public function __invoke(ClientFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', Client::class);
+        $this->authorize('create', ClientModel::class);
 
         $this->saveClient->__invoke($request);
 

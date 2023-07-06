@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Project\Infrastructure;
 
 use App\Auth\Infrastructure\User;
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\ClientModel;
 use App\Shared\Domain\Enums\Pinned;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ProjectFactory extends Factory {
 
-    protected $model = Project::class;
+    protected $model = ProjectModel::class;
 
 
     /**
@@ -42,7 +42,7 @@ class ProjectFactory extends Factory {
             'promoted' => $faker->randomElement(Promoted::values()),
             'pinned' => $faker->randomElement(Pinned::values()),
 
-            'client_id' => Client::all()->random()->id,
+            'client_id' => ClientModel::all()->random()->id,
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
             'published_at' => $faker->randomElement([ null, Date::now() ]),

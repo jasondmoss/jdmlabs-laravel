@@ -2,60 +2,66 @@
 
 declare(strict_types=1);
 
-namespace App\Client\Infrastructure;
+namespace App\Project\Infrastructure;
 
 use App\Auth\Infrastructure\User;
-use App\Project\Infrastructure\Project;
+use App\Client\Infrastructure\ClientModel;
 use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
+use App\Shared\Domain\Enums\Pinned;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
+use App\Taxonomy\Infrastructure\Traits\HasTaxonomies;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Client extends Model {
+class ProjectModel extends Model {
 
-    use HasEvents, HasFactory, HasUlids, Observable;
+    use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
     public $timestamps = true;
 
-    protected $table = 'clients';
+    protected $table = 'projects';
 
     protected $guarded = [];
 
     protected $fillable = [
-        'name',
+        'title',
         'slug',
-        'itemprop',
+        'subtitle',
         'website',
         'summary',
+        'body',
         'status',
         'promoted',
+        'pinned',
+        'client_id',
         'created_at',
         'updated_at'
     ];
 
     protected $casts = [
+        'body' => ConvertNullToEmptyString::class,
         'summary' => ConvertNullToEmptyString::class,
         'published_at' => 'immutable_datetime',
         'status' => Status::class,
-        'promoted' => Promoted::class
+        'promoted' => Promoted::class,
+        'pinned' => Pinned::class
     ];
 
-    protected $with = [ 'projects' ];
+    protected $with = [];
 
 
     /**
-     * @return \App\Client\Infrastructure\ClientFactory
+     * @return \App\Project\Infrastructure\ProjectFactory
      */
-    protected static function newFactory(): ClientFactory
+    protected static function newFactory(): ProjectFactory
     {
-        return ClientFactory::new();
+        return ProjectFactory::new();
     }
 
 
@@ -67,22 +73,22 @@ class Client extends Model {
      */
     public function find(string $id): self
     {
-       $article = $this->newQuery()->find($id);
+        $project = $this->newQuery()->find($id);
 
-       if (! $article instanceof self) {
-           throw CouldNotFindEntry::withId($id);
-       }
+        if (! $project instanceof self) {
+            throw CouldNotFindEntry::withId($id);
+        }
 
-       return $article;
+        return $project;
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function projects(): HasMany
+    public function clients(): BelongsTo
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsTo(ClientModel::class, 'client_id');
     }
 
 

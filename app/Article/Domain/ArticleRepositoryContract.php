@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Domain;
 
 use App\Article\Infrastructure\ArticleModel;
-use App\Shared\Interface\EntryFormRequest;
+use App\Article\Interface\ClientFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -63,11 +63,11 @@ interface ArticleRepositoryContract {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Article\Interface\ClientFormRequest $data
      *
      * @return \App\Article\Infrastructure\ArticleModel
      */
-    public function save(EntryFormRequest $data): ArticleModel;
+    public function save(ClientFormRequest $data): ArticleModel;
 
 
     /**

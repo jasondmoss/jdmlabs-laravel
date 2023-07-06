@@ -2,27 +2,42 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Interface;
+namespace App\Article\Interface;
 
+use App\Article\Infrastructure\ArticleModel;
 use App\Shared\Domain\ValueObjects\Body;
 use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Pinned;
 use App\Shared\Domain\ValueObjects\Promoted;
 use App\Shared\Domain\ValueObjects\Status;
 use App\Shared\Domain\ValueObjects\Summary;
 use App\Shared\Domain\ValueObjects\Title;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EntryFormRequest extends FormRequest {
+class ArticleFormRequest extends FormRequest
+{
+
+    private mixed $id;
+
+    private mixed $title;
+
+    private mixed $summary;
+
+    private mixed $body;
+
+    private mixed $promoted;
+
+    private mixed $status;
+
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('create', ArticleModel::class);
     }
 
 
@@ -63,11 +78,11 @@ class EntryFormRequest extends FormRequest {
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Pinned
+     * @return \App\Shared\Domain\ValueObjects\Status
      */
-    public function getPinned(): Pinned
+    public function getStatus(): Status
     {
-        return (new Pinned($this->pinned));
+        return (new Status($this->status));
     }
 
 
@@ -78,21 +93,5 @@ class EntryFormRequest extends FormRequest {
     {
         return (new Promoted($this->promoted));
     }
-
-
-    /**
-     * @return \App\Shared\Domain\ValueObjects\Status
-     */
-    public function getStatus(): Status
-    {
-        return (new Status($this->status));
-    }
-
-
-    /*'categories' => ['exists:categories,id'],*/
-    /*'image[file]' => ['nullable', 'image', 'mimes:jpg,png,svg'],
-    'image[label]' => ['nullable', 'string'],
-    'image[alt]' => ['nullable', 'string'],
-    'image[caption]' => ['nullable', 'string']*/
 
 }

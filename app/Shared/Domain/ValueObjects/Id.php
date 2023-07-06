@@ -6,22 +6,22 @@ namespace App\Shared\Domain\ValueObjects;
 
 final readonly class Id {
 
-    private int|string $id;
+    private string $id;
 
 
     /**
-     * @param int|string $id
+     * @param string $id
      */
-    public function __construct(int|string $id)
+    public function __construct(string $id)
     {
         $this->id = $id;
     }
 
 
     /**
-     * @return int|string
+     * @return string
      */
-    public function value(): int|string
+    public function value(): string
     {
         return $this->id;
     }

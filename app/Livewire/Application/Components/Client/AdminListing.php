@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Client;
 
-use App\Client\Infrastructure\Client;
-use Illuminate\Contracts\Foundation\Application as ApplicationContract;
-use Illuminate\Contracts\View\Factory;
+use App\Client\Infrastructure\ClientModel;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application as ApplicationFoundation;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AdminListing extends Component {
 
-    use WithPagination;
+    use AuthorizesRequests, WithPagination;
 
     public string $search = '';
 
@@ -33,9 +31,9 @@ class AdminListing extends Component {
     }
 
 
-    public function render(): View|ApplicationFoundation|Factory|ApplicationContract
+    public function render(): View
     {
-        $clients = Client::where('user_id', auth()->user()->id)
+        $clients = ClientModel::where('user_id', auth()->user()->id)
             ->where('name', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->paginate(5);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Application\Controllers;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\ClientModel;
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\GetProjectUseCase;
 use App\Shared\Domain\ValueObjects\Id;
@@ -36,7 +36,7 @@ class EditController extends Controller {
 
 //        $project->categories = Category::get()->pluck('name', 'id');
 
-        $project->clients = Client::get()->pluck('name', 'id');
+        $project->clients = ClientModel::get()->pluck('name', 'id');
 
         $this->authorize('owner', $project);
 

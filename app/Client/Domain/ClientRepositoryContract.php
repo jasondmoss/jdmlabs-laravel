@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Client\Domain;
 
-use App\Client\Infrastructure\Client;
-use App\Shared\Interface\EntryFormRequest;
+use App\Client\Infrastructure\ClientModel;
+use App\Client\Interface\ClientFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
@@ -16,9 +16,9 @@ interface ClientRepositoryContract {
     /**
      * @param string $key
      *
-     * @return \App\Client\Infrastructure\Client
+     * @return \App\Client\Infrastructure\ClientModel
      */
-    public function get(string $key): Client;
+    public function get(string $key): ClientModel;
 
 
     /**
@@ -71,11 +71,11 @@ interface ClientRepositoryContract {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Client\Interface\ClientFormRequest $data
      *
-     * @return \App\Client\Infrastructure\Client
+     * @return \App\Client\Infrastructure\ClientModel
      */
-    public function save(EntryFormRequest $data): Client;
+    public function save(ClientFormRequest $data): ClientModel;
 
 
     /**

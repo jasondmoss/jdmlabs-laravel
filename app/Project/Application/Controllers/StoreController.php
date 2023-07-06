@@ -6,8 +6,8 @@ namespace App\Project\Application\Controllers;
 
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\SaveProjectUseCase;
-use App\Project\Infrastructure\Project;
-use App\Shared\Interface\EntryFormRequest;
+use App\Project\Infrastructure\ProjectModel;
+use App\Project\Interface\ProjectFormRequest;
 use Illuminate\Http\RedirectResponse;
 
 
@@ -26,14 +26,14 @@ class StoreController extends Controller {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $request
+     * @param \App\Project\Interface\ProjectFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(EntryFormRequest $request): RedirectResponse
+    public function __invoke(ProjectFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', Project::class);
+        $this->authorize('create', ProjectModel::class);
 
         // Store + return project.
         $project = $this->saveProject->__invoke($request);

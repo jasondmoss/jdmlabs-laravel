@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Project;
 
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\ProjectModel;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,7 +35,7 @@ class AdminListing extends Component {
 
     public function render(): View|ApplicationFoundation|Factory|ApplicationContract
     {
-        $projects = Project::where('title', 'LIKE', '%' . $this->search . '%')
+        $projects = ProjectModel::where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->with('clients')
             ->paginate(5);

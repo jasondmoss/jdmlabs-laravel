@@ -6,7 +6,7 @@ namespace App\Article\Application\UseCases;
 
 use App\Article\Infrastructure\ArticleModel;
 use App\Article\Infrastructure\ArticleRepository;
-use App\Shared\Interface\EntryFormRequest;
+use App\Article\Interface\ClientFormRequest;
 
 final class SaveArticleUseCase {
 
@@ -23,12 +23,12 @@ final class SaveArticleUseCase {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Article\Interface\ClientFormRequest $data
      *
      * @return \App\Article\Infrastructure\ArticleModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(EntryFormRequest $data): ArticleModel
+    public function __invoke(ClientFormRequest $data): ArticleModel
     {
         return $this->repository->save($data);
     }

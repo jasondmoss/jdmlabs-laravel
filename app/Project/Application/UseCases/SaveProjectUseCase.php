@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\ProjectModel;
 use App\Project\Infrastructure\ProjectRepository;
-use App\Shared\Interface\EntryFormRequest;
+use App\Project\Interface\ProjectFormRequest;
 
 class SaveProjectUseCase {
 
@@ -23,12 +23,12 @@ class SaveProjectUseCase {
 
 
     /**
-     * @param \App\Shared\Interface\EntryFormRequest $data
+     * @param \App\Project\Interface\ProjectFormRequest $data
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\ProjectModel
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(EntryFormRequest $data): Project
+    public function __invoke(ProjectFormRequest $data): ProjectModel
     {
         return $this->repository->save($data);
     }

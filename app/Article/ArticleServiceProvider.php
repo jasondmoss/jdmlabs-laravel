@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 
-class ArticleServiceProvider extends ServiceProvider {
+class ArticleServiceProvider extends ServiceProvider
+{
 
     /**
      * Register services.

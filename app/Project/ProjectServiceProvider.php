@@ -7,7 +7,6 @@ namespace App\Project;
 use App\Project\Application\UseCases;
 use App\Project\Domain\ProjectRepositoryContract;
 use App\Project\Infrastructure\ProjectRepository;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
