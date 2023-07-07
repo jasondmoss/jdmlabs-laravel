@@ -21,22 +21,22 @@ use Symfony\Component\Uid\Ulid;
 class ArticleRepository implements ArticleRepositoryContract
 {
 
-    private ArticleModel $model;
+    private Article $model;
 
 
     public function __construct()
     {
-        $this->model = new ArticleModel;
+        $this->model = new Article;
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Article\Infrastructure\ArticleModel
+     * @return \App\Article\Infrastructure\Article
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function get(string $key): ArticleModel
+    public function get(string $key): Article
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -119,14 +119,14 @@ class ArticleRepository implements ArticleRepositoryContract
 
     /**
      *
-     * @return \App\Article\Infrastructure\ArticleModel
+     * @return \App\Article\Infrastructure\Article
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(ArticleFormRequest $data): ArticleModel
+    public function save(ArticleFormRequest $data): Article
     {
         $article = isset($data->id)
             ? $this->model->find($data->id)
-            : (new ArticleModel);
+            : (new Article);
 
         try {
             $article->title = $data->title;
@@ -142,7 +142,7 @@ class ArticleRepository implements ArticleRepositoryContract
         }
 
         // Return saved article.
-        return ArticleModel::findOrFail($article->id);
+        return Article::findOrFail($article->id);
     }
 
 

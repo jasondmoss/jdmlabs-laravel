@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Project\Application\UseCases;
 
 use App\Project\Domain\ProjectRepositoryContract;
-use App\Project\Infrastructure\ProjectModel;
+use App\Project\Infrastructure\Project;
 
 class GetProjectUseCase
 {
@@ -25,9 +25,9 @@ class GetProjectUseCase
     /**
      * @param string $key
      *
-     * @return \App\Project\Infrastructure\ProjectModel
+     * @return \App\Project\Infrastructure\Project
      */
-    public function __invoke(string $key): ProjectModel
+    public function __invoke(string $key): Project
     {
         return $this->repository->get($key);
     }

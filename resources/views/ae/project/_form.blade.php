@@ -32,7 +32,7 @@ use App\Shared\Domain\Enums\Status;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New ProjectModel') }}</h1>
+    <h1>{{ __('Create New Project') }}</h1>
   @endif
 </header>
 
@@ -42,13 +42,13 @@ use App\Shared\Domain\Enums\Status;
 
     <div class="form-field title">
       {{ html()->label('Title')->for('title') }}
-      {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('ProjectModel name')) }}
+      {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('Project name')) }}
       <p class="title-slug"><span class="label">{{ __('slug') }}</span> {{ $project->slug ?? '...' }}</p>
     </div>
 
     <div class="form-field subtitle">
       {{ html()->label('Sub-Title')->for('subtitle') }}
-      {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('ProjectModel sub-title or tagline')) }}
+      {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('Project sub-title or tagline')) }}
     </div>
 
     <div class="form-field website">
@@ -74,7 +74,7 @@ use App\Shared\Domain\Enums\Status;
     <legend>{{ __('Clients') }}</legend>
 
     <div class="form-field clients">
-      {{ html()->label('ClientModel')->for('client_id') }}
+      {{ html()->label('Client')->for('client_id') }}
       {{ html()->select('client_id', $project->clients)->class('form-control select')->attribute('required')->placeholder('Select a client') }}
     </div>
   </fieldset>
@@ -187,7 +187,7 @@ use App\Shared\Domain\Enums\Status;
     <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
     <div class="form-field">
-      {{ html()->button('Save ProjectModel')->class('button submit') }}
+      {{ html()->button('Save Project')->class('button submit') }}
     </div>
   </fieldset>
 </aside>

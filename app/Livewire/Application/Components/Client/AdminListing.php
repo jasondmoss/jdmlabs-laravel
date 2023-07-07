@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Client;
 
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
@@ -34,7 +34,7 @@ class AdminListing extends Component
 
     public function render(): View
     {
-        $clients = ClientModel::where('user_id', auth()->user()->id)
+        $clients = Client::where('user_id', auth()->user()->id)
             ->where('name', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->paginate(5);

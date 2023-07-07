@@ -6,7 +6,7 @@ namespace App\Project\Application\Controllers;
 
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\SaveProjectUseCase;
-use App\Project\Infrastructure\ProjectModel;
+use App\Project\Infrastructure\Project;
 use App\Project\Interface\ProjectFormRequest;
 use Illuminate\Http\RedirectResponse;
 
@@ -34,7 +34,7 @@ class StoreController extends Controller
      */
     public function __invoke(ProjectFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', ProjectModel::class);
+        $this->authorize('create', Project::class);
 
         // Store + return project.
         $project = $this->saveProject->__invoke($request);

@@ -55,7 +55,7 @@ class UpdateController extends Controller
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'ProjectModel successfully updated');
+            ->with('update', 'Project successfully updated');
     }
 
 }

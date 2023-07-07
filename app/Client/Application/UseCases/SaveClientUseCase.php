@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Application\UseCases;
 
 use App\Client\Domain\ClientRepositoryContract;
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use App\Client\Interface\ClientFormRequest;
 
 class SaveClientUseCase
@@ -26,9 +26,9 @@ class SaveClientUseCase
     /**
      * @param \App\Client\Interface\ClientFormRequest $data
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      */
-    public function __invoke(ClientFormRequest $data): ClientModel
+    public function __invoke(ClientFormRequest $data): Client
     {
         return $this->repository->save($data);
     }

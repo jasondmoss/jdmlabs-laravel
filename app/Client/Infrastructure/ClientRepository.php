@@ -6,7 +6,7 @@ namespace App\Client\Infrastructure;
 
 use App\Client\Domain\ClientRepositoryContract;
 use App\Client\Interface\ClientFormRequest;
-use App\Project\Infrastructure\ProjectModel;
+use App\Project\Infrastructure\Project;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
 use Exception;
@@ -20,12 +20,12 @@ use Symfony\Component\Uid\Ulid;
 class ClientRepository implements ClientRepositoryContract
 {
 
-    private ClientModel $model;
+    private Client $model;
 
 
     public function __construct()
     {
-        $this->model = new ClientModel;
+        $this->model = new Client;
     }
 
 
@@ -102,17 +102,17 @@ class ClientRepository implements ClientRepositoryContract
      */
     public function getClientProjects(string $id): Collection
     {
-        return ProjectModel::get()->where('client_id', '=', $id);
+        return Project::get()->where('client_id', '=', $id);
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function get(string $key): ClientModel
+    public function get(string $key): Client
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -129,14 +129,14 @@ class ClientRepository implements ClientRepositoryContract
     /**
      * @param \App\Client\Interface\ClientFormRequest $data
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(ClientFormRequest $data): ClientModel
+    public function save(ClientFormRequest $data): Client
     {
         $client = isset($data->id)
             ? $this->model->find($data->id)
-            : (new ClientModel);
+            : (new Client);
 
         try {
             $client->name = $data->name;
@@ -153,7 +153,7 @@ class ClientRepository implements ClientRepositoryContract
         }
 
         // Return saved client.
-        return ClientModel::findOrFail($client->id);
+        return Client::findOrFail($client->id);
     }
 
 

@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure;
+namespace App\Article\Infrastructure;
 
 use App\Auth\Infrastructure\User;
-use App\Client\Infrastructure\ClientModel;
 use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
-use App\Shared\Domain\Enums\Pinned;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
 use App\Shared\Domain\ValueObjects\Id;
@@ -20,28 +18,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ProjectModel extends Model
+class Article extends Model
 {
 
     use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
     public $timestamps = true;
 
-    protected $table = 'projects';
+    protected $table = 'articles';
 
     protected $guarded = [];
 
     protected $fillable = [
         'title',
         'slug',
-        'subtitle',
-        'website',
         'summary',
         'body',
         'status',
         'promoted',
-        'pinned',
-        'client_id',
         'created_at',
         'updated_at'
     ];
@@ -51,19 +45,18 @@ class ProjectModel extends Model
         'summary' => ConvertNullToEmptyString::class,
         'published_at' => 'immutable_datetime',
         'status' => Status::class,
-        'promoted' => Promoted::class,
-        'pinned' => Pinned::class
+        'promoted' => Promoted::class
     ];
 
     protected $with = [];
 
 
     /**
-     * @return \App\Project\Infrastructure\ProjectFactory
+     * @return \App\Article\Infrastructure\ArticleFactory
      */
-    protected static function newFactory(): ProjectFactory
+    protected static function newFactory(): ArticleFactory
     {
-        return ProjectFactory::new();
+        return ArticleFactory::new();
     }
 
 
@@ -75,24 +68,15 @@ class ProjectModel extends Model
      */
     public function find(string $id): self
     {
-        $project = $this->newQuery()->find(
+        $article = $this->newQuery()->find(
             (new Id($id))->value()
         );
 
-        if (! $project instanceof self) {
+        if (! $article instanceof self) {
             throw CouldNotFindEntry::withId($id);
         }
 
-        return $project;
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function clients(): BelongsTo
-    {
-        return $this->belongsTo(ClientModel::class, 'client_id');
+        return $article;
     }
 
 

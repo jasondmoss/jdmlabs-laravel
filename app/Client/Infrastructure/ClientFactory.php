@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 class ClientFactory extends Factory
 {
 
-    protected $model = ClientModel::class;
+    protected $model = Client::class;
 
 
     public function definition(): array

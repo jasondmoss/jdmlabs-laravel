@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-//use App\ProjectModel\Infrastructure\ProjectModel;
+//use App\Project\Infrastructure\Project;
 
 class CreateController extends Controller
 {
 
-    protected ClientModel $client;
+    protected Client $client;
 
 
     public function __construct() {}
@@ -25,9 +25,9 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $client = new ClientModel;
+        $client = new Client;
 
-        //        $client->projects = ProjectModel::get()->pluck('title', 'id');
+        //        $client->projects = Project::get()->pluck('title', 'id');
 
         return ViewFacade::make('ClientAdmin::create', [
             'client' => $client

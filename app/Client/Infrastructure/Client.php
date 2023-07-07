@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure;
+namespace App\Client\Infrastructure;
 
 use App\Auth\Infrastructure\User;
+use App\Project\Infrastructure\Project;
 use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
@@ -17,23 +18,25 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ArticleModel extends Model
+class Client extends Model
 {
 
     use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
 
     public $timestamps = true;
 
-    protected $table = 'articles';
+    protected $table = 'clients';
 
     protected $guarded = [];
 
     protected $fillable = [
-        'title',
+        'name',
         'slug',
+        'itemprop',
+        'website',
         'summary',
-        'body',
         'status',
         'promoted',
         'created_at',
@@ -41,22 +44,21 @@ class ArticleModel extends Model
     ];
 
     protected $casts = [
-        'body' => ConvertNullToEmptyString::class,
         'summary' => ConvertNullToEmptyString::class,
         'published_at' => 'immutable_datetime',
         'status' => Status::class,
         'promoted' => Promoted::class
     ];
 
-    protected $with = [];
+    protected $with = [ 'projects' ];
 
 
     /**
-     * @return \App\Article\Infrastructure\ArticleFactory
+     * @return \App\Client\Infrastructure\ClientFactory
      */
-    protected static function newFactory(): ArticleFactory
+    protected static function newFactory(): ClientFactory
     {
-        return ArticleFactory::new();
+        return ClientFactory::new();
     }
 
 
@@ -68,15 +70,24 @@ class ArticleModel extends Model
      */
     public function find(string $id): self
     {
-        $article = $this->newQuery()->find(
+        $client = $this->newQuery()->find(
             (new Id($id))->value()
         );
 
-        if (! $article instanceof self) {
+        if (! $client instanceof self) {
             throw CouldNotFindEntry::withId($id);
         }
 
-        return $article;
+        return $client;
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 
 

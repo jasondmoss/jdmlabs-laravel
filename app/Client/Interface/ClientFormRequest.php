@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client\Interface;
 
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Itemprop;
 use App\Shared\Domain\ValueObjects\Name;
@@ -40,7 +40,7 @@ class ClientFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', ClientModel::class);
+        return $this->user()->can('create', Client::class);
     }
 
 

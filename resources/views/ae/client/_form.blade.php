@@ -24,7 +24,7 @@ use App\Shared\Domain\Enums\Status;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New ClientModel') }}</h1>
+    <h1>{{ __('Create New Client') }}</h1>
   @endif
 </header>
 
@@ -111,7 +111,7 @@ use App\Shared\Domain\Enums\Status;
     <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
     <div class="form-field actions">
-      {{ html()->button('Save ClientModel')->class('button submit') }}
+      {{ html()->button('Save Client')->class('button submit') }}
     </div>
   </fieldset>
 </aside>

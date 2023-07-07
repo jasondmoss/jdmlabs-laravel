@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Application\UseCases;
 
 use App\Client\Domain\ClientRepositoryContract;
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 
 class GetClientUseCase
 {
@@ -25,9 +25,9 @@ class GetClientUseCase
     /**
      * @param string $id
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      */
-    public function __invoke(string $id): ClientModel
+    public function __invoke(string $id): Client
     {
         return $this->repository->get($id);
     }

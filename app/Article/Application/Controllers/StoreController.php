@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\SaveArticleUseCase;
-use App\Article\Infrastructure\ArticleModel;
+use App\Article\Infrastructure\Article;
 use App\Article\Interface\ArticleFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -34,7 +34,7 @@ class StoreController extends Controller
      */
     public function __invoke(ArticleFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', ArticleModel::class);
+        $this->authorize('create', Article::class);
 
         // Store + return article.
         $article = $this->saveArticle->__invoke($request);

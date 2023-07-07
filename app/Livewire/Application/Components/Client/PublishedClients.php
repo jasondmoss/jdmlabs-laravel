@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Client;
 
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -28,7 +28,7 @@ class PublishedClients extends Component
 
     public function render(): View|ApplicationFoundation|Factory|ApplicationContract
     {
-        $clients = ClientModel::where('status', '=', 1)
+        $clients = Client::where('status', '=', 1)
             ->latest('id')
             ->paginate(10);
 

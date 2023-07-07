@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client\Domain;
 
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use App\Client\Interface\ClientFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,9 +17,9 @@ interface ClientRepositoryContract
     /**
      * @param string $key
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      */
-    public function get(string $key): ClientModel;
+    public function get(string $key): Client;
 
 
     /**
@@ -74,9 +74,9 @@ interface ClientRepositoryContract
     /**
      * @param \App\Client\Interface\ClientFormRequest $data
      *
-     * @return \App\Client\Infrastructure\ClientModel
+     * @return \App\Client\Infrastructure\Client
      */
-    public function save(ClientFormRequest $data): ClientModel;
+    public function save(ClientFormRequest $data): Client;
 
 
     /**

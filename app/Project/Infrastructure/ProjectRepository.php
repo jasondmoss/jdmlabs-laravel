@@ -21,22 +21,22 @@ use Symfony\Component\Uid\Ulid;
 class ProjectRepository implements ProjectRepositoryContract
 {
 
-    private ProjectModel $model;
+    private Project $model;
 
 
     public function __construct()
     {
-        $this->model = new ProjectModel;
+        $this->model = new Project;
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Project\Infrastructure\ProjectModel
+     * @return \App\Project\Infrastructure\Project
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function get(string $key): ProjectModel
+    public function get(string $key): Project
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();
@@ -136,14 +136,14 @@ class ProjectRepository implements ProjectRepositoryContract
     /**
      * @param \App\Project\Interface\ProjectFormRequest $data
      *
-     * @return \App\Project\Infrastructure\ProjectModel
+     * @return \App\Project\Infrastructure\Project
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function save(ProjectFormRequest $data): ProjectModel
+    public function save(ProjectFormRequest $data): Project
     {
         $project = isset($data->id)
             ? $this->model->find($data->id)
-            : (new ProjectModel);
+            : (new Project);
 
         try {
             $project->title = $data->title;
@@ -163,7 +163,7 @@ class ProjectRepository implements ProjectRepositoryContract
         }
 
         // Return saved project.
-        return ProjectModel::findOrFail($project->id);
+        return Project::findOrFail($project->id);
     }
 
 

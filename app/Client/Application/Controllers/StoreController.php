@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Application\Controllers;
 
 use App\Client\Application\UseCases\SaveClientUseCase;
-use App\Client\Infrastructure\ClientModel;
+use App\Client\Infrastructure\Client;
 use App\Client\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +32,7 @@ class StoreController extends Controller
      */
     public function __invoke(ClientFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', ClientModel::class);
+        $this->authorize('create', Client::class);
 
         $this->saveClient->__invoke($request);
 

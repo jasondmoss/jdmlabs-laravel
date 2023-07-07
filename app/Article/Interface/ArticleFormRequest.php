@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Interface;
 
-use App\Article\Infrastructure\ArticleModel;
+use App\Article\Infrastructure\Article;
 use App\Shared\Domain\ValueObjects\Body;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Promoted;
@@ -37,7 +37,7 @@ class ArticleFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', ArticleModel::class);
+        return $this->user()->can('create', Article::class);
     }
 
 

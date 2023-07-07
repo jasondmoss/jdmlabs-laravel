@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 final class ArticleFactory extends Factory
 {
 
-    protected $model = ArticleModel::class;
+    protected $model = Article::class;
 
 
     /**

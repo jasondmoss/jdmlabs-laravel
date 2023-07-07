@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Interface;
 
-use App\Project\Infrastructure\ProjectModel;
+use App\Project\Infrastructure\Project;
 use App\Shared\Domain\ValueObjects\Body;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Pinned;
@@ -46,7 +46,7 @@ class ProjectFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', ProjectModel::class);
+        return $this->user()->can('create', Project::class);
     }
 
 

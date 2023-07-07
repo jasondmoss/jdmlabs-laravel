@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Project;
 
-use App\Project\Infrastructure\ProjectModel;
+use App\Project\Infrastructure\Project;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -28,7 +28,7 @@ class PublishedProjects extends Component
 
     public function render(): View|ApplicationFoundation|Factory|ApplicationContract
     {
-        $projects = ProjectModel::where('status', '=', 1)
+        $projects = Project::where('status', '=', 1)
             ->latest()
             ->orderBy('created_at', 'desc')
             ->with('clients')
