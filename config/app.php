@@ -13,7 +13,6 @@ use App\Laravel\Application\Providers\RouteServiceProvider;
 use App\Project\ProjectServiceProvider;
 use App\Shared\GlobalAuthServiceProvider;
 use App\Shared\GlobalServiceProvider;
-use App\Taxonomy\TaxonomyServiceProvider;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -101,7 +100,6 @@ return [
         EventServiceProvider::class,
         RouteServiceProvider::class,
 
-        TaxonomyServiceProvider::class,
         ArticleServiceProvider::class,
         ClientServiceProvider::class,
         ProjectServiceProvider::class

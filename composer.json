@@ -19,7 +19,8 @@
     "laravel/tinker": "^2.8",
     "livewire/livewire": "^2.12",
     "ramsey/uuid": "^4.7",
-    "spatie/laravel-html": "^3.2"
+    "spatie/laravel-html": "^3.2",
+    "spatie/laravel-sluggable": "^3.5"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.8",

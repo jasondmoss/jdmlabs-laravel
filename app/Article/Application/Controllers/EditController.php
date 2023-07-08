@@ -35,9 +35,7 @@ class EditController extends Controller
         $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);
 
-        $article->terms = $article->termsByVocabulary('article_categories');
-
-        //        $article->signature = $article->getMedia('signatures')->first();
+//        $article->signature = $article->getMedia('signatures')->first();
 
         return ViewFacade::make('ArticleAdmin::edit', [
             'article' => $article

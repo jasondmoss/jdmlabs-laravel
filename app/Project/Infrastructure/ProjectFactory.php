@@ -6,9 +6,6 @@ namespace App\Project\Infrastructure;
 
 use App\Auth\Infrastructure\User;
 use App\Client\Infrastructure\Client;
-use App\Shared\Domain\Enums\Pinned;
-use App\Shared\Domain\Enums\Promoted;
-use App\Shared\Domain\Enums\Status;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -39,9 +36,9 @@ class ProjectFactory extends Factory
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(2, true),
 
-//            'status' => $faker->randomElement(Status::values()),
-//            'promoted' => $faker->randomElement(Promoted::values()),
-//            'pinned' => $faker->randomElement(Pinned::values()),
+            /*'status' => $faker->randomElement(Status::values()),*/
+            /*'promoted' => $faker->randomElement(Promoted::values()),*/
+            /*'pinned' => $faker->randomElement(Pinned::values()),*/
             'status' => 'published',
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',

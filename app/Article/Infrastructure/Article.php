@@ -11,7 +11,6 @@ use App\Shared\Domain\Casts\ConvertNullToEmptyString;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
 use App\Shared\Domain\ValueObjects\Id;
-use App\Taxonomy\Infrastructure\Traits\HasTaxonomies;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
 
-    use HasEvents, HasFactory, HasTaxonomies, HasUlids, Observable;
+    use HasEvents, HasFactory, HasUlids, Observable;
 
     public $timestamps = true;
 

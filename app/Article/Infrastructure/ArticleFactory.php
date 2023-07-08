@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure;
 
 use App\Auth\Infrastructure\User;
-use App\Shared\Domain\Enums\Promoted;
-use App\Shared\Domain\Enums\Status;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -35,10 +33,12 @@ final class ArticleFactory extends Factory
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(4, true),
 
-//            'status' => $faker->randomElement(Status::values()),
-//            'promoted' => $faker->randomElement(Promoted::values()),
+            /*'status' => $faker->randomElement(Status::values()),*/
+            /*'promoted' => $faker->randomElement(Promoted::values()),*/
             'status' => 'published',
             'promoted' => 'not_promoted',
+
+//            'category_id' => '',
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 

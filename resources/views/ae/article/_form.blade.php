@@ -60,7 +60,7 @@ use App\Shared\Domain\Enums\Status;
 
     <div class="form-field taxonomy">
       {{ html()->label('Categories')->for('category')->class('sr-only') }}
-      {{-- {{ dd($article->terms) }} --}}
+      {{--{{ dd($article->terms) }}--}}
       {{-- <select id="taxonomy" name="categories[]" multiple>
         @foreach (Category::select([ 'id', 'name' ])->get() as $cat)
           <option value="{{ $cat->id }}"{{ array_search($cat->id, array_column($article->categories->toArray(), 'id')) !== false ? ' selected' : '' }}>{{ $cat->name }}</option>
@@ -124,7 +124,8 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Status')->for('status') }}
       <select name="status" id="status" class="select">
         @foreach(Status::cases() as $state)
-          <option value="{{ $state->value }}"{{ $article->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          {{-- <option value="{{ $state->value }}"{{ $article->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option> --}}
+          <option value="{{ $state->value }}">{{ $state->name }}</option>
         @endforeach
       </select>
 
@@ -137,7 +138,8 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Featured?')->for('promoted') }}
       <select name="promoted" id="promoted" class="select">
         @foreach(Promoted::cases() as $state)
-          <option value="{{ $state->value }}"{{ $article->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          {{-- <option value="{{ $state->value }}"{{ $article->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option> --}}
+          <option value="{{ $state->value }}">{{ $state->name }}</option>
         @endforeach
       </select>
 
