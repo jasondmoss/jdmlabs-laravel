@@ -82,6 +82,15 @@ class Article extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ArticleCategory::class, 'category_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
