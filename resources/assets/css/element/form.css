@@ -25,18 +25,29 @@ legend {
   gap: 0.25rem 0;
 }
 
-.form-field input,
-.form-field textarea {
+.form-label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--gray-light);
+}
+
+input,
+select,
+select option,
+textarea {
   max-width: 100%;
+  padding: 0.25rem 0.5rem;
   border: 0.0125rem solid hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) - 15%));
   /*background-color: hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) + 3%));*/
   background-color: #f6f6f6;
-  line-height: 2;
+  line-height: 1.6;
   appearance: none;
 }
 
-.form-field input:focus,
-.form-field textarea:focus {
+input:focus,
+textarea:focus {
   background-color: #fff;
 }
 
@@ -44,17 +55,14 @@ input.upload {
   margin-bottom: 1rem;
 }
 
+select {
+  padding-right: 1.5rem;
+  /*background-image: ;*/
+}
+
 .form-input--text:focus {
   border-color: hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) - 25%));
   background-color: #fff;
-}
-
-.form-label {
-  display: block;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.8rem;
-  color: var(--gray-light);
 }
 
 

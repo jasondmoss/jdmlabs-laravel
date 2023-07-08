@@ -33,8 +33,10 @@ class ClientFactory extends Factory
             'website' => 'https://' . $faker->domainName() . '/',
             'summary' => $faker->text(170),
 
-            'status' => $faker->randomElement(Status::values()),
-            'promoted' => $faker->randomElement(Promoted::values()),
+//            'status' => $faker->randomElement(Status::values()),
+//            'promoted' => $faker->randomElement(Promoted::values()),
+            'status' => 'published',
+            'promoted' => 'not_promoted',
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 

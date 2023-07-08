@@ -59,7 +59,6 @@ class Term extends Model
      */
     public function getVocabulary(): array
     {
-        //        $vocabularies = config('jdmlabs.taxonomy.vocabularies', []);
         $vocabularies = [];
 
         return $vocabularies[ $this->vocabulary ] ?? [];

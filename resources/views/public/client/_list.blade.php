@@ -10,9 +10,14 @@ use App\Client\Application\Controllers as Client;
             <a href="{{ action(Client\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
           </h3>
         </header>
-        <div class="">
+        <div class="entry-summary">
           {!! $client->summary !!}
         </div>
+        <footer>
+          @if (@auth()->check())
+            <a rel="nofollow" class="button" href="{{ action(Client\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
+          @endif
+        </footer>
       </article>
 
     @endforeach

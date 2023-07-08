@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Application\Components\Article;
 
 use App\Article\Infrastructure\Article;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,6 +16,14 @@ class PublishedArticles extends Component
 
     public string $search = '';
 
+    protected string $paginationTheme = 'tailwind';
+
+
+    public function paginationView(): string
+    {
+        return 'shared.pager';
+    }
+
 
     public function updatingSearch(): void
     {
@@ -22,11 +31,10 @@ class PublishedArticles extends Component
     }
 
 
-    public function render()
+    public function render(): View
     {
-        $articles = Article::where('status', '=', 1)
-            ->latest()
-            ->orderBy('created_at', 'desc')
+        $articles = Article::where('status', '=', 'published')
+            ->latest('created_at')
             ->paginate(10);
 
         return view('public.article._list', [

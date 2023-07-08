@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Application\Components\Project;
 
 use App\Project\Infrastructure\Project;
-use Illuminate\Contracts\Foundation\Application as ApplicationContract;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application as ApplicationFoundation;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,6 +16,14 @@ class PublishedProjects extends Component
 
     public string $search = '';
 
+    protected string $paginationTheme = 'tailwind';
+
+
+    public function paginationView(): string
+    {
+        return 'shared.pager';
+    }
+
 
     public function updatingSearch(): void
     {
@@ -26,9 +31,9 @@ class PublishedProjects extends Component
     }
 
 
-    public function render(): View|ApplicationFoundation|Factory|ApplicationContract
+    public function render(): View
     {
-        $projects = Project::where('status', '=', 1)
+        $projects = Project::where('status', '=', 'published')
             ->latest()
             ->orderBy('created_at', 'desc')
             ->with('clients')

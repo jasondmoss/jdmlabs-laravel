@@ -46,27 +46,28 @@ use App\Shared\Domain\Enums\Status;
 
     <div class="form-field summary">
       {{ html()->label('Summary')->for('summary') }}
-      {{ html()->textarea('summary')->class('textarea summary')->cols(90)->rows(4) }}
+      {{ html()->textarea('summary')->class('textarea summary')->rows(4) }}
     </div>
 
     <div class="form-field body">
       {{ html()->label('Body')->for('body') }}
-      {{ html()->textarea('body')->class('textarea full')->cols(90)->rows(15) }}
+      {{ html()->textarea('body')->class('textarea full')->rows(15) }}
     </div>
   </fieldset>
 
-  {{--<fieldset class="container--taxonomy">
+  <fieldset class="container--taxonomy">
     <legend>{{ __('Taxonomy') }}</legend>
 
     <div class="form-field taxonomy">
       {{ html()->label('Categories')->for('category')->class('sr-only') }}
-      <select id="taxonomy" name="categories[]" multiple>
+      {{-- {{ dd($article->terms) }} --}}
+      {{-- <select id="taxonomy" name="categories[]" multiple>
         @foreach (Category::select([ 'id', 'name' ])->get() as $cat)
           <option value="{{ $cat->id }}"{{ array_search($cat->id, array_column($article->categories->toArray(), 'id')) !== false ? ' selected' : '' }}>{{ $cat->name }}</option>
         @endforeach
-      </select>
+      </select> --}}
     </div>
-  </fieldset>--}}
+  </fieldset>
 
   {{--<fieldset class="container--signature-image">
     <legend>{{ __('Signature Image') }}</legend>
@@ -123,7 +124,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Status')->for('status') }}
       <select name="status" id="status" class="select">
         @foreach(Status::cases() as $state)
-          <option value="{{ $state->value }}"{{ $article->status == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $article->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 
@@ -136,7 +137,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Featured?')->for('promoted') }}
       <select name="promoted" id="promoted" class="select">
         @foreach(Promoted::cases() as $state)
-          <option value="{{ $state->value }}"{{ $article->promoted == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $article->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 

@@ -7,7 +7,7 @@
     ->open()
   }}
   <fieldset>
-      <legend>{{ __('Login') }}</legend>
+      <legend>{{ __('Access to Ænginus') }}</legend>
       <div class="form-field email">
         {{ html()->label('E-mail Address')->for('email') }}
         {{ html()->email('email')->required()->class('email') }}

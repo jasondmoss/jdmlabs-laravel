@@ -17,7 +17,8 @@ final readonly class Status
      */
     public function __construct(string $status)
     {
-        $this->status = new Enum(Status::class);
+        /*$this->status = new Enum(Status::class);*/
+        $this->status = new Enum($status);
     }
 
 

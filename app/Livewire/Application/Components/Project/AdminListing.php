@@ -39,7 +39,7 @@ class AdminListing extends Component
         $projects = Project::where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->with('clients')
-            ->paginate(5);
+            ->paginate(10);
 
         return view('ae.project._list', [
             'projects' => $projects

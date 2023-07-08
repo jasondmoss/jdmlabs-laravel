@@ -1,5 +1,5 @@
 @php
-  use App\Project\Application\Controllers;
+  use App\Project\Application\Controllers as Project;
 @endphp
 @if ($projects->count())
   @foreach ($projects as $project)
@@ -11,7 +11,7 @@
       @endif--}}
       <header>
         <h3 class="">
-          <a href="{{ action(Controllers\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
+          <a href="{{ action(Project\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
         </h3>
         <nav class="taxonomy">
           {{--@foreach($project->categories as $category)
@@ -20,9 +20,14 @@
           @endforeach--}}
         </nav>
       </header>
-      <div class="">
+      <div class="entry-summary">
         {!! $project->summary !!}
       </div>
+        <footer>
+          @if (@auth()->check())
+            <a rel="nofollow" class="button" href="{{ action(Project\EditController::class, $project->id) }}">{{ __('Edit') }}</a>
+          @endif
+        </footer>
     </article>
 
   @endforeach

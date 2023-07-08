@@ -35,10 +35,10 @@ use App\Shared\Domain\Enums\Status;
     <div class="form-field title">
       {{ html()->label('Name')->for('name') }}
       {{ html()->text('name')->class('text')->attribute('required') }}
-      <p class="title-slug"><span class="label">{{ __('slug') }}</span> {{ $client->slug ?? '...' }}</p>
+      <p class="title-slug"><span class="label">{{ __('slug') }}:</span> {{ $client->slug ?? '...' }}</p>
 
       @error('name')
-      <x-shared.message type="error" context="name" :message="$errors"/>
+        <x-shared.message type="error" context="name" :message="$errors"/>
       @enderror
     </div>
 
@@ -49,7 +49,7 @@ use App\Shared\Domain\Enums\Status;
         <a rel="external" href="https://schema.org/docs/full.html" title="A set of extensible schemas to embed structured data on web pages">Schema.org</a></small>
 
       @error('itemprop')
-      <x-shared.message type="error" context="itemprop" :message="$errors"/>
+        <x-shared.message type="error" context="itemprop" :message="$errors"/>
       @enderror
     </div>
 
@@ -67,10 +67,10 @@ use App\Shared\Domain\Enums\Status;
 
     <div class="form-field summary">
       {{ html()->label('Summary')->for('summary') }}
-      {{ html()->textarea('summary')->class('textarea')->cols(90)->rows(4) }}
+      {{ html()->textarea('summary')->class('textarea')->rows(4) }}
 
       @error('summary')
-      <x-shared.message type="error" context="summary" :message="$errors"/>
+        <x-shared.message type="error" context="summary" :message="$errors"/>
       @enderror
     </div>
   </fieldset>

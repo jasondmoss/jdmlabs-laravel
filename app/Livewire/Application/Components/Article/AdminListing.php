@@ -46,7 +46,7 @@ class AdminListing extends Component
         $articles = Article::where('user_id', auth()->user()->id)
             ->where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
-            ->paginate(5);
+            ->paginate(10);
 
         return view('ae.article._list', [
             'articles' => $articles

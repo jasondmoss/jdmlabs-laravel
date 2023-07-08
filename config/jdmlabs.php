@@ -13,24 +13,4 @@ return [
     'contact_email' => 'work@jdmlabs.com',
     'slug_locale' => 'en',
 
-
-//    'taxonomy' => [
-//        'vocaularies' => [
-//            'category' => [
-//                'name' => 'Category',
-//                'description' => 'Hierarchical categories',
-//                'has_hierarchy' => true
-//            ],
-//            'technology' => [
-//                'name' => 'Technology',
-//                'description' => 'Technologies used in projects',
-//                'has_hierarchy' => false
-//            ],
-//            'tags' => [
-//                'name' => 'Tags',
-//                'description' => 'General tags for articles',
-//                'has_hierarchy' => false
-//            ]
-//        ]
-//    ]
 ];

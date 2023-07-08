@@ -8,6 +8,7 @@ use App\Client\Application\UseCases\GetClientUseCase;
 use App\Client\Application\UseCases\SaveClientUseCase;
 use App\Client\Interface\ClientFormRequest;
 use App\Laravel\Application\Controller;
+use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
@@ -22,10 +23,7 @@ class UpdateController extends Controller
      * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
      * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
      */
-    public function __construct(
-        GetClientUseCase $getClient,
-        SaveClientUseCase $saveClient
-    )
+    public function __construct(GetClientUseCase $getClient, SaveClientUseCase $saveClient)
     {
         $this->getClient = $getClient;
         $this->saveClient = $saveClient;

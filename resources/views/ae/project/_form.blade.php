@@ -61,12 +61,12 @@ use App\Shared\Domain\Enums\Status;
 
     <div class="form-field summary">
       {{ html()->label('Summary')->for('summary') }}
-      {{ html()->textarea('summary')->class('textarea')->cols(90)->rows(4)->placeholder(__('An SEO  compatible summary')) }}
+      {{ html()->textarea('summary')->class('textarea')->rows(4)->placeholder(__('An SEO  compatible summary')) }}
     </div>
 
     <div class="form-field body">
       {{ html()->label('Main Content')->for('body') }}
-      {{ html()->textarea('body')->class('textarea')->cols(90)->rows(15)->placeholder(__('Full description of this project')) }}
+      {{ html()->textarea('body')->class('textarea')->rows(15)->placeholder(__('Full description of this project')) }}
     </div>
   </fieldset>
 

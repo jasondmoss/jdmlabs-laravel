@@ -39,9 +39,12 @@ class ProjectFactory extends Factory
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(2, true),
 
-            'status' => $faker->randomElement(Status::values()),
-            'promoted' => $faker->randomElement(Promoted::values()),
-            'pinned' => $faker->randomElement(Pinned::values()),
+//            'status' => $faker->randomElement(Status::values()),
+//            'promoted' => $faker->randomElement(Promoted::values()),
+//            'pinned' => $faker->randomElement(Pinned::values()),
+            'status' => 'published',
+            'promoted' => 'not_promoted',
+            'pinned' => 'not_pinned',
 
             'client_id' => Client::inRandomOrder()->first(),
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,

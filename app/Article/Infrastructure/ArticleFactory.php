@@ -35,8 +35,10 @@ final class ArticleFactory extends Factory
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(4, true),
 
-            'status' => $faker->randomElement(Status::values()),
-            'promoted' => $faker->randomElement(Promoted::values()),
+//            'status' => $faker->randomElement(Status::values()),
+//            'promoted' => $faker->randomElement(Promoted::values()),
+            'status' => 'published',
+            'promoted' => 'not_promoted',
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
