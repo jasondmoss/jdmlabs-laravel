@@ -63,7 +63,7 @@ use App\Shared\Domain\Enums\Status;
               </li>
               <li>
                 <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
-                  <i class="fa-solid fa-eye" style="color: #2ec27e;"> {{ __('View') }}</i>
+                  <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
               </li>
               <li>

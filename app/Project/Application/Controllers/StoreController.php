@@ -40,10 +40,11 @@ class StoreController extends Controller
         $project = $this->saveProject->__invoke($request);
 
         // Save + attach categories.
-        //        $project->categories()->sync((array) $request->input('categories'));
+//        $project->categories()->sync((array) $request->input('categories'));
+
 
         // Save + attach signature image.
-        //        $this->saveImage->__invoke($request->image, $project, 'signatures');
+//        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()->action(IndexController::class);
     }

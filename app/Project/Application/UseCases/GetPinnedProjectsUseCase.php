@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Domain\ProjectRepositoryContract;
+use App\Project\Infrastructure\Repository\GetPinnedRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
 class GetPinnedProjectsUseCase
 {
 
-    private ProjectRepositoryContract $repository;
+    private GetPinnedRepository $repository;
 
 
     /**
-     * @param \App\Project\Domain\ProjectRepositoryContract $repository
+     * @param \App\Project\Infrastructure\Repository\GetPinnedRepository $repository
      */
-    public function __construct(ProjectRepositoryContract $repository)
+    public function __construct(GetPinnedRepository $repository)
     {
         $this->repository = $repository;
     }

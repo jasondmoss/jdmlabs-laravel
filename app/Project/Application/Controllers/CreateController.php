@@ -25,8 +25,6 @@ class CreateController extends Controller
 
         $project->clients = Client::get()->pluck('name', 'id');
 
-        //        $project->categories = Category::get()->pluck('name', 'id');
-
         return ViewFacade::make('ProjectAdmin::create', [
             'project' => $project
         ]);

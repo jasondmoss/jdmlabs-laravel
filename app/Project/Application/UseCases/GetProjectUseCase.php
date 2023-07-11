@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Domain\ProjectRepositoryContract;
 use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Repository\GetRepository;
 
 class GetProjectUseCase
 {
 
-    private ProjectRepositoryContract $repository;
+    private GetRepository $repository;
 
 
     /**
-     * @param \App\Project\Domain\ProjectRepositoryContract $repository
+     * @param \App\Project\Infrastructure\Repository\GetRepository $repository
      */
-    public function __construct(ProjectRepositoryContract $repository)
+    public function __construct(GetRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -26,6 +26,7 @@ class GetProjectUseCase
      * @param string $key
      *
      * @return \App\Project\Infrastructure\Project
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $key): Project
     {

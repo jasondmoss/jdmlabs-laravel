@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Project\Application\UseCases;
 
 use App\Project\Infrastructure\Project;
-use App\Project\Infrastructure\ProjectRepository;
+use App\Project\Infrastructure\Repository\SaveRepository;
 use App\Project\Interface\ProjectFormRequest;
 
 class SaveProjectUseCase
 {
 
-    protected ProjectRepository $repository;
+    protected SaveRepository $repository;
 
 
     /**
-     * @param \App\Project\Infrastructure\ProjectRepository $repository
+     * @param \App\Project\Infrastructure\Repository\SaveRepository $repository
      */
-    public function __construct(ProjectRepository $repository)
+    public function __construct(SaveRepository $repository)
     {
         $this->repository = $repository;
     }

@@ -48,10 +48,10 @@ class UpdateController extends Controller
         $project = $this->updateProject->__invoke($request);
 
         // Save + attach categories.
-        //        $project->categories()->sync((array) $request->input('categories'));
+//        $project->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-        //        $this->saveImage->__invoke($request->image, $project, 'signatures');
+//        $this->saveImage->__invoke($request->image, $project, 'signatures');
 
         return redirect()
             ->to($request->listing_page)

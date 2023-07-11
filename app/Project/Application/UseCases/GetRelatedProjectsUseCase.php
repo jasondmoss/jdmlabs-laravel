@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Infrastructure\ProjectRepository;
+use App\Project\Domain\Contract\GetRelatedContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -12,12 +12,15 @@ use Illuminate\Database\Eloquent\Model;
 class GetRelatedProjectsUseCase
 {
 
-    private ProjectRepository $repository;
+    private GetRelatedContract $repository;
 
 
-    public function __construct()
+    /**
+     * @param \App\Project\Domain\Contract\GetRelatedContract $repository
+     */
+    public function __construct(GetRelatedContract $repository)
     {
-        $this->repository = new ProjectRepository;
+        $this->repository = $repository;
     }
 
 

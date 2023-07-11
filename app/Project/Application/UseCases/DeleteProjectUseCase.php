@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Domain\ProjectRepositoryContract;
+
+use App\Project\Infrastructure\Repository\DeleteRepository;
 
 class DeleteProjectUseCase
 {
 
-    protected ProjectRepositoryContract $repository;
+    protected DeleteRepository $repository;
 
 
-    /**
-     * @param \App\Project\Domain\ProjectRepositoryContract $repository
-     */
-    public function __construct(ProjectRepositoryContract $repository)
+    public function __construct(DeleteRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -23,6 +21,8 @@ class DeleteProjectUseCase
 
     /**
      * @param string $id
+     *
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): void
     {

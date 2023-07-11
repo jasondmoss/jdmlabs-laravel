@@ -28,12 +28,11 @@ class SingleController extends Controller
      * @param $project
      *
      * @return \Illuminate\View\View
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke($project): View
     {
         $project = $this->getProject->__invoke($project);
-
-        //        $project->categories = $project->categories()->get();
 
         return ViewFacade::make('ProjectPublic::single', [
             'project' => $project

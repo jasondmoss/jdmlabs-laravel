@@ -30,16 +30,14 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\View\View
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): View
     {
         $project = $this->getProject->__invoke((new Id($id))->value());
-
-        //        $project->categories = Category::get()->pluck('name', 'id');
+        $this->authorize('owner', $project);
 
         $project->clients = Client::get()->pluck('name', 'id');
-
-        $this->authorize('owner', $project);
 
         return ViewFacade::make('ProjectAdmin::edit', [
             'project' => $project
