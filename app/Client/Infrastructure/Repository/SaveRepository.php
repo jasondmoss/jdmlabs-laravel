@@ -36,7 +36,7 @@ class SaveRepository implements SaveContract
 
         try {
             $client->name = $data->name;
-            $client->slug = $data->slug;
+//            $client->slug = $data->slug;
             $client->itemprop = $data->itemprop;
             $client->website = $data->website;
             $client->summary = $data->summary;

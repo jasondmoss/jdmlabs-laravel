@@ -4,9 +4,12 @@ use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
 @endphp
 <div class="listing-wrapper">
-  <nav class="listing-search">
+  <nav class="listing-tools">
+    <a href="{{ action(Client\CreateController::class) }}">Create New Client</a>
+
     <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-      <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
+      <input wire:model="search" class="form-input--text" placeholder="Search">
+    </label>
   </nav>
   @if ($clients->count())
     <div class="listing">

@@ -38,7 +38,7 @@ final class SaveRepository implements SaveContract
 
         try {
             $article->title = $data->title;
-            $article->slug = Str::slug($data->title);
+//            $article->slug = Str::slug($data->title);
             $article->summary = $data->summary;
             $article->body = $data->body;
             $article->status = $data->status;

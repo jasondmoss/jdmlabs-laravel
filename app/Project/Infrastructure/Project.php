@@ -19,11 +19,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Project extends Model
 {
 
-    use HasEvents, HasFactory, HasUlids, Observable;
+    use HasEvents, HasFactory, HasSlug, HasUlids, Observable;
 
     public $timestamps = true;
 
@@ -68,6 +70,44 @@ class Project extends Model
 
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function clients(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * @return \Spatie\Sluggable\SlugOptions
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+
+    /**
      * @param string $id
      *
      * @return self
@@ -84,24 +124,6 @@ class Project extends Model
         }
 
         return $project;
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function clients(): BelongsTo
-    {
-        return $this->belongsTo(Client::class, 'client_id');
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 
 }
