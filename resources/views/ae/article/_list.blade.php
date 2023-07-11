@@ -2,19 +2,21 @@
 use App\Article\Application\Controllers as Article;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
+use App\Taxonomy\Category\Application\Controllers as Category;
 @endphp
 <div class="listing-wrapper">
+
   <nav class="listing-tools">
     <a href="{{ action(Article\CreateController::class) }}">Create New Article</a>
 
     <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
       <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
   </nav>
+
   @if ($articles->count())
     <div class="listing">
       @foreach ($articles as $article)
         <article id="item-{{ $article->id }}" class="item">
-
           <figure class="item--image">
             <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
               {{--@if ($article->hasMedia('signatures'))
@@ -33,16 +35,12 @@ use App\Shared\Domain\Enums\Status;
 
           <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $article->id }}</p>
 
-          <nav class="item--taxonomy">
-            {{--@if (count($article->categories) > 0)
-              @foreach($article->categories as $category)
-                {{ $loop->first ? '' : ', ' }}
-                <span itemprop="tag">{{ $category->name }}</span>
-              @endforeach
+          <nav class="item-taxonomy">
+            @if (! is_null($article->category))
+              <p class=""><i class="fa-solid fa-tag"></i> <a itemprop="tag" href="{{ action(Category\EditController::class, $article->category->slug) }}">{{ $article->category->name }}</a></p>
             @else
               <p class="w-full">&#160;</p>
-            @endif--}}
-            <p class="w-full">&#160;</p>
+            @endif
           </nav>
 
           <aside class="item--meta">
@@ -84,12 +82,13 @@ use App\Shared\Domain\Enums\Status;
               </li>
             </menu>
           </footer>
-
         </article>
       @endforeach
     </div>
+
     {{-- Pagination. --}}
     {{ $articles->links() }}
+
   @else
     <div class="w-full mt-8 p-20">
       <strong>No articles found.</strong>

@@ -8,8 +8,7 @@ use App\Laravel\Application\Controller;
 use App\Taxonomy\Category\Application\UseCases\SaveCategoryUseCase;
 use App\Taxonomy\Category\Infrastructure\Category;
 use App\Taxonomy\Category\Interface\CategoryFormRequest;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\View as ViewFacade;
+use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
@@ -29,15 +28,16 @@ class StoreController extends Controller
     /**
      * @param \App\Taxonomy\Category\Interface\CategoryFormRequest $request
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(CategoryFormRequest $request): View
+    public function __invoke(CategoryFormRequest $request): RedirectResponse
     {
         $this->authorize('create', Category::class);
 
         $category = $this->saveCategory->__invoke($request);
 
-        return ViewFacade::make('Category::create');
+        return redirect()->action(IndexController::class);
+//        return ViewFacade::make('Category::create');
     }
 
 }

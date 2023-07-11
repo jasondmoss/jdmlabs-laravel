@@ -20,11 +20,8 @@ class CreateController extends Controller
         $category = new Category();
         $this->authorize('create', $category);
 
-        $categories = Category::all()->sortBy('name', SORT_NUMERIC|SORT_FLAG_CASE);
-
         return ViewFacade::make('Category::create', [
-            'category' => $category,
-            'categories' => $categories
+            'category' => $category
         ]);
     }
 

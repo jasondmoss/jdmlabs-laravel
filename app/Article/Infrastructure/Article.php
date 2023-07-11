@@ -54,7 +54,7 @@ class Article extends Model
     ];
 
     protected $with = [
-        'categories'
+        'category'
     ];
 
 
@@ -70,7 +70,7 @@ class Article extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function categories(): BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
     }

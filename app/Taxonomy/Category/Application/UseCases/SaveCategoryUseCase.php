@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Application\UseCases;
 
 use App\Taxonomy\Category\Infrastructure\Category;
-use App\Taxonomy\Category\Infrastructure\CategoryRepository;
+use App\Taxonomy\Category\Infrastructure\Repository\SaveRepository;
 use App\Taxonomy\Category\Interface\CategoryFormRequest;
 
 final class SaveCategoryUseCase
 {
 
-    protected CategoryRepository $repository;
+    protected SaveRepository $repository;
 
 
     /**
-     * @param \App\Taxonomy\Category\Infrastructure\CategoryRepository $repository
+     * @param \App\Taxonomy\Category\Infrastructure\Repository\SaveRepository $repository
      */
-    public function __construct(CategoryRepository $repository)
+    public function __construct(SaveRepository $repository)
     {
         $this->repository = $repository;
     }

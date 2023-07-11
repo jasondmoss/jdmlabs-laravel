@@ -40,7 +40,7 @@ class DestroyController extends Controller
     public function __invoke(string $id): RedirectResponse
     {
         $category = $this->getCategory->__invoke((new Id($id))->value());
-        $this->authorize('owner', $category);
+        $this->authorize('create', $category);
 
         $this->deleteCategory->__invoke($id);
 

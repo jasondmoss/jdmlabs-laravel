@@ -23,6 +23,7 @@ class ClientFactory extends Factory
 
         $name = Str::title($faker->words(7, true));
         $slug = Str::of($name)->slug('-');
+        $created = Date::today()->subDays(rand(0, 365));
 
         return [
             'id' => Str::ulid(),
@@ -39,9 +40,10 @@ class ClientFactory extends Factory
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
-            'published_at' => $faker->randomElement([null, Date::now()]),
+//            'published_at' => $faker->randomElement([ $created, Date::now() ]),
+            'published_at' => $created,
 
-            'created_at' => Date::today()->subDays(rand(0, 365)),
+            'created_at' => $created,
             'updated_at' => Date::now()
         ];
     }

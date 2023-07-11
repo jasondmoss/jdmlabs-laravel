@@ -41,7 +41,7 @@ class UpdateController extends Controller
         if (! empty($request->id)) {
             $category = $this->getCategory->__invoke($request->id);
 
-            $this->authorize('owner', $category);
+            $this->authorize('create', $category);
         }
 
         $category = $this->updateCategory->__invoke($request);

@@ -5,24 +5,41 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Infrastructure;
 
 use App\Article\Infrastructure\Article;
+use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Tags\HasSlug;
 
 class Category extends Model
 {
 
-    use HasSlug;
+    use HasFactory, HasSlug, HasUlids;
 
 
     public $timestamps = true;
 
     protected $table = "categories";
 
+    protected $guarded = [];
+
     protected $fillable = [
-        'name'
+        'name',
+        'slug'
     ];
+
+    protected $casts = [];
+
+
+    /**
+     * @return \App\Taxonomy\Category\Infrastructure\Database\CategoryFactory
+     */
+    protected static function newFactory(): CategoryFactory
+    {
+        return CategoryFactory::new();
+    }
 
 
     /**

@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Category\Application\UseCases;
 
-use App\Taxonomy\Category\Domain\CategoryRepositoryContract;
 use App\Taxonomy\Category\Infrastructure\Category;
+use App\Taxonomy\Category\Infrastructure\Repository\GetRepository;
 
 final class GetCategoryUseCase
 {
 
-    private CategoryRepositoryContract $repository;
+    private GetRepository $repository;
 
 
     /**
-     * @param \App\Taxonomy\Category\Domain\CategoryRepositoryContract $repository
+     * @param \App\Taxonomy\Category\Infrastructure\Repository\GetRepository $repository
      */
-    public function __construct(CategoryRepositoryContract $repository)
+    public function __construct(GetRepository $repository)
     {
         $this->repository = $repository;
     }

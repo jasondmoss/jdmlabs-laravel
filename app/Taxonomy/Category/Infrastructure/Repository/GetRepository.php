@@ -2,33 +2,32 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure\Repository;
+namespace App\Taxonomy\Category\Infrastructure\Repository;
 
-use App\Project\Domain\Contract\GetContract;
-use App\Project\Infrastructure\Project;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Slug;
+use App\Taxonomy\Category\Domain\Contract\GetContract;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Symfony\Component\Uid\Ulid;
 
 class GetRepository implements GetContract
 {
 
-    private Project $model;
+    protected Category $model;
 
 
     public function __construct()
     {
-        $this->model = new Project;
+        $this->model = new Category;
     }
 
 
     /**
      * @param string $key
      *
-     * @return \App\Project\Infrastructure\Project
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @return \App\Taxonomy\Category\Infrastructure\Category
      */
-    public function get(string $key): Project
+    public function get(string $key): Category
     {
         if (! Ulid::isValid($key)) {
             $slug = (new Slug($key))->value();

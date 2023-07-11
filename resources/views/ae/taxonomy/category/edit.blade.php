@@ -9,7 +9,6 @@
     {{ html()->hidden('listing_page', URL::previous()) }}
     @include('ae.taxonomy.category._form', [
       'category' => $category,
-      'categories' => $categories,
       'mode' => 'edit'
     ])
   {{ html()->form()->close() }}

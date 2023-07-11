@@ -27,6 +27,7 @@ class ProjectFactory extends Factory
 
         $title = Str::title($faker->sentence(10, true));
         $slug = Str::of($title)->slug('-');
+        $created = Date::today()->subDays(rand(0, 365));
 
         return [
             'id' => Str::ulid(),
@@ -47,9 +48,10 @@ class ProjectFactory extends Factory
             'client_id' => Client::inRandomOrder()->first(),
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
-            'published_at' => $faker->randomElement([null, Date::now()]),
+//            'published_at' => $faker->randomElement([ $created, Date::now() ]),
+            'published_at' => $created,
 
-            'created_at' => Date::today()->subDays(rand(0, 365)),
+            'created_at' => $created,
             'updated_at' => Date::now()
         ];
     }

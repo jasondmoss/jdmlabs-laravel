@@ -50,10 +50,10 @@ class UpdateController extends Controller
         $article = $this->updateArticle->__invoke($request);
 
         // Save + attach categories.
-        //        $article->categories()->sync((array) $request->input('categories'));
+//        $article->category()->associate($request->get('category'));
 
         // Save + attach signature image.
-        //        $this->saveImage->__invoke($request->image, $article, 'signatures');
+//        $this->saveImage->__invoke($request->image, $article, 'signatures');
 
         return redirect()
             ->to($request->listing_page)

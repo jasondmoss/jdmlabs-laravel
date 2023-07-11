@@ -38,7 +38,6 @@ class StoreController extends Controller
 
         // Store + return article.
         $article = $this->saveArticle->__invoke($request);
-        dd($article);
 
         // Save + attach categories.
 //        $article->categories()->sync((array) $request->input('categories'));
@@ -46,7 +45,7 @@ class StoreController extends Controller
         // Save + attach signature image.
 //        $this->saveSignature->__invoke($request->image, $article, 'signatures');
 
-//        return redirect()->action(IndexController::class);
+        return redirect()->action(IndexController::class);
     }
 
 }

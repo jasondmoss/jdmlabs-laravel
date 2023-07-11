@@ -12,15 +12,15 @@
     <ul class="listing">
       @foreach ($categories as $cat)
         <li id="item-{{ $cat->id }}" class="item">
-          <div class="item--header">
+          <div class="category--header">
             <h3 class="title">
               <a href="{{ action(Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
             </h3>
           </div>
 
-          <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $cat->id }}</p>
+          <p class="category--id"><strong class="label">{{ __('ID') }}:</strong> {{ $cat->id }}</p>
 
-          <div class="item--date">
+          <div class="category--date">
             <time class="created" datetime="{{ Date::parse($cat->created_at)->format('c') }}" title="{{ Date::parse($cat->created_at)->format('c') }}">
               <strong class="label">{{ __('Created') }}:</strong>
               {{ Date::parse($cat->created_at)->format('Y/m/d') }}
@@ -38,11 +38,11 @@
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
-              <li>
+              {{-- <li>
                 <a rel="external" href="{{ action(Controllers\SingleController::class, $cat->slug) }}" title="{{ __('View article') }}">
                   <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
-              </li>
+              </li> --}}
               <li>
                 <a href="{{ action(Controllers\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}

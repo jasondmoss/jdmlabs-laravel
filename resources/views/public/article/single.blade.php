@@ -5,14 +5,11 @@
     @endif--}}
     <h1>{{ $article->title }}</h1>
     <time>{{ Date::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d M Y') }}</time>
-    {{--@if ($article->categories)
+    @if (! is_null($article->category))
       <nav class="">
-        @foreach($article->categories as $category)
-          {{ $loop->first ? '' : ', ' }}
-          <a itemprop="tag" href="/articles/topic/{{ $category->slug }}">{{ $category->name }}</a>
-        @endforeach
+        <a itemprop="tag" href="/articles/topic/{{ $article->category->slug }}">{{ $article->category->name }}</a>
       </nav>
-    @endif--}}
+    @endif
   </header>
   <div class="">
     <p class="">{!! $article->body !!}</p>

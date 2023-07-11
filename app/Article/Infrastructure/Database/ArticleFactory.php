@@ -25,12 +25,13 @@ final class ArticleFactory extends Factory
         $faker = FakerFactory::create();
 
         $title = Str::title($faker->words(7, true));
-        $slug = Str::of($title)->slug('-');
+        // $slug = Str::of($title)->slug('-');
+        $created = Date::today()->subDays(rand(0, 365));
 
         return [
             'id' => Str::ulid(),
             'title' => $title,
-            'slug' => $slug,
+            // 'slug' => $slug,
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(4, true),
 
@@ -43,9 +44,10 @@ final class ArticleFactory extends Factory
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
-            'published_at' => $faker->randomElement([null, Date::now()]),
+//            'published_at' => $faker->randomElement([ $created, Date::now() ]),
+            'published_at' => $created,
 
-            'created_at' => Date::today()->subDays(rand(0, 365)),
+            'created_at' => $created,
             'updated_at' => Date::now()
         ];
     }

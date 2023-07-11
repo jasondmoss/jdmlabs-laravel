@@ -2,21 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Category\Domain;
+namespace App\Taxonomy\Category\Domain\Contract;
 
 use App\Taxonomy\Category\Infrastructure\Category;
 use App\Taxonomy\Category\Interface\CategoryFormRequest;
 
-interface CategoryRepositoryContract
+interface SaveContract
 {
-
-    /**
-     * @param string $key
-     *
-     * @return \App\Taxonomy\Category\Infrastructure\Category
-     */
-    public function get(string $key): Category;
-
 
     /**
      * @param \App\Taxonomy\Category\Interface\CategoryFormRequest $data
@@ -24,13 +16,5 @@ interface CategoryRepositoryContract
      * @return \App\Taxonomy\Category\Infrastructure\Category
      */
     public function save(CategoryFormRequest $data): Category;
-
-
-    /**
-     * @param string $id
-     *
-     * @return void
-     */
-    public function delete(string $id): void;
 
 }

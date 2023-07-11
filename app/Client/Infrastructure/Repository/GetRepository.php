@@ -35,9 +35,7 @@ class GetRepository implements \App\Client\Domain\Contract\GetContract
             return $this->model->firstWhere('slug', $slug);
         }
 
-        $ulid = (new Id($key))->value();
-
-        return $this->model->find($ulid);
+        return $this->model->find((new Id($key))->value());
     }
 
 }
