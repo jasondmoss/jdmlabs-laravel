@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Client\Application\UseCases;
 
-use App\Client\Domain\ClientRepositoryContract;
 use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Repository\SaveRepository;
 use App\Client\Interface\ClientFormRequest;
 
 class SaveClientUseCase
 {
 
-    protected ClientRepositoryContract $repository;
+    protected SaveRepository $repository;
 
 
     /**
-     * @param \App\Client\Domain\ClientRepositoryContract $repository
+     * @param \App\Client\Infrastructure\Repository\SaveRepository $repository
      */
-    public function __construct(ClientRepositoryContract $repository)
+    public function __construct(SaveRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -27,6 +27,7 @@ class SaveClientUseCase
      * @param \App\Client\Interface\ClientFormRequest $data
      *
      * @return \App\Client\Infrastructure\Client
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(ClientFormRequest $data): Client
     {

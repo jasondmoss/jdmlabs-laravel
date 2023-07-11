@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Client\Application\UseCases;
 
-use App\Client\Domain\ClientRepositoryContract;
+use App\Client\Infrastructure\Repository\GetPublishedRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
 class GetPublishedClientsUseCase
 {
 
-    private ClientRepositoryContract $repository;
+    private GetPublishedRepository $repository;
 
 
     /**
-     * @param \App\Client\Domain\ClientRepositoryContract $repository
+     * @param \App\Client\Infrastructure\Repository\GetPublishedRepository $repository
      */
-    public function __construct(ClientRepositoryContract $repository)
+    public function __construct(GetPublishedRepository $repository)
     {
         $this->repository = $repository;
     }

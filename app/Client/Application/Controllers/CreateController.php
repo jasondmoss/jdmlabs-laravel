@@ -9,8 +9,6 @@ use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-//use App\Project\Infrastructure\Project;
-
 class CreateController extends Controller
 {
 
@@ -26,8 +24,6 @@ class CreateController extends Controller
     public function __invoke(): View
     {
         $client = new Client;
-
-        //        $client->projects = Project::get()->pluck('title', 'id');
 
         return ViewFacade::make('ClientAdmin::create', [
             'client' => $client
