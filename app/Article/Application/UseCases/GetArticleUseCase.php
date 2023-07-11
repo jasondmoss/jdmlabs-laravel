@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Domain\ArticleRepositoryContract;
 use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Repository\GetRepository;
 
 final class GetArticleUseCase
 {
 
-    private ArticleRepositoryContract $repository;
+    private GetRepository $repository;
 
 
     /**
-     * @param \App\Article\Domain\ArticleRepositoryContract $repository
+     * @param \App\Article\Infrastructure\Repository\GetRepository $repository
      */
-    public function __construct(ArticleRepositoryContract $repository)
+    public function __construct(GetRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -26,6 +26,7 @@ final class GetArticleUseCase
      * @param string $key
      *
      * @return \App\Article\Infrastructure\Article
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $key): Article
     {

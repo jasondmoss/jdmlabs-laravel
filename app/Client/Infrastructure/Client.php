@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Infrastructure;
 
 use App\Auth\Infrastructure\User;
+use App\Client\Infrastructure\Database\ClientFactory;
 use App\Project\Infrastructure\Project;
 use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
@@ -49,11 +50,13 @@ class Client extends Model
         'promoted' => Promoted::class
     ];
 
-    protected $with = [ 'projects' ];
+    protected $with = [
+        'projects'
+    ];
 
 
     /**
-     * @return \App\Client\Infrastructure\ClientFactory
+     * @return \App\Client\Infrastructure\Database\ClientFactory
      */
     protected static function newFactory(): ClientFactory
     {

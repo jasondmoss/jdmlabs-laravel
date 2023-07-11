@@ -59,13 +59,13 @@ use App\Shared\Domain\Enums\Status;
     <legend>{{ __('Taxonomy') }}</legend>
 
     <div class="form-field taxonomy">
-      {{ html()->label('Categories')->for('category')->class('sr-only') }}
-      {{--{{ dd($article->terms) }}--}}
-      {{-- <select id="taxonomy" name="categories[]" multiple>
-        @foreach (Category::select([ 'id', 'name' ])->get() as $cat)
-          <option value="{{ $cat->id }}"{{ array_search($cat->id, array_column($article->categories->toArray(), 'id')) !== false ? ' selected' : '' }}>{{ $cat->name }}</option>
+      {{ html()->label('Categories')->for('category') }}
+      <select id="taxonomy" name="category">
+        <option value="">----</option>
+        @foreach ($categories as $category)
+          <option value="{{ $category->id }}" @if (old('category') && $category->id == old('category')) selected @endif>{{ $category->name }}</option>
         @endforeach
-      </select> --}}
+      </select>
     </div>
   </fieldset>
 
@@ -123,28 +123,30 @@ use App\Shared\Domain\Enums\Status;
     <div class="form-field status">
       {{ html()->label('Status')->for('status') }}
       <select name="status" id="status" class="select">
-        @foreach(Status::cases() as $state)
-          {{-- <option value="{{ $state->value }}"{{ $article->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option> --}}
-          <option value="{{ $state->value }}">{{ $state->name }}</option>
+        @foreach(Status::cases() as $status)
+          <option
+            value="{{ $status->value }}"
+            @if ($article->status && $article->status->value == $status->value) selected @endif>
+            {{ $status->name }}
+          </option>
         @endforeach
       </select>
 
       @error('status')
-      <x-shared.message type="error" context="status" :message="$errors"/>
+        <x-shared.message type="error" context="status" :message="$errors"/>
       @enderror
     </div>
 
     <div class="form-field promoted">
       {{ html()->label('Featured?')->for('promoted') }}
       <select name="promoted" id="promoted" class="select">
-        @foreach(Promoted::cases() as $state)
-          {{-- <option value="{{ $state->value }}"{{ $article->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option> --}}
-          <option value="{{ $state->value }}">{{ $state->name }}</option>
+        @foreach(Promoted::cases() as $promoted)
+          <option value="{{ $promoted->value }}" @if ($article->promoted && $article->promoted->value == $promoted->value) selected @endif>{{ $promoted->name }}</option>
         @endforeach
       </select>
 
       @error('promoted')
-      <x-shared.message type="error" context="promoted" :message="$errors"/>
+        <x-shared.message type="error" context="promoted" :message="$errors"/>
       @enderror
     </div>
   </fieldset>
@@ -158,6 +160,8 @@ use App\Shared\Domain\Enums\Status;
 </aside>
 
 <footer class="editor--footer">
-  <a rel="prev" class="back-link" href="{{ URL::previous() }}"><span class="fa-solid fa-arrow-left mr-6"></span> {{ __('Back to last page') }}
+  <a rel="prev" class="back-link" href="{{ URL::previous() }}">
+    <span class="fa-solid fa-arrow-left mr-6"></span>
+    {{ __('Back to last page') }}
   </a>
 </footer>

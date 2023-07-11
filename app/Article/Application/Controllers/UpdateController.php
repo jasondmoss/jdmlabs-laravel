@@ -26,8 +26,7 @@ class UpdateController extends Controller
     public function __construct(
         GetArticleUseCase $getArticle,
         SaveArticleUseCase $updateArticle
-    )
-    {
+    ) {
         $this->getArticle = $getArticle;
         $this->updateArticle = $updateArticle;
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Infrastructure;
+namespace App\Auth\Infrastructure\Database;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;

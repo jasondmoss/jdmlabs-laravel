@@ -34,18 +34,19 @@ class StoreController extends Controller
      */
     public function __invoke(ArticleFormRequest $request): RedirectResponse
     {
-        $this->authorize('create', Article::class);
+//        $this->authorize('create', Article::class);
 
         // Store + return article.
         $article = $this->saveArticle->__invoke($request);
+        dd($article);
 
         // Save + attach categories.
-        //        $article->categories()->sync((array) $request->input('categories'));
+//        $article->categories()->sync((array) $request->input('categories'));
 
         // Save + attach signature image.
-        //        $this->saveSignature->__invoke($request->image, $article, 'signatures');
+//        $this->saveSignature->__invoke($request->image, $article, 'signatures');
 
-        return redirect()->action(IndexController::class);
+//        return redirect()->action(IndexController::class);
     }
 
 }

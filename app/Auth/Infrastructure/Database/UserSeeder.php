@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure;
+namespace App\Auth\Infrastructure\Database;
 
+use App\Auth\Infrastructure\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProjectSeeder extends Seeder
+class UserSeeder extends Seeder
 {
 
     use RefreshDatabase;
@@ -19,7 +20,7 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(20)->create();
+        User::factory(1)->create();
     }
 
 }

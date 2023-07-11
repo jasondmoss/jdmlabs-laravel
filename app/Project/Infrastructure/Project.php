@@ -6,6 +6,7 @@ namespace App\Project\Infrastructure;
 
 use App\Auth\Infrastructure\User;
 use App\Client\Infrastructure\Client;
+use App\Project\Infrastructure\Database\ProjectFactory;
 use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
@@ -58,7 +59,7 @@ class Project extends Model
 
 
     /**
-     * @return \App\Project\Infrastructure\ProjectFactory
+     * @return \App\Project\Infrastructure\Database\ProjectFactory
      */
     protected static function newFactory(): ProjectFactory
     {

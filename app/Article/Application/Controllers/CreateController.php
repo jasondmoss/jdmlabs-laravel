@@ -6,14 +6,12 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Infrastructure\Article;
 use App\Laravel\Application\Controller;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
 class CreateController extends Controller
 {
-
-    public function __construct() {}
-
 
     /**
      * @return \Illuminate\Contracts\View\View
@@ -23,10 +21,12 @@ class CreateController extends Controller
         $article = new Article();
         $this->authorize('create', $article);
 
-        //        $article->categories = Category::get()->pluck('id', 'name');
+//        $article->categories = Category::get()->pluck('id', 'name');
+        $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         return ViewFacade::make('ArticleAdmin::create', [
-            'article' => $article
+            'article' => $article,
+            'categories' => $categories
         ]);
     }
 

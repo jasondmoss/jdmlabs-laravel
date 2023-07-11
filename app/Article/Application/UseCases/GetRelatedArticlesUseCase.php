@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\ArticleRepository;
+use App\Article\Infrastructure\Repository\GetRelatedRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Model;
 final class GetRelatedArticlesUseCase
 {
 
-    private ArticleRepository $repository;
+    private GetRelatedRepository $repository;
 
 
     public function __construct()
     {
-        $this->repository = new ArticleRepository;
+        $this->repository = new GetRelatedRepository;
     }
 
 

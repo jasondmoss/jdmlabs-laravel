@@ -9,6 +9,7 @@
     {{ html()->hidden('user_id', auth()->user()->id) }}
     @include('ae.article._form', [
       'article' => $article,
+      'categories' => $categories,
       'mode' => 'create'
     ])
   {{ html()->form()->close() }}

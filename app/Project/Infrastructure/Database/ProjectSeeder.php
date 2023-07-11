@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure;
+namespace App\Project\Infrastructure\Database;
 
+use App\Project\Infrastructure\Project;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ArticleSeeder extends Seeder
+class ProjectSeeder extends Seeder
 {
 
     use RefreshDatabase;
@@ -19,7 +20,7 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(20)->create();
+        Project::factory(20)->create();
     }
 
 }

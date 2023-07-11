@@ -7,6 +7,7 @@ namespace App\Article\Application\Controllers;
 use App\Article\Application\UseCases\GetArticleUseCase;
 use App\Laravel\Application\Controller;
 use App\Shared\Domain\ValueObjects\Id;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
@@ -35,10 +36,11 @@ class EditController extends Controller
         $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);
 
-//        $article->signature = $article->getMedia('signatures')->first();
+        $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         return ViewFacade::make('ArticleAdmin::edit', [
-            'article' => $article
+            'article' => $article,
+            'categories' => $categories
         ]);
     }
 

@@ -6,6 +6,7 @@ namespace App\Article\Interface;
 
 use App\Article\Infrastructure\Article;
 use App\Shared\Domain\ValueObjects\Body;
+use App\Shared\Domain\ValueObjects\Category;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Shared\Domain\ValueObjects\Promoted;
 use App\Shared\Domain\ValueObjects\Status;
@@ -23,6 +24,8 @@ class ArticleFormRequest extends FormRequest
     private mixed $summary;
 
     private mixed $body;
+
+    private mixed $category;
 
     private mixed $promoted;
 
@@ -74,6 +77,15 @@ class ArticleFormRequest extends FormRequest
     public function getBody(): Body
     {
         return (new Body($this->body));
+    }
+
+
+    /**
+     * @return \App\Shared\Domain\ValueObjects\Category
+     */
+    public function getCategory(): Category
+    {
+        return (new Category($this->category));
     }
 
 

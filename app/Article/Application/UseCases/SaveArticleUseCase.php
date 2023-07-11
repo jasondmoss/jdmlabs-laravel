@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Article\Application\UseCases;
 
 use App\Article\Infrastructure\Article;
-use App\Article\Infrastructure\ArticleRepository;
+use App\Article\Infrastructure\Repository\SaveRepository;
 use App\Article\Interface\ArticleFormRequest;
 
 final class SaveArticleUseCase
 {
 
-    protected ArticleRepository $repository;
+    protected SaveRepository $repository;
 
 
     /**
-     * @param \App\Article\Infrastructure\ArticleRepository $repository
+     * @param \App\Article\Infrastructure\Repository\SaveRepository $repository
      */
-    public function __construct(ArticleRepository $repository)
+    public function __construct(SaveRepository $repository)
     {
         $this->repository = $repository;
     }

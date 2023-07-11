@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure;
+namespace App\Client\Infrastructure\Database;
 
 use App\Auth\Infrastructure\User;
 use Faker\Factory as FakerFactory;
@@ -10,35 +10,31 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
-final class ArticleFactory extends Factory
+class ClientFactory extends Factory
 {
 
-    protected $model = Article::class;
+    protected $model = Client::class;
 
 
-    /**
-     * @return array
-     */
     public function definition(): array
     {
         $faker = FakerFactory::create();
 
-        $title = Str::title($faker->words(7, true));
-        $slug = Str::of($title)->slug('-');
+        $name = Str::title($faker->words(7, true));
+        $slug = Str::of($name)->slug('-');
 
         return [
             'id' => Str::ulid(),
-            'title' => $title,
+            'name' => $name,
             'slug' => $slug,
+            'itemprop' => ucfirst($faker->word()),
+            'website' => 'https://' . $faker->domainName() . '/',
             'summary' => $faker->text(170),
-            'body' => $faker->paragraphs(4, true),
 
             /*'status' => $faker->randomElement(Status::values()),*/
             /*'promoted' => $faker->randomElement(Promoted::values()),*/
             'status' => 'published',
             'promoted' => 'not_promoted',
-
-//            'category_id' => '',
 
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 

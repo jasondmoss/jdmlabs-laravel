@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Infrastructure;
+namespace App\Article\Infrastructure\Database;
 
+use App\Article\Infrastructure\Article;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserSeeder extends Seeder
+class ArticleSeeder extends Seeder
 {
 
     use RefreshDatabase;
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create();
+        Article::factory(20)->create();
     }
 
 }

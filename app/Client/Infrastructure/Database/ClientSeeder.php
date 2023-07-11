@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Client\Infrastructure;
+namespace App\Client\Infrastructure\Database;
 
+use App\Client\Infrastructure\Client;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -9,7 +9,6 @@ use App\Article\Application\UseCases\GetArticleUseCase;
 use App\Laravel\Application\Controller;
 use App\Shared\Domain\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
 class DestroyController extends Controller
 {
@@ -36,10 +35,10 @@ class DestroyController extends Controller
     /**
      * @param string $id
      *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(string $id): Redirector|RedirectResponse
+    public function __invoke(string $id): RedirectResponse
     {
         $article = $this->getArticle->__invoke((new Id($id))->value());
         $this->authorize('owner', $article);

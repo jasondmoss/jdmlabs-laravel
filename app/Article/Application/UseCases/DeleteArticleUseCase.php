@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\ArticleRepository;
+
+use App\Article\Infrastructure\Repository\DeleteRepository;
 
 final class DeleteArticleUseCase
 {
 
-    protected ArticleRepository $repository;
+    protected DeleteRepository $repository;
 
 
     /**
-     * @param \App\Article\Infrastructure\ArticleRepository $repository
+     * @param \App\Article\Infrastructure\Repository\DeleteRepository $repository
      */
-    public function __construct(ArticleRepository $repository)
+    public function __construct(DeleteRepository $repository)
     {
         $this->repository = $repository;
     }

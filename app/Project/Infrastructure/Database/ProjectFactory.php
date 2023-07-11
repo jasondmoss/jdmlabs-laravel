@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure;
+namespace App\Project\Infrastructure\Database;
 
 use App\Auth\Infrastructure\User;
 use App\Client\Infrastructure\Client;
