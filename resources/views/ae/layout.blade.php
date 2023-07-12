@@ -47,6 +47,7 @@
   <livewire:styles/>
   @stack('vendor-styles')
   @vite('resources/assets/css/aenginus.css')
+  @stack('styles')
 </head>
 <body class="admin {{ $page }}{{ Auth::check() ? ' logged-in': '' }}">
 

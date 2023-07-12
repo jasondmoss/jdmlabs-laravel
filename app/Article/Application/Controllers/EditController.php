@@ -30,6 +30,7 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): View
     {

@@ -5,6 +5,133 @@ use App\Shared\Domain\Enums\Pinned;
 use App\Shared\Domain\Enums\Promoted;
 use App\Shared\Domain\Enums\Status;
 @endphp
+
+@push('styles')
+  @once
+<style>
+.item {
+  grid-template-columns: 1fr;
+}
+
+.item--image {
+  grid-row: 4;
+}
+
+.item--header {
+  grid-row: 1;
+}
+
+.item--header .subtitle {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.item--id {
+  grid-row: 2;
+}
+
+.item--meta {
+  grid-row: 3;
+}
+
+@media screen {
+  @media (max-width: 39.9375rem) {
+    .item {
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 10rem 1fr;
+    }
+
+    .item--image {
+      grid-column: 1;
+      grid-row: 1/span 3;
+    }
+
+    .item--header,
+    .item--id,
+    .item--taxonomy,
+    .item--actions,
+    .item--date {
+      grid-column: 2;
+    }
+
+    .item--meta {
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    .item--actions menu {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (min-width: 40rem) and (max-width: 59.9375rem) {
+    .item--meta {
+      margin-top: 2rem;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .item {
+      grid-template-columns: 10rem 1fr 12rem;
+    }
+
+    .item--header {
+      grid-row: 1/span 3;
+    }
+
+    .item--id {
+      grid-row: 3;
+      align-self: center;
+      margin-top: 0.5rem;
+    }
+
+    .item--taxonomy {
+      grid-row: 3;
+      align-self: end;
+      margin-top: 1rem;
+    }
+
+    .item--meta {
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-start;
+    }
+
+    .item--meta svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .item--date {
+      grid-column: 3;
+      grid-row: 2/span 2;
+    }
+
+    .item--actions {
+      align-self: end;
+    }
+
+    .item--actions menu {
+      justify-content: end;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 75rem) {
+    .item {
+      gap: 0 2rem;
+    }
+  }
+}
+</style>
+  @endonce
+@endpush
+
 <div class="listing-wrapper">
   <nav class="listing-tools">
     <a href="{{ action(Project\CreateController::class) }}">Create New Project</a>
@@ -13,7 +140,7 @@ use App\Shared\Domain\Enums\Status;
       <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
   </nav>
   @if ($projects->count())
-    <div class="listing">
+    <div class="listing project">
       @foreach ($projects as $project)
         <article id="item-{{ $project->id }}" class="item">
 

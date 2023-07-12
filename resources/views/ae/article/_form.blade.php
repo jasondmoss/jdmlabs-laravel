@@ -63,7 +63,7 @@ use App\Shared\Domain\Enums\Status;
       <select id="taxonomy" name="category">
         <option value="">----</option>
         @foreach ($categories as $category)
-          <option value="{{ $category->id }}" @if (old('category') && $category->id == old('category')) selected @endif>{{ $category->name }}</option>
+          <option value="{{ $category->id }}" @if (! is_null($article->category_id) && ($article->category_id === $category->id)) selected @endif>{{ $category->name }}</option>
         @endforeach
       </select>
     </div>

@@ -1,6 +1,51 @@
 @php
   use App\Taxonomy\Category\Application\Controllers;
 @endphp
+
+@push('styles')
+  @once
+<style>
+.listing-wrapper {
+  max-width: 40rem;
+}
+
+.item {
+  grid-template-columns: 1fr;
+  gap: 0.5rem 0;
+}
+
+.item--actions menu {
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 40rem) {
+  .item {
+    grid-template-columns: 1fr 12rem;
+    gap: 0.5rem 1rem;
+  }
+
+  .item--header,
+  .item--id,
+  .item--actions {
+    grid-column: 1;
+  }
+
+  .item--count {
+    grid-column: 2;
+    grid-row: 1;
+    list-style: none;
+    font-size: 0.9rem;
+  }
+
+  .item--date {
+    grid-column: 2;
+    grid-row: 2/span 2;
+  }
+}
+</style>
+  @endonce
+@endpush
+
 <div class="listing-wrapper">
   <nav class="listing-tools">
     <a href="{{ action(Controllers\CreateController::class) }}">Create New Category</a>
@@ -9,18 +54,22 @@
       <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
   </nav>
   @if ($categories->count())
-    <ul class="listing">
+    <ul class="listing taxonomy category">
       @foreach ($categories as $cat)
         <li id="item-{{ $cat->id }}" class="item">
-          <div class="category--header">
+          <div class="item--header">
             <h3 class="title">
               <a href="{{ action(Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
             </h3>
           </div>
 
-          <p class="category--id"><strong class="label">{{ __('ID') }}:</strong> {{ $cat->id }}</p>
+          <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $cat->id }}</p>
 
-          <div class="category--date">
+          <ul class="item--count" style="color: #007741;">
+            <li class="article"><strong class="label">{{ __('Articles') }}:</strong> {{ $cat->articles_count }}</li>
+          </ul>
+
+          <div class="item--date">
             <time class="created" datetime="{{ Date::parse($cat->created_at)->format('c') }}" title="{{ Date::parse($cat->created_at)->format('c') }}">
               <strong class="label">{{ __('Created') }}:</strong>
               {{ Date::parse($cat->created_at)->format('Y/m/d') }}
@@ -57,5 +106,9 @@
         </li>
       @endforeach
     </ul>
+
+    {{-- Pagination. --}}
+    {{ $categories->links() }}
+
   @endif
 </div>

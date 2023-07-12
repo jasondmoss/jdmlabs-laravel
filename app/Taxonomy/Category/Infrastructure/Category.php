@@ -32,6 +32,10 @@ class Category extends Model
 
     protected $casts = [];
 
+    /*protected $with = [
+        'articles'
+    ];*/
+
 
     /**
      * @return \App\Taxonomy\Category\Infrastructure\Database\CategoryFactory
@@ -47,7 +51,7 @@ class Category extends Model
      */
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Article::class, 'category_id');
     }
 
 

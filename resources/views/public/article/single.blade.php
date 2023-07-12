@@ -6,9 +6,10 @@
     <h1>{{ $article->title }}</h1>
     <time>{{ Date::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d M Y') }}</time>
     @if (! is_null($article->category))
-      <nav class="">
+      <p class="">
+        <span>{{ __('Filed under') }}:</span>
         <a itemprop="tag" href="/articles/topic/{{ $article->category->slug }}">{{ $article->category->name }}</a>
-      </nav>
+      </p>
     @endif
   </header>
   <div class="">
