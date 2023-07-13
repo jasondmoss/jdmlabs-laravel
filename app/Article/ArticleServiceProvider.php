@@ -5,20 +5,8 @@ declare(strict_types=1);
 namespace App\Article;
 
 use App\Article\Application\UseCases;
-use App\Article\Domain\Contract\DeleteContract;
-use App\Article\Domain\Contract\GetAllContract;
-use App\Article\Domain\Contract\GetContract;
-use App\Article\Domain\Contract\GetPromotedContract;
-use App\Article\Domain\Contract\GetPublishedContract;
-use App\Article\Domain\Contract\GetRelatedContract;
-use App\Article\Domain\Contract\SaveContract;
-use App\Article\Infrastructure\Repository\DeleteRepository;
-use App\Article\Infrastructure\Repository\GetAllRepository;
-use App\Article\Infrastructure\Repository\GetPromotedRepository;
-use App\Article\Infrastructure\Repository\GetPublishedRepository;
-use App\Article\Infrastructure\Repository\GetRelatedRepository;
-use App\Article\Infrastructure\Repository\GetRepository;
-use App\Article\Infrastructure\Repository\SaveRepository;
+use App\Article\Domain\Contract;
+use App\Article\Infrastructure\Repository;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,32 +22,28 @@ class ArticleServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->when(UseCases\DeleteArticleUseCase::class)
-            ->needs(DeleteContract::class)
-            ->give(DeleteRepository::class);
-
-        $this->app->when(UseCases\GetAllArticlesUseCase::class)
-            ->needs(GetAllContract::class)
-            ->give(GetAllRepository::class);
+            ->needs(Contract\DeleteContract::class)
+            ->give(Repository\DeleteRepository::class);
 
         $this->app->when(UseCases\GetArticleUseCase::class)
-            ->needs(GetContract::class)
-            ->give(GetRepository::class);
+            ->needs(Contract\GetContract::class)
+            ->give(Repository\GetRepository::class);
 
         $this->app->when(UseCases\GetPromotedArticlesUseCase::class)
-            ->needs(GetPromotedContract::class)
-            ->give(GetPromotedRepository::class);
+            ->needs(Contract\GetPromotedContract::class)
+            ->give(Repository\GetPromotedRepository::class);
 
         $this->app->when(UseCases\GetPublishedArticlesUseCase::class)
-            ->needs(GetPublishedContract::class)
-            ->give(GetPublishedRepository::class);
+            ->needs(Contract\GetPublishedContract::class)
+            ->give(Repository\GetPublishedRepository::class);
 
         $this->app->when(UseCases\GetRelatedArticlesUseCase::class)
-            ->needs(GetRelatedContract::class)
-            ->give(GetRelatedRepository::class);
+            ->needs(Contract\GetRelatedContract::class)
+            ->give(Repository\GetRelatedRepository::class);
 
         $this->app->when(UseCases\SaveArticleUseCase::class)
-            ->needs(SaveContract::class)
-            ->give(SaveRepository::class);
+            ->needs(Contract\SaveContract::class)
+            ->give(Repository\SaveRepository::class);
 
 
         // Tell Laravel of our custom templates path.
