@@ -46,7 +46,7 @@ class CategoryAdminListing extends Component
         $categories = Category::where('name', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->withCount('articles')
-            ->paginate(10);
+            ->paginate(50);
 
         return view('ae.taxonomy.category._list', [
             'categories' => $categories

@@ -1,8 +1,40 @@
+.panel-header {
+  padding: 0 2rem 2rem;
+}
+
 .listing-wrapper,
 .listing-wrapper .listing {
   display: flex;
   flex-direction: column;
-  gap: 2rem 0;
+}
+
+/*.listing-wrapper {
+  background-color: var(--debug--orange);
+}*/
+
+.listing-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
+}
+
+.listing-tools .create-new {
+  background-color: var(--system--success);
+}
+
+/*.listing-tools .list-search {}*/
+
+.listing-tools .list-search .form-input--text {
+  width: 16rem;
+}
+
+.listing {
+  overflow-y: auto;
+  height: 76vh;
+  padding: 2rem 2rem 0;
+  /*background-color: var(--debug--blue);*/
 }
 
 .item {

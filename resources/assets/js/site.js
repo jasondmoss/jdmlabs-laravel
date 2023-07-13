@@ -49,31 +49,39 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
         });
 
         // Admin only.
-        // if (isAdmin) {
+        if (isAdmin) {
+            // const listingPanel = document.getElementById("listScroll");
+            // if (exists(listingPanel)) {
+            //     listingPanel.onscroll = (event) => {
+            //         document.querySelector(".listing-tools").classList.add("show-shadow");
+            //
+            //         console.log(event.target);
+            //     };
+            // }
 
-        //     /**
-        //      * Temporary image preview.
-        //      */
-        //     const fileInput = document.getElementById("signature_image");
-        //     if (exists(fileInput)) {
-        //         fileInput.addEventListener('change', () => {
-        //             const file = fileInput.files;
+            // /**
+            //  * Temporary image preview.
+            //  */
+            // const fileInput = document.getElementById("signature_image");
+            // if (exists(fileInput)) {
+            //     fileInput.addEventListener('change', () => {
+            //         const file = fileInput.files;
+            //
+            //         if (file) {
+            //             const fileReader = new FileReader();
+            //             const preview = document.getElementById("previewer");
+            //
+            //             fileReader.onload = event => {
+            //                 console.log(event.target.result);
+            //                 preview.setAttribute('src', event.target.result);
+            //             };
+            //
+            //             fileReader.readAsDataURL(file[0]);
+            //         }
+            //     });
+            // }
 
-        //             if (file) {
-        //                 const fileReader = new FileReader();
-        //                 const preview = document.getElementById("previewer");
-
-        //                 fileReader.onload = event => {
-        //                     console.log(event.target.result);
-        //                     preview.setAttribute('src', event.target.result);
-        //                 };
-
-        //                 fileReader.readAsDataURL(file[0]);
-        //             }
-        //         });
-        //     }
-
-        // }
+        }
 
     }, false);
 })(window);

@@ -84,7 +84,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Status')->for('status') }}
       <select name="status" id="status" class="select">
         @foreach(Status::cases() as $state)
-          <option value="{{ $state->value }}"{{ $client->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $client->status && ($client->status->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 
@@ -97,7 +97,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Featured?')->for('promoted') }}
       <select name="promoted" id="promoted" class="select">
         @foreach(Promoted::cases() as $state)
-          <option value="{{ $state->value }}"{{ $client->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $client->promoted && ($client->promoted->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 

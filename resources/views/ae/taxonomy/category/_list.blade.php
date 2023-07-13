@@ -6,7 +6,7 @@
   @once
 <style>
 .listing-wrapper {
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
 .item {
@@ -48,10 +48,13 @@
 
 <div class="listing-wrapper">
   <nav class="listing-tools">
-    <a href="{{ action(Controllers\CreateController::class) }}">Create New Category</a>
+    <a class="button create-new" href="{{ action(Controllers\CreateController::class) }}">Create New Category</a>
 
-    <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-      <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
+    <div class="list-search">
+      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+        <input wire:model="search" class="form-input--text" placeholder="Search">
+      </label>
+    </div>
   </nav>
   @if ($categories->count())
     <ul class="listing taxonomy category">

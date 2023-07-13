@@ -126,11 +126,13 @@ use App\Shared\Domain\Enums\Status;
 
 <div class="listing-wrapper">
   <nav class="listing-tools">
-    <a href="{{ action(Client\CreateController::class) }}">Create New Client</a>
+    <a class="button create-new" href="{{ action(Client\CreateController::class) }}">Create New Client</a>
 
-    <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-      <input wire:model="search" class="form-input--text" placeholder="Search">
-    </label>
+    <div class="list-search">
+      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+        <input wire:model="search" class="form-input--text" placeholder="Search">
+      </label>
+    </div>
   </nav>
   @if ($clients->count())
     <div class="listing client">

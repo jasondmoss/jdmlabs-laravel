@@ -29,6 +29,7 @@ class StoreController extends Controller
      * @param \App\Client\Interface\ClientFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(ClientFormRequest $request): RedirectResponse
     {

@@ -68,7 +68,7 @@ body.admin {
 
 .admin--sidebar  {
   padding-top: 2rem;
-  background-color: #00bcd4;
+  background-color: var(--debug--lime);
 }
 
 .admin--sidebar .navigation menu {
@@ -83,6 +83,8 @@ body.admin {
 .admin--footer {
   padding-top: 2rem;
   padding-bottom: 4rem;
+
+  /*background-color: var(--debug--lime);*/
 }
 
 .admin--footer p {

@@ -42,6 +42,7 @@ class SaveRepository implements SaveContract
             $client->summary = $data->summary;
             $client->status = $data->status;
             $client->promoted = $data->promoted;
+            $client->user_id = $data->user_id;
 
             $client->save();
         } catch (Exception $e) {

@@ -134,10 +134,13 @@ use App\Shared\Domain\Enums\Status;
 
 <div class="listing-wrapper">
   <nav class="listing-tools">
-    <a href="{{ action(Project\CreateController::class) }}">Create New Project</a>
+    <a class="button create-new" href="{{ action(Project\CreateController::class) }}">Create New Project</a>
 
-    <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-      <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
+    <div class="list-search">
+      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+        <input wire:model="search" class="form-input--text" placeholder="Search">
+      </label>
+    </div>
   </nav>
   @if ($projects->count())
     <div class="listing project">

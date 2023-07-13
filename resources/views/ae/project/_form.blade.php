@@ -147,7 +147,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Status')->for('status') }}
       <select name="status" id="status" class="select">
         @foreach(Status::cases() as $state)
-          <option value="{{ $state->value }}"{{ $project->status->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $project->status && ($project->status->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 
@@ -160,7 +160,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Featured?')->for('promoted') }}
       <select name="promoted" id="promoted" class="select">
         @foreach(Promoted::cases() as $state)
-          <option value="{{ $state->value }}"{{ $project->promoted->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $project->promoted && ($project->promoted->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 
@@ -173,7 +173,7 @@ use App\Shared\Domain\Enums\Status;
       {{ html()->label('Pin?')->for('pinned') }}
       <select name="pinned" id="pinned" class="select">
         @foreach(Pinned::cases() as $state)
-          <option value="{{ $state->value }}"{{ $project->pinned->value == $state->value ? ' selected'  : '' }}>{{ $state->name }}</option>
+          <option value="{{ $state->value }}"{{ $project->pinned && ($project->pinned->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
         @endforeach
       </select>
 

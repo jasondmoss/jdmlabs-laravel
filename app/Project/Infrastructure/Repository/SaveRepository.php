@@ -46,6 +46,7 @@ class SaveRepository implements SaveContract
             $project->status = $data->status;
             $project->promoted = $data->promoted;
             $project->pinned = $data->pinned;
+            $project->user_id = $data->user_id;
 
             $project->save();
         } catch (Exception $e) {

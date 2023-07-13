@@ -44,6 +44,7 @@ final class SaveRepository implements SaveContract
             $article->category_id = $data->category;
             $article->status = $data->status;
             $article->promoted = $data->promoted;
+            $article->user_id = $data->user_id;
 
             $article->save();
         } catch (Exception $e) {

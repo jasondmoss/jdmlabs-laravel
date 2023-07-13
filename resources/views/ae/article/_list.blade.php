@@ -127,11 +127,13 @@ use App\Taxonomy\Category\Application\Controllers as Category;
 <div class="listing-wrapper">
 
   <nav class="listing-tools">
-    <a href="{{ action(Article\CreateController::class) }}">Create New Article</a>
+    <a class="button create-new" href="{{ action(Article\CreateController::class) }}">Create New Article</a>
 
-    <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-      <input wire:model="search" class="form-input--text" placeholder="Search">
-    </label>
+    <div class="list-search">
+      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+        <input wire:model="search" class="form-input--text" placeholder="Search">
+      </label>
+    </div>
   </nav>
 
   @if ($articles->count())

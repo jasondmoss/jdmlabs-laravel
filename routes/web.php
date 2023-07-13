@@ -65,8 +65,6 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/project/update/{id}', Project\UpdateController::class);
         Route::delete('/project/{id}', Project\DestroyController::class);
 
-
-
         Route::get('/taxonomy/category', Category\IndexController::class);
         Route::get('/taxonomy/category/create', Category\CreateController::class);
         Route::post('/taxonomy/category/create', Category\StoreController::class);

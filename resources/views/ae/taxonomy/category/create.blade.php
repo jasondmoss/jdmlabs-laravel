@@ -9,7 +9,6 @@
     {{ html()->hidden('user_id', auth()->user()->id) }}
     @include('ae.taxonomy.category._form', [
       'category' => $category,
-      'categories' => $categories,
       'mode' => 'create'
     ])
   {{ html()->form()->close() }}
