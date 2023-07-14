@@ -26,6 +26,7 @@ class GetRepository implements GetContract
      * @param string $key
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
      */
     public function get(string $key): Category
     {

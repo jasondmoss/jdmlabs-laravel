@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Infrastructure;
 
 use App\Article\Infrastructure\Article;
+use App\Shared\Application\Exceptions\CouldNotFindCategory;
 use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -72,6 +73,26 @@ class Category extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+
+    /**
+     * @param string $id
+     *
+     * @return self
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
+     */
+    public function find(string $id): self
+    {
+        $article = $this->newQuery()->find(
+            (new Id($id))->value()
+        );
+
+        if (! $article instanceof self) {
+            throw CouldNotFindCategory::withId($id);
+        }
+
+        return $article;
     }
 
 }

@@ -24,6 +24,7 @@ class DeleteRepository implements DeleteContract
      * @param string $id
      *
      * @return void
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
      */
     public function delete(string $id): void
     {

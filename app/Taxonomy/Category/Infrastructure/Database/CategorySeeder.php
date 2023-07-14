@@ -20,36 +20,21 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $items = [
-            ['name' => 'API'],
-            ['name' => 'Books'],
-            ['name' => 'Clean Architecture'],
-            ['name' => 'CSS'],
-            ['name' => 'Development'],
-            ['name' => 'Domain Driven Development'],
-            ['name' => 'Dreamhost'],
-            ['name' => 'Drupal'],
-            ['name' => 'Fedora'],
-            ['name' => 'GitHub'],
-            ['name' => 'HTML'],
-            ['name' => 'JavaScript'],
-            ['name' => 'Laravel'],
-            ['name' => 'Linux'],
-            ['name' => 'Mountain Biking'],
-            ['name' => 'Mozilla'],
-            ['name' => 'MySQL'],
-            ['name' => 'NixOS'],
-            ['name' => 'Ottawa'],
-            ['name' => 'Photography'],
-            ['name' => 'PHPStorm'],
-            ['name' => 'Python'],
-            ['name' => 'Sublime Text'],
-            ['name' => 'Testing'],
-            ['name' => 'WordPress'],
+        $order = 0;
+        $categories = [
+            'API', 'Books', 'Clean Architecture', 'CSS', 'Development',
+            'Domain Driven Development', 'Dreamhost', 'Drupal', 'Fedora',
+            'GitHub', 'HTML', 'JavaScript', 'Laravel', 'Linux',
+            'Mountain Biking', 'Mozilla', 'MySQL', 'NixOS', 'Ottawa',
+            'Photography', 'PHPStorm', 'Python', 'Sublime Text', 'Testing',
+            'WordPress',
         ];
 
-        foreach ($items as $item) {
-            Category::create($item);
+        foreach ($categories as $cat_name) {
+            Category::create([
+                'name' => $cat_name,
+                'order' => $order++
+            ]);
         }
     }
 

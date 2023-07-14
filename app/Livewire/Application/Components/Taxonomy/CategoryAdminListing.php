@@ -44,7 +44,7 @@ class CategoryAdminListing extends Component
     public function render(): View
     {
         $categories = Category::where('name', 'LIKE', '%' . $this->search . '%')
-            ->latest('created_at')
+            ->latest('order')
             ->withCount('articles')
             ->paginate(50);
 

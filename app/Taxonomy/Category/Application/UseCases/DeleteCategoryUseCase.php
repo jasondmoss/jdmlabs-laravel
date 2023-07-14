@@ -25,6 +25,7 @@ final class DeleteCategoryUseCase
      * @param string $id
      *
      * @return void
+     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
      */
     public function __invoke(string $id): void
     {

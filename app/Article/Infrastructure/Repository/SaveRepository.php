@@ -47,8 +47,8 @@ final class SaveRepository implements SaveContract
             $article->user_id = $data->user_id;
 
             $article->save();
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
         }
 
         // Return saved article.

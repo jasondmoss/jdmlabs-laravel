@@ -37,7 +37,6 @@ class StoreController extends Controller
         $category = $this->saveCategory->__invoke($request);
 
         return redirect()->action(IndexController::class);
-//        return ViewFacade::make('Category::create');
     }
 
 }

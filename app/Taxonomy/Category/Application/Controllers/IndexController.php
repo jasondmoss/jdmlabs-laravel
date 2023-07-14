@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class IndexController extends Controller
 {
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function __invoke()
     {
         return ViewFacade::make('Category::show', [
