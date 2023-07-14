@@ -44,8 +44,8 @@ class CategoryAdminListing extends Component
     public function render(): View
     {
         $categories = Category::where('name', 'LIKE', '%' . $this->search . '%')
-            ->latest('order')
             ->withCount('articles')
+            ->orderBy('order')
             ->paginate(50);
 
         return view('ae.taxonomy.category._list', [
