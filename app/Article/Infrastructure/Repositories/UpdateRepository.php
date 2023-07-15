@@ -11,15 +11,30 @@ use App\Article\Interface\Requests\Http\UpdateRequest;
 final class UpdateRepository implements UpdateContract
 {
 
+    protected Article $article;
+
+
+    /**
+     * @param \App\Article\Infrastructure\Article $article
+     */
+    public function __construct(Article $article)
+    {
+        $this->article = $article;
+    }
+
+
     /**
      *
      * @param \App\Article\Interface\Requests\Http\UpdateRequest $data
      *
      * @return \App\Article\Infrastructure\Article
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function save(UpdateRequest $data): Article
+    public function update(UpdateRequest $data): Article
     {
-        $article = Article::update([
+        $instance = $this->article->find($data->input('id'));
+
+        $instance->update([
             'title' => $data->title,
             'summary' => $data->summary,
             'body' => $data->body,
@@ -29,7 +44,7 @@ final class UpdateRepository implements UpdateContract
             'user_id' => $data->user_id
         ]);
 
-        return Article::findOrFail($article->id);
+        return Article::findOrFail($instance->id);
     }
 
 }

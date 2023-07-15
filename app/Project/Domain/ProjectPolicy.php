@@ -6,7 +6,7 @@ namespace App\Project\Domain;
 
 use App\Auth\Infrastructure\User;
 use App\Project\Infrastructure\Project;
-use App\Shared\Domain\Enums\Status;
+use App\Shared\Enums\Status;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;

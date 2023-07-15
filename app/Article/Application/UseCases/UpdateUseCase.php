@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Article\Application\UseCases;
+
+use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Repositories\UpdateRepository;
+use App\Article\Interface\Requests\Http\UpdateRequest;
+
+final readonly class UpdateUseCase
+{
+
+    protected UpdateRepository $repository;
+
+
+    public function __construct(UpdateRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+
+    /**
+     * @param \App\Article\Interface\Requests\Http\UpdateRequest $data
+     *
+     * @return \App\Article\Infrastructure\Article
+     */
+    public function update(UpdateRequest $data): Article
+    {
+        return $this->repository->update($data);
+    }
+
+}

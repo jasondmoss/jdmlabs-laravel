@@ -7,7 +7,7 @@ namespace App\Project\Application\Controllers;
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\DeleteProjectUseCase;
 use App\Project\Application\UseCases\GetProjectUseCase;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller

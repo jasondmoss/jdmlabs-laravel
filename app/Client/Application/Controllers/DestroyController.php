@@ -7,7 +7,7 @@ namespace App\Client\Application\Controllers;
 use App\Client\Application\UseCases\DeleteClientUseCase;
 use App\Client\Application\UseCases\GetClientUseCase;
 use App\Laravel\Application\Controller;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 

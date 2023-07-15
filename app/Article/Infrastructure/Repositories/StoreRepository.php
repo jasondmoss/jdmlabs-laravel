@@ -23,9 +23,9 @@ final class StoreRepository implements StoreContract
             'title' => $data->title,
             'summary' => $data->summary,
             'body' => $data->body,
-            'category_id' => $data->category,
             'status' => $data->status,
             'promoted' => $data->promoted,
+            'category_id' => $data->category,
             'user_id' => $data->user_id
         ]);
 

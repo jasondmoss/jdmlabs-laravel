@@ -6,7 +6,7 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Infrastructure\Article;
 use App\Laravel\Application\Controller;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -35,7 +35,6 @@ class EditController extends Controller
     public function __invoke(string $id): View
     {
         $article = $this->article->find((new Id($id))->value());
-        $this->authorize('owner', $article);
 
         $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 

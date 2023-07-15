@@ -33,7 +33,7 @@ class PublishedArticles extends Component
 
     public function render(): View
     {
-        $articles = Article::where('status', '=', 'published')
+        $articles = Article::published('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 

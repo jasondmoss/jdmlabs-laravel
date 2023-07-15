@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Controllers;
 
-use App\Article\Application\UseCases\StoreArticleUseCase;
+use App\Article\Application\UseCases\UpdateUseCase;
 use App\Article\Infrastructure\Article;
-use App\Article\Interface\ArticleFormRequest;
+use App\Article\Interface\Requests\Http\UpdateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,39 +16,29 @@ class UpdateController extends Controller
 
     protected Article $article;
 
-    protected StoreArticleUseCase $updateArticle;
+    protected UpdateUseCase $conjoins;
 
 
     /**
      * @param \App\Article\Infrastructure\Article $article
-     * @param \App\Article\Application\UseCases\StoreArticleUseCase $updateArticle
+     * @param \App\Article\Application\UseCases\UpdateUseCase $conjoins
      */
-    public function __construct(Article $article, StoreArticleUseCase $updateArticle)
+    public function __construct(Article $article, UpdateUseCase $conjoins)
     {
         $this->article = $article;
-        $this->updateArticle = $updateArticle;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
-     * @param \App\Article\Interface\ArticleFormRequest $request
+     * @param \App\Article\Interface\Requests\Http\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function __invoke(ArticleFormRequest $request): RedirectResponse
+    public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        if (! empty($request->id)) {
-            $article = $this->article->find($request->id);
-
-            $this->authorize('owner', $article);
-        }
-
         // Update + return article.
-        $article = $this->updateArticle->__invoke($request);
-
-        // Save + attach categories.
-//        $article->category()->associate($request->get('category'));
+        $article = $this->conjoins->update($request);
 
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $article, 'signatures');

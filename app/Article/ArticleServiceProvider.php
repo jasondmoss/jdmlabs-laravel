@@ -17,35 +17,23 @@ class ArticleServiceProvider extends ServiceProvider
 {
 
     /**
-     * Register services.
+     * Register application services.
      *
      * @return void
      */
     public function register(): void
     {
-        $this->app->when(UseCases\DeleteArticleUseCase::class)
-            ->needs(Contracts\DeleteContract::class)
-            ->give(Repositories\DeleteRepository::class);
+        $this->app->when(UseCases\DestroyUseCase::class)
+            ->needs(Contracts\DestroyContract::class)
+            ->give(Repositories\DestroyRepository::class);
 
-//        $this->app->when(UseCases\GetArticleUseCase::class)
-//            ->needs(Contracts\GetContract::class)
-//            ->give(Repositories\GetRepository::class);
-
-        $this->app->when(UseCases\GetPromotedArticlesUseCase::class)
-            ->needs(Contracts\GetPromotedContract::class)
-            ->give(Repositories\GetPromotedRepository::class);
-
-        $this->app->when(UseCases\GetPublishedArticlesUseCase::class)
-            ->needs(Contracts\GetPublishedContract::class)
-            ->give(Repositories\GetPublishedRepository::class);
-
-        $this->app->when(UseCases\GetRelatedArticlesUseCase::class)
-            ->needs(Contracts\GetRelatedContract::class)
-            ->give(Repositories\GetRelatedRepository::class);
-
-        $this->app->when(UseCases\StoreArticleUseCase::class)
+        $this->app->when(UseCases\StoreUseCase::class)
             ->needs(Contracts\StoreContract::class)
             ->give(Repositories\StoreRepository::class);
+
+        $this->app->when(UseCases\UpdateUseCase::class)
+            ->needs(Contracts\UpdateContract::class)
+            ->give(Repositories\UpdateRepository::class);
 
 
         // Tell Laravel of our custom templates path.
@@ -61,6 +49,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Configure Laravel to use CarbonImmutable for dates.
         Date::use(CarbonImmutable::class);
     }
 

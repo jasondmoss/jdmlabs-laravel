@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Category\Interface;
 
-use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Name;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Name;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +30,7 @@ class CategoryFormRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Id
+     * @return \App\Shared\ValueObjects\Id
      */
     public function getId(): Id
     {
@@ -39,7 +39,7 @@ class CategoryFormRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Name
+     * @return \App\Shared\ValueObjects\Name
      */
     public function getName(): Name
     {

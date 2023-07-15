@@ -7,7 +7,7 @@ namespace App\Project\Application\Controllers;
 use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\GetProjectUseCase;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 

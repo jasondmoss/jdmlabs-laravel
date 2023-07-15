@@ -7,11 +7,14 @@ namespace App\Article\Infrastructure;
 use App\Article\Application\Exceptions\CouldNotFindArticle;
 use App\Article\Infrastructure\Database\ArticleFactory;
 use App\Auth\Infrastructure\User;
-use App\Shared\Application\Traits\Observable;
-use App\Shared\Domain\Casts\ConvertNullToEmptyString;
-use App\Shared\Domain\Enums\Promoted;
-use App\Shared\Domain\Enums\Status;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\Casts\ConvertNullToEmptyString;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
+use App\Shared\Scopes\WherePromoted;
+use App\Shared\Scopes\WherePublished;
+use App\Shared\Scopes\WhereRelated;
+use App\Shared\Traits\Observable;
+use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -27,7 +30,9 @@ use UnexpectedValueException;
 class Article extends Model
 {
 
-    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids, Observable;
+    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids;
+    use Observable;
+    use WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
 
@@ -40,9 +45,11 @@ class Article extends Model
         'body',
         'status',
         'promoted',
-        'user_id',
+        'published_at',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'category_id',
+        'user_id'
     ];
 
     protected $guarded = [];

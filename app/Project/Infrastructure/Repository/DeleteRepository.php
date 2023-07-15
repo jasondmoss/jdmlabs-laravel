@@ -6,7 +6,7 @@ namespace App\Project\Infrastructure\Repository;
 
 use App\Project\Domain\Contract\DeleteContract;
 use App\Project\Infrastructure\Project;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 
 class DeleteRepository implements DeleteContract
 {

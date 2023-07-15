@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Category\Infrastructure\Repository;
 
-use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Slug;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Category\Domain\Contract\GetContract;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Symfony\Component\Uid\Ulid;
@@ -26,7 +26,7 @@ class GetRepository implements GetContract
      * @param string $key
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
+     * @throws \App\Shared\Exceptions\CouldNotFindCategory
      */
     public function get(string $key): Category
     {

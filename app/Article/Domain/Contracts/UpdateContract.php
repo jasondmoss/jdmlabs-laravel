@@ -16,6 +16,6 @@ interface UpdateContract
      *
      * @return \App\Article\Infrastructure\Article
      */
-    public function save(UpdateRequest $data): Article;
+    public function update(UpdateRequest $data): Article;
 
 }

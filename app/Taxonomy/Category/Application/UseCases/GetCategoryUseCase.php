@@ -26,7 +26,7 @@ final class GetCategoryUseCase
      * @param string $key
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
+     * @throws \App\Shared\Exceptions\CouldNotFindCategory
      */
     public function __invoke(string $key): Category
     {

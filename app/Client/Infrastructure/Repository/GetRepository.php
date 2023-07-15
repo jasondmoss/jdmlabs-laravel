@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Client\Infrastructure\Repository;
 
 use App\Client\Infrastructure\Client;
-use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Slug;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use Symfony\Component\Uid\Ulid;
 
 class GetRepository implements \App\Client\Domain\Contract\GetContract

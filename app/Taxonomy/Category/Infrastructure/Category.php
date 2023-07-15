@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Infrastructure;
 
 use App\Article\Infrastructure\Article;
-use App\Shared\Application\Exceptions\CouldNotFindCategory;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\Exceptions\CouldNotFindCategory;
+use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -81,7 +81,7 @@ class Category extends Model
      * @param string $id
      *
      * @return self
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
+     * @throws \App\Shared\Exceptions\CouldNotFindCategory
      */
     public function find(string $id): self
     {

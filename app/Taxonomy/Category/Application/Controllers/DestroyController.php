@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Category\Application\UseCases\DeleteCategoryUseCase;
 use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
 use Illuminate\Http\RedirectResponse;

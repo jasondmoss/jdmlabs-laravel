@@ -6,8 +6,8 @@ namespace App\Project\Infrastructure\Repository;
 
 use App\Project\Domain\Contract\GetContract;
 use App\Project\Infrastructure\Project;
-use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Slug;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use Symfony\Component\Uid\Ulid;
 
 class GetRepository implements GetContract

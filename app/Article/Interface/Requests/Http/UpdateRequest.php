@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Article\Interface\Requests\Http;
 
 use App\Article\Infrastructure\Article;
-use App\Shared\Domain\ValueObjects\Body;
-use App\Shared\Domain\ValueObjects\Category;
-use App\Shared\Domain\ValueObjects\Id;
-use App\Shared\Domain\ValueObjects\Promoted;
-use App\Shared\Domain\ValueObjects\Status;
-use App\Shared\Domain\ValueObjects\Summary;
-use App\Shared\Domain\ValueObjects\Title;
+use App\Shared\ValueObjects\Body;
+use App\Shared\ValueObjects\Category;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Promoted;
+use App\Shared\ValueObjects\Status;
+use App\Shared\ValueObjects\Summary;
+use App\Shared\ValueObjects\Title;
 use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdateRequest extends FormRequest
@@ -41,12 +41,14 @@ final class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Article::class);
+        $article = Article::where('id', '=', $this->route('id'))->get()->first();
+
+        return $this->user()->can('update', $article);
     }
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Id
+     * @return \App\Shared\ValueObjects\Id
      */
     public function getId(): Id
     {
@@ -55,7 +57,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Id
+     * @return \App\Shared\ValueObjects\Id
      */
     public function getUserId(): Id
     {
@@ -64,7 +66,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Title
+     * @return \App\Shared\ValueObjects\Title
      */
     public function getTitle(): Title
     {
@@ -73,7 +75,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Summary
+     * @return \App\Shared\ValueObjects\Summary
      */
     public function getSummary(): Summary
     {
@@ -82,7 +84,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Body
+     * @return \App\Shared\ValueObjects\Body
      */
     public function getBody(): Body
     {
@@ -91,7 +93,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Category
+     * @return \App\Shared\ValueObjects\Category
      */
     public function getCategory(): Category
     {
@@ -100,7 +102,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Status
+     * @return \App\Shared\ValueObjects\Status
      */
     public function getStatus(): Status
     {
@@ -109,7 +111,7 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @return \App\Shared\Domain\ValueObjects\Promoted
+     * @return \App\Shared\ValueObjects\Promoted
      */
     public function getPromoted(): Promoted
     {

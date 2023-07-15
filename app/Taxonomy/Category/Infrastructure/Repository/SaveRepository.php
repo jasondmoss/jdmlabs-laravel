@@ -26,7 +26,7 @@ class SaveRepository implements SaveContract
      * @param \App\Taxonomy\Category\Interface\CategoryFormRequest $data
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindCategory
+     * @throws \App\Shared\Exceptions\CouldNotFindCategory
      */
     public function save(CategoryFormRequest $data): Category
     {

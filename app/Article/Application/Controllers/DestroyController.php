@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Controllers;
 
-use App\Article\Application\UseCases\DeleteArticleUseCase;
+use App\Article\Application\UseCases\DestroyUseCase;
 use App\Article\Infrastructure\Article;
 use App\Laravel\Application\Controller;
-use App\Shared\Domain\ValueObjects\Id;
+use App\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
@@ -15,17 +15,17 @@ class DestroyController extends Controller
 
     protected Article $article;
 
-    protected DeleteArticleUseCase $deleteArticle;
+    protected DestroyUseCase $conjoins;
 
 
     /**
      * @param \App\Article\Infrastructure\Article $article
-     * @param \App\Article\Application\UseCases\DeleteArticleUseCase $deleteArticle
+     * @param \App\Article\Application\UseCases\DestroyUseCase $conjoins
      */
-    public function __construct(Article $article, DeleteArticleUseCase $deleteArticle)
+    public function __construct(Article $article, DestroyUseCase $conjoins)
     {
         $this->article = $article;
-        $this->deleteArticle = $deleteArticle;
+        $this->conjoins = $conjoins;
     }
 
 
@@ -38,9 +38,8 @@ class DestroyController extends Controller
     public function __invoke(string $id): RedirectResponse
     {
         $article = $this->article->find((new Id($id))->value());
-        $this->authorize('owner', $article);
 
-        $this->deleteArticle->__invoke($id);
+        $this->conjoins->delete($article->id);
 
         return redirect()->action(IndexController::class);
     }
