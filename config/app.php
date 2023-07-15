@@ -2,17 +2,23 @@
 
 declare(strict_types=1);
 
+use App\Article\ArticleAuthServiceProvider;
+use App\Article\ArticleEventServiceProvider;
 use App\Article\ArticleServiceProvider;
 use App\Auth\FortifyServiceProvider;
+use App\Client\ClientAuthServiceProvider;
+use App\Client\ClientEventServiceProvider;
 use App\Client\ClientServiceProvider;
 use App\Laravel\Application\Providers\AppServiceProvider;
 use App\Laravel\Application\Providers\AuthServiceProvider as AppAuthServiceProvider;
 use App\Laravel\Application\Providers\BroadcastServiceProvider as AppBroadcastServiceProvider;
 use App\Laravel\Application\Providers\EventServiceProvider;
 use App\Laravel\Application\Providers\RouteServiceProvider;
+use App\Project\ProjectAuthServiceProvider;
+use App\Project\ProjectEventServiceProvider;
 use App\Project\ProjectServiceProvider;
-use App\Shared\GlobalAuthServiceProvider;
-use App\Shared\GlobalServiceProvider;
+use App\Taxonomy\TaxonomyAuthServiceProvider;
+use App\Taxonomy\TaxonomyEventServiceProvider;
 use App\Taxonomy\TaxonomyServiceProvider;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
@@ -92,19 +98,27 @@ return [
 
         /** -- Application Service Providers. */
 
-        GlobalServiceProvider::class,
-        GlobalAuthServiceProvider::class,
-
         AppServiceProvider::class,
         AppAuthServiceProvider::class,
         AppBroadcastServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,
 
-        TaxonomyServiceProvider::class,
+        ArticleAuthServiceProvider::class,
+        ArticleEventServiceProvider::class,
         ArticleServiceProvider::class,
+
+        ClientAuthServiceProvider::class,
+        ClientEventServiceProvider::class,
         ClientServiceProvider::class,
-        ProjectServiceProvider::class
+
+        ProjectAuthServiceProvider::class,
+        ProjectEventServiceProvider::class,
+        ProjectServiceProvider::class,
+
+        TaxonomyAuthServiceProvider::class,
+        TaxonomyEventServiceProvider::class,
+        TaxonomyServiceProvider::class,
 
     ],
 

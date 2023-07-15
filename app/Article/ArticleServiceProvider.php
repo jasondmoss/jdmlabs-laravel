@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Article;
 
 use App\Article\Application\UseCases;
-use App\Article\Domain\Contract;
-use App\Article\Infrastructure\Repository;
+use App\Article\Domain\Contracts;
+use App\Article\Infrastructure\Repositories;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,28 +24,28 @@ class ArticleServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->when(UseCases\DeleteArticleUseCase::class)
-            ->needs(Contract\DeleteContract::class)
-            ->give(Repository\DeleteRepository::class);
+            ->needs(Contracts\DeleteContract::class)
+            ->give(Repositories\DeleteRepository::class);
 
-        $this->app->when(UseCases\GetArticleUseCase::class)
-            ->needs(Contract\GetContract::class)
-            ->give(Repository\GetRepository::class);
+//        $this->app->when(UseCases\GetArticleUseCase::class)
+//            ->needs(Contracts\GetContract::class)
+//            ->give(Repositories\GetRepository::class);
 
         $this->app->when(UseCases\GetPromotedArticlesUseCase::class)
-            ->needs(Contract\GetPromotedContract::class)
-            ->give(Repository\GetPromotedRepository::class);
+            ->needs(Contracts\GetPromotedContract::class)
+            ->give(Repositories\GetPromotedRepository::class);
 
         $this->app->when(UseCases\GetPublishedArticlesUseCase::class)
-            ->needs(Contract\GetPublishedContract::class)
-            ->give(Repository\GetPublishedRepository::class);
+            ->needs(Contracts\GetPublishedContract::class)
+            ->give(Repositories\GetPublishedRepository::class);
 
         $this->app->when(UseCases\GetRelatedArticlesUseCase::class)
-            ->needs(Contract\GetRelatedContract::class)
-            ->give(Repository\GetRelatedRepository::class);
+            ->needs(Contracts\GetRelatedContract::class)
+            ->give(Repositories\GetRelatedRepository::class);
 
-        $this->app->when(UseCases\SaveArticleUseCase::class)
-            ->needs(Contract\SaveContract::class)
-            ->give(Repository\SaveRepository::class);
+        $this->app->when(UseCases\StoreArticleUseCase::class)
+            ->needs(Contracts\StoreContract::class)
+            ->give(Repositories\StoreRepository::class);
 
 
         // Tell Laravel of our custom templates path.
@@ -59,7 +61,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Date::use(CarbonImmutable::class);
     }
 
 }

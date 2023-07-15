@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Repository;
+namespace App\Article\Infrastructure\Repositories;
 
-use App\Article\Domain\Contract\GetRelatedContract;
+use App\Article\Domain\Contracts\GetRelatedContract;
 use App\Article\Infrastructure\Article;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -13,12 +13,12 @@ use Illuminate\Support\Collection;
 final class GetRelatedRepository implements GetRelatedContract
 {
 
-    private Article $model;
+    private Article $article;
 
 
     public function __construct()
     {
-        $this->model = new Article;
+        $this->article = new Article;
     }
 
 
@@ -29,7 +29,7 @@ final class GetRelatedRepository implements GetRelatedContract
      */
     public function getRelated(mixed $data): Builder|Model|Collection
     {
-        return $this->model->where('category_id', $data->category_id)
+        return $this->article->where('category_id', $data->category_id)
             ->where('status', '=', 1)
             ->where('id', '!=', $data->id)
             ->latest('id')

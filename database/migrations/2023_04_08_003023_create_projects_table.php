@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
 
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('subtitle')->default('');
             $table->string('website')->default('');
             $table->string('summary')->default('');

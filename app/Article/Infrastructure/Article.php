@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Article\Infrastructure;
 
+use App\Article\Application\Exceptions\CouldNotFindArticle;
 use App\Article\Infrastructure\Database\ArticleFactory;
 use App\Auth\Infrastructure\User;
-use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Application\Traits\Observable;
 use App\Shared\Domain\Casts\ConvertNullToEmptyString;
 use App\Shared\Domain\Enums\Promoted;
@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use UnexpectedValueException;
 
 
 class Article extends Model
@@ -32,8 +33,6 @@ class Article extends Model
 
     protected $table = 'articles';
 
-    protected $guarded = [];
-
     protected $fillable = [
         'title',
         'slug',
@@ -41,9 +40,12 @@ class Article extends Model
         'body',
         'status',
         'promoted',
+        'user_id',
         'created_at',
         'updated_at'
     ];
+
+    protected $guarded = [];
 
     protected $casts = [
         'body' => ConvertNullToEmptyString::class,
@@ -109,19 +111,15 @@ class Article extends Model
      * @param string $id
      *
      * @return self
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
     public function find(string $id): self
     {
-        $article = $this->newQuery()->find(
-            (new Id($id))->value()
-        );
-
-        if (! $article instanceof self) {
-            throw CouldNotFindEntry::withId($id);
+        try {
+            return $this->newQuery()->find((new Id($id))->value());
+        } catch (UnexpectedValueException) {
+            throw CouldNotFindArticle::withId($id);
         }
-
-        return $article;
     }
 
 }

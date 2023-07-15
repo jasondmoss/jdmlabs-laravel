@@ -13,13 +13,13 @@ use Illuminate\Support\Str;
 class CategoryFactory extends Factory
 {
 
-    // protected $model = Category::class;
+     protected $model = Category::class;
 
 
     /**
      * @return array
      */
-    /*public function definition(): array
+    public function definition(): array
     {
         $faker = FakerFactory::create();
 
@@ -29,6 +29,6 @@ class CategoryFactory extends Factory
             'created_at' => Date::today()->subDays(rand(0, 365)),
             'updated_at' => Date::now()
         ];
-    }*/
+    }
 
 }

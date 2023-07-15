@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Repository;
+namespace App\Article\Infrastructure\Repositories;
 
 
-use App\Article\Domain\Contract\GetPublishedContract;
+use App\Article\Domain\Contracts\GetPublishedContract;
 use App\Article\Infrastructure\Article;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
@@ -13,12 +13,12 @@ use Illuminate\Pagination\Paginator;
 final class GetPublishedRepository implements GetPublishedContract
 {
 
-    private Article $model;
+    private Article $article;
 
 
     public function __construct()
     {
-        $this->model = new Article;
+        $this->article = new Article;
     }
 
 
@@ -30,7 +30,7 @@ final class GetPublishedRepository implements GetPublishedContract
      */
     public function getPublished(string $column = 'id', int $pages = 10): Paginator|Builder
     {
-        return $this->model
+        return $this->article
             ->where('status', '=', 'published')
             ->latest($column)
             ->simplePaginate($pages);

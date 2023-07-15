@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\Repository\GetPublishedRepository;
+use App\Article\Infrastructure\Repositories\GetPublishedRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
@@ -15,7 +15,7 @@ final class GetPublishedArticlesUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repository\GetPublishedRepository $repository
+     * @param \App\Article\Infrastructure\Repositories\GetPublishedRepository $repository
      */
     public function __construct(GetPublishedRepository $repository)
     {

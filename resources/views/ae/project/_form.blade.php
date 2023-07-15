@@ -32,7 +32,7 @@ use App\Shared\Domain\Enums\Status;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New Project') }}</h1>
+    <h1>{{ __('CreateRequest New Project') }}</h1>
   @endif
 </header>
 

@@ -21,7 +21,6 @@ class CreateController extends Controller
         $article = new Article();
         $this->authorize('create', $article);
 
-//        $article->categories = Category::get()->pluck('id', 'name');
         $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         return ViewFacade::make('ArticleAdmin::create', [

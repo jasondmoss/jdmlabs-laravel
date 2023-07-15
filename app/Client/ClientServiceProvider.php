@@ -7,6 +7,8 @@ namespace App\Client;
 use App\Client\Application\UseCases;
 use App\Client\Domain\Contract;
 use App\Client\Infrastructure\Repository;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -62,7 +64,7 @@ class ClientServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Date::use(CarbonImmutable::class);
     }
 
 }

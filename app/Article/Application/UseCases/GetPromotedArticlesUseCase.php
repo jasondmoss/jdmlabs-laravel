@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\Repository\GetPromotedRepository;
+use App\Article\Infrastructure\Repositories\GetPromotedRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 
@@ -15,7 +15,7 @@ final class GetPromotedArticlesUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repository\GetPromotedRepository $repository
+     * @param \App\Article\Infrastructure\Repositories\GetPromotedRepository $repository
      */
     public function __construct(GetPromotedRepository $repository)
     {

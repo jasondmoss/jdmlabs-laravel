@@ -21,8 +21,6 @@ final readonly class EntryObserver
         if (! App::runningInConsole()) {
             $model->user_id = auth()->user()->id;
         }
-
-        $model->slug = Str::of($model->title)->slug('-');
     }
 
 

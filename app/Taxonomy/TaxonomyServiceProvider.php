@@ -7,6 +7,8 @@ namespace App\Taxonomy;
 use App\Taxonomy\Category\Application\UseCases;
 use App\Taxonomy\Category\Domain\Contract;
 use App\Taxonomy\Category\Infrastructure\Repository;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,7 +47,7 @@ class TaxonomyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Date::use(CarbonImmutable::class);
     }
 
 }

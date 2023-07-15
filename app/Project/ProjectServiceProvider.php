@@ -7,6 +7,8 @@ namespace App\Project;
 use App\Project\Application\UseCases;
 use App\Project\Domain\Contract;
 use App\Project\Infrastructure\Repository;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -62,8 +64,7 @@ class ProjectServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Tell Laravel of our custom routes path.
-        //        Route::middleware('web')->group(base_path('routes/project.php'));
+        Date::use(CarbonImmutable::class);
     }
 
 }

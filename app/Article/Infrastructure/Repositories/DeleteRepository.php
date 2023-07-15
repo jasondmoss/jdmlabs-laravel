@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Repository;
+namespace App\Article\Infrastructure\Repositories;
 
-use App\Article\Domain\Contract\DeleteContract;
+use App\Article\Domain\Contracts\DeleteContract;
 use App\Article\Infrastructure\Article;
 use App\Shared\Domain\ValueObjects\Id;
 
@@ -24,7 +24,7 @@ final class DeleteRepository implements DeleteContract
      * @param string $id
      *
      * @return void
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
     public function delete(string $id): void
     {

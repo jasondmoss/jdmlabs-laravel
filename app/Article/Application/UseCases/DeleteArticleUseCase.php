@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\UseCases;
 
 
-use App\Article\Infrastructure\Repository\DeleteRepository;
+use App\Article\Infrastructure\Repositories\DeleteRepository;
 
 final class DeleteArticleUseCase
 {
@@ -14,7 +14,7 @@ final class DeleteArticleUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repository\DeleteRepository $repository
+     * @param \App\Article\Infrastructure\Repositories\DeleteRepository $repository
      */
     public function __construct(DeleteRepository $repository)
     {

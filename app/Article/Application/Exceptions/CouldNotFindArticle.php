@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Application\Exceptions;
+namespace App\Article\Application\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-final class CouldNotFindEntry
-    extends Exception
-    implements HttpExceptionInterface
+class CouldNotFindArticle extends Exception implements HttpExceptionInterface
 {
 
     /**

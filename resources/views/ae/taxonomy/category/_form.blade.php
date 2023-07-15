@@ -11,7 +11,7 @@ use App\Taxonomy\Category\Application\Controllers;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New Category') }}</h1>
+    <h1>{{ __('CreateRequest New Category') }}</h1>
   @endif
 </header>
 

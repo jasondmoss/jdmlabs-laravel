@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Controllers;
 
-use App\Article\Application\UseCases\GetArticleUseCase;
-use App\Article\Application\UseCases\SaveArticleUseCase;
+use App\Article\Application\UseCases\StoreArticleUseCase;
+use App\Article\Infrastructure\Article;
 use App\Article\Interface\ArticleFormRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -14,20 +14,18 @@ use Illuminate\Http\RedirectResponse;
 class UpdateController extends Controller
 {
 
-    protected GetArticleUseCase $getArticle;
+    protected Article $article;
 
-    protected SaveArticleUseCase $updateArticle;
+    protected StoreArticleUseCase $updateArticle;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
-     * @param \App\Article\Application\UseCases\SaveArticleUseCase $updateArticle
+     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Application\UseCases\StoreArticleUseCase $updateArticle
      */
-    public function __construct(
-        GetArticleUseCase $getArticle,
-        SaveArticleUseCase $updateArticle
-    ) {
-        $this->getArticle = $getArticle;
+    public function __construct(Article $article, StoreArticleUseCase $updateArticle)
+    {
+        $this->article = $article;
         $this->updateArticle = $updateArticle;
     }
 
@@ -36,12 +34,12 @@ class UpdateController extends Controller
      * @param \App\Article\Interface\ArticleFormRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
     public function __invoke(ArticleFormRequest $request): RedirectResponse
     {
         if (! empty($request->id)) {
-            $article = $this->getArticle->__invoke($request->id);
+            $article = $this->article->find($request->id);
 
             $this->authorize('owner', $article);
         }

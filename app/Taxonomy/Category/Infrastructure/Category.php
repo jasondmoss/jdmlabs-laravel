@@ -6,6 +6,7 @@ namespace App\Taxonomy\Category\Infrastructure;
 
 use App\Article\Infrastructure\Article;
 use App\Shared\Application\Exceptions\CouldNotFindCategory;
+use App\Shared\Domain\ValueObjects\Id;
 use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

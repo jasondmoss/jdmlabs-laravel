@@ -109,7 +109,6 @@ use App\Taxonomy\Category\Application\Controllers as Category;
     }
 
     .item--actions menu {
-      justify-content: end;
       padding-right: 3rem;
     }
   }

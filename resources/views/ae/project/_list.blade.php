@@ -117,7 +117,6 @@ use App\Shared\Domain\Enums\Status;
     }
 
     .item--actions menu {
-      justify-content: end;
       padding-right: 3rem;
     }
   }

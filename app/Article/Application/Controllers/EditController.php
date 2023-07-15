@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Controllers;
 
-use App\Article\Application\UseCases\GetArticleUseCase;
+use App\Article\Infrastructure\Article;
 use App\Laravel\Application\Controller;
 use App\Shared\Domain\ValueObjects\Id;
 use App\Taxonomy\Category\Infrastructure\Category;
@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class EditController extends Controller
 {
 
-    protected GetArticleUseCase $getArticle;
+    protected Article $article;
 
 
     /**
-     * @param \App\Article\Application\UseCases\GetArticleUseCase $getArticle
+     * @param \App\Article\Infrastructure\Article $article
      */
-    public function __construct(GetArticleUseCase $getArticle)
+    public function __construct(Article $article)
     {
-        $this->getArticle = $getArticle;
+        $this->article = $article;
     }
 
 
@@ -30,11 +30,11 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
     public function __invoke(string $id): View
     {
-        $article = $this->getArticle->__invoke((new Id($id))->value());
+        $article = $this->article->find((new Id($id))->value());
         $this->authorize('owner', $article);
 
         $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);

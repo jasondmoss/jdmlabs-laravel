@@ -24,7 +24,7 @@ use App\Shared\Domain\Enums\Status;
       </a>
     </p>
   @else
-    <h1>{{ __('Create New Client') }}</h1>
+    <h1>{{ __('CreateRequest New Client') }}</h1>
   @endif
 </header>
 

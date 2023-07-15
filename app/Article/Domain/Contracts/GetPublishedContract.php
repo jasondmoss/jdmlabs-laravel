@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Domain\Contract;
+namespace App\Article\Domain\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
