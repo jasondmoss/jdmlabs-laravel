@@ -15,9 +15,18 @@
   width: fit-content !important;
 }
 
+.menu--main .menu-link {
+  font-size: 1.25rem;
+}
+
 
 @media screen {
   @media (min-width: 47.5rem) {
+    .menu--main {
+      position: sticky;
+      top: 4rem;
+    }
+
     .menu--main menu {
       flex-flow: column;
     }

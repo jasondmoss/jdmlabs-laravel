@@ -9,9 +9,19 @@
   max-width: 50rem;
 }
 
+.listing-wrapper .listing {
+  /*flex-flow: row wrap;*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0 1rem;
+}
+
 .item {
-  grid-template-columns: 1fr;
+  /*grid-template-columns: 1fr;*/
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem 0;
+  width: auto;
 }
 
 .item--actions menu {
@@ -72,7 +82,7 @@
             <li class="article"><strong class="label">{{ __('Articles') }}:</strong> {{ $cat->articles_count }}</li>
           </ul>
 
-          <div class="item--date">
+          {{-- <div class="item--date">
             <time class="created" datetime="{{ Date::parse($cat->created_at)->format('c') }}" title="{{ Date::parse($cat->created_at)->format('c') }}">
               <strong class="label">{{ __('Created') }}:</strong>
               {{ Date::parse($cat->created_at)->format('Y/m/d') }}
@@ -81,7 +91,7 @@
               <strong class="label">{{ __('Updated') }}:</strong>
               {{ Date::parse($cat->updated_at)->format('Y/m/d') }}
             </time>
-          </div>
+          </div> --}}
 
           <div class="navigation item--actions">
             <menu>

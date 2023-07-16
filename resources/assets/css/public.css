@@ -24,7 +24,7 @@
 @import "system/messages.css";
 
 @import "content/base.css";
-@import "layout/page--content.css";
+/*@import "layout/page--content.css";*/
 @import "content/article.css";
 
 @import "global/accessibility.css";

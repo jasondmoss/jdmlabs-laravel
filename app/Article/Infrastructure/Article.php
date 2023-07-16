@@ -10,11 +10,13 @@ use App\Auth\Infrastructure\User;
 use App\Shared\Casts\ConvertNullToEmptyString;
 use App\Shared\Enums\Promoted;
 use App\Shared\Enums\Status;
+use App\Shared\Scopes\FindBySlug;
 use App\Shared\Scopes\WherePromoted;
 use App\Shared\Scopes\WherePublished;
 use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\Observable;
 use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
 
@@ -32,7 +35,7 @@ class Article extends Model
 
     use HasEvents, HasFactory, HasSlug, HasTags, HasUlids;
     use Observable;
-    use WherePromoted, WherePublished, WhereRelated;
+    use FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
 
@@ -115,17 +118,27 @@ class Article extends Model
 
 
     /**
-     * @param string $id
+     * @param string $key
      *
      * @return self
      * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function find(string $id): self
+    public function find(string $key): self
     {
+        if (! Ulid::isValid($key)) {
+            $slug = (new Slug($key))->value();
+
+            try {
+                return $this->newQuery()->slug($slug);
+            } catch (UnexpectedValueException) {
+                throw CouldNotFindArticle::withSlug($slug);
+            }
+        }
+
         try {
-            return $this->newQuery()->find((new Id($id))->value());
+            return $this->newQuery()->find((new Id($key))->value());
         } catch (UnexpectedValueException) {
-            throw CouldNotFindArticle::withId($id);
+            throw CouldNotFindArticle::withId($key);
         }
     }
 

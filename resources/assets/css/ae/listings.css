@@ -31,8 +31,8 @@
 }
 
 .listing {
-  overflow-y: auto;
-  height: 76vh;
+  /*overflow-y: auto;*/
+  /*height: 76vh;*/
   padding: 2rem 2rem 0;
   /*background-color: var(--debug--blue);*/
 }
