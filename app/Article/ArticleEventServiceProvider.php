@@ -17,7 +17,9 @@ class ArticleEventServiceProvider extends EventServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $observers = [
-        Article::class => [ ArticleObserver::class ]
+        Article::class => [
+            ArticleObserver::class
+        ]
     ];
 
 }

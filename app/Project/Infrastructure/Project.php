@@ -31,6 +31,8 @@ class Project extends Model
 
     protected $table = 'projects';
 
+    protected $primaryKey = 'id';
+
     protected $guarded = [];
 
     protected $fillable = [
@@ -43,9 +45,10 @@ class Project extends Model
         'status',
         'promoted',
         'pinned',
-        'client_id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'client_id',
+        'user_id'
     ];
 
     protected $casts = [

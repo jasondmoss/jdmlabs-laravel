@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\UseCases;
 
 
+use App\Article\Infrastructure\Article;
 use App\Article\Infrastructure\Repositories\DestroyRepository;
 
 final readonly class DestroyUseCase
@@ -23,14 +24,13 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param string $id
+     * @param \App\Article\Infrastructure\Article $article
      *
      * @return void
-     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function delete(string $id): void
+    public function delete(Article $article): void
     {
-        $this->repository->delete($id);
+        $this->repository->delete($article);
     }
 
 }

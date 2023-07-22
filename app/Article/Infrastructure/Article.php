@@ -33,13 +33,16 @@ use UnexpectedValueException;
 class Article extends Model
 {
 
-    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids;
-    use Observable;
-    use FindBySlug, WherePromoted, WherePublished, WhereRelated;
+    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids,
+        Observable,
+        /* Scopes */
+        FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
 
     protected $table = 'articles';
+
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'title',
@@ -66,7 +69,8 @@ class Article extends Model
     ];
 
     protected $with = [
-        'category'
+        'category',
+        'tags'
     ];
 
 

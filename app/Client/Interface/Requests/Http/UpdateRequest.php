@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Client\Interface;
+namespace App\Client\Interface\Requests\Http;
 
 use App\Client\Infrastructure\Client;
 use App\Shared\ValueObjects\Id;
@@ -14,29 +14,30 @@ use App\Shared\ValueObjects\Summary;
 use App\Shared\ValueObjects\Website;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientFormRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
 
-    private mixed $id;
+    protected mixed $id;
 
-    private mixed $title;
+    protected mixed $user_id;
 
-    private mixed $itemprop;
+    protected mixed $name;
 
-    private mixed $website;
+    protected mixed $itemprop;
 
-    private mixed $summary;
+    protected mixed $website;
 
-    private mixed $status;
+    protected mixed $summary;
 
-    private mixed $promoted;
+    protected mixed $status;
+
+    protected mixed $promoted;
 
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function authorize(): bool
     {
@@ -49,16 +50,25 @@ class ClientFormRequest extends FormRequest
      */
     public function getId(): Id
     {
-        return new Id($this->id);
+        return (new Id($this->id));
+    }
+
+
+    /**
+     * @return \App\Shared\ValueObjects\Id
+     */
+    public function getUserId(): Id
+    {
+        return (new Id($this->user_id));
     }
 
 
     /**
      * @return \App\Shared\ValueObjects\Name
      */
-    public function getTitle(): Name
+    public function getName(): Name
     {
-        return (new Name($this->title));
+        return (new Name($this->name));
     }
 
 

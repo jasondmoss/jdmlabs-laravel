@@ -4,42 +4,41 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Application\UseCases\GetClientUseCase;
-use App\Client\Application\UseCases\SaveClientUseCase;
-use App\Client\Interface\ClientFormRequest;
+use App\Client\Application\UseCases\StoreUseCase;
+use App\Client\Application\UseCases\UpdateUseCase;
+use App\Client\Infrastructure\Client;
+use App\Client\Interface\Requests\Http\UpdateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
 
-    protected GetClientUseCase $getClient;
+    protected Client $client;
 
-    protected SaveClientUseCase $saveClient;
+    protected UpdateUseCase $conjoins;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
-     * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
+     * @param \App\Client\Infrastructure\Client $client
+     * @param \App\Client\Application\UseCases\UpdateUseCase $conjoins
      */
-    public function __construct(GetClientUseCase $getClient, SaveClientUseCase $saveClient)
+    public function __construct(Client $client, UpdateUseCase $conjoins)
     {
-        $this->getClient = $getClient;
-        $this->saveClient = $saveClient;
+        $this->client = $client;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
-     * @param \App\Client\Interface\ClientFormRequest $request
+     * @param \App\Client\Interface\Requests\Http\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
-    public function __invoke(ClientFormRequest $request): RedirectResponse
+    public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $client = $this->getClient->__invoke($request->id);
-        $this->authorize('owner', $client);
-
-        $this->saveClient->__invoke($request);
+        $client = $this->conjoins->update($request);
 
         return redirect()
             ->to($request->listing_page)

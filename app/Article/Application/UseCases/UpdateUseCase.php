@@ -14,6 +14,9 @@ final readonly class UpdateUseCase
     protected UpdateRepository $repository;
 
 
+    /**
+     * @param \App\Article\Infrastructure\Repositories\UpdateRepository $respository
+     */
     public function __construct(UpdateRepository $repository)
     {
         $this->repository = $repository;

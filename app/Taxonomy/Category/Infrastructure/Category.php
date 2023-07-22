@@ -25,6 +25,8 @@ class Category extends Model
 
     protected $table = "categories";
 
+    protected $primaryKey = 'id';
+
     protected $guarded = [];
 
     protected $fillable = [

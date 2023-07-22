@@ -17,7 +17,9 @@ class ProjectEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        Project::class => [ ProjectObserver::class ]
+        Project::class => [
+            ProjectObserver::class
+        ]
     ];
 
 }

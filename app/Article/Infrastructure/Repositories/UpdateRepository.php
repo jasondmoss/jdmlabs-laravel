@@ -24,11 +24,7 @@ final class UpdateRepository implements UpdateContract
 
 
     /**
-     *
-     * @param \App\Article\Interface\Requests\Http\UpdateRequest $data
-     *
-     * @return \App\Article\Infrastructure\Article
-     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
+     * @inheritDoc
      */
     public function update(UpdateRequest $data): Article
     {

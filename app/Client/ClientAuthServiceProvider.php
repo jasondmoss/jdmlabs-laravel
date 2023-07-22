@@ -11,6 +11,11 @@ use App\Laravel\Application\Providers\AuthServiceProvider;
 class ClientAuthServiceProvider extends AuthServiceProvider
 {
 
+    /**
+     * The model to policy mappings for the application.
+     *
+     * @var array<class-string, class-string>
+     */
     protected $policies = [
         Client::class => ClientPolicy::class
     ];

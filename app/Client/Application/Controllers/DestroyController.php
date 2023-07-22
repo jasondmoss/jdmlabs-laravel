@@ -4,46 +4,49 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Application\UseCases\DeleteClientUseCase;
-use App\Client\Application\UseCases\GetClientUseCase;
+use App\Client\Application\Exceptions\CouldNotDeleteClient;
+use App\Client\Application\UseCases\DestroyUseCase;
+use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use App\Shared\ValueObjects\Id;
+use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
 class DestroyController extends Controller
 {
 
-    protected GetClientUseCase $getClient;
+    protected Client $client;
 
-    protected DeleteClientUseCase $deleteClient;
+    protected DestroyUseCase $conjoins;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
-     * @param \App\Client\Application\UseCases\DeleteClientUseCase $deleteClient
+     * @param \App\Client\Infrastructure\Client $client
+     * @param \App\Client\Application\UseCases\DestroyUseCase $conjoins
      */
-    public function __construct(
-        GetClientUseCase $getClient,
-        DeleteClientUseCase $deleteClient
-    )
+    public function __construct(Client $client, DestroyUseCase $conjoins)
     {
-        $this->getClient = $getClient;
-        $this->deleteClient = $deleteClient;
+        $this->client = $client;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
      * @param string $id
      *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Client\Application\Exceptions\CouldNotDeleteClient
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
-    public function __invoke(string $id): Redirector|RedirectResponse
+    public function __invoke(string $id): RedirectResponse
     {
-        $client = $this->getClient->__invoke((new Id($id))->value());
-        $this->authorize('create', $client);
+        $toBeDeleted = $this->client->find((new Id($id))->value());
 
-        $this->deleteClient->__invoke($id);
+        try {
+            $this->conjoins->delete($toBeDeleted);
+        } catch (Exception $exception) {
+            throw CouldNotDeleteClient::withId($toBeDeleted->id);
+        }
 
         return redirect()->action(IndexController::class);
     }

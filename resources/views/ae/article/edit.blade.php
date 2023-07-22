@@ -27,13 +27,14 @@
     ->acceptsFiles()
     ->open()
   }}
+
   {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('id', $article->id) }}
   {{ html()->hidden('listing_page', URL::previous()) }}
 
   <header class="editor--header">
-    <h1>
-      <i class="fa-solid fa-pen-to-square"></i> {{ $article->title }}</h1>
+    <h1><i class="fa-solid fa-pen-to-square"></i> {{ $article->title }}</h1>
+
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
       <a rel="external" href="{{ action(Article\SingleController::class, $article->slug) }}" title="{{ __('View live entry') }}">

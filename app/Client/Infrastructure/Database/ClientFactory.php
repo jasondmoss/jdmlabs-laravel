@@ -17,6 +17,9 @@ class ClientFactory extends Factory
     protected $model = Client::class;
 
 
+    /**
+     * @return array
+     */
     public function definition(): array
     {
         $faker = FakerFactory::create();

@@ -53,10 +53,7 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function updating(Client $client): void
-    {
-        $client->slug = Str::of($client->title)->slug('-');
-    }
+    public function updating(Client $client): void {}
 
 
     /**

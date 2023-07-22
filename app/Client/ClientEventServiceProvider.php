@@ -12,12 +12,14 @@ class ClientEventServiceProvider extends EventServiceProvider
 {
 
     /**
-     * The model observers for your application.
+     * The event to listener mappings for the application.
      *
-     * @var array
+     * @var array<class-string, array<int, class-string>>
      */
     protected $observers = [
-        Client::class => [ ClientObserver::class ]
+        Client::class => [
+            ClientObserver::class
+        ]
     ];
 
 }

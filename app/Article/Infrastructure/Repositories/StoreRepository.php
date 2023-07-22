@@ -12,10 +12,7 @@ final class StoreRepository implements StoreContract
 {
 
     /**
-     *
-     * @param \App\Article\Interface\Requests\Http\CreateRequest $data
-     *
-     * @return \App\Article\Infrastructure\Article
+     * @inheritDoc
      */
     public function save(CreateRequest $data): Article
     {

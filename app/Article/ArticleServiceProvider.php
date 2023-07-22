@@ -36,7 +36,7 @@ class ArticleServiceProvider extends ServiceProvider
             ->give(Repositories\UpdateRepository::class);
 
 
-        // Tell Laravel of our custom templates path.
+        // Tell Laravel of our custom templates paths.
         View::addNamespace('ArticleAdmin', resource_path('views/ae/article'));
         View::addNamespace('ArticlePublic', resource_path('views/public/article'));
     }

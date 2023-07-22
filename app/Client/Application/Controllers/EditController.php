@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Application\Controllers;
 
 use App\Client\Application\UseCases\GetClientUseCase;
+use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -12,15 +13,15 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class EditController extends Controller
 {
 
-    protected GetClientUseCase $getClient;
+    protected Client $client;
 
 
     /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
+     * @param \App\Client\Infrastructure\Client $client
      */
-    public function __construct(GetClientUseCase $getClient)
+    public function __construct(Client $client)
     {
-        $this->getClient = $getClient;
+        $this->client = $client;
     }
 
 
@@ -28,12 +29,11 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
     public function __invoke(string $id): View
     {
-        $client = $this->getClient->__invoke($id);
-
-        $this->authorize('owner', $client);
+        $client = $this->client->find($id);
 
         return ViewFacade::make('ClientAdmin::edit', [
             'client' => $client

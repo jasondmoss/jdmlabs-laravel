@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Application\UseCases\GetClientUseCase;
+use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -12,15 +12,12 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class SingleController extends Controller
 {
 
-    private GetClientUseCase $getClient;
+    private Client $client;
 
 
-    /**
-     * @param \App\Client\Application\UseCases\GetClientUseCase $getClient
-     */
-    public function __construct(GetClientUseCase $getClient)
+    public function __construct(Client $client)
     {
-        $this->getClient = $getClient;
+        $this->client = $client;
     }
 
 
@@ -28,10 +25,11 @@ class SingleController extends Controller
      * @param string $key
      *
      * @return \Illuminate\Contracts\View\View
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
     public function __invoke(string $key): View
     {
-        $client = $this->getClient->__invoke($key);
+        $client = $this->client->find($key);
 
         return ViewFacade::make('ClientPublic::single', [
             'client' => $client

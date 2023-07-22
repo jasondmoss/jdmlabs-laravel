@@ -53,10 +53,7 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function updating(Project $project): void
-    {
-        $project->slug = Str::of($project->title)->slug('-');
-    }
+    public function updating(Project $project): void {}
 
 
     /**

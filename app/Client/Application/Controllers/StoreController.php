@@ -4,38 +4,30 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Application\UseCases\SaveClientUseCase;
-use App\Client\Infrastructure\Client;
-use App\Client\Interface\ClientFormRequest;
+use App\Client\Application\UseCases\StoreUseCase;
+use App\Client\Interface\Requests\Http\CreateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
 
-    protected SaveClientUseCase $saveClient;
+    protected StoreUseCase $conjoins;
 
 
     /**
-     * @param \App\Client\Application\UseCases\SaveClientUseCase $saveClient
+     * @param \App\Client\Application\UseCases\StoreUseCase $conjoins
      */
-    public function __construct(SaveClientUseCase $saveClient)
+    public function __construct(StoreUseCase $conjoins)
     {
-        $this->saveClient = $saveClient;
+        $this->conjoins = $conjoins;
     }
 
 
-    /**
-     * @param \App\Client\Interface\ClientFormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
-     */
-    public function __invoke(ClientFormRequest $request): RedirectResponse
+    public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $this->authorize('create', Client::class);
-
-        $this->saveClient->__invoke($request);
+        // Store + return client.
+        $client = $this->conjoins->store($request);
 
         return redirect()->action(IndexController::class);
     }

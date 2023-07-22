@@ -37,9 +37,9 @@ class DestroyController extends Controller
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $article = $this->article->find((new Id($id))->value());
+        $toBeDeleted = $this->article->find((new Id($id))->value());
 
-        $this->conjoins->delete($article->id);
+        $this->conjoins->delete($toBeDeleted);
 
         return redirect()->action(IndexController::class);
     }

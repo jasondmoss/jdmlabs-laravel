@@ -28,10 +28,11 @@ use App\Shared\Enums\Promoted;
     ->acceptsFiles()
     ->open()
   }}
+
   {{ html()->hidden('user_id', auth()->user()->id) }}
 
   <header class="editor--header">
-    <h1>{{ __('CreateRequest New Article') }}</h1>
+    <h1>{{ __('Create New Article') }}</h1>
   </header>
 
   <div class="editor--content">
@@ -41,16 +42,28 @@ use App\Shared\Enums\Promoted;
         {{ html()->label('Title')->for('title') }}
         {{ html()->text('title')->class('text')->attribute('required') }}
         <p class="title-slug"><span class="label">{{ __('slug') }}:</span> ...</p>
+
+          @error('title')
+            <x-shared.message type="error" context="title" :message="$errors"/>
+          @enderror
       </div>
 
       <div class="form-field summary">
         {{ html()->label('Summary')->for('summary') }}
         {{ html()->textarea('summary')->class('textarea summary')->rows(4) }}
+
+        @error('summary')
+          <x-shared.message type="error" context="summary" :message="$errors"/>
+        @enderror
       </div>
 
       <div class="form-field body">
         {{ html()->label('Body')->for('body') }}
         {{ html()->textarea('body')->class('textarea full')->rows(15) }}
+
+        @error('body')
+          <x-shared.message type="error" context="body" :message="$errors"/>
+        @enderror
       </div>
     </fieldset>
 
@@ -128,7 +141,7 @@ use App\Shared\Enums\Promoted;
         </select>
 
         @error('status')
-        <x-shared.message type="error" context="status" :message="$errors"/>
+          <x-shared.message type="error" context="status" :message="$errors"/>
         @enderror
       </div>
 
@@ -141,7 +154,7 @@ use App\Shared\Enums\Promoted;
         </select>
 
         @error('promoted')
-        <x-shared.message type="error" context="promoted" :message="$errors"/>
+          <x-shared.message type="error" context="promoted" :message="$errors"/>
         @enderror
       </div>
     </fieldset>
