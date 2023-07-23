@@ -5,34 +5,33 @@ declare(strict_types=1);
 namespace App\Project\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Project\Application\UseCases\GetProjectUseCase;
+use App\Project\Infrastructure\Project;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
 class SingleController extends Controller
 {
 
-    private GetProjectUseCase $getProject;
+    private Project $project;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
+     * @param \App\Project\Infrastructure\Project $project
      */
-    public function __construct(GetProjectUseCase $getProject)
+    public function __construct(Project $project)
     {
-        $this->getProject = $getProject;
+        $this->project = $project;
     }
 
 
     /**
-     * @param $project
+     * @param string $key
      *
      * @return \Illuminate\View\View
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke($project): View
+    public function __invoke(string $key): View
     {
-        $project = $this->getProject->__invoke($project);
+        $project = $this->project->find($key);
 
         return ViewFacade::make('ProjectPublic::single', [
             'project' => $project

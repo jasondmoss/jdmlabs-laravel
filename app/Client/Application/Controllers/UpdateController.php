@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Controllers;
 
-use App\Client\Application\UseCases\StoreUseCase;
 use App\Client\Application\UseCases\UpdateUseCase;
 use App\Client\Infrastructure\Client;
 use App\Client\Interface\Requests\Http\UpdateRequest;
@@ -34,7 +33,6 @@ class UpdateController extends Controller
      * @param \App\Client\Interface\Requests\Http\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {

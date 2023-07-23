@@ -13,24 +13,10 @@ use App\Shared\ValueObjects\Status;
 use App\Shared\ValueObjects\Summary;
 use App\Shared\ValueObjects\Title;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class CreateRequest extends FormRequest
+final class CreateRequest extends FormRequest
 {
-
-    protected string $user_id;
-
-    protected string $title;
-
-    protected string $summary;
-
-    protected string $body;
-
-    protected string $category;
-
-    protected string $status;
-
-    protected string $promoted;
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -44,65 +30,79 @@ class CreateRequest extends FormRequest
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getUserId(): Id
+    public function getUserId(Request $request): Id
     {
-        return (new Id($this->user_id));
+        return (new Id($request->input('user_id')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Title
      */
-    public function getTitle(): Title
+    public function getTitle(Request $request): Title
     {
-        return (new Title($this->title));
+        return (new Title($request->input('title')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Summary
      */
-    public function getSummary(): Summary
+    public function getSummary(Request $request): Summary
     {
-        return (new Summary($this->summary));
+        return (new Summary($request->input('summary')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Body
      */
-    public function getBody(): Body
+    public function getBody(Request $request): Body
     {
-        return (new Body($this->body));
+        return (new Body($request->input('body')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getCategory(): Id
+    public function getCategory(Request $request): Id
     {
-        return (new Id($this->category));
+        return (new Id($request->input('category')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Status
      */
-    public function getStatus(): Status
+    public function getStatus(Request $request): Status
     {
-        return (new Status($this->status));
+        return (new Status($request->input('status')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Promoted
      */
-    public function getPromoted(): Promoted
+    public function getPromoted(Request $request): Promoted
     {
-        return (new Promoted($this->promoted));
+        return (new Promoted($request->input('promoted')));
     }
 
 }

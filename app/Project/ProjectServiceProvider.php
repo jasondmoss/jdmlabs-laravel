@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Project;
 
 use App\Project\Application\UseCases;
-use App\Project\Domain\Contract;
-use App\Project\Infrastructure\Repository;
+use App\Project\Domain\Contracts;
+use App\Project\Infrastructure\Repositories;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -22,33 +22,17 @@ class ProjectServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(UseCases\DeleteProjectUseCase::class)
-            ->needs(Contract\DeleteContract::class)
-            ->give(Repository\DeleteRepository::class);
+        $this->app->when(UseCases\DestroyUseCase::class)
+            ->needs(Contracts\DestroyContract::class)
+            ->give(Repositories\DestroyRepository::class);
 
-        $this->app->when(UseCases\GetPinnedProjectsUseCase::class)
-            ->needs(Contract\GetPinnedContract::class)
-            ->give(Repository\GetPinnedRepository::class);
+        $this->app->when(UseCases\StoreUseCase::class)
+            ->needs(Contracts\StoreContract::class)
+            ->give(Repositories\StoreRepository::class);
 
-        $this->app->when(UseCases\GetProjectUseCase::class)
-            ->needs(Contract\GetContract::class)
-            ->give(Repository\GetRepository::class);
-
-        $this->app->when(UseCases\GetPromotedProjectsUseCase::class)
-            ->needs(Contract\GetPromotedContract::class)
-            ->give(Repository\GetPromotedRepository::class);
-
-        $this->app->when(UseCases\GetPublishedProjectsUseCase::class)
-            ->needs(Contract\GetPublishedContract::class)
-            ->give(Repository\GetPublishedRepository::class);
-
-        $this->app->when(UseCases\GetRelatedProjectsUseCase::class)
-            ->needs(Contract\GetRelatedContract::class)
-            ->give(Repository\GetRelatedRepository::class);
-
-        $this->app->when(UseCases\SaveProjectUseCase::class)
-            ->needs(Contract\SaveContract::class)
-            ->give(Repository\SaveRepository::class);
+        $this->app->when(UseCases\UpdateUseCase::class)
+            ->needs(Contracts\UpdateContract::class)
+            ->give(Repositories\UpdateRepository::class);
 
 
         // Tell Laravel of our custom templates path.

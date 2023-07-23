@@ -8,7 +8,7 @@ use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-class CouldNotDeleteClient extends Exception implements HttpExceptionInterface
+final class CouldNotDeleteClient extends Exception implements HttpExceptionInterface
 {
 
     /**

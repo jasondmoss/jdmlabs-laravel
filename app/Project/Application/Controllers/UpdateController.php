@@ -5,50 +5,37 @@ declare(strict_types=1);
 namespace App\Project\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Project\Application\UseCases\GetProjectUseCase;
-use App\Project\Application\UseCases\SaveProjectUseCase;
-use App\Project\Interface\ProjectFormRequest;
+use App\Project\Application\UseCases\UpdateUseCase;
+use App\Project\Infrastructure\Project;
+use App\Project\Interface\Requests\Http\UpdateRequest;
 use Illuminate\Http\RedirectResponse;
 
 
 class UpdateController extends Controller
 {
 
-    protected GetProjectUseCase $getProject;
+    protected Project $project;
 
-    protected SaveProjectUseCase $updateProject;
+    protected UpdateUseCase $conjoins;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
-     * @param \App\Project\Application\UseCases\SaveProjectUseCase $updateProject
+     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Application\UseCases\UpdateUseCase $conjoins
      */
-    public function __construct(
-        GetProjectUseCase $getProject,
-        SaveProjectUseCase $updateProject
-    )
+    public function __construct(Project $project, UpdateUseCase $conjoins)
     {
-        $this->getProject = $getProject;
-        $this->updateProject = $updateProject;
+        $this->project = $project;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
-     * @param \App\Project\Interface\ProjectFormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
-    public function __invoke(ProjectFormRequest $request): RedirectResponse
+    public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $project = $this->getProject->__invoke($request->id);
-        $this->authorize('owner', $project);
-
         // Update + return project.
-        $project = $this->updateProject->__invoke($request);
-
-        // Save + attach categories.
-//        $project->categories()->sync((array) $request->input('categories'));
+        $project = $this->conjoins->update($request);
 
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');

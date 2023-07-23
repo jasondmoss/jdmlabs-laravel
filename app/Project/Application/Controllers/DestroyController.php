@@ -5,30 +5,27 @@ declare(strict_types=1);
 namespace App\Project\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Project\Application\UseCases\DeleteProjectUseCase;
-use App\Project\Application\UseCases\GetProjectUseCase;
+use App\Project\Application\UseCases\DestroyUseCase;
+use App\Project\Infrastructure\Project;
 use App\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
 {
 
-    protected GetProjectUseCase $getProject;
+    protected Project $project;
 
-    protected DeleteProjectUseCase $deleteProject;
+    protected DestroyUseCase $conjoins;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
-     * @param \App\Project\Application\UseCases\DeleteProjectUseCase $deleteProject
+     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Application\UseCases\DestroyUseCase $conjoins
      */
-    public function __construct(
-        GetProjectUseCase $getProject,
-        DeleteProjectUseCase $deleteProject
-    )
+    public function __construct(Project $project, DestroyUseCase $conjoins)
     {
-        $this->getProject = $getProject;
-        $this->deleteProject = $deleteProject;
+        $this->project = $project;
+        $this->conjoins = $conjoins;
     }
 
 
@@ -36,14 +33,12 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $project = $this->getProject->__invoke((new Id($id))->value());
-        $this->authorize('create', $project);
+        $toBeDeleted = $this->project->find((new Id($id))->value());
 
-        $this->deleteProject->__invoke($id);
+        $this->conjoins->delete($toBeDeleted);
 
         return redirect()->action(IndexController::class);
     }

@@ -13,24 +13,10 @@ use App\Shared\ValueObjects\Status;
 use App\Shared\ValueObjects\Summary;
 use App\Shared\ValueObjects\Website;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class CreateRequest extends FormRequest
+final class CreateRequest extends FormRequest
 {
-
-    protected mixed $user_id;
-
-    protected mixed $name;
-
-    protected mixed $itemprop;
-
-    protected mixed $website;
-
-    protected mixed $summary;
-
-    protected mixed $status;
-
-    protected mixed $promoted;
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -44,65 +30,79 @@ class CreateRequest extends FormRequest
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getUserId(): Id
+    public function getUserId(Request $request): Id
     {
-        return (new Id($this->user_id));
+        return (new Id($request->input('user_id')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Name
      */
-    public function getName(): Name
+    public function getName(Request $request): Name
     {
-        return (new Name($this->name));
+        return (new Name($request->input('name')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Itemprop
      */
-    public function getItemprop(): Itemprop
+    public function getItemprop(Request $request): Itemprop
     {
-        return (new Itemprop($this->itemprop));
+        return (new Itemprop($request->input('itemprop')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Website
      */
-    public function getWebsite(): Website
+    public function getWebsite(Request $request): Website
     {
-        return (new Website($this->website));
+        return (new Website($request->input('website')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Summary
      */
-    public function getSummary(): Summary
+    public function getSummary(Request $request): Summary
     {
-        return (new Summary($this->summary));
+        return (new Summary($request->input('summary')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Status
      */
-    public function getStatus(): Status
+    public function getStatus(Request $request): Status
     {
-        return (new Status($this->status));
+        return (new Status($request->input('status')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Promoted
      */
-    public function getPromoted(): Promoted
+    public function getPromoted(Request $request): Promoted
     {
-        return (new Promoted($this->promoted));
+        return (new Promoted($request->input('promoted')));
     }
 
 }

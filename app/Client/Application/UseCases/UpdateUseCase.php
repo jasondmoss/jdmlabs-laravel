@@ -8,7 +8,7 @@ use App\Client\Infrastructure\Client;
 use App\Client\Infrastructure\Repositories\UpdateRepository;
 use App\Client\Interface\Requests\Http\UpdateRequest;
 
-class UpdateUseCase
+final readonly class UpdateUseCase
 {
 
     protected UpdateRepository $repository;

@@ -9,7 +9,6 @@ use App\Article\Interface\Requests\Http\CreateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
-
 class StoreController extends Controller
 {
 

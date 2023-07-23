@@ -6,33 +6,16 @@ namespace App\Article\Interface\Requests\Http;
 
 use App\Article\Infrastructure\Article;
 use App\Shared\ValueObjects\Body;
-use App\Shared\ValueObjects\Category;
 use App\Shared\ValueObjects\Id;
 use App\Shared\ValueObjects\Promoted;
 use App\Shared\ValueObjects\Status;
 use App\Shared\ValueObjects\Summary;
 use App\Shared\ValueObjects\Title;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 final class UpdateRequest extends FormRequest
 {
-
-    protected mixed $id;
-
-    protected mixed $user_id;
-
-    protected mixed $title;
-
-    protected mixed $summary;
-
-    protected mixed $body;
-
-    protected mixed $category;
-
-    protected mixed $status;
-
-    protected mixed $promoted;
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -48,74 +31,90 @@ final class UpdateRequest extends FormRequest
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getId(): Id
+    public function getId(Request $request): Id
     {
-        return (new Id($this->id));
+        return (new Id($request->input('id')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getUserId(): Id
+    public function getUserId(Request $request): Id
     {
-        return (new Id($this->user_id));
+        return (new Id($request->input('user_id')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Title
      */
-    public function getTitle(): Title
+    public function getTitle(Request $request): Title
     {
-        return (new Title($this->title));
+        return (new Title($request->input('title')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Summary
      */
-    public function getSummary(): Summary
+    public function getSummary(Request $request): Summary
     {
-        return (new Summary($this->summary));
+        return (new Summary($request->input('summary')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Body
      */
-    public function getBody(): Body
+    public function getBody(Request $request): Body
     {
-        return (new Body($this->body));
+        return (new Body($request->input('body')));
     }
 
 
     /**
-     * @return \App\Shared\ValueObjects\Category
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \App\Shared\ValueObjects\Id
      */
-    public function getCategory(): Category
+    public function getCategory(Request $request): Id
     {
-        return (new Category($this->category));
+        return (new Id($request->input('category')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Status
      */
-    public function getStatus(): Status
+    public function getStatus(Request $request): Status
     {
-        return (new Status($this->status));
+        return (new Status($request->input('status')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Promoted
      */
-    public function getPromoted(): Promoted
+    public function getPromoted(Request $request): Promoted
     {
-        return (new Promoted($this->promoted));
+        return (new Promoted($request->input('promoted')));
     }
 
 }

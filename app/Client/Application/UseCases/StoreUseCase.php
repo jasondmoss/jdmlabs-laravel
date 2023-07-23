@@ -8,7 +8,7 @@ use App\Client\Infrastructure\Client;
 use App\Client\Infrastructure\Repositories\StoreRepository;
 use App\Client\Interface\Requests\Http\CreateRequest;
 
-class StoreUseCase
+final readonly class StoreUseCase
 {
 
     protected StoreRepository $repository;

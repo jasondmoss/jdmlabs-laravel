@@ -39,7 +39,7 @@ class AdminListing extends Component
             ->latest('created_at')
             ->paginate(5);
 
-        return view('ae.client._list', [
+        return view('ae.client.list', [
             'clients' => $clients
         ]);
     }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-
 use App\Article\Infrastructure\Article;
 use App\Article\Infrastructure\Repositories\DestroyRepository;
 

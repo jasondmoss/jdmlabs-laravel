@@ -25,6 +25,7 @@ class UpdateRepository implements UpdateContract
 
     /**
      * @inheritDoc
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
     public function update(UpdateRequest $data): Client
     {

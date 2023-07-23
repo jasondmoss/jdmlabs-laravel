@@ -6,7 +6,7 @@ namespace App\Project\Application\Controllers;
 
 use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
-use App\Project\Application\UseCases\GetProjectUseCase;
+use App\Project\Infrastructure\Project;
 use App\Shared\ValueObjects\Id;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
@@ -14,15 +14,14 @@ use Illuminate\View\View;
 class EditController extends Controller
 {
 
-    protected GetProjectUseCase $getProject;
+    protected Project $project;
 
 
     /**
-     * @param \App\Project\Application\UseCases\GetProjectUseCase $getProject
      */
-    public function __construct(GetProjectUseCase $getProject)
+    public function __construct(Project $project)
     {
-        $this->getProject = $getProject;
+        $this->project = $project;
     }
 
 
@@ -30,17 +29,16 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\View\View
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function __invoke(string $id): View
     {
-        $project = $this->getProject->__invoke((new Id($id))->value());
-        $this->authorize('owner', $project);
+        $project = $this->project->find((new Id($id))->value());
 
-        $project->clients = Client::get()->pluck('name', 'id');
+        $clients = Client::get()->pluck('name', 'id');
 
         return ViewFacade::make('ProjectAdmin::edit', [
-            'project' => $project
+            'project' => $project,
+            'clients' => $clients
         ]);
     }
 

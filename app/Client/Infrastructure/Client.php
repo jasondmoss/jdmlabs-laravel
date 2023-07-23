@@ -68,7 +68,6 @@ class Client extends Model
     ];
 
     protected $with = [
-        'projects',
         'tags'
     ];
 

@@ -41,7 +41,7 @@ class AdminListing extends Component
             ->with('clients')
             ->paginate(10);
 
-        return view('ae.project._list', [
+        return view('ae.project.list', [
             'projects' => $projects
         ]);
     }

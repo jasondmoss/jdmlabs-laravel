@@ -6,14 +6,19 @@ namespace App\Project\Infrastructure;
 
 use App\Auth\Infrastructure\User;
 use App\Client\Infrastructure\Client;
+use App\Project\Application\Exceptions\CouldNotFindProject;
 use App\Project\Infrastructure\Database\ProjectFactory;
-use App\Shared\Application\Exceptions\CouldNotFindEntry;
 use App\Shared\Casts\ConvertNullToEmptyString;
 use App\Shared\Enums\Pinned;
 use App\Shared\Enums\Promoted;
 use App\Shared\Enums\Status;
+use App\Shared\Scopes\FindBySlug;
+use App\Shared\Scopes\WherePromoted;
+use App\Shared\Scopes\WherePublished;
+use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\Observable;
 use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,11 +26,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
+use Symfony\Component\Uid\Ulid;
+use UnexpectedValueException;
 
 class Project extends Model
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids, Observable;
+    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids,
+        Observable,
+        /* Scopes */
+        FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
 
@@ -33,23 +44,23 @@ class Project extends Model
 
     protected $primaryKey = 'id';
 
-    protected $guarded = [];
-
     protected $fillable = [
+        'user_id',
         'title',
         'slug',
         'subtitle',
         'website',
         'summary',
         'body',
+        'client_id',
         'status',
         'promoted',
         'pinned',
         'created_at',
         'updated_at',
-        'client_id',
-        'user_id'
     ];
+
+    protected $guarded = [];
 
     protected $casts = [
         'body' => ConvertNullToEmptyString::class,
@@ -60,7 +71,10 @@ class Project extends Model
         'pinned' => Pinned::class
     ];
 
-    protected $with = [];
+    protected $with = [
+        'clients',
+        'tags'
+    ];
 
 
     /**
@@ -111,22 +125,28 @@ class Project extends Model
 
 
     /**
-     * @param string $id
+     * @param string $key
      *
      * @return self
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
+     * @throws \App\Project\Application\Exceptions\CouldNotFindProject
      */
-    public function find(string $id): self
+    public function find(string $key): self
     {
-        $project = $this->newQuery()->find(
-            (new Id($id))->value()
-        );
+        if (! Ulid::isValid($key)) {
+            $slug = (new Slug($key))->value();
 
-        if (! $project instanceof self) {
-            throw CouldNotFindEntry::withId($id);
+            try {
+                return $this->newQuery()->slug($slug);
+            } catch (UnexpectedValueException) {
+                throw CouldNotFindProject::withSlug($slug);
+            }
         }
 
-        return $project;
+        try {
+            return $this->newQuery()->find((new Id($key))->value());
+        } catch (UnexpectedValueException) {
+            throw CouldNotFindProject::withId($key);
+        }
     }
 
 }

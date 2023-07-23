@@ -26,21 +26,16 @@ class ProjectFactory extends Factory
         $faker = FakerFactory::create();
 
         $title = Str::title($faker->sentence(10, true));
-        $slug = Str::of($title)->slug('-');
         $created = Date::today()->subDays(rand(0, 365));
 
         return [
             'id' => Str::ulid(),
             'title' => $title,
-            'slug' => $slug,
             'subtitle' => $faker->sentence(),
             'website' => 'https://' . $faker->domainName() . '/',
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(2, true),
 
-            /*'status' => $faker->randomElement(Status::values()),*/
-            /*'promoted' => $faker->randomElement(Promoted::values()),*/
-            /*'pinned' => $faker->randomElement(Pinned::values()),*/
             'status' => 'published',
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',
@@ -48,7 +43,6 @@ class ProjectFactory extends Factory
             'client_id' => Client::inRandomOrder()->first(),
             'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
 
-//            'published_at' => $faker->randomElement([ $created, Date::now() ]),
             'published_at' => $created,
 
             'created_at' => $created,

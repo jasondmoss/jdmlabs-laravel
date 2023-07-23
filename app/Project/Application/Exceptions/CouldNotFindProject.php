@@ -2,16 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Exceptions;
+namespace App\Project\Application\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-final class CouldNotFindCategory
-    extends Exception
-    implements HttpExceptionInterface
+final class CouldNotFindProject extends Exception implements HttpExceptionInterface
 {
+
+    /**
+     * @param string $id
+     *
+     * @return self
+     */
+    public static function withId(string $id): self
+    {
+        return new self("Could not find project with ID, '{$id}'.");
+    }
+
 
     /**
      * @param string $slug
@@ -20,7 +29,7 @@ final class CouldNotFindCategory
      */
     public static function withSlug(string $slug): self
     {
-        return new self("Could not find category, '{$slug}'.");
+        return new self("Could not find project by slug, '{$slug}'.");
     }
 
 

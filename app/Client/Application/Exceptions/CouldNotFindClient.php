@@ -8,7 +8,7 @@ use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-class CouldNotFindClient extends Exception implements HttpExceptionInterface
+final class CouldNotFindClient extends Exception implements HttpExceptionInterface
 {
 
     /**
