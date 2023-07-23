@@ -5,46 +5,35 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
-use App\Taxonomy\Category\Application\UseCases\SaveCategoryUseCase;
-use App\Taxonomy\Category\Interface\CategoryFormRequest;
+use App\Taxonomy\Category\Application\UseCases\UpdateUseCase;
+use App\Taxonomy\Category\Infrastructure\Category;
+use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
 use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
 
-    protected GetCategoryUseCase $getCategory;
+    protected Category $category;
 
-    protected SaveCategoryUseCase $updateCategory;
+    protected UpdateUseCase $conjoins;
 
 
-    /**
-     * @param \App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase $getCategory
-     * @param \App\Taxonomy\Category\Application\UseCases\SaveCategoryUseCase $updateCategory
-     */
-    public function __construct(
-        GetCategoryUseCase $getCategory,
-        SaveCategoryUseCase $updateCategory
-    ) {
-        $this->getCategory = $getCategory;
-        $this->updateCategory = $updateCategory;
+    public function __construct(Category $category, UpdateUseCase $conjoins)
+    {
+        $this->category = $category;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\CategoryFormRequest $request
+     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
-    public function __invoke(CategoryFormRequest $request): RedirectResponse
+    public function __invoke(CategoryRequest $request): RedirectResponse
     {
-        if (! empty($request->id)) {
-            $category = $this->getCategory->__invoke($request->id);
-
-            $this->authorize('create', $category);
-        }
-
-        $category = $this->updateCategory->__invoke($request);
+        $this->conjoins->update($request);
 
         return redirect()
             ->to($request->listing_page)

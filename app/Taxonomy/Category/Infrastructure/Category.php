@@ -5,8 +5,16 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Infrastructure;
 
 use App\Article\Infrastructure\Article;
-use App\Shared\Exceptions\CouldNotFindCategory;
+use App\Client\Infrastructure\Client;
+use App\Project\Infrastructure\Project;
+use App\Shared\Scopes\FindBySlug;
+use App\Shared\Scopes\WherePromoted;
+use App\Shared\Scopes\WherePublished;
+use App\Shared\Scopes\WhereRelated;
+use App\Shared\Traits\Observable;
 use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
+use App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory;
 use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,11 +22,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Symfony\Component\Uid\Ulid;
+use UnexpectedValueException;
 
 class Category extends Model
 {
 
-    use HasFactory, HasSlug, HasUlids;
+    use HasFactory, HasSlug, HasUlids,
+        Observable,
+        /* Scopes */
+        FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
 
     public $timestamps = true;
@@ -27,18 +40,14 @@ class Category extends Model
 
     protected $primaryKey = 'id';
 
-    protected $guarded = [];
-
     protected $fillable = [
         'name',
         'slug'
     ];
 
-    protected $casts = [];
+    protected $guarded = [];
 
-    /*protected $with = [
-        'articles'
-    ];*/
+    protected $casts = [];
 
 
     /**
@@ -56,6 +65,24 @@ class Category extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'category_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class, 'category_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class, 'category_id');
     }
 
 
@@ -80,22 +107,28 @@ class Category extends Model
 
 
     /**
-     * @param string $id
+     * @param string $key
      *
      * @return self
-     * @throws \App\Shared\Exceptions\CouldNotFindCategory
+     * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
-    public function find(string $id): self
+    public function find(string $key): self
     {
-        $article = $this->newQuery()->find(
-            (new Id($id))->value()
-        );
+        if (! Ulid::isValid($key)) {
+            $slug = (new Slug($key))->value();
 
-        if (! $article instanceof self) {
-            throw CouldNotFindCategory::withId($id);
+            try {
+                return $this->newQuery()->slug($slug);
+            } catch (UnexpectedValueException) {
+                throw CouldNotFindCategory::withSlug($slug);
+            }
         }
 
-        return $article;
+        try {
+            return $this->newQuery()->find((new Id($key))->value());
+        } catch (UnexpectedValueException) {
+            throw CouldNotFindCategory::withId($key);
+        }
     }
 
 }

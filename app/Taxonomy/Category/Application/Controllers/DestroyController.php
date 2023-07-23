@@ -6,29 +6,22 @@ namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
 use App\Shared\ValueObjects\Id;
-use App\Taxonomy\Category\Application\UseCases\DeleteCategoryUseCase;
-use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
+use App\Taxonomy\Category\Application\UseCases\DestroyUseCase;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
 {
 
-    protected GetCategoryUseCase $getCategory;
+    protected Category $category;
 
-    protected DeleteCategoryUseCase $deleteCategory;
+    protected DestroyUseCase $conjoins;
 
 
-    /**
-     * @param \App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase $getCategory
-     * @param \App\Taxonomy\Category\Application\UseCases\DeleteCategoryUseCase $deleteCategory
-     */
-    public function __construct(
-        GetCategoryUseCase $getCategory,
-        DeleteCategoryUseCase $deleteCategory
-    )
+    public function __construct(Category $category, DestroyUseCase $conjoins)
     {
-        $this->getCategory = $getCategory;
-        $this->deleteCategory = $deleteCategory;
+        $this->category = $category;
+        $this->conjoins = $conjoins;
     }
 
 
@@ -36,13 +29,13 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $category = $this->getCategory->__invoke((new Id($id))->value());
-        $this->authorize('create', $category);
+        $toBeDeleted = $this->category->find((new Id($id))->value());
 
-        $this->deleteCategory->__invoke($id);
+        $this->conjoins->delete($toBeDeleted);
 
         return redirect()->action(IndexController::class);
     }

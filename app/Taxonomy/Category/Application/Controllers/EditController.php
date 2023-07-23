@@ -7,21 +7,22 @@ namespace App\Taxonomy\Category\Application\Controllers;
 use App\Laravel\Application\Controller;
 use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller
 {
 
-    protected GetCategoryUseCase $getCategory;
+    protected Category $category;
 
 
     /**
-     * @param \App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase $getCategory
+     * @param \App\Taxonomy\Category\Infrastructure\Category $category
      */
-    public function __construct(GetCategoryUseCase $getCategory)
+    public function __construct(Category $category)
     {
-        $this->getCategory = $getCategory;
+        $this->category = $category;
     }
 
 
@@ -29,11 +30,11 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
+     * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
     public function __invoke(string $id): View
     {
-        $category = $this->getCategory->__invoke((new Id($id))->value());
-        $this->authorize('create', $category);
+        $category = $this->category->find((new Id($id))->value());
 
         return ViewFacade::make('Category::edit', [
             'category' => $category

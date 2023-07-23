@@ -53,10 +53,7 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function updating(Category $category): void
-    {
-        $category->slug = Str::of($category->title)->slug('-');
-    }
+    public function updating(Category $category): void {}
 
 
     /**

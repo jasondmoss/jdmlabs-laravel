@@ -5,36 +5,34 @@ declare(strict_types=1);
 namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
-use App\Taxonomy\Category\Application\UseCases\SaveCategoryUseCase;
+use App\Taxonomy\Category\Application\UseCases\StoreUseCase;
 use App\Taxonomy\Category\Infrastructure\Category;
-use App\Taxonomy\Category\Interface\CategoryFormRequest;
+use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
 
-    protected SaveCategoryUseCase $saveCategory;
+    protected StoreUseCase $conjoins;
 
 
     /**
-     * @param \App\Taxonomy\Category\Application\UseCases\SaveCategoryUseCase $saveCategory
+     * @param \App\Taxonomy\Category\Application\UseCases\StoreUseCase $conjoins
      */
-    public function __construct(SaveCategoryUseCase $saveCategory)
+    public function __construct(StoreUseCase $conjoins)
     {
-        $this->saveCategory = $saveCategory;
+        $this->conjoins = $conjoins;
     }
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\CategoryFormRequest $request
+     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(CategoryFormRequest $request): RedirectResponse
+    public function __invoke(CategoryRequest $request): RedirectResponse
     {
-        $this->authorize('create', Category::class);
-
-        $category = $this->saveCategory->__invoke($request);
+        $this->conjoins->store($request);
 
         return redirect()->action(IndexController::class);
     }

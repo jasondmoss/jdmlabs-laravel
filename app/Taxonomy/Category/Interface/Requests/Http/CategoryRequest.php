@@ -2,26 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Category\Interface;
+namespace App\Taxonomy\Category\Interface\Requests\Http;
 
 use App\Shared\ValueObjects\Id;
 use App\Shared\ValueObjects\Name;
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class CategoryFormRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
-
-    private mixed $id;
-
-    private mixed $name;
-
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     * @throws \App\Shared\Application\Exceptions\CouldNotFindEntry
      */
     public function authorize(): bool
     {
@@ -30,20 +25,24 @@ class CategoryFormRequest extends FormRequest
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Id
      */
-    public function getId(): Id
+    public function getId(Request $request): Id
     {
-        return (new Id($this->id));
+        return (new Id($request->input('id')));
     }
 
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Shared\ValueObjects\Name
      */
-    public function getName(): Name
+    public function getName(Request $request): Name
     {
-        return (new Name($this->name));
+        return (new Name($request->input('name')));
     }
 
 }
