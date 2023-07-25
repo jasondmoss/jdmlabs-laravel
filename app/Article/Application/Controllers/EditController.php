@@ -36,7 +36,7 @@ class EditController extends Controller
     {
         $article = $this->article->find((new Id($id))->value());
 
-        $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+        $categories = Category::get()->pluck('name', 'id');
 
         return ViewFacade::make('ArticleAdmin::edit', [
             'article' => $article,

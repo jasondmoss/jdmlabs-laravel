@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Website
 {
 
@@ -15,6 +17,10 @@ final readonly class Website
      */
     public function __construct(string $website)
     {
+        if (! $website || ! filter_var($website, FILTER_VALIDATE_URL)) {
+            throw new RequiredException('You must provide a valid website URL');
+        }
+
         $this->website = $website;
     }
 

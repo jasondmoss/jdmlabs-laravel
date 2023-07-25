@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Category\Infrastructure\Repositories;
 
-use App\Taxonomy\Category\Domain\Contracts\StoreContract;
+use App\Taxonomy\Category\Domain\Contracts\UpdateContract;
 use App\Taxonomy\Category\Infrastructure\Category;
-use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
+use App\Taxonomy\Category\Interface\Http\CategoryRequest;
 
-class UpdateRepository implements StoreContract
+class UpdateRepository implements UpdateContract
 {
 
     protected Category $category;
@@ -21,14 +21,14 @@ class UpdateRepository implements StoreContract
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $data
+     * @param \App\Taxonomy\Category\Interface\Http\CategoryRequest $data
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
      * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
     public function update(CategoryRequest $data): Category
     {
-        $instance = $this->category->find($data->input('id'));
+        $instance = $this->category->find($data->id);
 
         $instance->update([
             'name' => $data->name,

@@ -6,8 +6,7 @@ namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
 use App\Taxonomy\Category\Application\UseCases\StoreUseCase;
-use App\Taxonomy\Category\Infrastructure\Category;
-use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
+use App\Taxonomy\Category\Interface\Http\CategoryRequest;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
@@ -26,7 +25,7 @@ class StoreController extends Controller
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $request
+     * @param \App\Taxonomy\Category\Interface\Http\CategoryRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

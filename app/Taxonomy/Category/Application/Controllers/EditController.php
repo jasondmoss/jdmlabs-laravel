@@ -6,8 +6,8 @@ namespace App\Taxonomy\Category\Application\Controllers;
 
 use App\Laravel\Application\Controller;
 use App\Shared\ValueObjects\Id;
-use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
 use App\Taxonomy\Category\Infrastructure\Category;
+use App\Taxonomy\Category\Application\UseCases\GetCategoryUseCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 

@@ -81,17 +81,17 @@
       <li class="menu-item">
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
-      <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
-        <a href="{{ action(App\Client\Application\Controllers\IndexController::class) }}" class="menu-link">
-          <span>{{ __('Clients') }}</span></a>
+      <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
+        <a href="{{ action(App\Article\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
+          <span>{{ __('Articles') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
         <a href="{{ action(App\Project\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
-      <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
-        <a href="{{ action(App\Article\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
-          <span>{{ __('Articles') }}</span></a>
+      <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
+        <a href="{{ action(App\Client\Application\Controllers\IndexController::class) }}" class="menu-link">
+          <span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item">
         <a href="{{ action(\App\Taxonomy\Category\Application\Controllers\IndexController::class) }}" title="" class="menu-link">

@@ -6,7 +6,7 @@ namespace App\Article\Infrastructure\Repositories;
 
 use App\Article\Domain\Contracts\StoreContract;
 use App\Article\Infrastructure\Article;
-use App\Article\Interface\Requests\Http\CreateRequest;
+use App\Article\Interface\Http\CreateRequest;
 
 final class StoreRepository implements StoreContract
 {

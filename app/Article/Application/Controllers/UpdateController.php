@@ -6,7 +6,7 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\UpdateUseCase;
 use App\Article\Infrastructure\Article;
-use App\Article\Interface\Requests\Http\UpdateRequest;
+use App\Article\Interface\Http\UpdateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -31,7 +31,7 @@ class UpdateController extends Controller
 
 
     /**
-     * @param \App\Article\Interface\Requests\Http\UpdateRequest $request
+     * @param \App\Article\Interface\Http\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

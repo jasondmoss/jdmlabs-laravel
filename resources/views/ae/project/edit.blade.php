@@ -31,6 +31,7 @@ use App\Shared\Enums\Status;
     ->open()
   }}
 
+  {{ html()->hidden('id', $project->id) }}
   {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('listing_page', URL::previous()) }}
 
@@ -86,6 +87,15 @@ use App\Shared\Enums\Status;
         {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Select a client') }}
       </div>
     </fieldset>
+
+    {{-- <fieldset class="container--taxonomy">
+      <legend>{{ __('Taxonomy') }}</legend>
+
+      <div class="form-field taxonomy">
+        {{ html()->label('Categories')->for('category') }}
+        {{ html()->select('category', $categories)->class('form-control select')->attribute('required')->placeholder('Choose a category') }}
+      </div>
+    </fieldset> --}}
 
     {{--<fieldset class="container--taxonomy">
       <legend>{{ __('Taxonomy') }}</legend>

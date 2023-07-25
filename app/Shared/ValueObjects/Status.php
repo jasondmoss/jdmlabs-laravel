@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
 use Illuminate\Validation\Rules\Enum;
 
 final readonly class Status
@@ -17,7 +18,10 @@ final readonly class Status
      */
     public function __construct(string $status)
     {
-        /*$this->status = new Enum(Status::class);*/
+        if (! $status) {
+            throw new RequiredException('You must declare the status state');
+        }
+
         $this->status = new Enum($status);
     }
 

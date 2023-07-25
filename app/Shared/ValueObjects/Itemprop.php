@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Itemprop
 {
 
@@ -15,6 +17,12 @@ final readonly class Itemprop
      */
     public function __construct(string $itemprop)
     {
+        if (! $itemprop) {
+            throw new RequiredException(
+                'You must provide a valid itemprop value. See https://schema.org/docs/gs.html#microdata_itemprop'
+            );
+        }
+
         $this->itemprop = $itemprop;
     }
 

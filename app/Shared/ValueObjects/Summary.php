@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Summary
 {
 
@@ -15,6 +17,10 @@ final readonly class Summary
      */
     public function __construct(string $summary)
     {
+        if (! $summary) {
+            throw new RequiredException('The summary field is required');
+        }
+
         $this->summary = $summary;
     }
 

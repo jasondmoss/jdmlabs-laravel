@@ -75,9 +75,18 @@ use App\Shared\Enums\Status;
 
       <div class="form-field clients">
         {{ html()->label('Client')->for('client_id') }}
-        {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Select a client') }}
+        {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Choose a client') }}
       </div>
     </fieldset>
+
+    {{-- <fieldset class="container--taxonomy">
+      <legend>{{ __('Taxonomy') }}</legend>
+
+      <div class="form-field taxonomy">
+        {{ html()->label('Categories')->for('category') }}
+        {{ html()->select('category', $categories)->class('form-control select')->attribute('required')->placeholder('Choose a category') }}
+      </div>
+    </fieldset> --}}
 
     {{--<fieldset class="container--taxonomy">
       <legend>{{ __('Taxonomy') }}</legend>

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Id
 {
 
@@ -15,6 +17,10 @@ final readonly class Id
      */
     public function __construct(string $id)
     {
+        if (! $id) {
+            throw new RequiredException('A valid Ulid string is Required');
+        }
+
         $this->id = $id;
     }
 

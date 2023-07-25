@@ -6,7 +6,7 @@ namespace App\Project\Infrastructure\Repositories;
 
 use App\Project\Domain\Contracts\UpdateContract;
 use App\Project\Infrastructure\Project;
-use App\Project\Interface\Requests\Http\UpdateRequest;
+use App\Project\Interface\Http\UpdateRequest;
 
 final class UpdateRepository implements UpdateContract
 {
@@ -39,8 +39,11 @@ final class UpdateRepository implements UpdateContract
             'promoted' => $data->promoted,
             'pinned' => $data->pinned,
             'client_id' => $data->client_id,
+            /*'category_id' => $data->category,*/
             'user_id' => $data->user_id
         ]);
+
+        return Project::findOrFail($instance->id);
     }
 
 }

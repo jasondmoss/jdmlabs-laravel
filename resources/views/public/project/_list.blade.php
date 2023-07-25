@@ -16,7 +16,7 @@
         <nav class="taxonomy">
           {{--@foreach($project->categories as $category)
             {{ $loop->first ? '' : ', ' }}
-            <a itemprop="tag" href="/projects/topic/{{ $category->slug }}">{{ $category->name }}</a>
+            <a itemprop="tag" href="/projects/category/{{ $category->slug }}">{{ $category->name }}</a>
           @endforeach--}}
         </nav>
       </header>

@@ -7,7 +7,7 @@ namespace App\Project\Application\Controllers;
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\UpdateUseCase;
 use App\Project\Infrastructure\Project;
-use App\Project\Interface\Requests\Http\UpdateRequest;
+use App\Project\Interface\Http\UpdateRequest;
 use Illuminate\Http\RedirectResponse;
 
 

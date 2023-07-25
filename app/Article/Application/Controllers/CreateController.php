@@ -17,7 +17,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $categories = Category::all()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+        $categories = Category::get()->pluck('name', 'id');
 
         return ViewFacade::make('ArticleAdmin::create', [
             'categories' => $categories

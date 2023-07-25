@@ -6,6 +6,7 @@ namespace App\Project\Application\Controllers;
 
 use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
+use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
@@ -19,8 +20,11 @@ class CreateController extends Controller
     {
         $clients = Client::get()->pluck('name', 'id');
 
+//        $categories = Category::get()->pluck('name', 'id');
+
         return ViewFacade::make('ProjectAdmin::create', [
-            'clients' => $clients
+            'clients' => $clients,
+            /*'categories' => $categories*/
         ]);
     }
 

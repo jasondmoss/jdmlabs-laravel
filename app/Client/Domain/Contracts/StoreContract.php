@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Client\Domain\Contracts;
 
 use App\Client\Infrastructure\Client;
-use App\Client\Interface\Requests\Http\CreateRequest;
+use App\Client\Interface\Http\CreateRequest;
 
 interface StoreContract
 {
 
     /**
-     * @param \App\Client\Interface\Requests\Http\CreateRequest $data
+     * @param \App\Client\Interface\Http\CreateRequest $data
      *
      * @return \App\Client\Infrastructure\Client
      */

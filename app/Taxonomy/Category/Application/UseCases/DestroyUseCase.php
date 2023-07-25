@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Category\Application\UseCases;
 
-use App\Taxonomy\Category\Infrastructure\Category;
 use App\Taxonomy\Category\Infrastructure\Repositories\DeleteRepository;
+use App\Taxonomy\Category\Infrastructure\Category;
 
 final readonly class DestroyUseCase
 {

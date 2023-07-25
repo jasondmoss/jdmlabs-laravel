@@ -6,7 +6,7 @@ namespace App\Taxonomy\Category\Application\UseCases;
 
 use App\Taxonomy\Category\Infrastructure\Category;
 use App\Taxonomy\Category\Infrastructure\Repositories\StoreRepository;
-use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
+use App\Taxonomy\Category\Interface\Http\CategoryRequest;
 
 final class StoreUseCase
 {
@@ -24,7 +24,7 @@ final class StoreUseCase
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $data
+     * @param \App\Taxonomy\Category\Interface\Http\CategoryRequest $data
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
      */

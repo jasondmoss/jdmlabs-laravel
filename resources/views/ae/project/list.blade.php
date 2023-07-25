@@ -4,6 +4,7 @@ use App\Project\Application\Controllers as Project;
 use App\Shared\Enums\Pinned;
 use App\Shared\Enums\Promoted;
 use App\Shared\Enums\Status;
+use App\Taxonomy\Category\Application\Controllers as Category;
 @endphp
 @push('styles')
   @once
@@ -165,17 +166,18 @@ use App\Shared\Enums\Status;
 
           <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
 
-          <nav class="item--taxonomy">
-            {{--@if (count($project->categories) > 0)
-              @foreach($project->categories as $category)
-                {{ $loop->first ? '' : ', ' }}
-                <span itemprop="tag">{{ $category->name }}</span>
-              @endforeach
+          {{-- <nav class="navigation item--taxonomy">
+            @if (! is_null($project->category))
+              <p class="">
+                <i class="fa-solid fa-tag" style="color: #2ec27e;"></i>
+                <a itemprop="tag" href="{{ action(Category\EditController::class, $project->category->slug) }}" title="{{ __('Edit category') }}">{{ $Category->category->name }}</a>
+              </p>
             @else
-              <p class="w-full">&#160;</p>
-            @endif--}}
-            <p class="w-full">&#160;</p>
-          </nav>
+              <p class="w-full">
+                <i class="fa-solid fa-tag" style="color: var(--gray-light)"></i> &#160;
+              </p>
+            @endif
+          </nav> --}}
 
           <aside class="item--meta">
             <span class="status" title="{{ __('Published') }}">{!! Status::icon($project->status) !!}</span>

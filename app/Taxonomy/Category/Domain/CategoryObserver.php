@@ -6,7 +6,6 @@ namespace App\Taxonomy\Category\Domain;
 
 use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 
 final readonly class CategoryObserver
 {

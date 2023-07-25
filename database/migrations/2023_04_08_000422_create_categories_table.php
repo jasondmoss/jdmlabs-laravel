@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->ulid('id')->primary();
 
             $table->string('name');
+            $table->string('slug')->unique();
             $table->unsignedInteger('order')->nullable();
-            $table->string('slug');
 
             $table->timestamps();
         });

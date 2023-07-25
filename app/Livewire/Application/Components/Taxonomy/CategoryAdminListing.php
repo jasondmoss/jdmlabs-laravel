@@ -48,7 +48,7 @@ class CategoryAdminListing extends Component
             ->orderBy('order')
             ->paginate(50);
 
-        return view('ae.taxonomy.category._list', [
+        return view('ae.taxonomy.category.list', [
             'categories' => $categories
         ]);
     }

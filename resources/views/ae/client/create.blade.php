@@ -76,6 +76,20 @@ use App\Shared\Enums\Status;
         @enderror
       </div>
     </fieldset>
+
+    {{-- <fieldset class="container--taxonomy">
+      <legend>{{ __('Taxonomy') }}</legend>
+
+      <div class="form-field taxonomy">
+        {{ html()->label('Categories')->for('category') }}
+        <select id="taxonomy" name="category">
+          <option value="">----</option>
+          @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach
+        </select>
+      </div>
+    </fieldset> --}}
   </div>
 
   <aside class="editor--side">

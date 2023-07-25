@@ -18,6 +18,7 @@ use App\Shared\Traits\Observable;
 use App\Shared\ValueObjects\Id;
 use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Category\Infrastructure\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Tags\HasTags;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
@@ -33,8 +33,7 @@ use UnexpectedValueException;
 class Article extends Model
 {
 
-    use HasEvents, HasFactory, HasSlug, HasTags, HasUlids,
-        Observable,
+    use HasEvents, HasFactory, HasSlug, HasUlids, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
@@ -69,8 +68,7 @@ class Article extends Model
     ];
 
     protected $with = [
-        'category',
-        'tags'
+        'category'
     ];
 
 
@@ -86,18 +84,18 @@ class Article extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(User::class);
     }
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
 
@@ -124,25 +122,25 @@ class Article extends Model
     /**
      * @param string $key
      *
-     * @return self
+     * @return \Illuminate\Database\Eloquent\Builder|\App\Article\Infrastructure\Article
      * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function find(string $key): self
+    public function find(string $key): Builder|self
     {
-        if (! Ulid::isValid($key)) {
-            $slug = (new Slug($key))->value();
-
+        if (Ulid::isValid((new Id($key))->value())) {
             try {
-                return $this->newQuery()->slug($slug);
+                return $this->newQuery()->find($key);
             } catch (UnexpectedValueException) {
-                throw CouldNotFindArticle::withSlug($slug);
+                throw CouldNotFindArticle::withId($key);
             }
         }
 
+        $slug = (new Slug($key))->value();
+
         try {
-            return $this->newQuery()->find((new Id($key))->value());
+            return $this->newQuery()->slug($slug);
         } catch (UnexpectedValueException) {
-            throw CouldNotFindArticle::withId($key);
+            throw CouldNotFindArticle::withSlug($slug);
         }
     }
 

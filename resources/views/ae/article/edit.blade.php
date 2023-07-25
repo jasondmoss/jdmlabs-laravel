@@ -28,8 +28,8 @@
     ->open()
   }}
 
-  {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('id', $article->id) }}
+  {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('listing_page', URL::previous()) }}
 
   <header class="editor--header">
@@ -68,12 +68,20 @@
 
       <div class="form-field taxonomy">
         {{ html()->label('Categories')->for('category') }}
-        <select id="taxonomy" name="category">
+        {{
+          html()
+            ->select('category', $categories)
+            ->value($article->category_id)
+            ->class('form-control select')
+            ->attribute('required')
+            ->placeholder('Choose a category')
+         }}
+        {{-- <select id="taxonomy" name="category">
           <option value="">----</option>
           @foreach ($categories as $category)
             <option value="{{ $category->id }}" @if (! is_null($article->category_id) && ($article->category_id === $category->id)) selected @endif>{{ $category->name }}</option>
           @endforeach
-        </select>
+        </select> --}}
       </div>
     </fieldset>
 

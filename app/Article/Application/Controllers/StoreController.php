@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\StoreUseCase;
-use App\Article\Interface\Requests\Http\CreateRequest;
+use App\Article\Interface\Http\CreateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -25,7 +25,7 @@ class StoreController extends Controller
 
 
     /**
-     * @param \App\Article\Interface\Requests\Http\CreateRequest $request
+     * @param \App\Article\Interface\Http\CreateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

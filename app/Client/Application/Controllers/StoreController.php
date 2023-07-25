@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Client\Application\Controllers;
 
 use App\Client\Application\UseCases\StoreUseCase;
-use App\Client\Interface\Requests\Http\CreateRequest;
+use App\Client\Interface\Http\CreateRequest;
 use App\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 

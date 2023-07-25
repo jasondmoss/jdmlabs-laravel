@@ -6,7 +6,7 @@ namespace App\Project\Application\UseCases;
 
 use App\Project\Infrastructure\Project;
 use App\Project\Infrastructure\Repositories\StoreRepository;
-use App\Project\Interface\Requests\Http\CreateRequest;
+use App\Project\Interface\Http\CreateRequest;
 
 final readonly class StoreUseCase
 {
@@ -24,7 +24,7 @@ final readonly class StoreUseCase
 
 
     /**
-     * @param \App\Project\Interface\Requests\Http\CreateRequest $data
+     * @param \App\Project\Interface\Http\CreateRequest $data
      *
      * @return \App\Project\Infrastructure\Project
      */

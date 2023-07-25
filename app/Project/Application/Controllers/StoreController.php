@@ -7,7 +7,7 @@ namespace App\Project\Application\Controllers;
 use App\Laravel\Application\Controller;
 use App\Project\Application\UseCases\StoreUseCase;
 use App\Project\Infrastructure\Project;
-use App\Project\Interface\Requests\Http\CreateRequest;
+use App\Project\Interface\Http\CreateRequest;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
@@ -26,7 +26,7 @@ class StoreController extends Controller
 
 
     /**
-     * @param \App\Project\Interface\Requests\Http\CreateRequest $request
+     * @param \App\Project\Interface\Http\CreateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

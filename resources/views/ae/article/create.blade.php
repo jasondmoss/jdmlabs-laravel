@@ -72,12 +72,7 @@ use App\Shared\Enums\Promoted;
 
       <div class="form-field taxonomy">
         {{ html()->label('Categories')->for('category') }}
-        <select id="taxonomy" name="category">
-          <option value="">----</option>
-          @foreach ($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-          @endforeach
-        </select>
+        {{ html()->select('category', $categories)->class('form-control select')->attribute('required')->placeholder('Choose a category') }}
       </div>
     </fieldset>
 

@@ -6,7 +6,7 @@ namespace App\Client\Infrastructure\Repositories;
 
 use App\Client\Domain\Contracts\UpdateContract;
 use App\Client\Infrastructure\Client;
-use App\Client\Interface\Requests\Http\UpdateRequest;
+use App\Client\Interface\Http\UpdateRequest;
 
 class UpdateRepository implements UpdateContract
 {

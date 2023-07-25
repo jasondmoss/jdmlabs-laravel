@@ -6,7 +6,7 @@ namespace App\Taxonomy\Category\Application\UseCases;
 
 use App\Taxonomy\Category\Infrastructure\Category;
 use App\Taxonomy\Category\Infrastructure\Repositories\UpdateRepository;
-use App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest;
+use App\Taxonomy\Category\Interface\Http\CategoryRequest;
 
 final readonly class UpdateUseCase
 {
@@ -24,7 +24,7 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Taxonomy\Category\Interface\Requests\Http\CategoryRequest $data
+     * @param \App\Taxonomy\Category\Interface\Http\CategoryRequest $data
      *
      * @return \App\Taxonomy\Category\Infrastructure\Category
      * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory

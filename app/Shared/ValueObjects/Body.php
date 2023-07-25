@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Body
 {
 
@@ -15,6 +17,10 @@ final readonly class Body
      */
     public function __construct(string $body)
     {
+        if (! $body) {
+            throw new RequiredException('The body field is Required');
+        }
+
         $this->body = $body;
     }
 

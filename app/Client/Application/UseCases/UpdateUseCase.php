@@ -6,7 +6,7 @@ namespace App\Client\Application\UseCases;
 
 use App\Client\Infrastructure\Client;
 use App\Client\Infrastructure\Repositories\UpdateRepository;
-use App\Client\Interface\Requests\Http\UpdateRequest;
+use App\Client\Interface\Http\UpdateRequest;
 
 final readonly class UpdateUseCase
 {
@@ -24,7 +24,7 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Client\Interface\Requests\Http\UpdateRequest $data
+     * @param \App\Client\Interface\Http\UpdateRequest $data
      *
      * @return \App\Client\Infrastructure\Client
      */

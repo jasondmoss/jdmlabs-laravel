@@ -16,6 +16,7 @@ use App\Shared\ValueObjects\Id;
 use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory;
 use App\Taxonomy\Category\Infrastructure\Database\CategoryFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,8 +29,7 @@ use UnexpectedValueException;
 class Category extends Model
 {
 
-    use HasFactory, HasSlug, HasUlids,
-        Observable,
+    use HasFactory, HasSlug, HasUlids, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
@@ -109,25 +109,25 @@ class Category extends Model
     /**
      * @param string $key
      *
-     * @return self
+     * @return \Illuminate\Database\Eloquent\Builder|\App\Taxonomy\Category\Infrastructure\Category
      * @throws \App\Taxonomy\Category\Application\Exceptions\CouldNotFindCategory
      */
-    public function find(string $key): self
+    public function find(string $key): Builder|self
     {
-        if (! Ulid::isValid($key)) {
-            $slug = (new Slug($key))->value();
-
+        if (Ulid::isValid((new Id($key))->value())) {
             try {
-                return $this->newQuery()->slug($slug);
+                return $this->newQuery()->find($key);
             } catch (UnexpectedValueException) {
-                throw CouldNotFindCategory::withSlug($slug);
+                throw CouldNotFindCategory::withId($key);
             }
         }
 
+        $slug = (new Slug($key))->value();
+
         try {
-            return $this->newQuery()->find((new Id($key))->value());
+            return $this->newQuery()->slug($slug);
         } catch (UnexpectedValueException) {
-            throw CouldNotFindCategory::withId($key);
+            throw CouldNotFindCategory::withSlug($slug);
         }
     }
 

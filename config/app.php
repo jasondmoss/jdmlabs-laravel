@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-use App\Article\ArticleAuthServiceProvider;
-use App\Article\ArticleEventServiceProvider;
-use App\Article\ArticleServiceProvider;
-use App\Auth\FortifyServiceProvider;
-use App\Client\ClientAuthServiceProvider;
-use App\Client\ClientEventServiceProvider;
-use App\Client\ClientServiceProvider;
+use App\Article\Application\Providers\ArticleAuthServiceProvider;
+use App\Article\Application\Providers\ArticleEventServiceProvider;
+use App\Article\Application\Providers\ArticleServiceProvider;
+use App\Auth\Application\Providers\FortifyServiceProvider;
+use App\Client\Application\Providers\ClientAuthServiceProvider;
+use App\Client\Application\Providers\ClientEventServiceProvider;
+use App\Client\Application\Providers\ClientServiceProvider;
 use App\Laravel\Application\Providers\AppServiceProvider;
 use App\Laravel\Application\Providers\AuthServiceProvider as AppAuthServiceProvider;
 use App\Laravel\Application\Providers\BroadcastServiceProvider as AppBroadcastServiceProvider;
 use App\Laravel\Application\Providers\EventServiceProvider;
 use App\Laravel\Application\Providers\RouteServiceProvider;
-use App\Project\ProjectAuthServiceProvider;
-use App\Project\ProjectEventServiceProvider;
-use App\Project\ProjectServiceProvider;
-use App\Taxonomy\TaxonomyAuthServiceProvider;
-use App\Taxonomy\TaxonomyEventServiceProvider;
-use App\Taxonomy\TaxonomyServiceProvider;
+use App\Project\Application\Providers\ProjectAuthServiceProvider;
+use App\Project\Application\Providers\ProjectEventServiceProvider;
+use App\Project\Application\Providers\ProjectServiceProvider;
+use App\Taxonomy\Category\Application\Providers\CategoryAuthServiceProvider;
+use App\Taxonomy\Category\Application\Providers\CategoryEventServiceProvider;
+use App\Taxonomy\Category\Application\Providers\CategoryServiceProvider;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -116,9 +116,9 @@ return [
         ProjectEventServiceProvider::class,
         ProjectServiceProvider::class,
 
-        TaxonomyAuthServiceProvider::class,
-        TaxonomyEventServiceProvider::class,
-        TaxonomyServiceProvider::class,
+        CategoryAuthServiceProvider::class,
+        CategoryEventServiceProvider::class,
+        CategoryServiceProvider::class,
 
     ],
 

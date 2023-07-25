@@ -8,7 +8,7 @@
     @if (! is_null($article->category))
       <p class="">
         <span>{{ __('Filed under') }}:</span>
-        <a itemprop="tag" href="/articles/topic/{{ $article->category->slug }}">{{ $article->category->name }}</a>
+        <a itemprop="tag" href="/articles/category/{{ $article->category->slug }}">{{ $article->category->name }}</a>
       </p>
     @endif
   </header>

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\ValueObjects;
 
+use App\Shared\Exceptions\RequiredException;
+
 final readonly class Name
 {
 
@@ -15,6 +17,10 @@ final readonly class Name
      */
     public function __construct(string $name)
     {
+        if (! $name) {
+            throw new RequiredException('The name field is required');
+        }
+
         $this->name = $name;
     }
 

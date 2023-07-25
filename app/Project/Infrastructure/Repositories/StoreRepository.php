@@ -6,7 +6,7 @@ namespace App\Project\Infrastructure\Repositories;
 
 use App\Project\Domain\Contracts\StoreContract;
 use App\Project\Infrastructure\Project;
-use App\Project\Interface\Requests\Http\CreateRequest;
+use App\Project\Interface\Http\CreateRequest;
 
 final class StoreRepository implements StoreContract
 {
@@ -26,6 +26,7 @@ final class StoreRepository implements StoreContract
             'promoted' => $data->promoted,
             'pinned' => $data->pinned,
             'client_id' => $data->client_id,
+            /*'category_id' => $data->category,*/
             'user_id' => $data->user_id
         ]);
 

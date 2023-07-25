@@ -1,5 +1,8 @@
 @php
-  use App\Article\Application\Controllers as Article;use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;use App\Taxonomy\Category\Application\Controllers as Category;
+use App\Article\Application\Controllers as Article;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
+use App\Taxonomy\Category\Application\Controllers as Category;
 @endphp
 
 @push('styles')

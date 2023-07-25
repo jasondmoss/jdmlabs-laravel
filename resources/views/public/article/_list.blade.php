@@ -16,7 +16,7 @@ use App\Article\Application\Controllers as Article;
           <nav class="taxonomy">
             {{--@foreach($article->categories as $category)
               {{ $loop->first ? '' : ', ' }}
-              <a itemprop="tag" href="/articles/topic/{{ $category->slug }}">{{ $category->name }}</a>
+              <a itemprop="tag" href="/articles/category/{{ $category->slug }}">{{ $category->name }}</a>
             @endforeach--}}
           </nav>
         </header>
