@@ -16,7 +16,6 @@ return new class extends Migration {
 
             $table->string('name');
             $table->string('slug')->unique();
-            $table->unsignedInteger('order')->nullable();
 
             $table->timestamps();
         });
@@ -28,7 +27,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles_categories');
+        Schema::dropIfExists('categories');
     }
 
 };

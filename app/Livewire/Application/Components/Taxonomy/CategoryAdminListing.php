@@ -15,9 +15,9 @@ class CategoryAdminListing extends Component
 
     use AuthorizesRequests, WithPagination;
 
-    public string $search = '';
-
     protected string $paginationTheme = 'tailwind';
+
+    public string $search = '';
 
 
     /**
@@ -45,7 +45,6 @@ class CategoryAdminListing extends Component
     {
         $categories = Category::where('name', 'LIKE', '%' . $this->search . '%')
             ->withCount('articles')
-            ->orderBy('order')
             ->paginate(50);
 
         return view('ae.taxonomy.category.list', [

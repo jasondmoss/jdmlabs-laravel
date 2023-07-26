@@ -45,10 +45,6 @@ class Category extends Model
         'slug'
     ];
 
-    protected $guarded = [];
-
-    protected $casts = [];
-
 
     /**
      * @return \App\Taxonomy\Category\Infrastructure\Database\CategoryFactory

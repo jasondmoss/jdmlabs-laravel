@@ -32,8 +32,7 @@ class UpdateRepository implements UpdateContract
 
         $instance->update([
             'name' => $data->name,
-            'slug' => $data->slug,
-            'order' => $data->order
+            'slug' => $data->slug
         ]);
 
         return Category::findOrFail($instance->id);

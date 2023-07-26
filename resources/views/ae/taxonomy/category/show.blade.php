@@ -1,4 +1,4 @@
-<x-ae.layout title="Categories" page="index" livewire="true">
+<x-ae.layout title="Taxonomy: Categories" page="index" livewire="true">
   <header class="panel-header">
     <h1>{{ __('Categories') }}</h1>
   </header>

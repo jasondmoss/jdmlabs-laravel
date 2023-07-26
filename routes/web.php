@@ -5,6 +5,8 @@ declare(strict_types=1);
 use App\Article\Application\Controllers as Article;
 use App\Client\Application\Controllers as Client;
 use App\Project\Application\Controllers as Project;
+use App\Taxonomy\Category\Application\Controllers as Category;
+use App\Taxonomy\Keyword\Application\Controllers as Keyword;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -64,12 +66,12 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/project/update/{id}', Project\UpdateController::class);
         Route::delete('/project/{id}', Project\DestroyController::class);
 
-        Route::get('/taxonomy/category', \App\Taxonomy\Category\Application\Controllers\IndexController::class);
-        Route::get('/taxonomy/category/create', \App\Taxonomy\Category\Application\Controllers\CreateController::class);
-        Route::post('/taxonomy/category/create', \App\Taxonomy\Category\Application\Controllers\StoreController::class);
-        Route::get('/taxonomy/category/edit/{id}', \App\Taxonomy\Category\Application\Controllers\EditController::class);
-        Route::put('/taxonomy/category/update/{id}', \App\Taxonomy\Category\Application\Controllers\UpdateController::class);
-        Route::delete('/taxonomy/category/{id}', \App\Taxonomy\Category\Application\Controllers\DestroyController::class);
+        Route::get('/taxonomy/category', Category\IndexController::class);
+        Route::get('/taxonomy/category/create', Category\CreateController::class);
+        Route::post('/taxonomy/category/create', Category\StoreController::class);
+        Route::get('/taxonomy/category/edit/{id}', Category\EditController::class);
+        Route::put('/taxonomy/category/update/{id}', Category\UpdateController::class);
+        Route::delete('/taxonomy/category/{id}', Category\DestroyController::class);
 
     });
 

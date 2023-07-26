@@ -46,15 +46,4 @@ class CategoryRequest extends FormRequest
         return (new Name($request->input('name')));
     }
 
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Shared\ValueObjects\Order
-     */
-    public function getOrder(Request $request): Order
-    {
-        return (new Order($request->input('order')));
-    }
-
 }

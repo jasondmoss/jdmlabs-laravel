@@ -20,7 +20,6 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $order = 0;
         $categories = [
             'API', 'Books', 'Clean Architecture', 'CSS', 'Development',
             'Domain Driven Development', 'Dreamhost', 'Drupal', 'Fedora',
@@ -31,10 +30,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat_name) {
-            Category::create([
-                'name' => $cat_name,
-                'order' => $order++
-            ]);
+            Category::create([ 'name' => $cat_name ]);
         }
     }
 
