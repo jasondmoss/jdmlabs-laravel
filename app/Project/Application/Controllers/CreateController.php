@@ -6,7 +6,6 @@ namespace App\Project\Application\Controllers;
 
 use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
-use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 

@@ -8,7 +8,6 @@ use App\Client\Infrastructure\Client;
 use App\Laravel\Application\Controller;
 use App\Project\Infrastructure\Project;
 use App\Shared\ValueObjects\Id;
-use App\Taxonomy\Category\Infrastructure\Category;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 

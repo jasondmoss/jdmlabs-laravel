@@ -2,15 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Client\Infrastructure;
+namespace App\Taxonomy\Infrastructure;
 
-use App\Auth\Infrastructure\User;
-use App\Client\Application\Exceptions\CouldNotFindClient;
-use App\Client\Infrastructure\Database\ClientFactory;
+use App\Article\Infrastructure\Article;
+use App\Client\Infrastructure\Client;
 use App\Project\Infrastructure\Project;
-use App\Shared\Casts\ConvertNullToEmptyString;
-use App\Shared\Enums\Promoted;
-use App\Shared\Enums\Status;
 use App\Shared\Scopes\FindBySlug;
 use App\Shared\Scopes\WherePromoted;
 use App\Shared\Scopes\WherePublished;
@@ -18,83 +14,62 @@ use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\Observable;
 use App\Shared\ValueObjects\Id;
 use App\Shared\ValueObjects\Slug;
-use App\Taxonomy\Infrastructure\Category;
-use App\Taxonomy\Keyword\Infrastructure\Keyword;
+use App\Taxonomy\Application\Exceptions\CouldNotFindCategory;
+use App\Taxonomy\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
-class Client extends Model
+class Category extends Model
 {
 
-    use HasEvents,HasFactory,HasSlug, HasUlids, Observable,
+    use HasFactory, HasSlug, HasUlids, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
+
     public $timestamps = true;
 
-    protected $table = 'clients';
+    protected $table = "categories";
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
-        'slug',
-        'itemprop',
-        'website',
-        'summary',
-        'status',
-        'promoted',
-        'published_at',
-        'created_at',
-        'updated_at',
-        'user_id'
+        'slug'
     ];
-
-    protected $guarded = [];
-
-    protected $casts = [
-        'summary' => ConvertNullToEmptyString::class,
-        'published_at' => 'immutable_datetime',
-        'status' => Status::class,
-        'promoted' => Promoted::class
-    ];
-
-    protected $with = [];
 
 
     /**
-     * @return \App\Client\Infrastructure\Database\ClientFactory
+     * @return \App\Taxonomy\Infrastructure\Database\CategoryFactory
      */
-    protected static function newFactory(): ClientFactory
+    protected static function newFactory(): CategoryFactory
     {
-        return ClientFactory::new();
+        return CategoryFactory::new();
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user(): BelongsTo
+    public function articles(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Article::class, 'category_id');
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function category(): BelongsTo
+    public function clients(): HasMany
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->hasMany(Client::class, 'category_id');
     }
 
 
@@ -103,7 +78,7 @@ class Client extends Model
      */
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'category_id');
     }
 
 
@@ -130,8 +105,8 @@ class Client extends Model
     /**
      * @param string $key
      *
-     * @return \Illuminate\Database\Eloquent\Builder|\App\Client\Infrastructure\Client
-     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
+     * @return \Illuminate\Database\Eloquent\Builder|\App\Taxonomy\Category\Infrastructure\Category
+     * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
      */
     public function find(string $key): Builder|self
     {
@@ -139,7 +114,7 @@ class Client extends Model
             try {
                 return $this->newQuery()->find($key);
             } catch (UnexpectedValueException) {
-                throw CouldNotFindClient::withId($key);
+                throw CouldNotFindCategory::withId($key);
             }
         }
 
@@ -148,7 +123,7 @@ class Client extends Model
         try {
             return $this->newQuery()->slug($slug);
         } catch (UnexpectedValueException) {
-            throw CouldNotFindClient::withSlug($slug);
+            throw CouldNotFindCategory::withSlug($slug);
         }
     }
 

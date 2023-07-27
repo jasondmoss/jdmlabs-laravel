@@ -7,7 +7,7 @@ namespace App\Article\Application\Controllers;
 use App\Article\Infrastructure\Article;
 use App\Laravel\Application\Controller;
 use App\Shared\ValueObjects\Id;
-use App\Taxonomy\Category\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 

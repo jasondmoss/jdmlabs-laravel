@@ -1,8 +1,5 @@
 @php
-use App\Article\Application\Controllers as Article;
-use App\Shared\Enums\Promoted;
-use App\Shared\Enums\Status;
-use App\Taxonomy\Category\Application\Controllers as Category;
+  use App\Article\Application\Controllers as Article;use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
 @endphp
 
 @push('styles')
@@ -160,7 +157,7 @@ use App\Taxonomy\Category\Application\Controllers as Category;
             @if (! is_null($article->category))
               <p class="">
                 <i class="fa-solid fa-tag" style="color: #2ec27e;"></i>
-                <a itemprop="tag" href="{{ action(Category\EditController::class, $article->category->slug) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
+                <a itemprop="tag" href="{{ action(\App\Taxonomy\Application\Controllers\EditController::class, $article->category->slug) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
               </p>
             @else
               <p class="w-full">

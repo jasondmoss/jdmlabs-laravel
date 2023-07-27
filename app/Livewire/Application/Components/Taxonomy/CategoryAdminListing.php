@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Application\Components\Taxonomy;
 
-use App\Taxonomy\Category\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
