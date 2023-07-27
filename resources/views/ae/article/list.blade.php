@@ -1,5 +1,8 @@
 @php
-  use App\Article\Application\Controllers as Article;use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
+  use App\Article\Application\Controllers as Article;
+  use App\Core\Shared\Enums\Promoted;
+  use App\Core\Shared\Enums\Status;
+  use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
@@ -23,6 +26,11 @@
 
       .item--meta {
         grid-row: 3;
+      }
+
+      .item--meta .status,
+      .item--meta .promoted {
+        cursor: pointer;
       }
 
       @media screen {
@@ -68,7 +76,7 @@
 
         @media (min-width: 60rem) {
           .item {
-            grid-template-columns: 10rem 1fr 12rem;
+            grid-template-columns: 10rem 1fr 14rem;
           }
 
           .item--header {
@@ -167,8 +175,18 @@
           </nav>
 
           <aside class="item--meta">
-            <span class="status" title="{{ __('Published') }}">{!! Status::icon($article->status) !!}</span>
-            <span class="promoted" title="{{ __('Promoted') }}">{!! Promoted::icon($article->promoted) !!}</span>
+            <span class="status"
+              wire:click="toggleStatePublished('{{ $article->id }}')"
+              title="@if ('published' === $article->status->value) {{ __('Unpublish this article') }} @else {{ __('Publish this article') }} @endif"
+            >
+              {!! Status::icon($article->status) !!}
+            </span>
+            <span class="promoted"
+              wire:click="toggleStatePromoted('{{ $article->id }}')"
+              title="@if ('promoted' === $article->promoted->value) {{ __('Unpromote this article') }} @else {{ __('Promote this article') }} @endif"
+            >
+              {!! Promoted::icon($article->promoted) !!}
+            </span>
           </aside>
 
           <aside class="item--date">
@@ -180,6 +198,14 @@
               <strong class="label">{{ __('Updated') }}:</strong>
               {{ Date::parse($article->updated_at)->format('Y/m/d') }}
             </time>
+            @if (! is_null($article->published_at))
+              <time class="published" datetime="{{ Date::parse($article->published_at)->format('c') }}" title="{{ Date::parse($article->published_at)->format('c') }}">
+                <strong class="label">{{ __('Published') }}:</strong>
+                {{ Date::parse($article->published_at)->format('Y/m/d') }}
+              </time>
+            @else
+              <span class="published">{{ __('Not Published') }}</span>
+            @endif
           </aside>
 
           <footer class="navigation item--actions">

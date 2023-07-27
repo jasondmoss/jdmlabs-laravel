@@ -18,7 +18,7 @@ enum Pinned: string
 
 
     /**
-     * @param \App\Shared\Enums\Pinned $status
+     * @param \App\Core\Shared\Enums\Pinned $status
      *
      * @return string
      */

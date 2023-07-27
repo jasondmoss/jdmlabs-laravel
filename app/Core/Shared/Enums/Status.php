@@ -18,7 +18,7 @@ enum Status: string
 
 
     /**
-     * @param \App\Shared\Enums\Status $status
+     * @param \App\Core\Shared\Enums\Status $status
      *
      * @return string
      */

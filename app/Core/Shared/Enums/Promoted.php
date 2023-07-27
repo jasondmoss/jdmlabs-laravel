@@ -18,7 +18,7 @@ enum Promoted: string
 
 
     /**
-     * @param \App\Shared\Enums\Promoted $status
+     * @param \App\Core\Shared\Enums\Promoted $status
      *
      * @return string
      */
