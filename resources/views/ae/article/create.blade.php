@@ -71,7 +71,7 @@
 
 			<div class="form-field taxonomy">
 				{{ html()->label('Categories')->for('category') }}
-				{{ html()->select('category', $categories)->class('form-control select')->attribute('required')->placeholder('Choose a category') }}
+				{{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
 			</div>
 		</fieldset>
 

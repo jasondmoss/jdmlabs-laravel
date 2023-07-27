@@ -2,24 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Article\Application\Providers\ArticleAuthServiceProvider;
-use App\Article\Application\Providers\ArticleEventServiceProvider;
-use App\Article\Application\Providers\ArticleServiceProvider;
-use App\Client\Application\Providers\ClientAuthServiceProvider;
-use App\Client\Application\Providers\ClientEventServiceProvider;
-use App\Client\Application\Providers\ClientServiceProvider;
+use App\Article\Application\Providers as Article;
+use App\Client\Application\Providers as Client;
 use App\Core\Auth\Application\Providers\FortifyServiceProvider;
-use App\Core\Laravel\Application\Providers\AppServiceProvider;
-use App\Core\Laravel\Application\Providers\AuthServiceProvider as AppAuthServiceProvider;
-use App\Core\Laravel\Application\Providers\BroadcastServiceProvider as AppBroadcastServiceProvider;
-use App\Core\Laravel\Application\Providers\EventServiceProvider;
-use App\Core\Laravel\Application\Providers\RouteServiceProvider;
-use App\Project\Application\Providers\ProjectAuthServiceProvider;
-use App\Project\Application\Providers\ProjectEventServiceProvider;
-use App\Project\Application\Providers\ProjectServiceProvider;
-use App\Taxonomy\Application\Providers\CategoryAuthServiceProvider;
-use App\Taxonomy\Application\Providers\CategoryEventServiceProvider;
-use App\Taxonomy\Application\Providers\CategoryServiceProvider;
+use App\Core\Laravel\Application\Providers as Laravel;
+use App\Project\Application\Providers as Project;
+use App\Taxonomy\Application\Providers as Taxonomy;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -98,27 +86,27 @@ return [
 
         /** -- Application Service Providers. */
 
-        AppServiceProvider::class,
-        AppAuthServiceProvider::class,
-        AppBroadcastServiceProvider::class,
-        EventServiceProvider::class,
-        RouteServiceProvider::class,
+        Laravel\AppServiceProvider::class,
+        Laravel\AuthServiceProvider::class,
+        Laravel\BroadcastServiceProvider::class,
+        Laravel\EventServiceProvider::class,
+        Laravel\RouteServiceProvider::class,
 
-        ArticleAuthServiceProvider::class,
-        ArticleEventServiceProvider::class,
-        ArticleServiceProvider::class,
+        Article\ArticleAuthServiceProvider::class,
+        Article\ArticleEventServiceProvider::class,
+        Article\ArticleServiceProvider::class,
 
-        ClientAuthServiceProvider::class,
-        ClientEventServiceProvider::class,
-        ClientServiceProvider::class,
+        Client\ClientAuthServiceProvider::class,
+        Client\ClientEventServiceProvider::class,
+        Client\ClientServiceProvider::class,
 
-        ProjectAuthServiceProvider::class,
-        ProjectEventServiceProvider::class,
-        ProjectServiceProvider::class,
+        Project\ProjectAuthServiceProvider::class,
+        Project\ProjectEventServiceProvider::class,
+        Project\ProjectServiceProvider::class,
 
-        CategoryAuthServiceProvider::class,
-        CategoryEventServiceProvider::class,
-        CategoryServiceProvider::class,
+        Taxonomy\CategoryAuthServiceProvider::class,
+        Taxonomy\CategoryEventServiceProvider::class,
+        Taxonomy\CategoryServiceProvider::class,
 
     ],
 

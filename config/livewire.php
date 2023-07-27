@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'class_namespace' => 'App\\Core\\Livewire\\Application\\Components',
+   'class_namespace' => 'App\\Core\\Livewire\\Application\\Components',
 
     /*
     |--------------------------------------------------------------------------
