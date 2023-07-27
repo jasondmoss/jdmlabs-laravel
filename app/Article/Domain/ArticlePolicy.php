@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Article\Domain;
 
 use App\Article\Infrastructure\Article;
-use App\Auth\Infrastructure\User;
-use App\Shared\Enums\Status;
+use App\Core\Shared\Enums\Status;
+use App\Core\User\Infrastructure\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -17,7 +17,7 @@ final readonly class ArticlePolicy
     use HandlesAuthorization;
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -30,7 +30,7 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      * @param \App\Article\Infrastructure\Article $article
      *
      * @return \Illuminate\Auth\Access\Response
@@ -44,7 +44,7 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      * @param \App\Article\Infrastructure\Article $article
      *
      * @return \Illuminate\Auth\Access\Response

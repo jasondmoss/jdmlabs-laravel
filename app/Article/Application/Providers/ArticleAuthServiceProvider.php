@@ -6,7 +6,7 @@ namespace App\Article\Application\Providers;
 
 use App\Article\Domain\ArticlePolicy;
 use App\Article\Infrastructure\Article;
-use App\Laravel\Application\Providers\AuthServiceProvider;
+use App\Core\Laravel\Application\Providers\AuthServiceProvider;
 
 class ArticleAuthServiceProvider extends AuthServiceProvider
 {

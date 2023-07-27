@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Auth\Application\Controllers\RegisterUserController;
-use App\Auth\Application\Controllers\TwoFactorAuthController;
+use App\Core\Auth\Application\Controllers\TwoFactorAuthController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers as FC;

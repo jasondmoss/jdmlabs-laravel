@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Project\Infrastructure\Database;
 
-use App\Auth\Infrastructure\User;
 use App\Client\Infrastructure\Client;
+use App\Core\User\Infrastructure\User;
 use App\Project\Infrastructure\Project;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;

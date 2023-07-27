@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\Controllers;
 
-use App\Laravel\Application\Controller;
-use App\Shared\ValueObjects\Id;
+use App\Core\Laravel\Application\Controller;
+use App\Core\Shared\ValueObjects\Id;
 use App\Taxonomy\Application\UseCases\DestroyUseCase;
 use App\Taxonomy\Infrastructure\Category;
 use Illuminate\Http\RedirectResponse;

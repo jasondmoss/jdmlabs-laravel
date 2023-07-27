@@ -1,5 +1,5 @@
 @php
-  use App\Article\Application\Controllers as Article;use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
+  use App\Article\Application\Controllers as Article;use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
 @endphp
 
 @push('styles')

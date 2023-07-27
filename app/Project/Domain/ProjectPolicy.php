@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Project\Domain;
 
-use App\Auth\Infrastructure\User;
+use App\Core\Shared\Enums\Status;
+use App\Core\User\Infrastructure\User;
 use App\Project\Infrastructure\Project;
-use App\Shared\Enums\Status;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -17,7 +17,7 @@ final readonly class ProjectPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -30,7 +30,7 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      * @param \App\Project\Infrastructure\Project $project
      *
      * @return \Illuminate\Auth\Access\Response
@@ -44,7 +44,7 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \App\Auth\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\User $user
      * @param \App\Project\Infrastructure\Project $project
      *
      * @return \Illuminate\Auth\Access\Response

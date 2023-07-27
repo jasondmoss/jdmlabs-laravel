@@ -6,7 +6,7 @@ namespace App\Client\Application\Providers;
 
 use App\Client\Domain\ClientPolicy;
 use App\Client\Infrastructure\Client;
-use App\Laravel\Application\Providers\AuthServiceProvider;
+use App\Core\Laravel\Application\Providers\AuthServiceProvider;
 
 class ClientAuthServiceProvider extends AuthServiceProvider
 {

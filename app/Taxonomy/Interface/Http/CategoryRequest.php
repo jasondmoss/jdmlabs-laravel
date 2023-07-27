@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Interface\Http;
 
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Name;
+use App\Core\Shared\ValueObjects\Id;
+use App\Core\Shared\ValueObjects\Name;
 use App\Taxonomy\Infrastructure\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class CategoryRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Id
+     * @return \App\Core\Shared\ValueObjects\Id
      */
     public function getId(Request $request): Id
     {
@@ -38,7 +38,7 @@ class CategoryRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Name
+     * @return \App\Core\Shared\ValueObjects\Name
      */
     public function getName(Request $request): Name
     {

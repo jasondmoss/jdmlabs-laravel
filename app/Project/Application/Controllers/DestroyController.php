@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Project\Application\Controllers;
 
-use App\Laravel\Application\Controller;
+use App\Core\Laravel\Application\Controller;
+use App\Core\Shared\ValueObjects\Id;
 use App\Project\Application\UseCases\DestroyUseCase;
 use App\Project\Infrastructure\Project;
-use App\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller

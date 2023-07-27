@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure\Database;
 
 use App\Article\Infrastructure\Article;
-use App\Auth\Infrastructure\User;
+use App\Core\User\Infrastructure\User;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;

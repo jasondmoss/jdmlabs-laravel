@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Application\Controllers;
 
-use App\Laravel\Application\Controller;
+use App\Core\Laravel\Application\Controller;
 use App\Project\Infrastructure\Project;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;

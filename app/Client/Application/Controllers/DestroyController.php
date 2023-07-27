@@ -7,8 +7,8 @@ namespace App\Client\Application\Controllers;
 use App\Client\Application\Exceptions\CouldNotDeleteClient;
 use App\Client\Application\UseCases\DestroyUseCase;
 use App\Client\Infrastructure\Client;
-use App\Laravel\Application\Controller;
-use App\Shared\ValueObjects\Id;
+use App\Core\Laravel\Application\Controller;
+use App\Core\Shared\ValueObjects\Id;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 

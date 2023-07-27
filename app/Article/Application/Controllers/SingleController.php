@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Controllers;
 
 use App\Article\Infrastructure\Article;
-use App\Laravel\Application\Controller;
+use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 

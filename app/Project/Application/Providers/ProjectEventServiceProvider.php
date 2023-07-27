@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Application\Providers;
 
-use App\Laravel\Application\Providers\EventServiceProvider;
+use App\Core\Laravel\Application\Providers\EventServiceProvider;
 use App\Project\Domain\ProjectObserver;
 use App\Project\Infrastructure\Project;
 

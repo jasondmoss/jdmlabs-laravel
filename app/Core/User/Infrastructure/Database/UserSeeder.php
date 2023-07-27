@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Core\User\Infrastructure\Database;
+
+use App\Core\User\Infrastructure\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class UserSeeder extends Seeder
+{
+
+    use RefreshDatabase;
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run(): void
+    {
+        User::factory(1)->create();
+    }
+
+}

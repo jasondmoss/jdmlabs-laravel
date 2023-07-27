@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Project\Interface\Http;
 
+use App\Core\Shared\ValueObjects\Body;
+use App\Core\Shared\ValueObjects\Id;
+use App\Core\Shared\ValueObjects\Pinned;
+use App\Core\Shared\ValueObjects\Promoted;
+use App\Core\Shared\ValueObjects\Status;
+use App\Core\Shared\ValueObjects\SubTitle;
+use App\Core\Shared\ValueObjects\Summary;
+use App\Core\Shared\ValueObjects\Title;
+use App\Core\Shared\ValueObjects\Website;
 use App\Project\Infrastructure\Project;
-use App\Shared\ValueObjects\Body;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Pinned;
-use App\Shared\ValueObjects\Promoted;
-use App\Shared\ValueObjects\Status;
-use App\Shared\ValueObjects\SubTitle;
-use App\Shared\ValueObjects\Summary;
-use App\Shared\ValueObjects\Title;
-use App\Shared\ValueObjects\Website;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Id
+     * @return \App\Core\Shared\ValueObjects\Id
      */
     public function getId(Request $request): Id
     {
@@ -47,7 +47,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Id
+     * @return \App\Core\Shared\ValueObjects\Id
      */
     public function getUserId(Request $request): Id
     {
@@ -58,7 +58,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Title
+     * @return \App\Core\Shared\ValueObjects\Title
      */
     public function getTitle(Request $request): Title
     {
@@ -69,7 +69,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\SubTitle
+     * @return \App\Core\Shared\ValueObjects\SubTitle
      */
     public function getSubTitle(Request $request): SubTitle
     {
@@ -80,7 +80,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Website
+     * @return \App\Core\Shared\ValueObjects\Website
      */
     public function getWebsite(Request $request): Website
     {
@@ -91,7 +91,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Summary
+     * @return \App\Core\Shared\ValueObjects\Summary
      */
     public function getSummary(Request $request): Summary
     {
@@ -102,7 +102,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Body
+     * @return \App\Core\Shared\ValueObjects\Body
      */
     public function getBody(Request $request): Body
     {
@@ -113,7 +113,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Id
+     * @return \App\Core\Shared\ValueObjects\Id
      */
     public function getClientId(Request $request): Id
     {
@@ -124,7 +124,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Id
+     * @return \App\Core\Shared\ValueObjects\Id
      */
 //    public function getCategory(Request $request): Id
 //    {
@@ -135,7 +135,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Status
+     * @return \App\Core\Shared\ValueObjects\Status
      */
     public function getStatus(Request $request): Status
     {
@@ -146,7 +146,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Promoted
+     * @return \App\Core\Shared\ValueObjects\Promoted
      */
     public function getPromoted(Request $request): Promoted
     {
@@ -157,7 +157,7 @@ final class UpdateRequest extends FormRequest
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Shared\ValueObjects\Pinned
+     * @return \App\Core\Shared\ValueObjects\Pinned
      */
     public function getPinned(Request $request): Pinned
     {

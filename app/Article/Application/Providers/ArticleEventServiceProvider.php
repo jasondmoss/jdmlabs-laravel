@@ -6,7 +6,7 @@ namespace App\Article\Application\Providers;
 
 use App\Article\Domain\ArticleObserver;
 use App\Article\Infrastructure\Article;
-use App\Laravel\Application\Providers\EventServiceProvider;
+use App\Core\Laravel\Application\Providers\EventServiceProvider;
 
 class ArticleEventServiceProvider extends EventServiceProvider
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\Providers;
 
-use App\Laravel\Application\Providers\EventServiceProvider;
+use App\Core\Laravel\Application\Providers\EventServiceProvider;
 use App\Taxonomy\Domain\CategoryObserver;
 use App\Taxonomy\Infrastructure\Category;
 

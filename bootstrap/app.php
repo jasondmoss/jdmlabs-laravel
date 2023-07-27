@@ -8,17 +8,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    App\Laravel\Application\KernelHttp::class
+    \App\Core\Laravel\Application\KernelHttp::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Laravel\Application\KernelConsole::class
+    \App\Core\Laravel\Application\KernelConsole::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Laravel\Application\ExceptionHandler::class
+    \App\Core\Laravel\Application\ExceptionHandler::class
 );
 
 return $app;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Auth\Infrastructure\User;
+use App\Core\User\Infrastructure\User;
 
 return [
 

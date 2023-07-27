@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\Controllers;
 
-use App\Laravel\Application\Controller;
+use App\Core\Laravel\Application\Controller;
 use App\Taxonomy\Application\UseCases\UpdateUseCase;
 use App\Taxonomy\Infrastructure\Category;
 use App\Taxonomy\Interface\Http\CategoryRequest;

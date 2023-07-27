@@ -6,7 +6,7 @@ namespace App\Article\Application\Controllers;
 
 use App\Article\Application\UseCases\StoreUseCase;
 use App\Article\Interface\Http\CreateRequest;
-use App\Laravel\Application\Controller;
+use App\Core\Laravel\Application\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller

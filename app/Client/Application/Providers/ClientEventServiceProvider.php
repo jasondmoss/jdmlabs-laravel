@@ -6,7 +6,7 @@ namespace App\Client\Application\Providers;
 
 use App\Client\Domain\ClientObserver;
 use App\Client\Infrastructure\Client;
-use App\Laravel\Application\Providers\EventServiceProvider;
+use App\Core\Laravel\Application\Providers\EventServiceProvider;
 
 class ClientEventServiceProvider extends EventServiceProvider
 {
