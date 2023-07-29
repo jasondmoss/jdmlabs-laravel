@@ -2,6 +2,7 @@
 /node_modules
 /public/build
 /public/hot
+/public/imagess/signatures
 /public/storage
 /public/vendor
 /storage/*
