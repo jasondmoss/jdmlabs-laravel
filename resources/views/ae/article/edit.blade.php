@@ -69,23 +69,16 @@
 
       <div class="form-field taxonomy">
         {{ html()->label('Categories')->for('category') }}
-        {{
-          html()
-            ->select('category', $categories)
-            ->value($article->category_id)
-            ->class('form-control select')
-            ->placeholder('Choose a category')
-         }}
-        {{-- <select id="taxonomy" name="category">
-          <option value="">----</option>
-          @foreach ($categories as $category)
-            <option value="{{ $category->id }}" @if (! is_null($article->category_id) && ($article->category_id === $category->id)) selected @endif>{{ $category->name }}</option>
-          @endforeach
-        </select> --}}
+        {{ html()
+          ->select('category', $categories)
+          ->value($article->category_id)
+          ->class('form-control select')
+          ->placeholder('Choose a category')
+        }}
       </div>
     </fieldset>
 
-    {{--<fieldset class="container--signature-image">
+    <fieldset class="container--signature-image">
       <legend>{{ __('Signature Image') }}</legend>
       <div class="form-field">
         {{ html()->label('Image')->for('image[file]')->class('sr-only') }}
@@ -93,12 +86,13 @@
           'id' => 'signature_image',
           'class' => 'upload'
         ]) }}
+        {{--{{ dd($article->getFirstMedia('signature')) }}--}}
       </div>
 
       <div class="form-field">
         {{ html()->label('Name')->for('image[label]') }}
-        @if ($article->signature)
-          {{ html()->text('image[label]', old('image[label]', $article->signature->custom_properties['label']))->class('text') }}
+        @if (! is_null($signature))
+          {{ html()->text('image[label]', old('image[label]', $signature->custom_properties['label']))->class('text') }}
         @else
           {{ html()->text('image[label]')->class('text') }}
         @endif
@@ -106,8 +100,8 @@
 
       <div class="form-field">
         {{ html()->label('Alt Description')->for('image[alt]') }}
-        @if ($article->signature)
-          {{ html()->text('image[alt]', old('image[alt]', $article->signature->custom_properties['alt']))->class('text') }}
+        @if (! is_null($signature))
+          {{ html()->text('image[alt]', old('image[alt]', $signature->custom_properties['alt']))->class('text') }}
         @else
           {{ html()->text('image[alt]')->class('text') }}
         @endif
@@ -115,21 +109,21 @@
 
       <div class="form-field">
         {{ html()->label('Caption')->for('image[caption]') }}
-        @if ($article->signature)
-          {{ html()->text('image[caption]', old('image[caption]', $article->signature->custom_properties['caption']))->class('text') }}
+        @if (! is_null($signature))
+          {{ html()->text('image[caption]', old('image[caption]', $signature->custom_properties['caption']))->class('text') }}
         @else
           {{ html()->text('image[caption]')->class('text') }}
         @endif
       </div>
 
       <figure class="item--image">
-        @if ($article->signature)
+        @if ($article->hasMedia('signatures'))
           <img id="previewer" src="{{ $article->getFirstMediaUrl('signatures') }}" alt="">
         @else
           <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
         @endif
       </figure>
-    </fieldset>--}}
+    </fieldset>
   </div>
 
   <aside class="editor--side">
@@ -145,10 +139,6 @@
             </option>
           @endforeach
         </select>
-
-        @error('status')
-        <x-shared.message type="error" context="status" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field promoted">
@@ -158,10 +148,6 @@
             <option value="{{ $promoted->value }}" @if ($article->promoted && $article->promoted->value == $promoted->value) selected @endif>{{ $promoted->name }}</option>
           @endforeach
         </select>
-
-        @error('promoted')
-        <x-shared.message type="error" context="promoted" :message="$errors"/>
-        @enderror
       </div>
     </fieldset>
 

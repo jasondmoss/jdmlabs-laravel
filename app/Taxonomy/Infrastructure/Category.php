@@ -56,6 +56,52 @@ class Category extends Model
 
 
     /**
+     * @return \Spatie\Sluggable\SlugOptions
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+
+    /**
+     * @param string $key
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\App\Taxonomy\Infrastructure\Category
+     * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
+     */
+    public function find(string $key): Builder|self
+    {
+        if (Ulid::isValid((new Id($key))->value())) {
+            try {
+                return $this->newQuery()->find($key);
+            } catch (UnexpectedValueException) {
+                throw CouldNotFindCategory::withId($key);
+            }
+        }
+
+        $slug = (new Slug($key))->value();
+
+        try {
+            return $this->newQuery()->slug($slug);
+        } catch (UnexpectedValueException) {
+            throw CouldNotFindCategory::withSlug($slug);
+        }
+    }
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function articles(): HasMany
@@ -79,52 +125,6 @@ class Category extends Model
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class, 'category_id');
-    }
-
-
-    /**
-     * @return \Spatie\Sluggable\SlugOptions
-     */
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
-
-    /**
-     * @param string $key
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\App\Taxonomy\Category\Infrastructure\Category
-     * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
-     */
-    public function find(string $key): Builder|self
-    {
-        if (Ulid::isValid((new Id($key))->value())) {
-            try {
-                return $this->newQuery()->find($key);
-            } catch (UnexpectedValueException) {
-                throw CouldNotFindCategory::withId($key);
-            }
-        }
-
-        $slug = (new Slug($key))->value();
-
-        try {
-            return $this->newQuery()->slug($slug);
-        } catch (UnexpectedValueException) {
-            throw CouldNotFindCategory::withSlug($slug);
-        }
     }
 
 }

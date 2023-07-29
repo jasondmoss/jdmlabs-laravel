@@ -6,7 +6,6 @@ namespace App\Article\Infrastructure\Repositories;
 
 use App\Article\Domain\Contracts\UpdateContract;
 use App\Article\Infrastructure\Article;
-use App\Article\Interface\Http\UpdateRequest;
 
 final class UpdateRepository implements UpdateContract
 {
@@ -27,9 +26,9 @@ final class UpdateRepository implements UpdateContract
      * @inheritDoc
      * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function update(UpdateRequest $data): Article
+    public function update(object $data): Article
     {
-        $instance = $this->article->find($data->input('id'));
+        $instance = $this->article->find($data->id);
 
         $instance->update([
             'title' => $data->title,

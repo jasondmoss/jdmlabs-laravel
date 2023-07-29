@@ -19,7 +19,6 @@ use App\Core\Shared\ValueObjects\Slug;
 use App\Core\User\Infrastructure\User;
 use App\Project\Application\Exceptions\CouldNotFindProject;
 use App\Project\Infrastructure\Database\ProjectFactory;
-use App\Taxonomy\Keyword\Infrastructure\Keyword;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -86,24 +85,6 @@ class Project extends Model
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function clients(): BelongsTo
-    {
-        return $this->belongsTo(Client::class, 'client_id');
-    }
-
-
-    /**
      * @return \Spatie\Sluggable\SlugOptions
      */
     public function getSlugOptions(): SlugOptions
@@ -146,6 +127,24 @@ class Project extends Model
         } catch (UnexpectedValueException) {
             throw CouldNotFindProject::withSlug($slug);
         }
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function clients(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
 }

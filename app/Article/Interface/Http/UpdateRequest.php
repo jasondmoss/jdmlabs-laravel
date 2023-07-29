@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace App\Article\Interface\Http;
 
 use App\Article\Infrastructure\Article;
-use App\Core\Shared\ValueObjects\Body;
-use App\Core\Shared\ValueObjects\Id;
-use App\Core\Shared\ValueObjects\Promoted;
-use App\Core\Shared\ValueObjects\Status;
-use App\Core\Shared\ValueObjects\Summary;
-use App\Core\Shared\ValueObjects\Title;
+use App\Core\Shared\Enums\Promoted;
+use App\Core\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 final class UpdateRequest extends FormRequest
 {
@@ -31,90 +27,27 @@ final class UpdateRequest extends FormRequest
 
 
     /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Id
+     * @return array
      */
-    public function getId(Request $request): Id
+    public function rules(): array
     {
-        return (new Id($request->input('id')));
-    }
+        return [
+            'id' => 'required|ulid',
+            'user_id' => 'required|ulid',
+            'title' => 'required|max:255',
+            'summary' => 'required',
+            'body' => 'required',
+            'category' => 'nullable|ulid',
 
+            'image' => 'sometimes|array',
+            'image[file]' => 'nullable|image|mimes:gif,jpeg,jpg,png,svg',
+            'image[label]' => 'nullable|string|max:255',
+            'image[alt]' => 'nullable|string|max:255',
+            'image[caption]' => 'nullable|string|max:255',
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Id
-     */
-    public function getUserId(Request $request): Id
-    {
-        return (new Id($request->input('user_id')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Title
-     */
-    public function getTitle(Request $request): Title
-    {
-        return (new Title($request->input('title')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Summary
-     */
-    public function getSummary(Request $request): Summary
-    {
-        return (new Summary($request->input('summary')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Body
-     */
-    public function getBody(Request $request): Body
-    {
-        return (new Body($request->input('body')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Id
-     */
-    public function getCategory(Request $request): Id
-    {
-        return (new Id($request->input('category')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Status
-     */
-    public function getStatus(Request $request): Status
-    {
-        return (new Status($request->input('status')));
-    }
-
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \App\Core\Shared\ValueObjects\Promoted
-     */
-    public function getPromoted(Request $request): Promoted
-    {
-        return (new Promoted($request->input('promoted')));
+            'status' => [ new Enum(Status::class) ],
+            'promoted' => [ new Enum(Promoted::class) ],
+        ];
     }
 
 }

@@ -6,7 +6,6 @@ namespace App\Article\Application\UseCases;
 
 use App\Article\Infrastructure\Article;
 use App\Article\Infrastructure\Repositories\UpdateRepository;
-use App\Article\Interface\Http\UpdateRequest;
 
 final readonly class UpdateUseCase
 {
@@ -15,7 +14,7 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repositories\UpdateRepository $respository
+     * @param \App\Article\Infrastructure\Repositories\UpdateRepository $repository
      */
     public function __construct(UpdateRepository $repository)
     {
@@ -24,11 +23,12 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Article\Interface\Http\UpdateRequest $data
+     * @param object $data
      *
      * @return \App\Article\Infrastructure\Article
+     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
-    public function update(UpdateRequest $data): Article
+    public function update(object $data): Article
     {
         return $this->repository->update($data);
     }

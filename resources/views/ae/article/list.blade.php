@@ -145,12 +145,12 @@
         <article id="item-{{ $article->id }}" class="item">
           <figure class="item--image">
             <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-              {{--@if ($article->hasMedia('signatures'))
-                <img src="{{ $article->getFirstMediaUrl('signatures', 'thumb') }}" alt="">
+              @if ($article->hasMedia('signatures'))
+                <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-              @endif--}}
-              <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt=""></a>
+              @endif
+              {{-- <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt=""></a> --}}
           </figure>
 
           <header class="item--header">
