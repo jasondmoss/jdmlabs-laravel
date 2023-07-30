@@ -80,26 +80,26 @@
     <fieldset class="container--signature-image">
       <legend>{{ __('Signature Image') }}</legend>
       <div class="form-field">
-        {{ html()->label('Image')->for('image[file]')->class('sr-only') }}
-        {{ html()->file('image[file]')->accept('jpg,png,svg')->attributes([
+        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
           'id' => 'signature_image',
           'class' => 'upload'
         ]) }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Name')->for('image[label]') }}
-        {{ html()->text('image[label]')->class('text') }}
+        {{ html()->label('Name')->for('signature_image[label]') }}
+        {{ html()->text('signature_image[label]')->class('text') }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Alt Description')->for('image[alt]') }}
-        {{ html()->text('image[alt]')->class('text') }}
+        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
+        {{ html()->text('signature_image[alt]')->class('text') }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Caption')->for('image[caption]') }}
-        {{ html()->text('image[caption]')->class('text') }}
+        {{ html()->label('Caption')->for('signature_image[caption]') }}
+        {{ html()->text('signature_image[caption]')->class('text') }}
       </div>
 
       <figure class="item--image">
@@ -119,10 +119,6 @@
             <option value="{{ $status->value }}">{{ $status->name }}</option>
           @endforeach
         </select>
-
-        @error('status')
-        <x-shared.message type="error" context="status" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field promoted">
@@ -132,10 +128,6 @@
             <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
           @endforeach
         </select>
-
-        @error('promoted')
-        <x-shared.message type="error" context="promoted" :message="$errors"/>
-        @enderror
       </div>
     </fieldset>
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Domain;
+namespace App\Project\Domain\Policies;
 
 use App\Core\Shared\Enums\Status;
 use App\Core\User\Infrastructure\User;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -31,11 +31,11 @@ final readonly class ProjectPolicy
 
     /**
      * @param \App\Core\User\Infrastructure\User $user
-     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function owner(User $user, Project $project): Response
+    public function owner(User $user, ProjectEloquentModel $project): Response
     {
         return $user->id === $project->user_id
             ? Response::allow()
@@ -45,11 +45,11 @@ final readonly class ProjectPolicy
 
     /**
      * @param \App\Core\User\Infrastructure\User $user
-     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(User $user, Project $project): Response
+    public function update(User $user, ProjectEloquentModel $project): Response
     {
         return $user->id === $project->user_id
             ? Response::allow()
@@ -58,11 +58,11 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(Project $project): Response
+    public function view(ProjectEloquentModel $project): Response
     {
         return Status::Published === $project->status
             ? Response::allow()

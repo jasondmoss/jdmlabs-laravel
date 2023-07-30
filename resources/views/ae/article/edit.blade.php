@@ -83,37 +83,37 @@ ClassicEditor.create(document.getElementById("body")).catch(
     <fieldset class="container--signature-image">
       <legend>{{ __('Signature Image') }}</legend>
       <div class="form-field">
-        {{ html()->label('Image')->for('image[file]')->class('sr-only') }}
-        {{ html()->file('image[file]')->accept('jpg,png,svg')->attributes([
+        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
           'id' => 'signature_image',
           'class' => 'upload'
         ]) }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Name')->for('image[label]') }}
+        {{ html()->label('Name')->for('signature_image[label]') }}
         @if (! is_null($signature))
-          {{ html()->text('image[label]', old('image[label]', $signature->custom_properties['label']))->class('text') }}
+          {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
         @else
-          {{ html()->text('image[label]')->class('text') }}
+          {{ html()->text('signature_image[label]')->class('text') }}
         @endif
       </div>
 
       <div class="form-field">
-        {{ html()->label('Alt Description')->for('image[alt]') }}
+        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
         @if (! is_null($signature))
-          {{ html()->text('image[alt]', old('image[alt]', $signature->custom_properties['alt']))->class('text') }}
+          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
         @else
-          {{ html()->text('image[alt]')->class('text') }}
+          {{ html()->text('signature_image[alt]')->class('text') }}
         @endif
       </div>
 
       <div class="form-field">
-        {{ html()->label('Caption')->for('image[caption]') }}
+        {{ html()->label('Caption')->for('signature_image[caption]') }}
         @if (! is_null($signature))
-          {{ html()->text('image[caption]', old('image[caption]', $signature->custom_properties['caption']))->class('text') }}
+          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
         @else
-          {{ html()->text('image[caption]')->class('text') }}
+          {{ html()->text('signature_image[caption]')->class('text') }}
         @endif
       </div>
 

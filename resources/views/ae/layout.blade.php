@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers as Client;use App\Project\Application\Controllers as Project;
+  use App\Client\Application\Controllers as Client;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -89,7 +89,7 @@
           <span>{{ __('Articles') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
-        <a href="{{ action(Project\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(\App\Project\Interface\Http\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">

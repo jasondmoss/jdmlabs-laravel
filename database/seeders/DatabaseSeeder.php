@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Client\Infrastructure\Database\ClientSeeder;
 use App\Core\User\Infrastructure\Database\UserSeeder;
-use App\Project\Infrastructure\Database\ProjectSeeder;
 use App\Taxonomy\Infrastructure\Database\CategorySeeder;
 use Illuminate\Database\Seeder;
 

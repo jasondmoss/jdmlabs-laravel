@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Application\Controllers;
+namespace App\Project\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;

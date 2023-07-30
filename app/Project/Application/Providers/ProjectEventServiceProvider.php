@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Project\Application\Providers;
 
 use App\Core\Laravel\Application\Providers\EventServiceProvider;
-use App\Project\Domain\ProjectObserver;
-use App\Project\Infrastructure\Project;
+use App\Project\Domain\Observers\ProjectObserver;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 
 class ProjectEventServiceProvider extends EventServiceProvider
 {
@@ -17,7 +17,7 @@ class ProjectEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        Project::class => [
+        ProjectEloquentModel::class => [
             ProjectObserver::class
         ]
     ];

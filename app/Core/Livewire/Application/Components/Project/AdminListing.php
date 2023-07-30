@@ -7,7 +7,7 @@ namespace App\Core\Livewire\Application\Components\Project;
 use App\Core\Shared\Enums\Pinned;
 use App\Core\Shared\Enums\Promoted;
 use App\Core\Shared\Enums\Status;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
@@ -18,7 +18,7 @@ class AdminListing extends Component
 
     use WithPagination;
 
-    public Project $project;
+    public ProjectEloquentModel $project;
 
     public string $search = '';
 
@@ -26,11 +26,11 @@ class AdminListing extends Component
 
 
     /**
-     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return void
      */
-    public function mount(Project $project): void
+    public function mount(ProjectEloquentModel $project): void
     {
         $this->project = $project;
     }
@@ -123,7 +123,7 @@ class AdminListing extends Component
      */
     public function render(): View
     {
-        $projects = Project::where('title', 'LIKE', '%' . $this->search . '%')
+        $projects = ProjectEloquentModel::where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->with('clients')
             ->paginate(20);

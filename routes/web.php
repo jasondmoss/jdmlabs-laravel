@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Client\Application\Controllers as Client;
-use App\Project\Application\Controllers as Project;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -26,8 +25,8 @@ Route::middleware([ 'web' ])->group(function () {
     Route::get('/clients', Client\PublishedController::class);
     Route::get('/client/{slug}', Client\SingleController::class);
 
-    Route::get('/projects', Project\PublishedController::class);
-    Route::get('/project/{slug}', Project\SingleController::class);
+    Route::get('/projects', \App\Project\Interface\Http\Controllers\PublishedController::class);
+    Route::get('/project/{slug}', \App\Project\Interface\Http\Controllers\SingleController::class);
 
 
     // -- Dashboard (Redirect).
@@ -56,12 +55,12 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/client/update/{id}', Client\UpdateController::class);
         Route::delete('/client/{id}', Client\DestroyController::class);
 
-        Route::get('/projects', Project\IndexController::class);
-        Route::get('/project/create', Project\CreateController::class);
-        Route::post('/project/create', Project\StoreController::class);
-        Route::get('/project/edit/{id}', Project\EditController::class);
-        Route::put('/project/update/{id}', Project\UpdateController::class);
-        Route::delete('/project/{id}', Project\DestroyController::class);
+        Route::get('/projects', \App\Project\Interface\Http\Controllers\IndexController::class);
+        Route::get('/project/create', \App\Project\Interface\Http\Controllers\CreateController::class);
+        Route::post('/project/create', \App\Project\Interface\Http\Controllers\StoreController::class);
+        Route::get('/project/edit/{id}', \App\Project\Interface\Http\Controllers\EditController::class);
+        Route::put('/project/update/{id}', \App\Project\Interface\Http\Controllers\UpdateController::class);
+        Route::delete('/project/{id}', \App\Project\Interface\Http\Controllers\DestroyController::class);
 
         Route::get('/taxonomy/category', \App\Taxonomy\Application\Controllers\IndexController::class);
         Route::get('/taxonomy/category/create', \App\Taxonomy\Application\Controllers\CreateController::class);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Livewire\Application\Components\Project;
 
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -33,7 +33,7 @@ class PublishedProjects extends Component
 
     public function render(): View
     {
-        $projects = Project::where('status', '=', 'published')
+        $projects = ProjectEloquentModel::where('status', '=', 'published')
             ->latest()
             ->orderBy('created_at', 'desc')
             ->with('clients')

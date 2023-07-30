@@ -13,7 +13,7 @@ use App\Core\Shared\Scopes\WhereRelated;
 use App\Core\Shared\Traits\Observable;
 use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use App\Taxonomy\Application\Exceptions\CouldNotFindCategory;
 use App\Taxonomy\Infrastructure\Database\CategoryFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -124,7 +124,7 @@ class Category extends Model
      */
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class, 'category_id');
+        return $this->hasMany(ProjectEloquentModel::class, 'category_id');
     }
 
 }

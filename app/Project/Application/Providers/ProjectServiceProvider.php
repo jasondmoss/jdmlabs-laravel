@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Project\Application\Providers;
 
+use App\Project\Application\Repositories\Eloquent;
 use App\Project\Application\UseCases;
 use App\Project\Domain\Contracts;
-use App\Project\Infrastructure\Repositories;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -24,15 +24,15 @@ class ProjectServiceProvider extends ServiceProvider
     {
         $this->app->when(UseCases\DestroyUseCase::class)
             ->needs(Contracts\DestroyContract::class)
-            ->give(Repositories\DestroyRepository::class);
+            ->give(Eloquent\DestroyRepository::class);
 
         $this->app->when(UseCases\StoreUseCase::class)
             ->needs(Contracts\StoreContract::class)
-            ->give(Repositories\StoreRepository::class);
+            ->give(Eloquent\StoreRepository::class);
 
         $this->app->when(UseCases\UpdateUseCase::class)
             ->needs(Contracts\UpdateContract::class)
-            ->give(Repositories\UpdateRepository::class);
+            ->give(Eloquent\UpdateRepository::class);
 
 
         // Tell Laravel of our custom templates path.

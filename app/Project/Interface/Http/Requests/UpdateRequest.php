@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Interface\Http\Requests;
+namespace App\Project\Interface\Http\Requests;
 
-use App\Article\Domain\Validation\UpdateSubmissionRules;
-use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use App\Project\Domain\Validation\UpdateSubmissionRules;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 
 /**
  * @property mixed $signature_image
@@ -21,11 +21,11 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $article = ArticleEloquentModel::where('id', '=', $this->route('id'))
+        $project = ProjectEloquentModel::where('id', '=', $this->route('id'))
             ->get()
             ->first();
 
-        return $this->user()->can('update', $article);
+        return $this->user()->can('update', $project);
     }
 
 }

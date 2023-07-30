@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Domain;
+namespace App\Article\Domain\Policies;
 
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Shared\Enums\Status;

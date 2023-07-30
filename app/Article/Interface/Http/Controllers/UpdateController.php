@@ -54,8 +54,8 @@ class UpdateController extends Controller
 
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
-        if ($request->hasFile('image')) {
-            $imageEntity = new ImageEntity((object) $request->image);
+        if ($request->hasFile('signature_image')) {
+            $imageEntity = new ImageEntity((object) $request->signature_image);
 
             // Attach uploaded signature image.
             $this->media->attach($article, $imageEntity, 'signatures');

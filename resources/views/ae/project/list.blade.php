@@ -3,131 +3,132 @@
   use App\Core\Shared\Enums\Pinned;
   use App\Core\Shared\Enums\Promoted;
   use App\Core\Shared\Enums\Status;
-  use App\Project\Application\Controllers as Project;
+  use App\Project\Interface\Http\Controllers as Project;
+  use App\Taxonomy\Application\Controllers as Taxonomy;
   use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
   @once
     <style>
-      .item {
-        grid-template-columns: 1fr;
-      }
+.item {
+  grid-template-columns: 1fr;
+}
 
-      .item--image {
-        grid-row: 4;
-      }
+.item--image {
+  grid-row: 4;
+}
 
-      .item--header {
-        grid-row: 1;
-      }
+.item--header {
+  grid-row: 1;
+}
 
-      .item--header .subtitle {
-        margin-top: 0.5rem;
-        margin-bottom: 0;
-      }
+.item--header .subtitle {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
 
-      .item--id {
-        grid-row: 2;
-      }
+.item--id {
+  grid-row: 2;
+}
 
-      .item--meta {
-        grid-row: 3;
-      }
+.item--meta {
+  grid-row: 3;
+}
 
-      @media screen {
-        @media (max-width: 39.9375rem) {
-          .item {
-            gap: 1rem;
-          }
-        }
+@media screen {
+  @media (max-width: 39.9375rem) {
+    .item {
+      gap: 1rem;
+    }
+  }
 
-        @media (min-width: 40rem) {
-          .item {
-            grid-template-columns: 10rem 1fr;
-          }
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 10rem 1fr;
+    }
 
-          .item--image {
-            grid-column: 1;
-            grid-row: 1/span 3;
-          }
+    .item--image {
+      grid-column: 1;
+      grid-row: 1/span 3;
+    }
 
-          .item--header,
-          .item--id,
-          .item--taxonomy,
-          .item--actions,
-          .item--date {
-            grid-column: 2;
-          }
+    .item--header,
+    .item--id,
+    .item--taxonomy,
+    .item--actions,
+    .item--date {
+      grid-column: 2;
+    }
 
-          .item--meta {
-            grid-column: 1;
-            grid-row: 4;
-          }
+    .item--meta {
+      grid-column: 1;
+      grid-row: 4;
+    }
 
-          .item--actions menu {
-            justify-content: flex-start;
-          }
-        }
+    .item--actions menu {
+      justify-content: flex-start;
+    }
+  }
 
-        @media (min-width: 40rem) and (max-width: 59.9375rem) {
-          .item--meta {
-            margin-top: 2rem;
-          }
-        }
+  @media (min-width: 40rem) and (max-width: 59.9375rem) {
+    .item--meta {
+      margin-top: 2rem;
+    }
+  }
 
-        @media (min-width: 60rem) {
-          .item {
-            grid-template-columns: 10rem 1fr 14rem;
-          }
+  @media (min-width: 60rem) {
+    .item {
+      grid-template-columns: 10rem 1fr 14rem;
+    }
 
-          .item--header {
-            grid-row: 1/span 3;
-          }
+    .item--header {
+      grid-row: 1/span 3;
+    }
 
-          .item--id {
-            grid-row: 3;
-            align-self: center;
-            margin-top: 0.5rem;
-          }
+    .item--id {
+      grid-row: 3;
+      align-self: center;
+      margin-top: 0.5rem;
+    }
 
-          .item--taxonomy {
-            grid-row: 3;
-            align-self: end;
-            margin-top: 1rem;
-          }
+    .item--taxonomy {
+      grid-row: 3;
+      align-self: end;
+      margin-top: 1rem;
+    }
 
-          .item--meta {
-            grid-column: 3;
-            grid-row: 1;
-            justify-content: flex-start;
-          }
+    .item--meta {
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-start;
+    }
 
-          .item--meta svg {
-            width: 1.5rem;
-            height: 1.5rem;
-          }
+    .item--meta svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
 
-          .item--date {
-            grid-column: 3;
-            grid-row: 2/span 2;
-          }
+    .item--date {
+      grid-column: 3;
+      grid-row: 2/span 2;
+    }
 
-          .item--actions {
-            align-self: end;
-          }
+    .item--actions {
+      align-self: end;
+    }
 
-          .item--actions menu {
-            padding-right: 3rem;
-          }
-        }
+    .item--actions menu {
+      padding-right: 3rem;
+    }
+  }
 
-        @media (min-width: 75rem) {
-          .item {
-            gap: 0 2rem;
-          }
-        }
-      }
+  @media (min-width: 75rem) {
+    .item {
+      gap: 0 2rem;
+    }
+  }
+}
     </style>
   @endonce
 @endpush
@@ -148,12 +149,11 @@
 
           <figure class="item--image">
             <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-              {{--@if ($project->hasMedia('signatures'))
-                <img src="{{ $project->getFirstMediaUrl('signatures', 'thumb') }}" alt="">
+              @if ($project->hasMedia('signatures'))
+                <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-              @endif--}}
-              <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt=""></a>
+            @endif
           </figure>
 
           <header class="item--header">
@@ -167,18 +167,16 @@
 
           <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
 
-          {{-- <nav class="navigation item--taxonomy">
+          <nav class="navigation item--taxonomy">
             @if (! is_null($project->category))
-              <p class="">
-                <i class="fa-solid fa-tag" style="color: #2ec27e;"></i>
-                <a itemprop="tag" href="{{ action(Category\EditController::class, $project->category->slug) }}" title="{{ __('Edit category') }}">{{ $Category->category->name }}</a>
-              </p>
+              <i class="fa-solid fa-tag"></i>
+              <a itemprop="tag" class="label-category" href="{{ action(Taxonomy\EditController::class, $project->category->id) }}" title="{{ __('Edit category') }}">{{ $project->category->name }}</a>
             @else
               <p class="w-full">
                 <i class="fa-solid fa-tag" style="color: var(--gray-light)"></i> &#160;
               </p>
             @endif
-          </nav> --}}
+          </nav>
 
           <aside class="item--meta">
             <span class="status" title="{{ __('Published') }}">{!! Status::icon($project->status) !!}</span>
@@ -187,22 +185,13 @@
           </aside>
 
           <aside class="item--meta">
-            <span class="status"
-              wire:click="toggleStatePublished('{{ $project->id }}')"
-              title="@if ('published' === $project->status->value) {{ __('Unpublish this project') }} @else {{ __('Publish this project') }} @endif"
-            >
+            <span class="status" wire:click="toggleStatePublished('{{ $project->id }}')" title="@if ('published' === $project->status->value) {{ __('Unpublish this project') }} @else {{ __('Publish this project') }} @endif">
               {!! Status::icon($project->status) !!}
             </span>
-            <span class="promoted"
-              wire:click="toggleStatePromoted('{{ $project->id }}')"
-              title="@if ('promoted' === $project->promoted->value) {{ __('Unpromote this project') }} @else {{ __('Promote this project') }} @endif"
-            >
+            <span class="promoted" wire:click="toggleStatePromoted('{{ $project->id }}')" title="@if ('promoted' === $project->promoted->value) {{ __('Unpromote this project') }} @else {{ __('Promote this project') }} @endif">
               {!! Promoted::icon($project->promoted) !!}
             </span>
-            <span class="pinned"
-              wire:click="toggleStatePinned('{{ $project->id }}')"
-              title="@if ('pinned' === $project->pinned->value) {{ __('Unpin this project') }} @else {{ __('Pin this project') }} @endif"
-            >
+            <span class="pinned" wire:click="toggleStatePinned('{{ $project->id }}')" title="@if ('pinned' === $project->pinned->value) {{ __('Unpin this project') }} @else {{ __('Pin this project') }} @endif">
               {!! Pinned::icon($project->pinned) !!}
             </span>
           </aside>

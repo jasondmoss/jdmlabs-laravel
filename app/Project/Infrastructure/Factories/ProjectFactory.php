@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure\Database;
+namespace App\Project\Infrastructure\Factories;
 
 use App\Client\Infrastructure\Client;
 use App\Core\User\Infrastructure\User;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 class ProjectFactory extends Factory
 {
 
-    protected $model = Project::class;
+    protected $model = ProjectEloquentModel::class;
 
 
     /**

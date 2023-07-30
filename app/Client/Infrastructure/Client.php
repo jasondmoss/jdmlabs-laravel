@@ -17,7 +17,7 @@ use App\Core\Shared\Traits\Observable;
 use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
 use App\Core\User\Infrastructure\User;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use App\Taxonomy\Infrastructure\Category;
 use App\Taxonomy\Keyword\Infrastructure\Keyword;
 use Illuminate\Database\Eloquent\Builder;
@@ -151,7 +151,7 @@ class Client extends Model
      */
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(ProjectEloquentModel::class);
     }
 
 }

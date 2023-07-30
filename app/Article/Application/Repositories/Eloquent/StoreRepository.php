@@ -15,7 +15,7 @@ final class StoreRepository implements StoreContract
      */
     public function save(object $data): ArticleEloquentModel
     {
-        $article = ArticleEloquentModel::create([
+        return ArticleEloquentModel::create([
             'title' => $data->title,
             'summary' => $data->summary,
             'body' => $data->body,
@@ -24,8 +24,6 @@ final class StoreRepository implements StoreContract
             'category_id' => $data->category,
             'user_id' => $data->user_id
         ]);
-
-        return ArticleEloquentModel::findOrFail($article->id);
     }
 
 }

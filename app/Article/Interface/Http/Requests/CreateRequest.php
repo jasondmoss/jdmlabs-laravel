@@ -8,7 +8,7 @@ use App\Article\Domain\Validation\CreateSubmissionRules;
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 
 /**
- * @property array $image
+ * @property array $signature_image
  */
 final class CreateRequest extends CreateSubmissionRules
 {

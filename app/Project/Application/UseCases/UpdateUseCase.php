@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Project\Application\UseCases;
 
-use App\Project\Infrastructure\Project;
-use App\Project\Infrastructure\Repositories\UpdateRepository;
-use App\Project\Interface\Http\UpdateRequest;
+use App\Project\Application\Repositories\Eloquent\UpdateRepository;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use App\Project\Infrastructure\Entities\ProjectEntity;
 
 final readonly class UpdateUseCase
 {
@@ -15,7 +15,7 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Project\Infrastructure\Repositories\UpdateRepository $repository
+     * @param \App\Project\Application\Repositories\Eloquent\UpdateRepository $repository
      */
     public function __construct(UpdateRepository $repository)
     {
@@ -24,13 +24,14 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Project\Interface\Http\UpdateRequest $data
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \App\Project\Infrastructure\Entities\ProjectEntity $entity
      *
-     * @return \App\Project\Infrastructure\Project
+     * @return \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel
      */
-    public function update(UpdateRequest $data): Project
+    public function update(ProjectEloquentModel $project, ProjectEntity $entity): ProjectEloquentModel
     {
-        return $this->repository->update($data);
+        return $this->repository->update($project, $entity);
     }
 
 }

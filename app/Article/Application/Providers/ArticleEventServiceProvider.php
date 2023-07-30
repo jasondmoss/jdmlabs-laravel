@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Application\Providers;
 
-use App\Article\Domain\ArticleObserver;
+use App\Article\Domain\Observers\ArticleObserver;
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Laravel\Application\Providers\EventServiceProvider;
 

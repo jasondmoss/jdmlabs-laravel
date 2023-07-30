@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Domain;
+namespace App\Article\Domain\Observers;
 
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use Illuminate\Support\Facades\App;
@@ -65,4 +65,5 @@ final readonly class ArticleObserver
      * @return void
      */
     public function updated(ArticleEloquentModel $article): void {}
+
 }

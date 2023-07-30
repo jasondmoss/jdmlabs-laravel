@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure\Repositories;
+namespace App\Project\Application\Repositories\Eloquent;
 
 use App\Project\Domain\Contracts\StoreContract;
-use App\Project\Infrastructure\Project;
-use App\Project\Interface\Http\CreateRequest;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 
 final class StoreRepository implements StoreContract
 {
@@ -14,9 +13,9 @@ final class StoreRepository implements StoreContract
     /**
      * @inheritDoc
      */
-    public function save(CreateRequest $data): Project
+    public function save(object $data): ProjectEloquentModel
     {
-        $project = Project::create([
+        return ProjectEloquentModel::create([
             'title' => $data->title,
             'subtitle' => $data->subtitle,
             'website' => $data->website,
@@ -26,11 +25,9 @@ final class StoreRepository implements StoreContract
             'promoted' => $data->promoted,
             'pinned' => $data->pinned,
             'client_id' => $data->client_id,
-            /*'category_id' => $data->category,*/
+            'category_id' => $data->category,
             'user_id' => $data->user_id
         ]);
-
-        return Project::findOrFail($project->id);
     }
 
 }

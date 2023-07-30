@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Application\Controllers;
+namespace App\Project\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
 use App\Project\Application\UseCases\DestroyUseCase;
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
 {
 
-    protected Project $project;
+    protected ProjectEloquentModel $project;
 
     protected DestroyUseCase $bridge;
 
 
     /**
-     * @param \App\Project\Infrastructure\Project $project
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      * @param \App\Project\Application\UseCases\DestroyUseCase $bridge
      */
-    public function __construct(Project $project, DestroyUseCase $bridge)
+    public function __construct(ProjectEloquentModel $project, DestroyUseCase $bridge)
     {
         $this->project = $project;
         $this->bridge = $bridge;
@@ -33,6 +33,7 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Project\Application\Exceptions\CouldNotFindProject
      */
     public function __invoke(string $id): RedirectResponse
     {

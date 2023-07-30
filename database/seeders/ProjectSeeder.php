@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Project\Infrastructure\Database;
+namespace Database\Seeders;
 
-use App\Project\Infrastructure\Project;
+use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(20)->create();
+        ProjectEloquentModel::factory(20)->create();
     }
 
 }
