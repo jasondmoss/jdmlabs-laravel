@@ -17,17 +17,17 @@ class DestroyController extends Controller
 
     protected Client $client;
 
-    protected DestroyUseCase $conjoins;
+    protected DestroyUseCase $bridge;
 
 
     /**
      * @param \App\Client\Infrastructure\Client $client
-     * @param \App\Client\Application\UseCases\DestroyUseCase $conjoins
+     * @param \App\Client\Application\UseCases\DestroyUseCase $bridge
      */
-    public function __construct(Client $client, DestroyUseCase $conjoins)
+    public function __construct(Client $client, DestroyUseCase $bridge)
     {
         $this->client = $client;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -43,7 +43,7 @@ class DestroyController extends Controller
         $toBeDeleted = $this->client->find((new Id($id))->value());
 
         try {
-            $this->conjoins->delete($toBeDeleted);
+            $this->bridge->delete($toBeDeleted);
         } catch (Exception $exception) {
             throw CouldNotDeleteClient::withId($toBeDeleted->id);
         }

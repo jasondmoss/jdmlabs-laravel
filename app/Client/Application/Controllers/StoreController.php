@@ -12,22 +12,22 @@ use Illuminate\Http\RedirectResponse;
 class StoreController extends Controller
 {
 
-    protected StoreUseCase $conjoins;
+    protected StoreUseCase $bridge;
 
 
     /**
-     * @param \App\Client\Application\UseCases\StoreUseCase $conjoins
+     * @param \App\Client\Application\UseCases\StoreUseCase $bridge
      */
-    public function __construct(StoreUseCase $conjoins)
+    public function __construct(StoreUseCase $bridge)
     {
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
     public function __invoke(CreateRequest $request): RedirectResponse
     {
         // Store + return client.
-        $client = $this->conjoins->store($request);
+        $client = $this->bridge->store($request);
 
         return redirect()->action(IndexController::class);
     }

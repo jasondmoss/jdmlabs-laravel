@@ -29,11 +29,12 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
      */
     public function __invoke(string $id): View
     {
-        $category = $this->category->find((new Id($id))->value());
+        $category = $this->category
+            ->with('articles')
+            ->find((new Id($id))->value());
 
         return ViewFacade::make('Category::edit', [
             'category' => $category

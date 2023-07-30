@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure;
+namespace App\Article\Infrastructure\Entities;
 
 use App\Core\Shared\ValueObjects\Body;
 use App\Core\Shared\ValueObjects\Id;

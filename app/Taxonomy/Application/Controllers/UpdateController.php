@@ -15,13 +15,13 @@ class UpdateController extends Controller
 
     protected Category $category;
 
-    protected UpdateUseCase $conjoins;
+    protected UpdateUseCase $bridge;
 
 
-    public function __construct(Category $category, UpdateUseCase $conjoins)
+    public function __construct(Category $category, UpdateUseCase $bridge)
     {
         $this->category = $category;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -33,7 +33,7 @@ class UpdateController extends Controller
      */
     public function __invoke(CategoryRequest $request): RedirectResponse
     {
-        $this->conjoins->update($request);
+        $this->bridge->update($request);
 
         return redirect()
             ->to($request->listing_page)

@@ -10,8 +10,10 @@ use Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator;
 class MediaPathGenerator extends DefaultPathGenerator
 {
 
-    /*
-     * Get a unique base path for the given media.
+    /**
+     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
+     *
+     * @return string
      */
     protected function getBasePath(Media $media): string
     {

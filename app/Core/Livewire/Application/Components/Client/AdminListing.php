@@ -106,6 +106,7 @@ class AdminListing extends Component
         $clients = Client::where('user_id', auth()->user()->id)
             ->where('name', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
+            ->withCount('projects')
             ->paginate(20);
 
         return view('ae.client.list', [

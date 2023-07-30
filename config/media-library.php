@@ -1,7 +1,7 @@
 <?php
 
 use App\Media\Application\MediaPathGenerator;
-use App\Media\Infrastructure\Media;
+use App\Media\Infrastructure\MediaModel;
 use Spatie\ImageOptimizer\Optimizers;
 use Spatie\MediaLibrary\Conversions\ImageGenerators;
 use Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob;
@@ -46,32 +46,32 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => Media::class,
+    'media_model' => MediaModel::class,
 
     /*
      * When enabled, media collections will be serialised using the default
      * laravel model serialization behaviour.
      *
-     * Keep this option disabled if using Media Library Pro components (https://medialibrary.pro)
+     * Keep this option disabled if using MediaModel Library Pro components (https://medialibrary.pro)
      */
     'use_default_collection_serialization' => false,
 
     /*
      * The fully qualified class name of the model used for temporary uploads.
      *
-     * This model is only used in Media Library Pro (https://medialibrary.pro)
+     * This model is only used in MediaModel Library Pro (https://medialibrary.pro)
      */
     //    'temporary_upload_model' => Spatie\MediaLibraryPro\Models\TemporaryUpload::class,
 
     /*
-     * When enabled, Media Library Pro will only process temporary uploads that were uploaded
+     * When enabled, MediaModel Library Pro will only process temporary uploads that were uploaded
      * in the same session. You can opt to disable this for stateless usage of
      * the pro components.
      */
     'enable_temporary_uploads_session_affinity' => true,
 
     /*
-     * When enabled, Media Library pro will generate thumbnails for uploaded file.
+     * When enabled, MediaModel Library pro will generate thumbnails for uploaded file.
      */
     'generate_thumbnails_for_temporary_uploads' => true,
 
@@ -248,13 +248,13 @@ return [
 
     /*
      * When enabling this option, a route will be registered that will enable
-     * the Media Library Pro Vue and React components to move uploaded files
+     * the MediaModel Library Pro Vue and React components to move uploaded files
      * in a S3 bucket to their right place.
      */
     'enable_vapor_uploads' => env('ENABLE_MEDIA_LIBRARY_VAPOR_UPLOADS', false),
 
     /*
-     * When converting Media instances to response the media library will add
+     * When converting MediaModel instances to response the media library will add
      * a `loading` attribute to the `img` tag. Here you can set the default
      * value of that attribute.
      *

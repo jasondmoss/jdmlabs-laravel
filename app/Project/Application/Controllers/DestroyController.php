@@ -15,17 +15,17 @@ class DestroyController extends Controller
 
     protected Project $project;
 
-    protected DestroyUseCase $conjoins;
+    protected DestroyUseCase $bridge;
 
 
     /**
      * @param \App\Project\Infrastructure\Project $project
-     * @param \App\Project\Application\UseCases\DestroyUseCase $conjoins
+     * @param \App\Project\Application\UseCases\DestroyUseCase $bridge
      */
-    public function __construct(Project $project, DestroyUseCase $conjoins)
+    public function __construct(Project $project, DestroyUseCase $bridge)
     {
         $this->project = $project;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -38,7 +38,7 @@ class DestroyController extends Controller
     {
         $toBeDeleted = $this->project->find((new Id($id))->value());
 
-        $this->conjoins->delete($toBeDeleted);
+        $this->bridge->delete($toBeDeleted);
 
         return redirect()->action(IndexController::class);
     }

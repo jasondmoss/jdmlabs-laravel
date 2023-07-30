@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Media\Infrastructure;
+namespace App\Media\Infrastructure\Entities;
 
 use App\Core\Shared\ValueObjects\ImageAlt;
 use App\Core\Shared\ValueObjects\ImageCaption;

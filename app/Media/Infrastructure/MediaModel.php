@@ -7,17 +7,17 @@ namespace App\Media\Infrastructure;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
-class Media extends BaseMedia
+class MediaModel extends BaseMedia
 {
 
     use HasUlids;
-
-    public $timestamps = true;
 
     protected $primaryKey = 'id';
 
     protected $keyType = 'string';
 
-//    public $incrementing = false;
+    public $timestamps = true;
+
+    public $incrementing = false;
 
 }

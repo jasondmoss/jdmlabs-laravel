@@ -68,7 +68,9 @@ class Client extends Model
         'promoted' => Promoted::class
     ];
 
-    protected $with = [];
+    protected $with = [
+        'projects'
+    ];
 
 
     /**

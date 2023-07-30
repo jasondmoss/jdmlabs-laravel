@@ -71,7 +71,7 @@ class Project extends Model
     ];
 
     protected $with = [
-        'clients'
+        /*'clients'*/
     ];
 
 

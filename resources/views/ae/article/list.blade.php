@@ -2,128 +2,129 @@
   use App\Article\Application\Controllers as Article;
   use App\Core\Shared\Enums\Promoted;
   use App\Core\Shared\Enums\Status;
+  use \App\Taxonomy\Application\Controllers as Taxonomy;
   use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
   @once
     <style>
-      .item {
-        grid-template-columns: 1fr;
-      }
+.item {
+  grid-template-columns: 1fr;
+}
 
-      .item--image {
-        grid-row: 4;
-      }
+.item--image {
+  grid-row: 4;
+}
 
-      .item--header {
-        grid-row: 1;
-      }
+.item--header {
+  grid-row: 1;
+}
 
-      .item--id {
-        grid-row: 2;
-      }
+.item--id {
+  grid-row: 2;
+}
 
-      .item--meta {
-        grid-row: 3;
-      }
+.item--meta {
+  grid-row: 3;
+}
 
-      .item--meta .status,
-      .item--meta .promoted {
-        cursor: pointer;
-      }
+.item--meta .status,
+.item--meta .promoted {
+  cursor: pointer;
+}
 
-      @media screen {
-        @media (max-width: 39.9375rem) {
-          .item {
-            gap: 1rem;
-          }
-        }
+@media screen {
+  @media (max-width: 39.9375rem) {
+    .item {
+      gap: 1rem;
+    }
+  }
 
-        @media (min-width: 40rem) {
-          .item {
-            grid-template-columns: 10rem 1fr;
-          }
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 10rem 1fr;
+    }
 
-          .item--image {
-            grid-column: 1;
-            grid-row: 1/span 3;
-          }
+    .item--image {
+      grid-column: 1;
+      grid-row: 1/span 3;
+    }
 
-          .item--header,
-          .item--id,
-          .item--taxonomy,
-          .item--actions,
-          .item--date {
-            grid-column: 2;
-          }
+    .item--header,
+    .item--id,
+    .item--taxonomy,
+    .item--actions,
+    .item--date {
+      grid-column: 2;
+    }
 
-          .item--meta {
-            grid-column: 1;
-            grid-row: 4;
-          }
+    .item--meta {
+      grid-column: 1;
+      grid-row: 4;
+    }
 
-          .item--actions menu {
-            justify-content: flex-start;
-          }
-        }
+    .item--actions menu {
+      justify-content: flex-start;
+    }
+  }
 
-        @media (min-width: 40rem) and (max-width: 59.9375rem) {
-          .item--meta {
-            margin-top: 2rem;
-          }
-        }
+  @media (min-width: 40rem) and (max-width: 59.9375rem) {
+    .item--meta {
+      margin-top: 2rem;
+    }
+  }
 
-        @media (min-width: 60rem) {
-          .item {
-            grid-template-columns: 10rem 1fr 14rem;
-          }
+  @media (min-width: 60rem) {
+    .item {
+      grid-template-columns: 10rem 1fr 14rem;
+    }
 
-          .item--header {
-            grid-row: 1/span 2;
-          }
+    .item--header {
+      grid-row: 1/span 2;
+    }
 
-          .item--id {
-            margin-top: 0.5rem;
-          }
+    .item--id {
+      margin-top: 0.5rem;
+    }
 
-          .item--taxonomy {
-            grid-row: 2;
-            align-self: end;
-            margin-top: 1rem;
-          }
+    .item--taxonomy {
+      grid-row: 2;
+      align-self: end;
+      margin-top: 1rem;
+    }
 
-          .item--meta {
-            grid-column: 3;
-            grid-row: 1;
-            justify-content: flex-start;
-          }
+    .item--meta {
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-start;
+    }
 
-          .item--meta svg {
-            width: 1.5rem;
-            height: 1.5rem;
-          }
+    .item--meta svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
 
-          .item--date {
-            grid-column: 3;
-            grid-row: 2/span 2;
-          }
+    .item--date {
+      grid-column: 3;
+      grid-row: 2/span 2;
+    }
 
-          .item--actions {
-            align-self: end;
-          }
+    .item--actions {
+      align-self: end;
+    }
 
-          .item--actions menu {
-            padding-right: 3rem;
-          }
-        }
+    .item--actions menu {
+      padding-right: 3rem;
+    }
+  }
 
-        @media (min-width: 75rem) {
-          .item {
-            gap: 0 2rem;
-          }
-        }
-      }
+  @media (min-width: 75rem) {
+    .item {
+      gap: 0 2rem;
+    }
+  }
+}
     </style>
   @endonce
 @endpush
@@ -163,10 +164,8 @@
 
           <nav class="navigation item--taxonomy">
             @if (! is_null($article->category))
-              <p class="">
-                <i class="fa-solid fa-tag" style="color: #2ec27e;"></i>
-                <a itemprop="tag" href="{{ action(\App\Taxonomy\Application\Controllers\EditController::class, $article->category->slug) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
-              </p>
+              <i class="fa-solid fa-tag"></i>
+              <a itemprop="tag" class="label-category" href="{{ action(Taxonomy\EditController::class, $article->category->id) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
             @else
               <p class="w-full">
                 <i class="fa-solid fa-tag" style="color: var(--gray-light)"></i> &#160;

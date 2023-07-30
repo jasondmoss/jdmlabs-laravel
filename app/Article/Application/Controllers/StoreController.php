@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 class StoreController extends Controller
 {
 
-    protected StoreUseCase $conjoins;
+    protected StoreUseCase $bridge;
 
 
     /**
-     * @param \App\Article\Application\UseCases\StoreUseCase $conjoins
+     * @param \App\Article\Application\UseCases\StoreUseCase $bridge
      */
-    public function __construct(StoreUseCase $conjoins)
+    public function __construct(StoreUseCase $bridge)
     {
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -32,7 +32,7 @@ class StoreController extends Controller
     public function __invoke(CreateRequest $request): RedirectResponse
     {
         // Store + return article.
-        $article = $this->conjoins->store($request);
+        $article = $this->bridge->store($request);
 
         // Save + attach signature image.
 //        $this->saveSignature->__invoke($request->image, $article, 'signatures');

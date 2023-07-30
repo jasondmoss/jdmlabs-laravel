@@ -68,7 +68,7 @@ body.admin {
 
 .admin--sidebar  {
   padding-top: 2rem;
-  background-color: var(--debug--lime);
+  background-color: hsl(var(--gray-light-h) var(--gray-light-s) var(--gray-light-l) / 25%);
 }
 
 .admin--sidebar .navigation menu {

@@ -151,6 +151,7 @@
           </header>
 
           <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $client->id }}</p>
+          <p class="item--count" style="color: #007741;" class="project"><strong class="label">{{ __('Projects') }}:</strong> {{ $client->projects_count }}</p>
 
           <nav class="item--taxonomy">
             @if ($client->taxonomies)

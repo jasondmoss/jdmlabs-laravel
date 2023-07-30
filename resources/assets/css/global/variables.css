@@ -63,6 +63,7 @@
   --gray-light-h: 0;
   --gray-light-s: 0%;
   --gray-light-l: 67%;
+  --gray-light-alpha: 100%;
   --gray-light: hsl(var(--gray-light-h), var(--gray-light-s), var(--gray-light-l));
 
   /** -- System Messages. */

@@ -16,17 +16,17 @@ class UpdateController extends Controller
 
     protected Project $project;
 
-    protected UpdateUseCase $conjoins;
+    protected UpdateUseCase $bridge;
 
 
     /**
      * @param \App\Project\Infrastructure\Project $project
-     * @param \App\Project\Application\UseCases\UpdateUseCase $conjoins
+     * @param \App\Project\Application\UseCases\UpdateUseCase $bridge
      */
-    public function __construct(Project $project, UpdateUseCase $conjoins)
+    public function __construct(Project $project, UpdateUseCase $bridge)
     {
         $this->project = $project;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -35,7 +35,7 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
         // Update + return project.
-        $project = $this->conjoins->update($request);
+        $project = $this->bridge->update($request);
 
         // Save + attach signature image.
 //        $this->saveImage->__invoke($request->image, $project, 'signatures');

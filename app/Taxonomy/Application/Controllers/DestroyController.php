@@ -15,13 +15,13 @@ class DestroyController extends Controller
 
     protected Category $category;
 
-    protected DestroyUseCase $conjoins;
+    protected DestroyUseCase $bridge;
 
 
-    public function __construct(Category $category, DestroyUseCase $conjoins)
+    public function __construct(Category $category, DestroyUseCase $bridge)
     {
         $this->category = $category;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -35,7 +35,7 @@ class DestroyController extends Controller
     {
         $toBeDeleted = $this->category->find((new Id($id))->value());
 
-        $this->conjoins->delete($toBeDeleted);
+        $this->bridge->delete($toBeDeleted);
 
         return redirect()->action(IndexController::class);
     }

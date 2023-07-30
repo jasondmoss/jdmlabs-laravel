@@ -15,17 +15,17 @@ class UpdateController extends Controller
 
     protected Client $client;
 
-    protected UpdateUseCase $conjoins;
+    protected UpdateUseCase $bridge;
 
 
     /**
      * @param \App\Client\Infrastructure\Client $client
-     * @param \App\Client\Application\UseCases\UpdateUseCase $conjoins
+     * @param \App\Client\Application\UseCases\UpdateUseCase $bridge
      */
-    public function __construct(Client $client, UpdateUseCase $conjoins)
+    public function __construct(Client $client, UpdateUseCase $bridge)
     {
         $this->client = $client;
-        $this->conjoins = $conjoins;
+        $this->bridge = $bridge;
     }
 
 
@@ -36,7 +36,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $client = $this->conjoins->update($request);
+        $client = $this->bridge->update($request);
 
         return redirect()
             ->to($request->listing_page)
