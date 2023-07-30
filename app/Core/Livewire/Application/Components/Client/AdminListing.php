@@ -65,8 +65,8 @@ class AdminListing extends Component
         $client = $this->client->find($id);
 
         $state = ('not_promoted' === $client->promoted->value)
-            ? Promoted::IsPromoted->value
-            : Promoted::NotPromoted->value;
+            ? Promoted::YES->value
+            : Promoted::NO->value;
 
         $client->update([
             'promoted' => $state

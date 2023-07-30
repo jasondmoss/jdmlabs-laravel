@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Livewire\Application\Components\Article;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -33,7 +33,7 @@ class PublishedArticles extends Component
 
     public function render(): View
     {
-        $articles = Article::published('status', 'published')
+        $articles = ArticleEloquentModel::published('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 

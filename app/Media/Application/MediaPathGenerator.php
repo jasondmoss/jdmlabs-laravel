@@ -17,7 +17,8 @@ class MediaPathGenerator extends DefaultPathGenerator
      */
     protected function getBasePath(Media $media): string
     {
-        return $media->collection_name . '/' . $media->getAttribute('ulid');
+        // Prepend path with the name of the collection.
+        return $media->collection_name . '/' . $media->getKey();
     }
 
 }

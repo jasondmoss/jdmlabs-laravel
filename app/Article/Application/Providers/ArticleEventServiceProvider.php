@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Providers;
 
 use App\Article\Domain\ArticleObserver;
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Laravel\Application\Providers\EventServiceProvider;
 
 class ArticleEventServiceProvider extends EventServiceProvider
@@ -17,7 +17,7 @@ class ArticleEventServiceProvider extends EventServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $observers = [
-        Article::class => [
+        ArticleEloquentModel::class => [
             ArticleObserver::class
         ]
     ];

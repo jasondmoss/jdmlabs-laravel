@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Article\Domain;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Shared\Enums\Status;
 use App\Core\User\Infrastructure\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -31,11 +31,11 @@ final readonly class ArticlePolicy
 
     /**
      * @param \App\Core\User\Infrastructure\User $user
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function owner(User $user, Article $article): Response
+    public function owner(User $user, ArticleEloquentModel $article): Response
     {
         return $user->id === $article->user_id
             ? Response::allow()
@@ -45,11 +45,11 @@ final readonly class ArticlePolicy
 
     /**
      * @param \App\Core\User\Infrastructure\User $user
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(User $user, Article $article): Response
+    public function update(User $user, ArticleEloquentModel $article): Response
     {
         return $user->id === $article->user_id
             ? Response::allow()
@@ -58,11 +58,11 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(Article $article): Response
+    public function view(ArticleEloquentModel $article): Response
     {
         return Status::Published === $article->status
             ? Response::allow()

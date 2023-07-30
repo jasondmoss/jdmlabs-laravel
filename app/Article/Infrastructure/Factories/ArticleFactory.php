@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Database;
+namespace App\Article\Infrastructure\Factories;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\User\Infrastructure\User;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 final class ArticleFactory extends Factory
 {
 
-    protected $model = Article::class;
+    protected $model = ArticleEloquentModel::class;
 
 
     /**

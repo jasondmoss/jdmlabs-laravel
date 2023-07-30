@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Application\Controllers;
+namespace App\Article\Interface\Http\Controllers;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class SingleController extends Controller
 {
 
-    private Article $article;
+    private ArticleEloquentModel $article;
 
 
     /**
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      */
-    public function __construct(Article $article)
+    public function __construct(ArticleEloquentModel $article)
     {
         $this->article = $article;
     }

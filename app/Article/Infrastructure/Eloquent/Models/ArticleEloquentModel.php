@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure;
+namespace App\Article\Infrastructure\Eloquent\Models;
 
 use App\Article\Application\Exceptions\CouldNotFindArticle;
-use App\Article\Infrastructure\Database\ArticleFactory;
+use App\Article\Infrastructure\Factories\ArticleFactory;
 use App\Core\Shared\Casts\ConvertNullToEmptyString;
 use App\Core\Shared\Enums\Promoted;
 use App\Core\Shared\Enums\Status;
@@ -35,7 +35,7 @@ use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
 
-class Article extends Model implements HasMedia
+class ArticleEloquentModel extends Model implements HasMedia
 {
 
     use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, MediaExtended, Observable,
@@ -79,7 +79,7 @@ class Article extends Model implements HasMedia
 
 
     /**
-     * @return \App\Article\Infrastructure\Database\ArticleFactory
+     * @return \App\Article\Infrastructure\Factories\ArticleFactory
      */
     protected static function newFactory(): ArticleFactory
     {

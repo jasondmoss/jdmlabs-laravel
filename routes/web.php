@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Article\Application\Controllers as Article;
 use App\Client\Application\Controllers as Client;
 use App\Project\Application\Controllers as Project;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +20,8 @@ Route::middleware([ 'web' ])->group(function () {
         return view('public.page.now');
     })->name('now');
 
-    Route::get('/articles', Article\PublishedController::class);
-    Route::get('/article/{slug}', Article\SingleController::class);
+    Route::get('/articles', \App\Article\Interface\Http\Controllers\PublishedController::class);
+    Route::get('/article/{slug}', \App\Article\Interface\Http\Controllers\SingleController::class);
 
     Route::get('/clients', Client\PublishedController::class);
     Route::get('/client/{slug}', Client\SingleController::class);
@@ -43,12 +42,12 @@ Route::middleware([ 'web' ])->group(function () {
             return view('ae.page.dashboard');
         })->name('dashboard');
 
-        Route::get('/articles', Article\IndexController::class);
-        Route::get('/article/create', Article\CreateController::class);
-        Route::post('/article/create', Article\StoreController::class);
-        Route::get('/article/edit/{id}', Article\EditController::class);
-        Route::put('/article/update/{id}', Article\UpdateController::class);
-        Route::delete('/article/{id}', Article\DestroyController::class);
+        Route::get('/articles', \App\Article\Interface\Http\Controllers\IndexController::class);
+        Route::get('/article/create', \App\Article\Interface\Http\Controllers\CreateController::class);
+        Route::post('/article/create', \App\Article\Interface\Http\Controllers\StoreController::class);
+        Route::get('/article/edit/{id}', \App\Article\Interface\Http\Controllers\EditController::class);
+        Route::put('/article/update/{id}', \App\Article\Interface\Http\Controllers\UpdateController::class);
+        Route::delete('/article/{id}', \App\Article\Interface\Http\Controllers\DestroyController::class);
 
         Route::get('/clients', Client\IndexController::class);
         Route::get('/client/create', Client\CreateController::class);

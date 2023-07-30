@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Repositories;
+namespace App\Article\Application\Repositories\Eloquent;
 
 use App\Article\Domain\Contracts\StoreContract;
-use App\Article\Infrastructure\Article;
-use App\Article\Interface\Http\CreateRequest;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 
 final class StoreRepository implements StoreContract
 {
@@ -14,9 +13,9 @@ final class StoreRepository implements StoreContract
     /**
      * @inheritDoc
      */
-    public function save(CreateRequest $data): Article
+    public function save(object $data): ArticleEloquentModel
     {
-        $article = Article::create([
+        $article = ArticleEloquentModel::create([
             'title' => $data->title,
             'summary' => $data->summary,
             'body' => $data->body,
@@ -26,7 +25,7 @@ final class StoreRepository implements StoreContract
             'user_id' => $data->user_id
         ]);
 
-        return Article::findOrFail($article->id);
+        return ArticleEloquentModel::findOrFail($article->id);
     }
 
 }

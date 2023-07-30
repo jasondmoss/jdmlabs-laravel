@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\Article;
-use App\Article\Infrastructure\Repositories\UpdateRepository;
+use App\Article\Application\Repositories\Eloquent\UpdateRepository;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use App\Article\Infrastructure\Entities\ArticleEntity;
 
 final readonly class UpdateUseCase
 {
@@ -14,7 +15,7 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repositories\UpdateRepository $repository
+     * @param \App\Article\Application\Repositories\Eloquent\UpdateRepository $repository
      */
     public function __construct(UpdateRepository $repository)
     {
@@ -23,14 +24,14 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param object $data
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \App\Article\Infrastructure\Entities\ArticleEntity $entity
      *
-     * @return \App\Article\Infrastructure\Article
-     * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
+     * @return \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel
      */
-    public function update(object $data): Article
+    public function update(ArticleEloquentModel $article, ArticleEntity $entity): ArticleEloquentModel
     {
-        return $this->repository->update($data);
+        return $this->repository->update($article, $entity);
     }
 
 }

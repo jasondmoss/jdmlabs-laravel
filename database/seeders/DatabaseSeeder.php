@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Article\Infrastructure\Database\ArticleSeeder;
 use App\Client\Infrastructure\Database\ClientSeeder;
 use App\Core\User\Infrastructure\Database\UserSeeder;
 use App\Project\Infrastructure\Database\ProjectSeeder;

@@ -85,8 +85,8 @@ class AdminListing extends Component
         $project = $this->project->find($id);
 
         $state = ('not_promoted' === $project->promoted->value)
-            ? Promoted::IsPromoted->value
-            : Promoted::NotPromoted->value;
+            ? Promoted::YES->value
+            : Promoted::NO->value;
 
         $project->update([
             'promoted' => $state

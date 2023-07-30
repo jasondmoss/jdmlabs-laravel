@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Infrastructure;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Client\Infrastructure\Client;
 use App\Core\Shared\Scopes\FindBySlug;
 use App\Core\Shared\Scopes\WherePromoted;
@@ -106,7 +106,7 @@ class Category extends Model
      */
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class, 'category_id');
+        return $this->hasMany(ArticleEloquentModel::class, 'category_id');
     }
 
 

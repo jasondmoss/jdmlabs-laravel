@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\Article;
-use App\Article\Infrastructure\Repositories\DestroyRepository;
+use App\Article\Application\Repositories\Eloquent\DestroyRepository;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 
 final readonly class DestroyUseCase
 {
@@ -14,7 +14,7 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repositories\DestroyRepository $repository
+     * @param \App\Article\Application\Repositories\Eloquent\DestroyRepository $repository
      */
     public function __construct(DestroyRepository $repository)
     {
@@ -23,11 +23,11 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      *
      * @return void
      */
-    public function delete(Article $article): void
+    public function delete(ArticleEloquentModel $article): void
     {
         $this->repository->delete($article);
     }

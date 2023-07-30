@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Application\Providers;
 
 use App\Article\Domain\ArticlePolicy;
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Laravel\Application\Providers\AuthServiceProvider;
 
 class ArticleAuthServiceProvider extends AuthServiceProvider
@@ -17,7 +17,7 @@ class ArticleAuthServiceProvider extends AuthServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        Article::class => ArticlePolicy::class
+        ArticleEloquentModel::class => ArticlePolicy::class
     ];
 
 }

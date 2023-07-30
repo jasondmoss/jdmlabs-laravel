@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Application\Controllers;
+namespace App\Article\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class PublishedController extends Controller
+class IndexController extends Controller
 {
 
     /**
@@ -16,7 +16,7 @@ class PublishedController extends Controller
      */
     public function __invoke(): View
     {
-        return ViewFacade::make('ArticlePublic::show');
+        return ViewFacade::make('ArticleAdmin::show');
     }
 
 }

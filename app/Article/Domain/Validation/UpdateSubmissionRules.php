@@ -2,29 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Interface\Http;
+namespace App\Article\Domain\Validation;
 
-use App\Article\Infrastructure\Article;
 use App\Core\Shared\Enums\Promoted;
 use App\Core\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-final class UpdateRequest extends FormRequest
+class UpdateSubmissionRules extends FormRequest
 {
-
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        $article = Article::where('id', '=', $this->route('id'))->get()->first();
-
-        return $this->user()->can('update', $article);
-    }
-
 
     /**
      * @return array
@@ -46,7 +32,7 @@ final class UpdateRequest extends FormRequest
             'image[caption]' => 'nullable|string|max:255',
 
             'status' => [ new Enum(Status::class) ],
-            'promoted' => [ new Enum(Promoted::class) ],
+            'promoted' => [ new Enum(Promoted::class) ]
         ];
     }
 

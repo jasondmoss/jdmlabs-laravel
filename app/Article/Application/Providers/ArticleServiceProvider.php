@@ -25,15 +25,15 @@ class ArticleServiceProvider extends ServiceProvider
     {
         $this->app->when(UseCases\DestroyUseCase::class)
             ->needs(Contracts\DestroyContract::class)
-            ->give(Repositories\DestroyRepository::class);
+            ->give(\App\Article\Application\Repositories\Eloquent\DestroyRepository::class);
 
         $this->app->when(UseCases\StoreUseCase::class)
             ->needs(Contracts\StoreContract::class)
-            ->give(Repositories\StoreRepository::class);
+            ->give(\App\Article\Application\Repositories\Eloquent\StoreRepository::class);
 
         $this->app->when(UseCases\UpdateUseCase::class)
             ->needs(Contracts\UpdateContract::class)
-            ->give(Repositories\UpdateRepository::class);
+            ->give(\App\Article\Application\Repositories\Eloquent\UpdateRepository::class);
 
 
         // Tell Laravel of our custom templates paths.

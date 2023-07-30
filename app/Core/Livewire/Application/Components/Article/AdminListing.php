@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Livewire\Application\Components\Article;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Shared\Enums\Promoted;
 use App\Core\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -18,7 +18,7 @@ class AdminListing extends Component
 
     use AuthorizesRequests, WithPagination;
 
-    public Article $article;
+    public ArticleEloquentModel $article;
 
     public string $search = '';
 
@@ -26,11 +26,11 @@ class AdminListing extends Component
 
 
     /**
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      *
      * @return void
      */
-    public function mount(Article $article): void
+    public function mount(ArticleEloquentModel $article): void
     {
         $this->article = $article;
     }
@@ -65,8 +65,8 @@ class AdminListing extends Component
         $article = $this->article->find($id);
 
         $state = ('not_promoted' === $article->promoted->value)
-            ? Promoted::IsPromoted->value
-            : Promoted::NotPromoted->value;
+            ? Promoted::YES->value
+            : Promoted::NO->value;
 
         $article->update([
             'promoted' => $state
@@ -103,7 +103,7 @@ class AdminListing extends Component
      */
     public function render(): View
     {
-        $articles = Article::where('user_id', auth()->user()->id)
+        $articles = ArticleEloquentModel::where('user_id', auth()->user()->id)
             ->where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->paginate(20);

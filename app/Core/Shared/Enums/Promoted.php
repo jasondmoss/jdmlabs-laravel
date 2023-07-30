@@ -12,9 +12,9 @@ enum Promoted: string
 
     use EnumValues, EnumOptions;
 
-    case NotPromoted = 'not_promoted';
+    case NO = 'not_promoted';
 
-    case IsPromoted = 'promoted';
+    case YES = 'promoted';
 
 
     /**

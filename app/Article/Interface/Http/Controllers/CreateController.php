@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Application\Controllers;
+namespace App\Article\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use App\Taxonomy\Infrastructure\Category;

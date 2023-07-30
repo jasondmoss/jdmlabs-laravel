@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Infrastructure\Database;
+namespace Database\Seeders;
 
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(20)->create();
+        ArticleEloquentModel::factory(20)->create();
     }
 
 }

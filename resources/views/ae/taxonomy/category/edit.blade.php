@@ -1,30 +1,28 @@
 @php
-  use App\Article\Application\Controllers as Article;
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
-  use App\Taxonomy\Application\Controllers;
-  use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
   @once
     <style>
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 0;
-}
-.item {
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  padding: 0.5rem 0.5rem 1rem;
-}
-.item dt {
-  grid-column: 1;
-}
-.item dd {
-  grid-column: 2;
-}
+			.items {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem 0;
+			}
+
+			.item {
+				display: grid;
+				grid-template-columns: 4rem 1fr;
+				padding: 0.5rem 0.5rem 1rem;
+			}
+
+			.item dt {
+				grid-column: 1;
+			}
+
+			.item dd {
+				grid-column: 2;
+			}
     </style>
   @endonce
 @endpush
@@ -42,7 +40,8 @@
   {{ html()->hidden('listing_page', URL::previous()) }}
 
   <header class="editor--header">
-    <h1><i class="fa-solid fa-pen-to-square"></i> {{ $category->name }}</h1>
+    <h1>
+      <i class="fa-solid fa-pen-to-square"></i> {{ $category->name }}</h1>
   </header>
 
   <div class="editor--content">
@@ -69,7 +68,7 @@
             <dl id="Article_{{ $article->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\App\Article\Interface\Http\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
                     @if ($article->hasMedia('signatures'))
                       <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -79,7 +78,9 @@
                 </figure>
               </dt>
               <dd>
-                <h3><a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a></h3>
+                <h3>
+                  <a href="{{ action(\App\Article\Interface\Http\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
+                </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $article->id }}</p>
               </dd>
             </dl>
@@ -93,7 +94,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save Article')->class('button submit') }}
+        {{ html()->button('Save ArticleEloquentModel')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

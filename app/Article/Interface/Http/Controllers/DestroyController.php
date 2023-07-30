@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Article\Application\Controllers;
+namespace App\Article\Interface\Http\Controllers;
 
 use App\Article\Application\UseCases\DestroyUseCase;
-use App\Article\Infrastructure\Article;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
 use Illuminate\Http\RedirectResponse;
@@ -13,16 +13,16 @@ use Illuminate\Http\RedirectResponse;
 class DestroyController extends Controller
 {
 
-    protected Article $article;
+    protected ArticleEloquentModel $article;
 
     protected DestroyUseCase $bridge;
 
 
     /**
-     * @param \App\Article\Infrastructure\Article $article
+     * @param \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      * @param \App\Article\Application\UseCases\DestroyUseCase $bridge
      */
-    public function __construct(Article $article, DestroyUseCase $bridge)
+    public function __construct(ArticleEloquentModel $article, DestroyUseCase $bridge)
     {
         $this->article = $article;
         $this->bridge = $bridge;

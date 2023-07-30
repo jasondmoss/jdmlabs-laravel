@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Article\Application\UseCases;
 
-use App\Article\Infrastructure\Article;
-use App\Article\Infrastructure\Repositories\StoreRepository;
-use App\Article\Interface\Http\CreateRequest;
+use App\Article\Application\Repositories\Eloquent\StoreRepository;
+use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 
 final readonly class StoreUseCase
 {
@@ -15,7 +14,7 @@ final readonly class StoreUseCase
 
 
     /**
-     * @param \App\Article\Infrastructure\Repositories\StoreRepository $repository
+     * @param \App\Article\Application\Repositories\Eloquent\StoreRepository $repository
      */
     public function __construct(StoreRepository $repository)
     {
@@ -24,11 +23,11 @@ final readonly class StoreUseCase
 
 
     /**
-     * @param \App\Article\Interface\Http\CreateRequest $data
+     * @param object $data
      *
-     * @return \App\Article\Infrastructure\Article
+     * @return \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel
      */
-    public function store(CreateRequest $data): Article
+    public function store(object $data): ArticleEloquentModel
     {
         return $this->repository->save($data);
     }
