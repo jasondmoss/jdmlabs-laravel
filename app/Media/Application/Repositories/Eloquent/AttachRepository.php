@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Media\Infrastructure\Repositories;
+namespace App\Media\Application\Repositories\Eloquent;
 
 use App\Media\Domain\Contracts\AttachContract;
 use App\Media\Infrastructure\Entities\ImageEntity;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -13,9 +14,13 @@ class AttachRepository implements AttachContract
 {
 
     /**
-     * @throws \Exception
+     * @inheritDoc
      */
-    public function attach($model, $data, $collection = '')
+    public function attach(
+        ?Model $model,
+        ImageEntity $entity,
+        string $collection = ''
+    ): void
     {
         try {
             // Delete any existing media attached to this model.
@@ -23,22 +28,18 @@ class AttachRepository implements AttachContract
                 $media->delete();
             }
 
-            $imageEntity = new ImageEntity($data);
-
-            $model->addMedia($imageEntity->file)
+            $model->addMedia($entity->file)
                 ->withCustomProperties([
-                    'label' => $imageEntity->label,
-                    'alt' => $imageEntity->alt,
-                    'caption' => $imageEntity->caption,
-                    'width' => $imageEntity->width,
-                    'height' => $imageEntity->height
+                    'label' => $entity->label,
+                    'alt' => $entity->alt,
+                    'caption' => $entity->caption,
+                    'width' => $entity->width,
+                    'height' => $entity->height
                 ])
                 ->withResponsiveImages()
                 ->toMediaCollection($collection);
         } catch (FileDoesNotExist|FileIsTooBig $exception) {
             report($exception);
-
-            return false;
         }
     }
 

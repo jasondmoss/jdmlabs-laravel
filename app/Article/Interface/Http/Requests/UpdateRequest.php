@@ -8,6 +8,7 @@ use App\Article\Domain\Validation\UpdateSubmissionRules;
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 
 /**
+ * @property mixed $image
  * @property string $listing_page
  */
 final class UpdateRequest extends UpdateSubmissionRules

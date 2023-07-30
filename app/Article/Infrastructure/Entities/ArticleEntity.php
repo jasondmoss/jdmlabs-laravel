@@ -30,9 +30,9 @@ final readonly class ArticleEntity
 
 
     /**
-     * @param $articleData
+     * @param object $articleData
      */
-    public function __construct($articleData)
+    public function __construct(object $articleData)
     {
         $this->id = ! empty($articleData->id)
             ? (new Id($articleData->id))->value()

@@ -27,7 +27,7 @@ final readonly class ImageEntity
 
 
     /**
-     * @param ?object $image
+     * @param object|null $image
      */
     public function __construct(?object $image)
     {

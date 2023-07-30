@@ -10,6 +10,7 @@ use App\Article\Infrastructure\Entities\ArticleEntity;
 use App\Article\Interface\Http\Requests\UpdateRequest;
 use App\Core\Laravel\Application\Controller;
 use App\Media\Application\UseCases\AttachUseCase as MediaUseCase;
+use App\Media\Infrastructure\Entities\ImageEntity;
 use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
@@ -54,8 +55,10 @@ class UpdateController extends Controller
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
         if ($request->hasFile('image')) {
+            $imageEntity = new ImageEntity((object) $request->image);
+
             // Attach uploaded signature image.
-            $this->media->attach($article, (object) $request['image'], 'signatures');
+            $this->media->attach($article, $imageEntity, 'signatures');
         }
 
         return redirect()
