@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Article\Interface\Http\Controllers as Article;
 use App\Client\Interface\Http\Controllers as Client;
 use App\Project\Interface\Http\Controllers as Project;
-use  App\Taxonomy\Interface\Http\Controllers as Category;
+use App\Taxonomy\Interface\Http\Controllers as Category;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {

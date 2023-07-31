@@ -43,6 +43,7 @@ class UpdateController extends Controller
      * @param \App\Client\Interface\Http\Requests\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Client\Application\Exceptions\CouldNotFindClient
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
@@ -53,8 +54,8 @@ class UpdateController extends Controller
 
         $client = $this->bridge->update($clientInstance, $clientEntity);
 
-        if ($request->hasFile('logo')) {
-            $imageEntity = new ImageEntity((object) $request->logo);
+        if ($request->hasFile('logo_image')) {
+            $imageEntity = new ImageEntity((object) $request->logo_image);
 
             // Attach uploaded logo image.
             $this->media->attach($client, $imageEntity, 'logos');

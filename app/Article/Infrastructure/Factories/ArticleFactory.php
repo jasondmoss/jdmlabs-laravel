@@ -36,8 +36,6 @@ final class ArticleFactory extends Factory
             'status' => 'published',
             'promoted' => 'not_promoted',
 
-//            'category_id' => '',
-
             'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
 
             'published_at' => $created,

@@ -6,8 +6,10 @@ namespace App\Project\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
+use App\Project\Application\Exceptions\CouldNotDeleteProject;
 use App\Project\Application\UseCases\DestroyUseCase;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
@@ -34,12 +36,17 @@ class DestroyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \App\Project\Application\Exceptions\CouldNotDeleteProject
      */
     public function __invoke(string $id): RedirectResponse
     {
         $toBeDeleted = $this->project->find((new Id($id))->value());
 
-        $this->bridge->delete($toBeDeleted);
+        try {
+            $this->bridge->delete($toBeDeleted);
+        } catch (Exception $exception) {
+            throw CouldNotDeleteProject::withId($toBeDeleted->id);
+        }
 
         return redirect()
             ->action(IndexController::class)

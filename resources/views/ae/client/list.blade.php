@@ -1,129 +1,132 @@
 @php
-  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;use Illuminate\Support\Facades\Date;
+  use App\Client\Interface\Http\Controllers as Client;
+  use App\Core\Shared\Enums\Promoted;
+  use App\Core\Shared\Enums\Status;
+  use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
   @once
     <style>
-			.item {
-				grid-template-columns: 1fr;
-			}
+.item {
+  grid-template-columns: 1fr;
+}
 
-			.item--image {
-				grid-row: 4;
-				background-color: var(--debug--yellow);
-			}
+.item--image {
+  grid-row: 4;
+  background-color: var(--debug--yellow);
+}
 
-			.item--header {
-				grid-row: 1;
-			}
+.item--header {
+  grid-row: 1;
+}
 
-			.item--id {
-				grid-row: 2;
-			}
+.item--id {
+  grid-row: 2;
+}
 
-			.item--meta {
-				grid-row: 3;
-			}
+.item--meta {
+  grid-row: 3;
+}
 
-			@media screen {
-				@media (max-width: 39.9375rem) {
-					.item {
-						gap: 1rem;
-					}
-				}
+@media screen {
+  @media (max-width: 39.9375rem) {
+    .item {
+      gap: 1rem;
+    }
+  }
 
-				@media (min-width: 40rem) {
-					.item {
-						grid-template-columns: 10rem 1fr;
-					}
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 10rem 1fr;
+    }
 
-					.item--image {
-						grid-column: 1;
-						grid-row: 1/span 3;
-					}
+    .item--image {
+      grid-column: 1;
+      grid-row: 1/span 3;
+    }
 
-					.item--header,
-					.item--id,
-					.item--taxonomy,
-					.item--actions,
-					.item--date {
-						grid-column: 2;
-					}
+    .item--header,
+    .item--id,
+    .item--taxonomy,
+    .item--actions,
+    .item--date {
+      grid-column: 2;
+    }
 
-					.item--meta {
-						grid-column: 1;
-						grid-row: 4;
-					}
+    .item--meta {
+      grid-column: 1;
+      grid-row: 4;
+    }
 
-					.item--actions menu {
-						justify-content: flex-start;
-					}
-				}
+    .item--actions menu {
+      justify-content: flex-start;
+    }
+  }
 
-				@media (min-width: 40rem) and (max-width: 59.9375rem) {
-					.item--meta {
-						margin-top: 2rem;
-					}
-				}
+  @media (min-width: 40rem) and (max-width: 59.9375rem) {
+    .item--meta {
+      margin-top: 2rem;
+    }
+  }
 
-				@media (min-width: 60rem) {
-					.item {
-						grid-template-columns: 10rem 1fr 14rem;
-					}
+  @media (min-width: 60rem) {
+    .item {
+      grid-template-columns: 10rem 1fr 14rem;
+    }
 
-					.item--header {
-						grid-row: 1/span 2;
-					}
+    .item--header {
+      grid-row: 1/span 2;
+    }
 
-					.item--id {
-						margin-top: 0.5rem;
-					}
+    .item--id {
+      margin-top: 0.5rem;
+    }
 
-					.item--taxonomy {
-						grid-row: 2;
-						align-self: end;
-						margin-top: 1rem;
-					}
+    .item--taxonomy {
+      grid-row: 2;
+      align-self: end;
+      margin-top: 1rem;
+    }
 
-					.item--meta {
-						grid-column: 3;
-						grid-row: 1;
-						justify-content: flex-start;
-					}
+    .item--meta {
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-start;
+    }
 
-					.item--meta svg {
-						width: 1.5rem;
-						height: 1.5rem;
-					}
+    .item--meta svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
 
-					.item--date {
-						grid-column: 3;
-						grid-row: 2/span 2;
-					}
+    .item--date {
+      grid-column: 3;
+      grid-row: 2/span 2;
+    }
 
-					.item--actions {
-						align-self: end;
-					}
+    .item--actions {
+      align-self: end;
+    }
 
-					.item--actions menu {
-						padding-right: 3rem;
-					}
-				}
+    .item--actions menu {
+      padding-right: 3rem;
+    }
+  }
 
-				@media (min-width: 75rem) {
-					.item {
-						gap: 0 2rem;
-					}
-				}
-			}
+  @media (min-width: 75rem) {
+    .item {
+      gap: 0 2rem;
+    }
+  }
+}
     </style>
   @endonce
 @endpush
 
 <div class="listing-wrapper">
   <nav class="listing-tools">
-    <a class="button create-new" href="{{ action(\App\Client\Interface\Http\Controllers\CreateController::class) }}">Create New Client</a>
+    <a class="button create-new" href="{{ action(Client\CreateController::class) }}">Create New Client</a>
 
     <div class="list-search">
       <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
@@ -136,14 +139,17 @@
         <client id="item-{{ $client->id }}" class="item">
 
           <figure class="item--image">
-            <a href="{{ action(\App\Client\Interface\Http\Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
-              <img src="{{ asset('images/placeholder/logo.png') }}" alt="">
-            </a>
+            <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
+              @if ($client->hasMedia('logos'))
+                <img src="{{ $client->getFirstMediaUrl('logos', 'preview') }}" alt="">
+              @else
+                <img class="placeholder" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+            @endif
           </figure>
 
           <header class="item--header">
             <h3 class="title">
-              <a href="{{ action(\App\Client\Interface\Http\Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
+              <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">{{ $client->name }}</a>
             </h3>
           </header>
 
@@ -194,20 +200,20 @@
           <footer class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(\App\Client\Interface\Http\Controllers\EditController::class, $client->id) }}" title="{{ __('Edit client') }}">
+                <a href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit client') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a rel="external" href="{{ action(\App\Client\Interface\Http\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
+                <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View client') }}">
                   <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(\App\Client\Interface\Http\Controllers\DestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
+                <a href="{{ action(Client\DestroyController::class, $client->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete client') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\App\Client\Interface\Http\Controllers\DestroyController::class, $client->id) }}">
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Client\DestroyController::class, $client->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

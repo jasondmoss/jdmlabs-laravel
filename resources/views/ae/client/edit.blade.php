@@ -1,14 +1,17 @@
 @php
-  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
+  use App\Client\Interface\Http\Controllers as Client;
+  use App\Core\Shared\Enums\Promoted;
+  use App\Core\Shared\Enums\Status;
+  use App\Project\Interface\Http\Controllers as Project;
 @endphp
 
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-		ClassicEditor.create(document.getElementById("summary"), {
-			removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-		}).catch(error => console.error(error));
+ClassicEditor.create(document.getElementById("summary"), {
+    removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+}).catch(error => console.error(error));
     </script>
   @endonce
 @endpush
@@ -16,25 +19,25 @@
 @push('styles')
   @once
     <style>
-			.items {
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem 0;
-			}
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 0;
+}
 
-			.item {
-				display: grid;
-				grid-template-columns: 4rem 1fr;
-				padding: 0.5rem 0.5rem 1rem;
-			}
+.item {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  padding: 0.5rem 0.5rem 1rem;
+}
 
-			.item dt {
-				grid-column: 1;
-			}
+.item dt {
+  grid-column: 1;
+}
 
-			.item dd {
-				grid-column: 2;
-			}
+.item dd {
+  grid-column: 2;
+}
     </style>
   @endonce
 @endpush
@@ -59,7 +62,7 @@
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Client\Interface\Http\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
         {{ $client->slug ? $client->slug : '' }}
       </a>
     </p>
@@ -73,10 +76,6 @@
         {{ html()->label('Name')->for('name') }}
         {{ html()->text('name')->class('text')->attribute('required') }}
         <p class="title-slug"><span class="label">{{ __('slug') }}:</span> {{ $client->slug ?? '...' }}</p>
-
-        @error('name')
-        <x-shared.message type="error" context="name" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field schema">
@@ -85,10 +84,6 @@
         <small>{{ __('See') }}
           <a rel="external" href="https://schema.org/docs/full.html" title="A set of extensible schemas to embed structured data on web pages">Schema.org</a>
         </small>
-
-        @error('itemprop')
-        <x-shared.message type="error" context="itemprop" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field website">
@@ -97,20 +92,51 @@
           'id' => 'website',
           'name' => 'website',
         ])->value(old('website', $client->website)) }}
-
-        @error('website')
-        <x-shared.message type="error" context="website" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field summary">
         {{ html()->label('Summary')->for('summary') }}
         {{ html()->textarea('summary')->class('textarea')->rows(4) }}
-
-        @error('summary')
-        <x-shared.message type="error" context="summary" :message="$errors"/>
-        @enderror
       </div>
+    </fieldset>
+
+    {{-- <fieldset class="container--taxonomy">
+      <legend>{{ __('Taxonomy') }}</legend>
+
+      <div class="form-field taxonomy">
+        {{ html()->label('Categories')->for('category') }}
+        {{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
+      </div>
+    </fieldset> --}}
+
+    <fieldset class="container--signature-image">
+      <legend>{{ __('Business Logo') }}</legend>
+      <div class="form-field">
+        {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
+        {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
+          'id' => 'logo_image',
+          'class' => 'upload'
+        ]) }}
+      </div>
+
+      <div class="form-field">
+        {{ html()->label('Name')->for('logo_image[label]') }}
+        {{ html()->text('logo_image[label]')->class('text') }}
+      </div>
+
+      <div class="form-field">
+        {{ html()->label('Alt Description')->for('logo_image[alt]') }}
+        {{ html()->text('logo_image[alt]')->class('text') }}
+      </div>
+
+      <div class="form-field">
+        {{ html()->label('Caption')->for('logo_image[caption]') }}
+        {{ html()->text('logo_image[caption]')->class('text') }}
+      </div>
+
+      <figure class="item--image">
+        <img id="previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+      </figure>
     </fieldset>
 
     {{--
@@ -126,7 +152,7 @@
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(\App\Project\Interface\Http\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     {{--@if ($project->hasMedia('signatures'))
                       <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -138,7 +164,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(\App\Project\Interface\Http\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>
@@ -160,10 +186,6 @@
             <option value="{{ $state->value }}"{{ $client->status && ($client->status->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
-
-        @error('status')
-        <x-shared.message type="error" context="status" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field promoted">
@@ -173,10 +195,6 @@
             <option value="{{ $state->value }}"{{ $client->promoted && ($client->promoted->value == $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
-
-        @error('promoted')
-        <x-shared.message type="error" context="promoted" :message="$errors"/>
-        @enderror
       </div>
     </fieldset>
 

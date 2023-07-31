@@ -43,8 +43,8 @@ class StoreController extends Controller
 
         $client = $this->bridge->store($clientEntity);
 
-        if ($request->hasFile('logo')) {
-            $imageEntity = new ImageEntity((object) $request->logo);
+        if ($request->hasFile('logo_image')) {
+            $imageEntity = new ImageEntity((object) $request->logo_image);
 
             // Attach uploaded logo image.
             $this->media->attach($client, $imageEntity, 'logos');

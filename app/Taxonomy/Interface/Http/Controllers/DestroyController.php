@@ -6,8 +6,10 @@ namespace App\Taxonomy\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
+use App\Taxonomy\Application\Exceptions\CouldNotDeleteCategory;
 use App\Taxonomy\Application\UseCases\DestroyUseCase;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
@@ -30,12 +32,17 @@ class DestroyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
+     * @throws \App\Taxonomy\Application\Exceptions\CouldNotDeleteCategory
      */
     public function __invoke(string $id): RedirectResponse
     {
         $toBeDeleted = $this->category->find((new Id($id))->value());
 
-        $this->bridge->delete($toBeDeleted);
+        try {
+            $this->bridge->delete($toBeDeleted);
+        } catch (Exception $exception) {
+            throw CouldNotDeleteCategory::withId($toBeDeleted->id);
+        }
 
         return redirect()
             ->action(IndexController::class)

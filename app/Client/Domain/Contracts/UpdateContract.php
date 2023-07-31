@@ -16,6 +16,9 @@ interface UpdateContract
      *
      * @return \App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel
      */
-    public function update(ClientEloquentModel $client, ClientEntity $entity): ClientEloquentModel;
+    public function update(
+        ClientEloquentModel $client,
+        ClientEntity $entity
+    ): ClientEloquentModel;
 
 }

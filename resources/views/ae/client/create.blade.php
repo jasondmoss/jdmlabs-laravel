@@ -1,139 +1,141 @@
 @php
-	use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
+  use App\Core\Shared\Enums\Promoted;
+  use App\Core\Shared\Enums\Status;
 @endphp
 @push('scripts')
-	@once
-		<script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
-		<script>
-		ClassicEditor.create(document.getElementById("summary"), {
-			removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-		}).catch(error => console.error(error));
-		</script>
-	@endonce
+  @once
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script>
+ClassicEditor.create(document.getElementById("summary"), {
+    removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+}).catch(error => console.error(error));
+    </script>
+  @endonce
 @endpush
 
 <x-ae.layout title="Create New Client" page="create" livewire="true">
-	{{ html()
-		->form('POST', '/ae/client/create')
-		->id('clientForm')
-		->class('content-editor')
-		->acceptsFiles()
-		->open()
-	}}
+  {{ html()
+    ->form('POST', '/ae/client/create')
+    ->id('clientForm')
+    ->class('content-editor')
+    ->acceptsFiles()
+    ->open()
+  }}
 
-	{{ html()->hidden('user_id', auth()->user()->id) }}
+  {{ html()->hidden('user_id', auth()->user()->id) }}
 
-	<header class="editor--header">
-		<h1>{{ __('Create New ClientEloquentModel') }}</h1>
-	</header>
+  <header class="editor--header">
+    <h1>{{ __('Create New ClientEloquentModel') }}</h1>
+  </header>
 
-	<div class="editor--content">
-		<fieldset class="container--content">
-			<legend>{{ __('Content') }}</legend>
+  <div class="editor--content">
+    <fieldset class="container--content">
+      <legend>{{ __('Content') }}</legend>
 
-			<div class="form-field title">
-				{{ html()->label('Name')->for('name') }}
-				{{ html()->text('name')->class('text')->attribute('required') }}
-				<p class="title-slug"><span class="label">{{ __('slug') }}:</span> ...</p>
+      <div class="form-field title">
+        {{ html()->label('Name')->for('name') }}
+        {{ html()->text('name')->class('text')->attribute('required') }}
+        <p class="title-slug"><span class="label">{{ __('slug') }}:</span> ...</p>
+      </div>
 
-				@error('name')
-				<x-shared.message type="error" context="name" :message="$errors"/>
-				@enderror
-			</div>
+      <div class="form-field schema">
+        {{ html()->label('Schema Itemprop')->for('itemprop') }}
+        {{ html()->text('itemprop')->class('text')->attribute('required') }}
+        <small>{{ __('See') }}
+          <a rel="external" href="https://schema.org/docs/full.html" title="A set of extensible schemas to embed structured data on web pages">Schema.org</a>
+        </small>
+      </div>
 
-			<div class="form-field schema">
-				{{ html()->label('Schema Itemprop')->for('itemprop') }}
-				{{ html()->text('itemprop')->class('text')->attribute('required') }}
-				<small>{{ __('See') }}
-					<a rel="external" href="https://schema.org/docs/full.html" title="A set of extensible schemas to embed structured data on web pages">Schema.org</a>
-				</small>
+      <div class="form-field website">
+        {{ html()->label('Website')->for('website') }}
+        {{ html()->input('website')->type('url')->class('text')->attributes([
+          'id' => 'website',
+          'name' => 'website',
+        ]) }}
+      </div>
 
-				@error('itemprop')
-				<x-shared.message type="error" context="itemprop" :message="$errors"/>
-				@enderror
-			</div>
+      <div class="form-field summary">
+        {{ html()->label('Summary')->for('summary') }}
+        {{ html()->textarea('summary')->class('textarea')->rows(4) }}
+      </div>
+    </fieldset>
 
-			<div class="form-field website">
-				{{ html()->label('Website')->for('website') }}
-				{{ html()->input('website')->type('url')->class('text')->attributes([
-					'id' => 'website',
-					'name' => 'website',
-				]) }}
+    {{-- <fieldset class="container--taxonomy">
+      <legend>{{ __('Taxonomy') }}</legend>
 
-				@error('website')
-				<x-shared.message type="error" context="website" :message="$errors"/>
-				@enderror
-			</div>
+      <div class="form-field taxonomy">
+        {{ html()->label('Categories')->for('category') }}
+        {{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
+      </div>
+    </fieldset> --}}
 
-			<div class="form-field summary">
-				{{ html()->label('Summary')->for('summary') }}
-				{{ html()->textarea('summary')->class('textarea')->rows(4) }}
+    <fieldset class="container--signature-image">
+      <legend>{{ __('Business Logo') }}</legend>
+      <div class="form-field">
+        {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
+        {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
+          'id' => 'logo_image',
+          'class' => 'upload'
+        ]) }}
+      </div>
 
-				@error('summary')
-				<x-shared.message type="error" context="summary" :message="$errors"/>
-				@enderror
-			</div>
-		</fieldset>
+      <div class="form-field">
+        {{ html()->label('Name')->for('logo_image[label]') }}
+        {{ html()->text('logo_image[label]')->class('text') }}
+      </div>
 
-		{{-- <fieldset class="container--taxonomy">
-			<legend>{{ __('Taxonomy') }}</legend>
+      <div class="form-field">
+        {{ html()->label('Alt Description')->for('logo_image[alt]') }}
+        {{ html()->text('logo_image[alt]')->class('text') }}
+      </div>
 
-			<div class="form-field taxonomy">
-				{{ html()->label('Categories')->for('category') }}
-				<select id="taxonomy" name="category">
-					<option value="">----</option>
-					@foreach ($categories as $category)
-						<option value="{{ $category->id }}">{{ $category->name }}</option>
-					@endforeach
-				</select>
-			</div>
-		</fieldset> --}}
-	</div>
+      <div class="form-field">
+        {{ html()->label('Caption')->for('logo_image[caption]') }}
+        {{ html()->text('logo_image[caption]')->class('text') }}
+      </div>
 
-	<aside class="editor--side">
-		<fieldset class="container--meta">
-			<legend>{{ __('Meta') }}</legend>
+      <figure class="item--image">
+        <img id="previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+      </figure>
+    </fieldset>
+  </div>
 
-			<div class="form-field status">
-				{{ html()->label('Status')->for('status') }}
-				<select name="status" id="status" class="select">
-					@foreach(Status::cases() as $status)
-						<option value="{{ $status->value }}">{{ $status->name }}</option>
-					@endforeach
-				</select>
+  <aside class="editor--side">
+    <fieldset class="container--meta">
+      <legend>{{ __('Meta') }}</legend>
 
-				@error('status')
-				<x-shared.message type="error" context="status" :message="$errors"/>
-				@enderror
-			</div>
+      <div class="form-field status">
+        {{ html()->label('Status')->for('status') }}
+        <select name="status" id="status" class="select">
+          @foreach(Status::cases() as $status)
+            <option value="{{ $status->value }}">{{ $status->name }}</option>
+          @endforeach
+        </select>
+      </div>
 
-			<div class="form-field promoted">
-				{{ html()->label('Featured?')->for('promoted') }}
-				<select name="promoted" id="promoted" class="select">
-					@foreach(Promoted::cases() as $promoted)
-						<option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
-					@endforeach
-				</select>
+      <div class="form-field promoted">
+        {{ html()->label('Featured?')->for('promoted') }}
+        <select name="promoted" id="promoted" class="select">
+          @foreach(Promoted::cases() as $promoted)
+            <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
+          @endforeach
+        </select>
+      </div>
+    </fieldset>
 
-				@error('promoted')
-				<x-shared.message type="error" context="promoted" :message="$errors"/>
-				@enderror
-			</div>
-		</fieldset>
+    <fieldset class="container--actions">
+      <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
-		<fieldset class="container--actions">
-			<legend class="sr-only">{{ __('Form Actions') }}</legend>
+      <div class="form-field actions">
+        {{ html()->button('Save ClientEloquentModel')->class('button submit') }}
+      </div>
+    </fieldset>
+  </aside>
 
-			<div class="form-field actions">
-				{{ html()->button('Save ClientEloquentModel')->class('button submit') }}
-			</div>
-		</fieldset>
-	</aside>
-
-	<footer class="editor--footer">
-		<a rel="prev" class="back-link" href="{{ URL::previous() }}">
-			<span class="fa-solid fa-arrow-left mr-6"></span> {{ __('Back to last page') }}
-		</a>
-	</footer>
-	{{ html()->form()->close() }}
+  <footer class="editor--footer">
+    <a rel="prev" class="back-link" href="{{ URL::previous() }}">
+      <span class="fa-solid fa-arrow-left mr-6"></span> {{ __('Back to last page') }}
+    </a>
+  </footer>
+  {{ html()->form()->close() }}
 </x-ae.layout>
