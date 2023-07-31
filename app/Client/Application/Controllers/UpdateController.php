@@ -40,7 +40,7 @@ class UpdateController extends Controller
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'Client successfully updated');
+            ->with('update', 'Client updated successfully');
     }
 
 }

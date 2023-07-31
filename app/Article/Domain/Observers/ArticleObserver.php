@@ -53,10 +53,7 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function updating(ArticleEloquentModel $article): void
-    {
-        $article->slug = Str::of($article->title)->slug('-');
-    }
+    public function updating(ArticleEloquentModel $article): void {}
 
 
     /**

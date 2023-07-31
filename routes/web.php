@@ -62,12 +62,12 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/project/update/{id}', \App\Project\Interface\Http\Controllers\UpdateController::class);
         Route::delete('/project/{id}', \App\Project\Interface\Http\Controllers\DestroyController::class);
 
-        Route::get('/taxonomy/category', \App\Taxonomy\Application\Controllers\IndexController::class);
-        Route::get('/taxonomy/category/create', \App\Taxonomy\Application\Controllers\CreateController::class);
-        Route::post('/taxonomy/category/create', \App\Taxonomy\Application\Controllers\StoreController::class);
-        Route::get('/taxonomy/category/edit/{id}', \App\Taxonomy\Application\Controllers\EditController::class);
-        Route::put('/taxonomy/category/update/{id}', \App\Taxonomy\Application\Controllers\UpdateController::class);
-        Route::delete('/taxonomy/category/{id}', \App\Taxonomy\Application\Controllers\DestroyController::class);
+        Route::get('/taxonomy/category', \App\Taxonomy\Interface\Http\Controllers\IndexController::class);
+        Route::get('/taxonomy/category/create', \App\Taxonomy\Interface\Http\Controllers\CreateController::class);
+        Route::post('/taxonomy/category/create', \App\Taxonomy\Interface\Http\Controllers\StoreController::class);
+        Route::get('/taxonomy/category/edit/{id}', \App\Taxonomy\Interface\Http\Controllers\EditController::class);
+        Route::put('/taxonomy/category/update/{id}', \App\Taxonomy\Interface\Http\Controllers\UpdateController::class);
+        Route::delete('/taxonomy/category/{id}', \App\Taxonomy\Interface\Http\Controllers\DestroyController::class);
 
     });
 

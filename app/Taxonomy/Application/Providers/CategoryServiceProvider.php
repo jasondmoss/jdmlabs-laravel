@@ -24,19 +24,19 @@ class CategoryServiceProvider extends ServiceProvider
     {
         $this->app->when(\App\Taxonomy\Application\UseCases\DestroyUseCase::class)
             ->needs(\App\Taxonomy\Domain\Contracts\DeleteContract::class)
-            ->give(\App\Taxonomy\Infrastructure\Repositories\DeleteRepository::class);
+            ->give(\App\Taxonomy\Application\Repositories\Eloquent\DeleteRepository::class);
 
         $this->app->when(\App\Taxonomy\Application\UseCases\StoreUseCase::class)
             ->needs(\App\Taxonomy\Domain\Contracts\StoreContract::class)
-            ->give(\App\Taxonomy\Infrastructure\Repositories\StoreRepository::class);
+            ->give(\App\Taxonomy\Application\Repositories\Eloquent\StoreRepository::class);
 
         $this->app->when(\App\Taxonomy\Application\UseCases\UpdateUseCase::class)
             ->needs(\App\Taxonomy\Domain\Contracts\StoreContract::class)
-            ->give(\App\Taxonomy\Infrastructure\Repositories\StoreRepository::class);
+            ->give(\App\Taxonomy\Application\Repositories\Eloquent\StoreRepository::class);
 
 
         // Tell Laravel of our custom templates path.
-        View::addNamespace('Category', resource_path('views/ae/taxonomy/category'));
+        View::addNamespace('CategoryEloquentModel', resource_path('views/ae/taxonomy/category'));
     }
 
 

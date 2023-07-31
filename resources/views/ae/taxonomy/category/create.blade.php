@@ -12,7 +12,7 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
 
   <header class="editor--header">
-    <h1>{{ __('Create New Category') }}</h1>
+    <h1>{{ __('Create New CategoryEloquentModel') }}</h1>
   </header>
 
   <div class="editor--content">
@@ -30,7 +30,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save Category')->class('button submit') }}
+        {{ html()->button('Save CategoryEloquentModel')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

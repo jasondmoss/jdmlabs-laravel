@@ -2,24 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Application\UseCases;
+namespace App\Taxonomy\Application\Repositories\Eloquent;
 
-use App\Taxonomy\Application\Repositories\Eloquent\UpdateRepository;
+use App\Taxonomy\Domain\Contracts\UpdateContract;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use App\Taxonomy\Infrastructure\Entities\CategoryEntity;
 
-final readonly class UpdateUseCase
+class UpdateRepository implements UpdateContract
 {
 
-    protected UpdateRepository $repository;
+    protected CategoryEloquentModel $category;
 
 
-    /**
-     * @param \App\Taxonomy\Application\Repositories\Eloquent\UpdateRepository $repository
-     */
-    public function __construct(UpdateRepository $repository)
+    public function __construct(CategoryEloquentModel $category)
     {
-        $this->repository = $repository;
+        $this->category = $category;
     }
 
 
@@ -34,7 +31,11 @@ final readonly class UpdateUseCase
         CategoryEntity $entity
     ): CategoryEloquentModel
     {
-        return $this->repository->update($category, $entity);
+        $category->update([
+            'name' => $entity->name
+        ]);
+
+        return $category;
     }
 
 }

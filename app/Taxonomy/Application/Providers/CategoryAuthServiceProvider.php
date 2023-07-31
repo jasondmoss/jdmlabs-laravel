@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Taxonomy\Application\Providers;
 
 use App\Core\Laravel\Application\Providers\AuthServiceProvider;
-use App\Taxonomy\Domain\CategoryPolicy;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Domain\Policies\CategoryPolicy;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 
 class CategoryAuthServiceProvider extends AuthServiceProvider
 {
 
     protected $policies = [
-        Category::class => CategoryPolicy::class
+        CategoryEloquentModel::class => CategoryPolicy::class
     ];
 
 }

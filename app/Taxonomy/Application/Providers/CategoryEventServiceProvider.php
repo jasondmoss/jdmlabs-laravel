@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Taxonomy\Application\Providers;
 
 use App\Core\Laravel\Application\Providers\EventServiceProvider;
-use App\Taxonomy\Domain\CategoryObserver;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Domain\Observers\CategoryObserver;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 
 class CategoryEventServiceProvider extends EventServiceProvider
 {
@@ -17,7 +17,7 @@ class CategoryEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        Category::class => [ CategoryObserver::class ]
+        CategoryEloquentModel::class => [ CategoryObserver::class ]
     ];
 
 }

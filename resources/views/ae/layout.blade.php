@@ -97,7 +97,7 @@
           <span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item">
-        <a href="{{ action(\App\Taxonomy\Application\Controllers\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(\App\Taxonomy\Interface\Http\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Categories') }}</span></a>
       </li>
       {{-- <li class="menu-item">

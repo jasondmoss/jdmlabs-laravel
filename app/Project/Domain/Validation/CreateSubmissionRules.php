@@ -26,7 +26,7 @@ class CreateSubmissionRules extends FormRequest
             'summary' => 'required',
             'body' => 'required',
             'client_id' => 'required|ulid',
-            'category' => 'nullable|ulid',
+            'category_id' => 'nullable|ulid',
 
             'signature_image' => 'sometimes|array',
             'signature_image[file]' => 'nullable|image|mimes:gif,jpeg,jpg,png,svg',

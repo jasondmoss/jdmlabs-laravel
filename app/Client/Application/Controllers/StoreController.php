@@ -29,7 +29,9 @@ class StoreController extends Controller
         // Store + return client.
         $client = $this->bridge->store($request);
 
-        return redirect()->action(IndexController::class);
+        return redirect()
+            ->action(IndexController::class)
+            ->with('create', 'Client created successfully.');
     }
 
 }

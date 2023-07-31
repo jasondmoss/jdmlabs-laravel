@@ -20,7 +20,7 @@ use App\Core\Shared\ValueObjects\Slug;
 use App\Core\User\Infrastructure\User;
 use App\Project\Application\Exceptions\CouldNotFindProject;
 use App\Project\Infrastructure\Factories\ProjectFactory;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -202,7 +202,7 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
     }
 
 }

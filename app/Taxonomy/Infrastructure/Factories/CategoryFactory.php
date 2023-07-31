@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Infrastructure\Database;
+namespace App\Taxonomy\Infrastructure\Factories;
 
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class CategoryFactory extends Factory
 {
 
-     protected $model = Category::class;
+     protected $model = CategoryEloquentModel::class;
 
 
     /**

@@ -63,7 +63,7 @@ class UpdateController extends Controller
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'Project successfully updated');
+            ->with('update', 'Project updated successfully');
     }
 
 }

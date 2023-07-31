@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Application\Controllers;
+namespace App\Taxonomy\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
-class CreateController extends Controller
+class IndexController extends Controller
 {
 
     /**
@@ -16,7 +16,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        return ViewFacade::make('Category::create');
+        return ViewFacade::make('CategoryEloquentModel::show');
     }
 
 }

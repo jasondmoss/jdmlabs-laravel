@@ -33,18 +33,18 @@ return new class extends Migration {
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
 
-//            $table->ulid('category_id')->nullable();
-//            $table->foreign('category_id')
-//                ->references('id')
-//                ->on('categories')
-//                ->onDelete('set null');
-
             $table->ulid('client_id');
             $table->foreign('client_id')
                 ->references('id')
                 ->on('clients')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->ulid('category_id')->nullable();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('set null');
 
             $table->ulid('user_id');
             $table->foreign('user_id')

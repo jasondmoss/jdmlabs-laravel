@@ -50,6 +50,7 @@ class UpdateController extends Controller
     {
         $validated = (object) $request->validated();
         $articleEntity = new ArticleEntity($validated);
+
         $articleInstance = $this->article->find($articleEntity->id);
 
         $article = $this->bridge->update($articleInstance, $articleEntity);
@@ -63,7 +64,7 @@ class UpdateController extends Controller
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'ArticleEloquentModel successfully updated');
+            ->with('update', 'Article updated successfully.');
     }
 
 }

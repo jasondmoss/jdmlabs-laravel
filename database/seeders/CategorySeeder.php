@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Infrastructure\Database;
+namespace Database\Seeders;
 
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -30,7 +30,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat_name) {
-            Category::create([ 'name' => $cat_name ]);
+            CategoryEloquentModel::create([ 'name' => $cat_name ]);
         }
     }
 
@@ -42,7 +42,7 @@ class CategorySeeder extends Seeder
      */
     /*public function run(): void
     {
-        Category::factory(20)->create();
+        CategoryEloquentModel::factory(20)->create();
     }*/
 
 }

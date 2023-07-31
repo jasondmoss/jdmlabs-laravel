@@ -48,7 +48,9 @@ class DestroyController extends Controller
             throw CouldNotDeleteClient::withId($toBeDeleted->id);
         }
 
-        return redirect()->action(IndexController::class);
+        return redirect()
+            ->action(IndexController::class)
+            ->with('delete', 'Client successfully deleted.');
     }
 
 }

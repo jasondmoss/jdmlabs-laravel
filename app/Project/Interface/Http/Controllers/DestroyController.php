@@ -41,7 +41,9 @@ class DestroyController extends Controller
 
         $this->bridge->delete($toBeDeleted);
 
-        return redirect()->action(IndexController::class);
+        return redirect()
+            ->action(IndexController::class)
+            ->with('delete', 'Project successfully deleted.');
     }
 
 }

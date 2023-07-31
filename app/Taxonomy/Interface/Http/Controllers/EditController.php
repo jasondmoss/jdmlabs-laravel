@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Application\Controllers;
+namespace App\Taxonomy\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller
 {
 
-    protected Category $category;
+    protected CategoryEloquentModel $category;
 
 
     /**
-     * @param \App\Taxonomy\Infrastructure\Category $category
+     * @param \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
      */
-    public function __construct(Category $category)
+    public function __construct(CategoryEloquentModel $category)
     {
         $this->category = $category;
     }
@@ -36,7 +36,7 @@ class EditController extends Controller
             ->with('articles')
             ->find((new Id($id))->value());
 
-        return ViewFacade::make('Category::edit', [
+        return ViewFacade::make('CategoryEloquentModel::edit', [
             'category' => $category
         ]);
     }

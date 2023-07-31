@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Infrastructure;
+namespace App\Taxonomy\Infrastructure\Eloquent\Models;
 
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use App\Client\Infrastructure\Client;
@@ -15,7 +15,7 @@ use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use App\Taxonomy\Application\Exceptions\CouldNotFindCategory;
-use App\Taxonomy\Infrastructure\Database\CategoryFactory;
+use App\Taxonomy\Infrastructure\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +26,7 @@ use Spatie\Sluggable\SlugOptions;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
-class Category extends Model
+class CategoryEloquentModel extends Model
 {
 
     use HasFactory, HasSlug, HasUlids, Observable,
@@ -47,7 +47,7 @@ class Category extends Model
 
 
     /**
-     * @return \App\Taxonomy\Infrastructure\Database\CategoryFactory
+     * @return \App\Taxonomy\Infrastructure\Factories\CategoryFactory
      */
     protected static function newFactory(): CategoryFactory
     {

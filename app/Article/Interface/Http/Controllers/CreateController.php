@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Interface\Http\Controllers;
 
 use App\Core\Laravel\Application\Controller;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 
@@ -17,7 +17,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $categories = Category::get()->pluck('name', 'id');
+        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make('ArticleAdmin::create', [
             'categories' => $categories

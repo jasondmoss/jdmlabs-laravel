@@ -18,7 +18,7 @@ use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
 use App\Core\User\Infrastructure\User;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use App\Taxonomy\Keyword\Infrastructure\Keyword;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -142,7 +142,7 @@ class Client extends Model
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
     }
 
 

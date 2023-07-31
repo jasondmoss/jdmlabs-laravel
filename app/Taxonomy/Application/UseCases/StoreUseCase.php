@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\UseCases;
 
-use App\Taxonomy\Infrastructure\Category;
-use App\Taxonomy\Infrastructure\Repositories\StoreRepository;
-use App\Taxonomy\Interface\Http\CategoryRequest;
+use App\Taxonomy\Application\Repositories\Eloquent\StoreRepository;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 
 final class StoreUseCase
 {
@@ -15,7 +14,7 @@ final class StoreUseCase
 
 
     /**
-     * @param \App\Taxonomy\Infrastructure\Repositories\StoreRepository $repository
+     * @param \App\Taxonomy\Application\Repositories\Eloquent\StoreRepository $repository
      */
     public function __construct(StoreRepository $repository)
     {
@@ -24,11 +23,11 @@ final class StoreUseCase
 
 
     /**
-     * @param \App\Taxonomy\Interface\Http\CategoryRequest $data
+     * @param object $data
      *
-     * @return \App\Taxonomy\Infrastructure\Category
+     * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function store(CategoryRequest $data): Category
+    public function store(object $data): CategoryEloquentModel
     {
         return $this->repository->save($data);
     }

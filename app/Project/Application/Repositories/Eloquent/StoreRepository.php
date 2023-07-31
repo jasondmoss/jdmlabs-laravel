@@ -25,7 +25,7 @@ final class StoreRepository implements StoreContract
             'promoted' => $data->promoted,
             'pinned' => $data->pinned,
             'client_id' => $data->client_id,
-            'category_id' => $data->category,
+            'category_id' => $data->category_id,
             'user_id' => $data->user_id
         ]);
     }

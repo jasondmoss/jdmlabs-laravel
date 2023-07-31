@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomy\Domain;
+namespace App\Taxonomy\Domain\Policies;
 
 use App\Core\User\Infrastructure\User;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -42,12 +42,12 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \App\Taxonomy\Infrastructure\Category $category
+     * @param \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
      * @param string $id
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(Category $category, string $id): Response
+    public function view(CategoryEloquentModel $category, string $id): Response
     {
         return $category->id === $id
             ? Response::allow()

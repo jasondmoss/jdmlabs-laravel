@@ -8,7 +8,7 @@ use App\Client\Infrastructure\Client;
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
-use App\Taxonomy\Infrastructure\Category;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
 
@@ -37,7 +37,7 @@ class EditController extends Controller
         $project = $this->project->find((new Id($id))->value());
 
         $clients = Client::get()->pluck('name', 'id');
-        $categories = Category::get()->pluck('name', 'id');
+        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         $signature = $project->getFirstMedia('signatures');
 

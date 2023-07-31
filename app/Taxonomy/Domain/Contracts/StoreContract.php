@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Domain\Contracts;
 
-use App\Taxonomy\Infrastructure\Category;
-use App\Taxonomy\Interface\Http\CategoryRequest;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 
 interface StoreContract
 {
 
     /**
-     * @param \App\Taxonomy\Interface\Http\CategoryRequest $data
+     * @param object $data
      *
-     * @return \App\Taxonomy\Infrastructure\Category
+     * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function save(CategoryRequest $data): Category;
+    public function save(object $data): CategoryEloquentModel;
 
 }

@@ -53,7 +53,9 @@ class StoreController extends Controller
             $this->media->attach($project, $imageEntity, 'signatures');
         }
 
-        return redirect()->action(IndexController::class);
+        return redirect()
+            ->action(IndexController::class)
+            ->with('create', 'Project created successfully.');
     }
 
 }

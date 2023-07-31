@@ -30,7 +30,7 @@ final readonly class ProjectEntity
 
     public ?string $client_id;
 
-    public ?string $category;
+    public ?string $category_id;
 
     public ?string $status;
 
@@ -76,8 +76,8 @@ final readonly class ProjectEntity
             ? (new Id($projectData->client_id))->value()
             : null;
 
-        $this->category = ! empty($projectData->category)
-            ? (new Id($projectData->category))->value()
+        $this->category_id = ! empty($projectData->category_id)
+            ? (new Id($projectData->category_id))->value()
             : null;
 
         $this->status = $projectData->status;
@@ -85,6 +85,6 @@ final readonly class ProjectEntity
         $this->promoted = $projectData->promoted;
 
         $this->pinned = $projectData->pinned;
-
     }
+
 }

@@ -3,6 +3,7 @@
   use App\Core\Shared\Enums\Promoted;
   use App\Core\Shared\Enums\Status;
 @endphp
+
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
@@ -92,9 +93,9 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend>{{ __('Taxonomy') }}</legend>
 
       <div class="form-field taxonomy">
-        {{ html()->label('Categories')->for('category') }}
+        {{ html()->label('Categories')->for('category_id') }}
         {{ html()
-          ->select('category', $categories)
+          ->select('category_id', $categories)
           ->value($project->category_id)
           ->class('form-control select')
           ->placeholder('Choose a category')

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\UseCases;
 
-use App\Taxonomy\Infrastructure\Category;
-use App\Taxonomy\Infrastructure\Repositories\DeleteRepository;
+use App\Taxonomy\Application\Repositories\Eloquent\DeleteRepository;
+use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 
 final readonly class DestroyUseCase
 {
@@ -14,7 +14,7 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \App\Taxonomy\Infrastructure\Repositories\DeleteRepository $repository
+     * @param \App\Taxonomy\Application\Repositories\Eloquent\DeleteRepository $repository
      */
     public function __construct(DeleteRepository $repository)
     {
@@ -23,11 +23,11 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \App\Taxonomy\Infrastructure\Category $category
+     * @param \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
      *
      * @return void
      */
-    public function delete(Category $category): void
+    public function delete(CategoryEloquentModel $category): void
     {
         $this->repository->delete($category);
     }

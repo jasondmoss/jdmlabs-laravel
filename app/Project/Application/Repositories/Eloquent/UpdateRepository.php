@@ -36,7 +36,7 @@ final class UpdateRepository implements UpdateContract
             'summary' => $entity->summary,
             'body' => $entity->body,
             'client_id' => $entity->client_id,
-            'category_id' => $entity->category,
+            'category_id' => $entity->category_id,
             'status' => $entity->status,
             'promoted' => $entity->promoted,
             'pinned' => $entity->pinned,
