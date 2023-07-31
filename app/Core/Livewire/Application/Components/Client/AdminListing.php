@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Livewire\Application\Components\Client;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Shared\Enums\Promoted;
 use App\Core\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -18,7 +18,7 @@ class AdminListing extends Component
 
     use AuthorizesRequests, WithPagination;
 
-    public Client $client;
+    public ClientEloquentModel $client;
 
     public string $search = '';
 
@@ -26,11 +26,11 @@ class AdminListing extends Component
 
 
     /**
-     * @param \App\Client\Infrastructure\Client $client
+     * @param \App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
      *
      * @return void
      */
-    public function mount(Client $client): void
+    public function mount(ClientEloquentModel $client): void
     {
         $this->client = $client;
     }
@@ -103,7 +103,7 @@ class AdminListing extends Component
      */
     public function render(): View
     {
-        $clients = Client::where('user_id', auth()->user()->id)
+        $clients = ClientEloquentModel::where('user_id', auth()->user()->id)
             ->where('name', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->withCount('projects')

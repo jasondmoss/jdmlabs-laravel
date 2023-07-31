@@ -1,5 +1,5 @@
 @php
-use App\Client\Application\Controllers;
+  use App\Client\Application\Controllers;
 @endphp
 <x-public.layout title="{{ $project->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
   <header>
@@ -22,7 +22,7 @@ use App\Client\Application\Controllers;
   </div>
   <div class="">
     <p class=""><strong>Client:</strong>
-      <a href="{{ action(Controllers\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
+      <a href="{{ action(\App\Client\Interface\Http\Controllers\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
     </p>
   </div>
 </x-public.layout>

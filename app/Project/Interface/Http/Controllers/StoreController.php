@@ -39,11 +39,8 @@ class StoreController extends Controller
     public function __invoke(CreateRequest $request): RedirectResponse
     {
         $validated = (object) $request->validated();
-
-        // Create a new validated article entity.
         $projectEntity = new ProjectEntity($validated);
 
-        // Store + return article.
         $project = $this->bridge->store($projectEntity);
 
         if ($request->hasFile('signature_image')) {

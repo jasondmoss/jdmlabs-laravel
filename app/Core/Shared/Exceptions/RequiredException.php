@@ -10,6 +10,11 @@ use Throwable;
 class RequiredException extends DomainException
 {
 
+    /**
+     * @param string $message
+     * @param int $code
+     * @param \Throwable|null $previous
+     */
     public function __construct(
         string $message = "",
         int $code = 0,

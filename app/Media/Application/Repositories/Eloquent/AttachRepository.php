@@ -16,11 +16,7 @@ class AttachRepository implements AttachContract
     /**
      * @inheritDoc
      */
-    public function attach(
-        ?Model $model,
-        ImageEntity $entity,
-        string $collection = ''
-    ): void
+    public function attach(?Model $model, ImageEntity $entity, string $collection = ''): void
     {
         try {
             // Delete any existing media attached to this model.

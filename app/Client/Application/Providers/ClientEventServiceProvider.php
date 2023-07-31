@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Providers;
 
-use App\Client\Domain\ClientObserver;
-use App\Client\Infrastructure\Client;
+use App\Client\Domain\Observers\ClientObserver;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Laravel\Application\Providers\EventServiceProvider;
 
 class ClientEventServiceProvider extends EventServiceProvider
@@ -17,7 +17,7 @@ class ClientEventServiceProvider extends EventServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $observers = [
-        Client::class => [
+        ClientEloquentModel::class => [
             ClientObserver::class
         ]
     ];

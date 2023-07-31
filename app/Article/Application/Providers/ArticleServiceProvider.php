@@ -6,7 +6,7 @@ namespace App\Article\Application\Providers;
 
 use App\Article\Application\UseCases;
 use App\Article\Domain\Contracts;
-use App\Article\Infrastructure\Repositories;
+use App\Article\Application\Repositories\Eloquent;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -25,15 +25,15 @@ class ArticleServiceProvider extends ServiceProvider
     {
         $this->app->when(UseCases\DestroyUseCase::class)
             ->needs(Contracts\DestroyContract::class)
-            ->give(\App\Article\Application\Repositories\Eloquent\DestroyRepository::class);
+            ->give(Eloquent\DestroyRepository::class);
 
         $this->app->when(UseCases\StoreUseCase::class)
             ->needs(Contracts\StoreContract::class)
-            ->give(\App\Article\Application\Repositories\Eloquent\StoreRepository::class);
+            ->give(Eloquent\StoreRepository::class);
 
         $this->app->when(UseCases\UpdateUseCase::class)
             ->needs(Contracts\UpdateContract::class)
-            ->give(\App\Article\Application\Repositories\Eloquent\UpdateRepository::class);
+            ->give(Eloquent\UpdateRepository::class);
 
 
         // Tell Laravel of our custom templates paths.

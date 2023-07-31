@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Client\Domain\Contracts;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 
 interface DestroyContract
 {
 
     /**
-     * @param \App\Client\Infrastructure\Client $client
+     * @param \App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
      *
      * @return void
      */
-    public function delete(Client $client): void;
+    public function delete(ClientEloquentModel $client): void;
 
 }

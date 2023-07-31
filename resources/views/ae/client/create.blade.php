@@ -24,7 +24,7 @@
 	{{ html()->hidden('user_id', auth()->user()->id) }}
 
 	<header class="editor--header">
-		<h1>{{ __('Create New Client') }}</h1>
+		<h1>{{ __('Create New ClientEloquentModel') }}</h1>
 	</header>
 
 	<div class="editor--content">
@@ -125,7 +125,7 @@
 			<legend class="sr-only">{{ __('Form Actions') }}</legend>
 
 			<div class="form-field actions">
-				{{ html()->button('Save Client')->class('button submit') }}
+				{{ html()->button('Save ClientEloquentModel')->class('button submit') }}
 			</div>
 		</fieldset>
 	</aside>

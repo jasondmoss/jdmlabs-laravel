@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers as Client;use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
+  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -59,7 +59,7 @@
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(\App\Client\Interface\Http\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
         {{ $client->slug ? $client->slug : '' }}
       </a>
     </p>
@@ -184,7 +184,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save Client')->class('button submit') }}
+        {{ html()->button('Save ClientEloquentModel')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

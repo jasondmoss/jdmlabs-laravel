@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Infrastructure\Eloquent\Models;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Shared\Casts\ConvertNullToEmptyString;
 use App\Core\Shared\Enums\Pinned;
 use App\Core\Shared\Enums\Promoted;
@@ -17,7 +17,7 @@ use App\Core\Shared\Traits\MediaExtended;
 use App\Core\Shared\Traits\Observable;
 use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Project\Application\Exceptions\CouldNotFindProject;
 use App\Project\Infrastructure\Factories\ProjectFactory;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
@@ -156,7 +156,7 @@ class ProjectEloquentModel extends Model implements HasMedia
     /**
      * @param string $key
      *
-     * @return \Illuminate\Database\Eloquent\Builder|\App\Project\Infrastructure\Project
+     * @return \Illuminate\Database\Eloquent\Builder|\App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel
      * @throws \App\Project\Application\Exceptions\CouldNotFindProject
      */
     public function find(string $key): Builder|self
@@ -184,7 +184,7 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserEloquentModel::class);
     }
 
 
@@ -193,7 +193,7 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     public function clients(): BelongsTo
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(ClientEloquentModel::class, 'client_id');
     }
 
 

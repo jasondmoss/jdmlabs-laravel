@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Interface\Http\Controllers;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Laravel\Application\Controller;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Contracts\View\View;
@@ -18,7 +18,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $clients = Client::get()->pluck('name', 'id');
+        $clients = ClientEloquentModel::get()->pluck('name', 'id');
 
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 

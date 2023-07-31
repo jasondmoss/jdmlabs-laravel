@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers as Client;use App\Core\Shared\Enums\Pinned;use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;use App\Project\Interface\Http\Controllers as Project;use Illuminate\Support\Facades\Date;
+  use App\Core\Shared\Enums\Pinned;use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;use App\Project\Interface\Http\Controllers as Project;use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
@@ -155,7 +155,7 @@
               <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
             </h3>
             <p class="subtitle">
-              <a href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit Client') }}">{{ $project->clients->name }}</a>
+              <a href="{{ action(\App\Client\Interface\Http\Controllers\EditController::class, $project->clients->id) }}" title="{{ __('Edit ClientEloquentModel') }}">{{ $project->clients->name }}</a>
             </p>
           </header>
 

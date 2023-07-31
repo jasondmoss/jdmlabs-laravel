@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Project\Domain\Policies;
 
 use App\Core\Shared\Enums\Status;
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -17,11 +17,11 @@ final readonly class ProjectPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \App\Core\User\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(User $user): Response
+    public function create(UserEloquentModel $user): Response
     {
         return ($user->email === Config::get('jdmlabs.admin_email'))
             ? Response::allow()
@@ -30,12 +30,12 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \App\Core\User\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
      * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function owner(User $user, ProjectEloquentModel $project): Response
+    public function owner(UserEloquentModel $user, ProjectEloquentModel $project): Response
     {
         return $user->id === $project->user_id
             ? Response::allow()
@@ -44,12 +44,12 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \App\Core\User\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
      * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(User $user, ProjectEloquentModel $project): Response
+    public function update(UserEloquentModel $user, ProjectEloquentModel $project): Response
     {
         return $user->id === $project->user_id
             ? Response::allow()

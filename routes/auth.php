@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Auth\Application\Controllers\RegisterUserController;
-use App\Core\Auth\Application\Controllers\TwoFactorAuthController;
+use App\Core\Auth\Interface\Http\Controllers\TwoFactorAuthController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers as FC;
@@ -93,7 +92,7 @@ Route::middleware([ 'web' ])->group(function () {
             ])->name('verification.send');
         }
 
-        /** -- User Profile. */
+        /** -- UserEloquentModel Profile. */
 
         if (Features::enabled(Features::updateProfileInformation())) {
             Route::middleware([

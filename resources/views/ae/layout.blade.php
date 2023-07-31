@@ -1,5 +1,8 @@
 @php
-  use App\Client\Application\Controllers as Client;
+use App\Article\Interface\Http\Controllers as Article;
+use App\Project\Interface\Http\Controllers as Project;
+use App\Client\Interface\Http\Controllers as Client;
+use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -27,21 +30,21 @@
   <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}" as="font" crossorigin>
   <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}" as="font" crossorigin>
   <style>
-		@font-face {
-			font-family: "Berkeley Mono";
-			font-style: normal;
-			font-weight: normal;
-			font-display: swap;
-			src: url("{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}") format("woff2");
-		}
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}") format("woff2");
+}
 
-		@font-face {
-			font-family: "Berkeley Mono Bold";
-			font-style: normal;
-			font-weight: normal;
-			font-display: swap;
-			src: url("{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}") format("woff2");
-		}
+@font-face {
+  font-family: "Berkeley Mono Bold";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}") format("woff2");
+}
   </style>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -85,11 +88,11 @@
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
-        <a href="{{ action(\App\Article\Interface\Http\Controllers\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(Article\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
-        <a href="{{ action(\App\Project\Interface\Http\Controllers\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(Project\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
@@ -97,7 +100,7 @@
           <span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item">
-        <a href="{{ action(\App\Taxonomy\Interface\Http\Controllers\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(Taxonomy\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Categories') }}</span></a>
       </li>
       {{-- <li class="menu-item">

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Client\Application\Providers;
 
-use App\Client\Domain\ClientPolicy;
-use App\Client\Infrastructure\Client;
+use App\Client\Domain\Policies\ClientPolicy;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Laravel\Application\Providers\AuthServiceProvider;
 
 class ClientAuthServiceProvider extends AuthServiceProvider
@@ -17,7 +17,7 @@ class ClientAuthServiceProvider extends AuthServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        Client::class => ClientPolicy::class
+        ClientEloquentModel::class => ClientPolicy::class
     ];
 
 }

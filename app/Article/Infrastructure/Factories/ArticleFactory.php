@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Article\Infrastructure\Factories;
 
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -38,7 +38,7 @@ final class ArticleFactory extends Factory
 
 //            'category_id' => '',
 
-            'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
+            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
 
             'published_at' => $created,
 

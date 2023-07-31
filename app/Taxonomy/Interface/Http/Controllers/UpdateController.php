@@ -19,6 +19,10 @@ class UpdateController extends Controller
     protected UpdateUseCase $bridge;
 
 
+    /**
+     * @param \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \App\Taxonomy\Application\UseCases\UpdateUseCase $bridge
+     */
     public function __construct(CategoryEloquentModel $category, UpdateUseCase $bridge)
     {
         $this->category = $category;

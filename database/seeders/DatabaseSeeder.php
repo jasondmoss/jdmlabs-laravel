@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Client\Infrastructure\Database\ClientSeeder;
-use App\Core\User\Infrastructure\Database\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

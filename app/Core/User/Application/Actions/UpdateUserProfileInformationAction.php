@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\User\Application\Actions;
 
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -18,7 +18,7 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      *
      * @param array<string, string> $input
      */
-    public function update(User $user, array $input): void
+    public function update(UserEloquentModel $user, array $input): void
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -41,7 +41,7 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      *
      * @param array<string, string> $input
      */
-    protected function updateVerifiedUser(User $user, array $input): void
+    protected function updateVerifiedUser(UserEloquentModel $user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

@@ -1255,7 +1255,7 @@ table[role=grid] tbody tr:nth-child(odd) {
 }
 
 /**
- * Accessibility & User interaction
+ * Accessibility & UserEloquentModel interaction
  */
 [aria-controls] {
   cursor: pointer;

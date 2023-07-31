@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Project\Infrastructure\Factories;
 
-use App\Client\Infrastructure\Client;
-use App\Core\User\Infrastructure\User;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -40,8 +40,8 @@ class ProjectFactory extends Factory
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',
 
-            'client_id' => Client::inRandomOrder()->first(),
-            'user_id' => User::whereEmail('jason@jdmlabs.com')->first()->id,
+            'client_id' => ClientEloquentModel::inRandomOrder()->first(),
+            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
 
             'published_at' => $created,
 

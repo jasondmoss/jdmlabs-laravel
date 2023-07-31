@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Client\Domain\Contracts;
 
-use App\Client\Infrastructure\Client;
-use App\Client\Interface\Http\CreateRequest;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 
 interface StoreContract
 {
 
     /**
-     * @param \App\Client\Interface\Http\CreateRequest $data
+     * @param object $data
      *
-     * @return \App\Client\Infrastructure\Client
+     * @return \App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel
      */
-    public function save(CreateRequest $data): Client;
+    public function save(object $data): ClientEloquentModel;
 
 }

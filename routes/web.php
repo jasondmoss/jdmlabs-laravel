@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Client\Application\Controllers as Client;
+use App\Article\Interface\Http\Controllers as Article;
+use App\Client\Interface\Http\Controllers as Client;
+use App\Project\Interface\Http\Controllers as Project;
+use  App\Taxonomy\Interface\Http\Controllers as Category;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -19,14 +22,14 @@ Route::middleware([ 'web' ])->group(function () {
         return view('public.page.now');
     })->name('now');
 
-    Route::get('/articles', \App\Article\Interface\Http\Controllers\PublishedController::class);
-    Route::get('/article/{slug}', \App\Article\Interface\Http\Controllers\SingleController::class);
+    Route::get('/articles', Article\PublishedController::class);
+    Route::get('/article/{slug}', Article\SingleController::class);
 
     Route::get('/clients', Client\PublishedController::class);
     Route::get('/client/{slug}', Client\SingleController::class);
 
-    Route::get('/projects', \App\Project\Interface\Http\Controllers\PublishedController::class);
-    Route::get('/project/{slug}', \App\Project\Interface\Http\Controllers\SingleController::class);
+    Route::get('/projects', Project\PublishedController::class);
+    Route::get('/project/{slug}', Project\SingleController::class);
 
 
     // -- Dashboard (Redirect).
@@ -41,12 +44,12 @@ Route::middleware([ 'web' ])->group(function () {
             return view('ae.page.dashboard');
         })->name('dashboard');
 
-        Route::get('/articles', \App\Article\Interface\Http\Controllers\IndexController::class);
-        Route::get('/article/create', \App\Article\Interface\Http\Controllers\CreateController::class);
-        Route::post('/article/create', \App\Article\Interface\Http\Controllers\StoreController::class);
-        Route::get('/article/edit/{id}', \App\Article\Interface\Http\Controllers\EditController::class);
-        Route::put('/article/update/{id}', \App\Article\Interface\Http\Controllers\UpdateController::class);
-        Route::delete('/article/{id}', \App\Article\Interface\Http\Controllers\DestroyController::class);
+        Route::get('/articles', Article\IndexController::class);
+        Route::get('/article/create', Article\CreateController::class);
+        Route::post('/article/create', Article\StoreController::class);
+        Route::get('/article/edit/{id}', Article\EditController::class);
+        Route::put('/article/update/{id}', Article\UpdateController::class);
+        Route::delete('/article/{id}', Article\DestroyController::class);
 
         Route::get('/clients', Client\IndexController::class);
         Route::get('/client/create', Client\CreateController::class);
@@ -55,19 +58,19 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/client/update/{id}', Client\UpdateController::class);
         Route::delete('/client/{id}', Client\DestroyController::class);
 
-        Route::get('/projects', \App\Project\Interface\Http\Controllers\IndexController::class);
-        Route::get('/project/create', \App\Project\Interface\Http\Controllers\CreateController::class);
-        Route::post('/project/create', \App\Project\Interface\Http\Controllers\StoreController::class);
-        Route::get('/project/edit/{id}', \App\Project\Interface\Http\Controllers\EditController::class);
-        Route::put('/project/update/{id}', \App\Project\Interface\Http\Controllers\UpdateController::class);
-        Route::delete('/project/{id}', \App\Project\Interface\Http\Controllers\DestroyController::class);
+        Route::get('/projects', Project\IndexController::class);
+        Route::get('/project/create', Project\CreateController::class);
+        Route::post('/project/create', Project\StoreController::class);
+        Route::get('/project/edit/{id}', Project\EditController::class);
+        Route::put('/project/update/{id}', Project\UpdateController::class);
+        Route::delete('/project/{id}', Project\DestroyController::class);
 
-        Route::get('/taxonomy/category', \App\Taxonomy\Interface\Http\Controllers\IndexController::class);
-        Route::get('/taxonomy/category/create', \App\Taxonomy\Interface\Http\Controllers\CreateController::class);
-        Route::post('/taxonomy/category/create', \App\Taxonomy\Interface\Http\Controllers\StoreController::class);
-        Route::get('/taxonomy/category/edit/{id}', \App\Taxonomy\Interface\Http\Controllers\EditController::class);
-        Route::put('/taxonomy/category/update/{id}', \App\Taxonomy\Interface\Http\Controllers\UpdateController::class);
-        Route::delete('/taxonomy/category/{id}', \App\Taxonomy\Interface\Http\Controllers\DestroyController::class);
+        Route::get('/taxonomy/category', Category\IndexController::class);
+        Route::get('/taxonomy/category/create', Category\CreateController::class);
+        Route::post('/taxonomy/category/create', Category\StoreController::class);
+        Route::get('/taxonomy/category/edit/{id}', Category\EditController::class);
+        Route::put('/taxonomy/category/update/{id}', Category\UpdateController::class);
+        Route::delete('/taxonomy/category/{id}', Category\DestroyController::class);
 
     });
 

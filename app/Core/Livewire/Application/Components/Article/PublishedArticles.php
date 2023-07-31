@@ -19,18 +19,27 @@ class PublishedArticles extends Component
     protected string $paginationTheme = 'tailwind';
 
 
+    /**
+     * @return string
+     */
     public function paginationView(): string
     {
         return 'shared.pager';
     }
 
 
+    /**
+     * @return void
+     */
     public function updatingSearch(): void
     {
         $this->resetPage();
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render(): View
     {
         $articles = ArticleEloquentModel::published('status', 'published')

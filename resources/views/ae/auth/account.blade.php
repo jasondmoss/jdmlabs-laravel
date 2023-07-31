@@ -6,7 +6,7 @@
   <section class="account-details">
 
     {{--
-      User Profile.
+      UserEloquentModel Profile.
       --------------------------------------------------------------------------
     --}}
     {{ html()

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Taxonomy\Infrastructure\Eloquent\Models;
 
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Shared\Scopes\FindBySlug;
 use App\Core\Shared\Scopes\WherePromoted;
 use App\Core\Shared\Scopes\WherePublished;
@@ -115,7 +115,7 @@ class CategoryEloquentModel extends Model
      */
     public function clients(): HasMany
     {
-        return $this->hasMany(Client::class, 'category_id');
+        return $this->hasMany(ClientEloquentModel::class, 'category_id');
     }
 
 

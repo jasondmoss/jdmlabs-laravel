@@ -17,7 +17,7 @@ use App\Core\Shared\Traits\MediaExtended;
 use App\Core\Shared\Traits\Observable;
 use App\Core\Shared\ValueObjects\Id;
 use App\Core\Shared\ValueObjects\Slug;
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -179,7 +179,7 @@ class ArticleEloquentModel extends Model implements HasMedia
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserEloquentModel::class);
     }
 
 

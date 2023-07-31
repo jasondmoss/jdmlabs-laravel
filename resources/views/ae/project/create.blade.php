@@ -73,7 +73,7 @@
       <legend>{{ __('Clients') }}</legend>
 
       <div class="form-field clients">
-        {{ html()->label('Client')->for('client_id') }}
+        {{ html()->label('ClientEloquentModel')->for('client_id') }}
         {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Choose a client') }}
       </div>
     </fieldset>

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Application\Providers;
 
-use App\Taxonomy\Category\Application\UseCases;
-use App\Taxonomy\Category\Domain\Contracts;
-use App\Taxonomy\Category\Infrastructure\Repositories;
+use App\Taxonomy\Application\Repositories\Eloquent;
+use App\Taxonomy\Application\UseCases;
+use App\Taxonomy\Domain\Contracts;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -22,17 +22,17 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(\App\Taxonomy\Application\UseCases\DestroyUseCase::class)
-            ->needs(\App\Taxonomy\Domain\Contracts\DeleteContract::class)
-            ->give(\App\Taxonomy\Application\Repositories\Eloquent\DeleteRepository::class);
+        $this->app->when(UseCases\DestroyUseCase::class)
+            ->needs(Contracts\DeleteContract::class)
+            ->give(Eloquent\DeleteRepository::class);
 
-        $this->app->when(\App\Taxonomy\Application\UseCases\StoreUseCase::class)
-            ->needs(\App\Taxonomy\Domain\Contracts\StoreContract::class)
-            ->give(\App\Taxonomy\Application\Repositories\Eloquent\StoreRepository::class);
+        $this->app->when(UseCases\StoreUseCase::class)
+            ->needs(Contracts\StoreContract::class)
+            ->give(Eloquent\StoreRepository::class);
 
-        $this->app->when(\App\Taxonomy\Application\UseCases\UpdateUseCase::class)
-            ->needs(\App\Taxonomy\Domain\Contracts\StoreContract::class)
-            ->give(\App\Taxonomy\Application\Repositories\Eloquent\StoreRepository::class);
+        $this->app->when(UseCases\UpdateUseCase::class)
+            ->needs(Contracts\StoreContract::class)
+            ->give(Eloquent\StoreRepository::class);
 
 
         // Tell Laravel of our custom templates path.

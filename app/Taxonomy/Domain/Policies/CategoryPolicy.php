@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Domain\Policies;
 
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -16,11 +16,11 @@ final readonly class CategoryPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \App\Core\User\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(User $user): Response
+    public function create(UserEloquentModel $user): Response
     {
         return ($user->email === Config::get('jdmlabs.admin_email'))
             ? Response::allow()
@@ -29,11 +29,11 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \App\Core\User\Infrastructure\User $user
+     * @param \App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(User $user): Response
+    public function update(UserEloquentModel $user): Response
     {
         return ($user->email === Config::get('jdmlabs.admin_email'))
             ? Response::allow()

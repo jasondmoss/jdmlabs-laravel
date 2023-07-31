@@ -1,5 +1,4 @@
 @php
-use App\Client\Application\Controllers as Client;
 @endphp
 @if ($clients->count())
   <div class="listings client">
@@ -7,7 +6,7 @@ use App\Client\Application\Controllers as Client;
       <article class="">
         <header>
           <h3 class="">
-            <a href="{{ action(Client\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
+            <a href="{{ action(\App\Client\Interface\Http\Controllers\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
           </h3>
         </header>
         <div class="entry-summary">
@@ -15,7 +14,7 @@ use App\Client\Application\Controllers as Client;
         </div>
         <footer>
           @if (@auth()->check())
-            <a rel="nofollow" class="button" href="{{ action(Client\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
+            <a rel="nofollow" class="button" href="{{ action(\App\Client\Interface\Http\Controllers\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
           @endif
         </footer>
       </article>

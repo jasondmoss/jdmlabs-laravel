@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\User\Infrastructure\User;
+use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 
 return [
 
@@ -48,7 +48,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | User Providers
+    | UserEloquentModel Providers
     |--------------------------------------------------------------------------
     |
     | All authentication drivers have a user provider. This defines how the
@@ -66,7 +66,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => User::class
+            'model' => UserEloquentModel::class
         ]
     ],
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Project\Interface\Http\Controllers;
 
-use App\Client\Infrastructure\Client;
+use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Laravel\Application\Controller;
 use App\Core\Shared\ValueObjects\Id;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
@@ -19,6 +19,7 @@ class EditController extends Controller
 
 
     /**
+     * @param \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      */
     public function __construct(ProjectEloquentModel $project)
     {
@@ -36,7 +37,7 @@ class EditController extends Controller
     {
         $project = $this->project->find((new Id($id))->value());
 
-        $clients = Client::get()->pluck('name', 'id');
+        $clients = ClientEloquentModel::get()->pluck('name', 'id');
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         $signature = $project->getFirstMedia('signatures');

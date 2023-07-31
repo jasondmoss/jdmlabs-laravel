@@ -26,6 +26,8 @@ final readonly class ImageFile
      */
     public function value(): UploadedFile
     {
+//        dd($this->image);
+
         return $this->image;
     }
 
