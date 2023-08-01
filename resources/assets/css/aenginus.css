@@ -1,8 +1,8 @@
-@import "choices.js/public/assets/styles/choices.css";
+/* @import "choices.js/public/assets/styles/choices.css"; */
 
 @import "global/variables.css";
 @import "global/base.css";
-@import "system/messages.css";
+@import "component/messages.css";
 
 @import  "ae/layout.css";
 @import  "navigation/navigation.css";
@@ -11,5 +11,9 @@
 @import  "element/button.css";
 @import  "ae/listings.css";
 @import  "ae/editor.css";
+
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
 
 /* <> */

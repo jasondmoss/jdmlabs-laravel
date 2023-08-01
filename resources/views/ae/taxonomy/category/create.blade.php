@@ -1,7 +1,6 @@
-@php
-  use App\Taxonomy\Application\Controllers;
-@endphp
 <x-ae.layout title="Create New Category" page="create" livewire="true">
+  <!-- create.blade -->
+
   {{ html()
     ->form('POST', '/ae/taxonomy/category/create')
     ->id('categoryForm')
@@ -30,7 +29,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save CategoryEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Category')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

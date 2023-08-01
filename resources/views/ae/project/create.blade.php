@@ -22,6 +22,10 @@
 @endpush
 
 <x-ae.layout title="Create New Project" page="create" livewire="true">
+  <!-- create.blade -->
+
+  <x-shared.session />
+
   {{ html()->form('POST', '/ae/project/create')
     ->id('projectForm')
     ->class('content-editor')
@@ -158,7 +162,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save ProjectEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Project')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

@@ -44,6 +44,10 @@ ClassicEditor.create(document.getElementById("summary"), {
 
 
 <x-ae.layout title="Edit Client" page="edit" livewire="true">
+  <!-- edit.blade -->
+
+  <x-shared.session />
+
   {{ html()
     ->modelForm($client, 'PUT', '/ae/client/update/' . $client->id)
     ->id('clientForm')
@@ -202,7 +206,7 @@ ClassicEditor.create(document.getElementById("summary"), {
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save ClientEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Client')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

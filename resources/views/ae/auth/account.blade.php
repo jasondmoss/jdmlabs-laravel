@@ -1,8 +1,11 @@
 <x-ae.layout title="User Account Management" page="account" livewire="true">
+  <!-- account.blade -->
+
   <header class="flex flex-col mb-16">
     <h1 class="inline-block text-4xl mb-3">{{ __('Account Management') }}</h1>
     <h2 class="inline-block text-2xl">User: {{ Auth::user()->name }}</h2>
   </header>
+
   <section class="account-details">
 
     {{--

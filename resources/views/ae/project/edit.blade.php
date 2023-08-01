@@ -23,6 +23,10 @@ ClassicEditor.create(document.getElementById("body")).catch(
 @endpush
 
 <x-ae.layout title="Edit Project" page="edit" livewire="true">
+  <!-- edit.blade -->
+
+  <x-shared.session />
+
   {{ html()
     ->modelForm($project, 'PUT', '/ae/project/update/' . $project->id)
     ->id('projectForm')
@@ -198,7 +202,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field">
-        {{ html()->button('Save ProjectEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Project')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

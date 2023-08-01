@@ -184,7 +184,7 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserEloquentModel::class);
+        return $this->belongsTo(UserEloquentModel::class, 'user_id');
     }
 
 

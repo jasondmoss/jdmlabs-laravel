@@ -3,6 +3,7 @@
   flex-flow: row wrap;
   gap: 1rem;
   min-width: 16rem;
+  margin-bottom: 4rem;
 }
 
 .menu--account menu,
@@ -29,6 +30,16 @@
 
     .menu--main menu {
       flex-flow: column;
+    }
+  }
+}
+
+
+@media screen {
+  @media (min-width: 64.0625rem) {
+    .ae--branding {
+      position: sticky;
+      top: 2rem;
     }
   }
 }

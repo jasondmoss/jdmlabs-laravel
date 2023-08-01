@@ -1,6 +1,8 @@
 @php
+  use App\Article\Interface\Http\Controllers as Article;
   use App\Core\Shared\Enums\Promoted;
   use App\Core\Shared\Enums\Status;
+  use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
   use Illuminate\Support\Facades\Date;
 @endphp
 
@@ -127,23 +129,28 @@
   @endonce
 @endpush
 
+<!-- list.blade -->
 <div class="listing-wrapper">
 
-  <nav class="listing-tools">
-    <a class="button create-new" href="{{ action(\App\Article\Interface\Http\Controllers\CreateController::class) }}">Create New Article</a>
+  <header class="panel-header">
+    <h1>{{ __('Articles') }}</h1>
 
-    <div class="list-search">
-      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-        <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
-    </div>
-  </nav>
+    <nav class="listing-tools">
+      <a class="button create-new" href="{{ action(Article\CreateController::class) }}">Create New Article</a>
+
+      <div class="list-search">
+        <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+          <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
+      </div>
+    </nav>
+  </header>
 
   @if ($articles->count())
     <div class="listing article">
       @foreach ($articles as $article)
         <article id="item-{{ $article->id }}" class="item">
           <figure class="item--image">
-            <a href="{{ action(\App\Article\Interface\Http\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
+            <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
               @if ($article->hasMedia('signatures'))
                 <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
               @else
@@ -153,7 +160,7 @@
 
           <header class="item--header">
             <h3 class="title">
-              <a href="{{ action(\App\Article\Interface\Http\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
+              <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
             </h3>
           </header>
 
@@ -162,7 +169,7 @@
           <nav class="navigation item--taxonomy">
             @if (! is_null($article->category))
               <i class="fa-solid fa-tag"></i>
-              <a itemprop="tag" class="label-category" href="{{ action(\App\Taxonomy\Interface\Http\Controllers\EditController::class, $article->category->id) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
+              <a itemprop="tag" class="label-category" href="{{ action(Taxonomy\EditController::class, $article->category->id) }}" title="{{ __('Edit category') }}">{{ $article->category->name }}</a>
             @else
               <p class="w-full">
                 <i class="fa-solid fa-tag" style="color: var(--gray-light)"></i> &#160;
@@ -202,16 +209,16 @@
             <menu>
               <li>
                 <i class="fa-solid fa-pen-to-square"></i>
-                <a href="{{ action(\App\Article\Interface\Http\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit article') }}">{{ __('Edit') }}</a>
+                <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit article') }}">{{ __('Edit') }}</a>
               </li>
               <li>
                 <i class="fa-solid fa-eye" style="color: #2ec27e;"></i>
-                <a rel="external" href="{{ action(\App\Article\Interface\Http\Controllers\SingleController::class, $article->slug) }}" title="{{ __('View article') }}">{{ __('View') }}</a>
+                <a rel="external" href="{{ action(Article\SingleController::class, $article->slug) }}" title="{{ __('View article') }}">{{ __('View') }}</a>
               </li>
               <li>
                 <i class="fa-solid fa-trash"></i>
-                <a href="{{ action(\App\Article\Interface\Http\Controllers\DestroyController::class, $article->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">{{ __('Delete') }}</a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\App\Article\Interface\Http\Controllers\DestroyController::class, $article->id) }}">
+                <a href="{{ action(Article\DestroyController::class, $article->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">{{ __('Delete') }}</a>
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Article\DestroyController::class, $article->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

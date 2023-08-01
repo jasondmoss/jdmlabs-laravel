@@ -1,3 +1,4 @@
+<!-- file-uploader.blade -->
 <div x-data="fileUpload()" wire:ignore class="form-field signature-image">
 
   <div class="absolute top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center bg-blue-500 opacity-90" x-show="isDropping">

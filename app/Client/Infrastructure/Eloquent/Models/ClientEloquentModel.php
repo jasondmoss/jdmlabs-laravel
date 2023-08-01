@@ -177,7 +177,7 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserEloquentModel::class);
+        return $this->belongsTo(UserEloquentModel::class, 'user_id');
     }
 
 
@@ -195,7 +195,7 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     public function projects(): HasMany
     {
-        return $this->hasMany(ProjectEloquentModel::class);
+        return $this->hasMany(ProjectEloquentModel::class, 'client_id');
     }
 
 }

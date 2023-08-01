@@ -1,3 +1,4 @@
+<!-- pager.blade -->
 @if ($paginator->hasPages())
   @php(
     isset($this->numberOfPaginatorsRendered[$paginator->getPageName()])

@@ -14,6 +14,10 @@ ClassicEditor.create(document.getElementById("summary"), {
 @endpush
 
 <x-ae.layout title="Create New Client" page="create" livewire="true">
+  <!-- create.blade -->
+
+  <x-shared.session />
+
   {{ html()
     ->form('POST', '/ae/client/create')
     ->id('clientForm')
@@ -127,7 +131,7 @@ ClassicEditor.create(document.getElementById("summary"), {
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save ClientEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Client')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

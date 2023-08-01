@@ -124,15 +124,22 @@
   @endonce
 @endpush
 
+<!-- list.blade -->
 <div class="listing-wrapper">
-  <nav class="listing-tools">
-    <a class="button create-new" href="{{ action(Client\CreateController::class) }}">Create New Client</a>
 
-    <div class="list-search">
-      <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-        <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
-    </div>
-  </nav>
+  <header class="panel-header">
+    <h1>{{ __('Clients') }}</h1>
+
+    <nav class="listing-tools">
+      <a class="button create-new" href="{{ action(Client\CreateController::class) }}">Create New Client</a>
+
+      <div class="list-search">
+        <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
+          <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
+      </div>
+    </nav>
+  </header>
+
   @if ($clients->count())
     <div class="listing client">
       @foreach ($clients as $client)

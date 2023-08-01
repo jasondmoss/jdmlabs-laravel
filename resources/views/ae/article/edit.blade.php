@@ -22,6 +22,8 @@ ClassicEditor.create(document.getElementById("body")).catch(
 @endpush
 
 <x-ae.layout title="Edit Article" page="edit" livewire="true">
+  <!-- edit.blade -->
+
   {{ html()
     ->modelForm($article, 'PUT', '/ae/article/update/' . $article->id)
     ->id('articleForm')
@@ -155,7 +157,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save ArticleEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Article')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

@@ -1,4 +1,6 @@
 <x-ae.layout title="Two-Factor Challenge" page="challenge" livewire="true">
+  <!-- challenge.blade -->
+
   {{ html()
     ->form('POST', '/ae/user/two-factor-challenge')
     ->id('2faChallenge')

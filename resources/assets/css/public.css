@@ -21,7 +21,7 @@
 @import "element/button.css";
 @import "element/media.css";
 
-@import "system/messages.css";
+@import "component/messages.css";
 
 @import "content/base.css";
 /*@import "layout/page--content.css";*/

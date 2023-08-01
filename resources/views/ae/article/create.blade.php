@@ -22,6 +22,8 @@
 @endpush
 
 <x-ae.layout title="Create New Article" page="create" livewire="true">
+  <!-- create.blade -->
+
   {{ html()
     ->form('POST', '/ae/article/create')
     ->id('articleForm')
@@ -134,7 +136,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save ArticleEloquentModel')->class('button submit') }}
+        {{ html()->button('Save Article')->class('button submit') }}
       </div>
     </fieldset>
   </aside>

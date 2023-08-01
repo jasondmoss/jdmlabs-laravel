@@ -1,3 +1,4 @@
+<!-- modal.blade -->
 <div class="modal fade" id="{{$modal_id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
