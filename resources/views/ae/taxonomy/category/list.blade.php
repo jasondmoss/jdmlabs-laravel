@@ -1,57 +1,56 @@
 @php
-  use App\Taxonomy\Interface\Http\Controllers as Category;
 @endphp
 
 @push('styles')
   @once
     <style>
-      /*.listing-wrapper {
+			/*.listing-wrapper {
         max-width: 50rem;
       }*/
 
-      .listing-wrapper .listing {
-        /*flex-flow: row wrap;*/
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-        gap: 0 1rem;
-      }
+			.listing-wrapper .listing {
+				/*flex-flow: row wrap;*/
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+				gap: 0 1rem;
+			}
 
-      .item {
-        /*grid-template-columns: 1fr;*/
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem 0;
-        width: auto;
-      }
+			.item {
+				/*grid-template-columns: 1fr;*/
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem 0;
+				width: auto;
+			}
 
-      .item--actions menu {
-        justify-content: flex-start;
-      }
+			.item--actions menu {
+				justify-content: flex-start;
+			}
 
-      @media screen and (min-width: 40rem) {
-        .item {
-          grid-template-columns: 1fr 12rem;
-          gap: 0.5rem 1rem;
-        }
+			@media screen and (min-width: 40rem) {
+				.item {
+					grid-template-columns: 1fr 12rem;
+					gap: 0.5rem 1rem;
+				}
 
-        .item--header,
-        .item--id,
-        .item--actions {
-          grid-column: 1;
-        }
+				.item--header,
+				.item--id,
+				.item--actions {
+					grid-column: 1;
+				}
 
-        .item--count {
-          grid-column: 2;
-          grid-row: 1;
-          list-style: none;
-          font-size: 0.9rem;
-        }
+				.item--count {
+					grid-column: 2;
+					grid-row: 1;
+					list-style: none;
+					font-size: 0.9rem;
+				}
 
-        .item--date {
-          grid-column: 2;
-          grid-row: 2/span 2;
-        }
-      }
+				.item--date {
+					grid-column: 2;
+					grid-row: 2/span 2;
+				}
+			}
     </style>
   @endonce
 @endpush
@@ -59,11 +58,11 @@
 <!-- list.blade -->
 <div class="listing-wrapper">
 
-  <header class="panel-header">
+  <header id="listingHeader" class="listing-header">
     <h1>{{ __('Categories') }}</h1>
 
     <nav class="listing-tools">
-      <a class="button create-new" href="{{ action(Category\CreateController::class) }}">Create New Category</a>
+      <a class="button create-new" href="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\CreateController::class) }}">Create New Category</a>
 
       <div class="list-search">
         <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
@@ -78,7 +77,7 @@
         <li id="item-{{ $cat->id }}" class="item">
           <div class="item--header">
             <h3 class="title">
-              <a href="{{ action(Category\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
+              <a href="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
             </h3>
           </div>
 
@@ -91,15 +90,15 @@
           <div class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(Category\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">
+                <a href="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(Category\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
+                <a href="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Category\DestroyController::class, $cat->id) }}">
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\DestroyController::class, $cat->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

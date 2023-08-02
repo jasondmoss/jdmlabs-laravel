@@ -2,6 +2,7 @@
   use App\Core\Shared\Enums\Pinned;
   use App\Core\Shared\Enums\Promoted;
   use App\Core\Shared\Enums\Status;
+  use App\Project\Interface\Http\Web\Controllers as Project;
 @endphp
 
 @push('scripts')
@@ -25,7 +26,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
 <x-ae.layout title="Edit Project" page="edit" livewire="true">
   <!-- edit.blade -->
 
-  <x-shared.session />
+  <x-shared.session/>
 
   {{ html()
     ->modelForm($project, 'PUT', '/ae/project/update/' . $project->id)
@@ -44,7 +45,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <i class="fa-solid fa-pen-to-square"></i> {{ $project->title }}</h1>
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Project\Interface\Http\Controllers\SingleController::class, $project->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(Project\SingleController::class, $project->slug) }}" title="{{ __('View live entry') }}">
         {{ $project->slug }}
       </a>
     </p>
@@ -56,13 +57,13 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
       <div class="form-field title">
         {{ html()->label('Title')->for('title') }}
-        {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('ProjectEloquentModel name')) }}
+        {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('Project name')) }}
         <p class="title-slug"><span class="label">{{ __('slug') }}</span> {{ $project->slug ?? '...' }}</p>
       </div>
 
       <div class="form-field subtitle">
         {{ html()->label('Sub-Title')->for('subtitle') }}
-        {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('ProjectEloquentModel sub-title or tagline')) }}
+        {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('Project sub-title or tagline')) }}
       </div>
 
       <div class="form-field website">
@@ -88,7 +89,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend>{{ __('Clients') }}</legend>
 
       <div class="form-field clients">
-        {{ html()->label('ClientEloquentModel')->for('client_id') }}
+        {{ html()->label('Client')->for('client_id') }}
         {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Select a client') }}
       </div>
     </fieldset>
@@ -112,7 +113,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <div class="form-field">
         {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
         {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature_image',
+          'id' => 'signature',
           'class' => 'upload'
         ]) }}
       </div>

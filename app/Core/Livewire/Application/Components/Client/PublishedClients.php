@@ -46,7 +46,7 @@ class PublishedClients extends Component
             ->latest('id')
             ->paginate(10);
 
-        return view('public.client._list', [
+        return view('public.client.list', [
             'clients' => $clients
         ]);
     }

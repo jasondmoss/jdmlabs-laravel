@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Article\Interface\Http\Controllers as Article;
-use App\Client\Interface\Http\Controllers as Client;
-use App\Project\Interface\Http\Controllers as Project;
-use App\Taxonomy\Interface\Http\Controllers as Category;
+use App\Article\Interface\Http\Web\Controllers as Article;
+use App\Client\Interface\Http\Web\Controllers as Client;
+use App\Project\Interface\Http\Web\Controllers as Project;
+use App\Taxonomy\Interface\Http\Web\Controllers as Taxonomy;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -65,12 +65,12 @@ Route::middleware([ 'web' ])->group(function () {
         Route::put('/project/update/{id}', Project\UpdateController::class);
         Route::delete('/project/{id}', Project\DestroyController::class);
 
-        Route::get('/taxonomy/category', Category\IndexController::class);
-        Route::get('/taxonomy/category/create', Category\CreateController::class);
-        Route::post('/taxonomy/category/create', Category\StoreController::class);
-        Route::get('/taxonomy/category/edit/{id}', Category\EditController::class);
-        Route::put('/taxonomy/category/update/{id}', Category\UpdateController::class);
-        Route::delete('/taxonomy/category/{id}', Category\DestroyController::class);
+        Route::get('/taxonomy/category', Taxonomy\IndexController::class);
+        Route::get('/taxonomy/category/create', Taxonomy\CreateController::class);
+        Route::post('/taxonomy/category/create', Taxonomy\StoreController::class);
+        Route::get('/taxonomy/category/edit/{id}', Taxonomy\EditController::class);
+        Route::put('/taxonomy/category/update/{id}', Taxonomy\UpdateController::class);
+        Route::delete('/taxonomy/category/{id}', Taxonomy\DestroyController::class);
 
     });
 

@@ -1,22 +1,21 @@
 @php
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
+  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
-    ClassicEditor.create(edit, {
-        removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-    }).catch(
-        error => console.error(error)
-    );
-});
-ClassicEditor.create(document.getElementById("body")).catch(
-    error => console.error(error)
-);
+		document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
+			ClassicEditor.create(edit, {
+				removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+			}).catch(
+				error => console.error(error)
+			);
+		});
+		ClassicEditor.create(document.getElementById("body")).catch(
+			error => console.error(error)
+		);
     </script>
   @endonce
 @endpush
@@ -42,7 +41,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Article\Interface\Http\Controllers\SingleController::class, $article->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(\App\Article\Interface\Http\Web\Controllers\SingleController::class, $article->slug) }}" title="{{ __('View live entry') }}">
         {{ $article->slug }}
       </a>
     </p>

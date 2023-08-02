@@ -1,29 +1,28 @@
 @php
-  use App\Article\Interface\Http\Controllers as Article;
 @endphp
 
 @push('styles')
   @once
     <style>
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 0;
-}
+			.items {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem 0;
+			}
 
-.item {
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  padding: 0.5rem 0.5rem 1rem;
-}
+			.item {
+				display: grid;
+				grid-template-columns: 4rem 1fr;
+				padding: 0.5rem 0.5rem 1rem;
+			}
 
-.item dt {
-  grid-column: 1;
-}
+			.item dt {
+				grid-column: 1;
+			}
 
-.item dd {
-  grid-column: 2;
-}
+			.item dd {
+				grid-column: 2;
+			}
     </style>
   @endonce
 @endpush
@@ -71,7 +70,7 @@
             <dl id="Article_{{ $article->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\App\Article\Interface\Http\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
                     @if ($article->hasMedia('signatures'))
                       <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -82,7 +81,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
+                  <a href="{{ action(\App\Article\Interface\Http\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $article->id }}</p>
               </dd>

@@ -1,5 +1,13 @@
-.panel-header {
-  padding: 0 2rem 2rem;
+.listing-header {
+  position: sticky;
+  top: -2px;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+}
+
+.listing-header[stuck] {
+  box-shadow: 0 1rem 0.75rem -1rem rgba(0, 0, 0, 0.4);
+  opacity: 0.85;
 }
 
 .listing-wrapper,
@@ -14,11 +22,18 @@
 
 .listing-tools {
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
-  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
+  gap: 1rem;
+  margin-top: 2rem;
 }
+
+/*.listing-tools .create-new,
+.listing-tools .list-search {
+  margin-right: auto;
+  margin-left: auto;
+}*/
 
 .listing-tools .create-new {
   background-color: var(--system--success);
@@ -27,7 +42,8 @@
 /*.listing-tools .list-search {}*/
 
 .listing-tools .list-search .form-input--text {
-  width: 16rem;
+  width: 100%;
+  max-width: 24rem;
 }
 
 .listing {

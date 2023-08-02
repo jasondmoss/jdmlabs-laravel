@@ -7,8 +7,8 @@ import axios from "axios";
 window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-import Choices from "choices.js";
-window.Choices = Choices;
+/*import Choices from "choices.js";
+window.Choices = Choices;*/
 
 
 // Local modules.
@@ -19,10 +19,13 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
 
 (function (window) {
     window.addEventListener("load", () => {
+        /**
+         * Are we in the administration area?
+         */
         const isAdmin = document.querySelector("body.admin");
 
         /**
-         * Open external links in new tab/window.
+         * Open external links in secure new tab/window.
          */
         document.querySelectorAll("a").forEach((link) => {
             const href = link.getAttribute("href");
@@ -32,32 +35,37 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
                 return false;
             }
 
-            // isExternal.
             let isExternal = ! (
                     href.startsWith("/") ||
                     href.startsWith("?") ||
                     href.startsWith("#") ||
                     href.includes("jdmlabs") || href.includes(".test")
                 ) ||
-                // Flagged as external.
                 (exists(rel) ? rel.includes("external") : false);
 
             if (isExternal) {
-                // Securely open external link in new tab/window.
                 newWindow(link);
             }
         });
 
+
         // Admin only.
         if (isAdmin) {
-            // const listingPanel = document.getElementById("listScroll");
-            // if (exists(listingPanel)) {
-            //     listingPanel.onscroll = (event) => {
-            //         document.querySelector(".listing-tools").classList.add("show-shadow");
-            //
-            //         console.log(event.target);
-            //     };
-            // }
+            /**
+             * Create a {position: sticky} 'event'.
+             */
+            const listingHeader = document.getElementById("listingHeader");
+            if (exists(listingHeader)) {
+                const observer = new IntersectionObserver(
+                    ([entry]) => entry.target.toggleAttribute("stuck", entry.intersectionRatio < 1),
+                    {
+                        threshold: [1]
+                    }
+                );
+
+                observer.observe(listingHeader);
+            }
+
 
             // /**
             //  * Temporary image preview.

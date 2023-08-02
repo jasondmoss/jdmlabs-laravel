@@ -1,17 +1,14 @@
 @php
-  use App\Client\Interface\Http\Controllers as Client;
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
-  use App\Project\Interface\Http\Controllers as Project;
+  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-ClassicEditor.create(document.getElementById("summary"), {
-    removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-}).catch(error => console.error(error));
+      ClassicEditor.create(document.getElementById("summary"), {
+        removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+      }).catch(error => console.error(error));
     </script>
   @endonce
 @endpush
@@ -19,25 +16,25 @@ ClassicEditor.create(document.getElementById("summary"), {
 @push('styles')
   @once
     <style>
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem 0;
-}
+      .items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem 0;
+      }
 
-.item {
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  padding: 0.5rem 0.5rem 1rem;
-}
+      .item {
+        display: grid;
+        grid-template-columns: 4rem 1fr;
+        padding: 0.5rem 0.5rem 1rem;
+      }
 
-.item dt {
-  grid-column: 1;
-}
+      .item dt {
+        grid-column: 1;
+      }
 
-.item dd {
-  grid-column: 2;
-}
+      .item dd {
+        grid-column: 2;
+      }
     </style>
   @endonce
 @endpush
@@ -46,7 +43,7 @@ ClassicEditor.create(document.getElementById("summary"), {
 <x-ae.layout title="Edit Client" page="edit" livewire="true">
   <!-- edit.blade -->
 
-  <x-shared.session />
+  <x-shared.session/>
 
   {{ html()
     ->modelForm($client, 'PUT', '/ae/client/update/' . $client->id)
@@ -66,7 +63,7 @@ ClassicEditor.create(document.getElementById("summary"), {
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(Client\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(\App\Client\Interface\Http\Web\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
         {{ $client->slug ? $client->slug : '' }}
       </a>
     </p>
@@ -156,7 +153,7 @@ ClassicEditor.create(document.getElementById("summary"), {
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     {{--@if ($project->hasMedia('signatures'))
                       <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -168,7 +165,7 @@ ClassicEditor.create(document.getElementById("summary"), {
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>

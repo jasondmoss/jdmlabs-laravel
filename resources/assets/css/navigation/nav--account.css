@@ -12,7 +12,7 @@
   text-align: right;
 }
 
-.menu--account .menu-link {
+.menu--account menu .menu-link {
   padding: 0.25rem;
   text-transform: lowercase;
   text-underline-offset: 0.25rem;

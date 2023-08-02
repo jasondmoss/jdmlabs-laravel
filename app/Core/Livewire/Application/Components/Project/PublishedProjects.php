@@ -39,7 +39,7 @@ class PublishedProjects extends Component
             ->with('clients')
             ->paginate(10);
 
-        return view('public.project._list', [
+        return view('public.project.list', [
             'projects' => $projects
         ]);
     }

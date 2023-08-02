@@ -58,6 +58,7 @@ class ProjectEloquentModel extends Model implements HasMedia
         'summary',
         'body',
         'client_id',
+        'category_id',
         'status',
         'promoted',
         'pinned',

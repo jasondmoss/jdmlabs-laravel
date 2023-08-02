@@ -36,7 +36,7 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
 
   <header class="editor--header">
-    <h1>{{ __('CreateRequest New ProjectEloquentModel') }}</h1>
+    <h1>{{ __('Create New Project') }}</h1>
   </header>
 
   <div class="editor--content">
@@ -45,13 +45,13 @@
 
       <div class="form-field title">
         {{ html()->label('Title')->for('title') }}
-        {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('ProjectEloquentModel name')) }}
+        {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('Project name')) }}
         <p class="title-slug"><span class="label">{{ __('slug') }}</span> ...</p>
       </div>
 
       <div class="form-field subtitle">
         {{ html()->label('Sub-Title')->for('subtitle') }}
-        {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('ProjectEloquentModel sub-title or tagline')) }}
+        {{ html()->text('subtitle')->class('text')->attribute('required')->placeholder(__('Project sub-title or tagline')) }}
       </div>
 
       <div class="form-field website">
@@ -77,7 +77,7 @@
       <legend>{{ __('Clients') }}</legend>
 
       <div class="form-field clients">
-        {{ html()->label('ClientEloquentModel')->for('client_id') }}
+        {{ html()->label('Client')->for('client_id') }}
         {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Choose a client') }}
       </div>
     </fieldset>
@@ -100,7 +100,7 @@
       <div class="form-field">
         {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
         {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature_image',
+          'id' => 'signature',
           'class' => 'upload'
         ]) }}
       </div>

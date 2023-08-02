@@ -46,7 +46,7 @@ class PublishedArticles extends Component
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('public.article._list', [
+        return view('public.article.list', [
             'articles' => $articles
         ]);
     }

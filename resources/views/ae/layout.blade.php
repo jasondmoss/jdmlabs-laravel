@@ -1,10 +1,6 @@
 @php
-use App\Article\Interface\Http\Controllers as Article;
-use App\Project\Interface\Http\Controllers as Project;
-use App\Client\Interface\Http\Controllers as Client;
-use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
-@endphp
-<!DOCTYPE html>
+  @endphp
+  <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
@@ -30,21 +26,21 @@ use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
   <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}" as="font" crossorigin>
   <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}" as="font" crossorigin>
   <style>
-@font-face {
-  font-family: "Berkeley Mono";
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url("{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}") format("woff2");
-}
+    @font-face {
+      font-family: "Berkeley Mono";
+      font-style: normal;
+      font-weight: normal;
+      font-display: swap;
+      src: url("{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}") format("woff2");
+    }
 
-@font-face {
-  font-family: "Berkeley Mono Bold";
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url("{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}") format("woff2");
-}
+    @font-face {
+      font-family: "Berkeley Mono Bold";
+      font-style: normal;
+      font-weight: normal;
+      font-display: swap;
+      src: url("{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}") format("woff2");
+    }
   </style>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -57,7 +53,7 @@ use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
 </head>
 <body class="admin {{ $page }}{{ Auth::check() ? ' logged-in': '' }}">
 
-<header id="panelHeader" class="admin--header">
+<header id="adminHeader" class="admin--header">
   <nav id="siteBranding" class="navigation ae--branding">
     <a itemprop="url" rel="index" class="brand-anchor" href="{{ config('app.url') }}" title="@yield('title')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 569.16 569.16" class="brand-logo" width="32" height="32" role="img" aria-label="JdmLabs logo">
@@ -88,19 +84,19 @@ use App\Taxonomy\Interface\Http\Controllers as Taxonomy;
         <a href="{{ route('dashboard') }}" class="menu-link"><span>{{ __('Dashboard') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.articles' ? ' active' : '' }}">
-        <a href="{{ action(Article\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(\App\Article\Interface\Http\Web\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Articles') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.projects' ? ' active' : '' }}">
-        <a href="{{ action(Project\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Projects') }}</span></a>
       </li>
       <li class="menu-item{{ Route::currentRouteName() == 'admin.clients' ? ' active' : '' }}">
-        <a href="{{ action(Client\IndexController::class) }}" class="menu-link">
+        <a href="{{ action(\App\Client\Interface\Http\Web\Controllers\IndexController::class) }}" class="menu-link">
           <span>{{ __('Clients') }}</span></a>
       </li>
       <li class="menu-item">
-        <a href="{{ action(Taxonomy\IndexController::class) }}" title="" class="menu-link">
+        <a href="{{ action(\App\Taxonomy\Interface\Http\Web\Controllers\IndexController::class) }}" title="" class="menu-link">
           <span>{{ __('Categories') }}</span></a>
       </li>
       {{-- <li class="menu-item">
