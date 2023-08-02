@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\Livewire\Application\Components\Project;
 
-use App\Core\Shared\Enums\Pinned;
-use App\Core\Shared\Enums\Promoted;
-use App\Core\Shared\Enums\Status;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use App\Shared\Enums\Pinned;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;

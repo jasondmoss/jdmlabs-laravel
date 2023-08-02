@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Livewire\Application\Components\Client;
 
 use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use App\Core\Shared\Enums\Promoted;
-use App\Core\Shared\Enums\Status;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Date;

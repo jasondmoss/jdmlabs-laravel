@@ -22,7 +22,7 @@
   </div>
   <div class="">
     <p class=""><strong>Client:</strong>
-      <a href="{{ action(\App\Client\Interface\Http\Web\Controllers\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
+      <a href="{{ action(\App\Client\Interface\Web\Controllers\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
     </p>
   </div>
 </x-public.layout>

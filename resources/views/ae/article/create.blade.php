@@ -1,22 +1,21 @@
 @php
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
+  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-      document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
-        ClassicEditor.create(edit, {
-          removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-        }).catch(
-          error => console.error(error)
-        );
-      });
-      ClassicEditor.create(document.getElementById("body")).catch(
-        error => console.error(error)
-      );
+		document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
+			ClassicEditor.create(edit, {
+				removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+			}).catch(
+				error => console.error(error)
+			);
+		});
+		ClassicEditor.create(document.getElementById("body")).catch(
+			error => console.error(error)
+		);
     </script>
   @endonce
 @endpush
@@ -116,7 +115,7 @@
 
       <div class="form-field status">
         {{ html()->label('Status')->for('status') }}
-         <select name="status" id="status" class="select">
+        <select name="status" id="status" class="select">
           @foreach (Status::cases() as $status)
             <option value="{{ $status->value }}">{{ $status->name }}</option>
           @endforeach

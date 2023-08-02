@@ -6,18 +6,18 @@ namespace App\Article\Infrastructure\Eloquent\Models;
 
 use App\Article\Application\Exceptions\CouldNotFindArticle;
 use App\Article\Infrastructure\Factories\ArticleFactory;
-use App\Core\Shared\Casts\ConvertNullToEmptyString;
-use App\Core\Shared\Enums\Promoted;
-use App\Core\Shared\Enums\Status;
-use App\Core\Shared\Scopes\FindBySlug;
-use App\Core\Shared\Scopes\WherePromoted;
-use App\Core\Shared\Scopes\WherePublished;
-use App\Core\Shared\Scopes\WhereRelated;
-use App\Core\Shared\Traits\MediaExtended;
-use App\Core\Shared\Traits\Observable;
-use App\Core\Shared\ValueObjects\Id;
-use App\Core\Shared\ValueObjects\Slug;
 use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use App\Shared\Casts\ConvertNullToEmptyString;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
+use App\Shared\Scopes\FindBySlug;
+use App\Shared\Scopes\WherePromoted;
+use App\Shared\Scopes\WherePublished;
+use App\Shared\Scopes\WhereRelated;
+use App\Shared\Traits\MediaExtended;
+use App\Shared\Traits\Observable;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -43,6 +43,14 @@ class ArticleEloquentModel extends Model implements HasMedia
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
+
+    /**
+     * Generated 'permalink' per each article, using the published_at
+     * date (Y/m/d), upon eloquent model query.
+     *
+     * @var string
+     */
+    public string $permalink;
 
     protected $table = 'articles';
 
@@ -151,7 +159,7 @@ class ArticleEloquentModel extends Model implements HasMedia
     /**
      * @param string $key
      *
-     * @return \Illuminate\Database\Eloquent\Builder|\App\Article\Infrastructure\Article
+     * @return \Illuminate\Database\Eloquent\Builder|self
      * @throws \App\Article\Application\Exceptions\CouldNotFindArticle
      */
     public function find(string $key): Builder|self

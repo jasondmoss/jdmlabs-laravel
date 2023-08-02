@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Article\Interface\Http\Web\Controllers as Article;
-use App\Client\Interface\Http\Web\Controllers as Client;
-use App\Project\Interface\Http\Web\Controllers as Project;
-use App\Taxonomy\Interface\Http\Web\Controllers as Taxonomy;
+use App\Article\Interface\Web\Controllers as Article;
+use App\Client\Interface\Web\Controllers as Client;
+use App\Project\Interface\Web\Controllers as Project;
+use App\Taxonomy\Interface\Web\Controllers as Taxonomy;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -23,6 +23,7 @@ Route::middleware([ 'web' ])->group(function () {
     })->name('now');
 
     Route::get('/articles', Article\PublishedController::class);
+    Route::get('/article/{year}/{month}/{day}/{slug}', Article\SingleController::class);
     Route::get('/article/{slug}', Article\SingleController::class);
 
     Route::get('/clients', Client\PublishedController::class);

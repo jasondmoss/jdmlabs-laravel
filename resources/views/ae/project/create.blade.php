@@ -1,22 +1,20 @@
 @php
-  use App\Core\Shared\Enums\Pinned;
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
+  use App\Shared\Enums\Pinned;use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
 @endphp
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-      document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
-        ClassicEditor.create(edit, {
-          removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-        }).catch(
-          error => console.error(error)
-        );
-      });
-      ClassicEditor.create(document.getElementById("body")).catch(
-        error => console.error(error)
-      );
+		document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
+			ClassicEditor.create(edit, {
+				removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+			}).catch(
+				error => console.error(error)
+			);
+		});
+		ClassicEditor.create(document.getElementById("body")).catch(
+			error => console.error(error)
+		);
     </script>
   @endonce
 @endpush
@@ -24,7 +22,7 @@
 <x-ae.layout title="Create New Project" page="create" livewire="true">
   <!-- create.blade -->
 
-  <x-shared.session />
+  <x-shared.session/>
 
   {{ html()->form('POST', '/ae/project/create')
     ->id('projectForm')

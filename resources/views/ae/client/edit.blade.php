@@ -1,5 +1,5 @@
 @php
-  use App\Core\Shared\Enums\Promoted;use App\Core\Shared\Enums\Status;
+  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -63,7 +63,7 @@
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Client\Interface\Http\Web\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ action(\App\Client\Interface\Web\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
         {{ $client->slug ? $client->slug : '' }}
       </a>
     </p>
@@ -153,7 +153,7 @@
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\App\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     {{--@if ($project->hasMedia('signatures'))
                       <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -165,7 +165,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(\App\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>

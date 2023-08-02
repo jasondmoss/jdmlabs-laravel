@@ -70,7 +70,7 @@
             <dl id="Article_{{ $article->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(\App\Article\Interface\Http\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\App\Article\Interface\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
                     @if ($article->hasMedia('signatures'))
                       <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -81,7 +81,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(\App\Article\Interface\Http\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
+                  <a href="{{ action(\App\Article\Interface\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">{{ $article->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $article->id }}</p>
               </dd>

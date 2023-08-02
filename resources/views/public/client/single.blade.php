@@ -14,7 +14,7 @@
     @if ($client->projects)
       @foreach ($client->projects as $project)
         <p class="">
-          <a href="{{ action(\App\Project\Interface\Http\Web\Controllers\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
+          <a href="{{ action(\App\Project\Interface\Web\Controllers\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
         </p>
       @endforeach
     @endif

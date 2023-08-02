@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Article\Domain\Validation;
 
-use App\Core\Shared\Enums\Promoted;
-use App\Core\Shared\Enums\Status;
+use App\Shared\Enums\Promoted;
+use App\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 

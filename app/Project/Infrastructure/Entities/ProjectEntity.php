@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Project\Infrastructure\Entities;
 
-use App\Core\Shared\ValueObjects\Body;
-use App\Core\Shared\ValueObjects\Id;
-use App\Core\Shared\ValueObjects\SubTitle;
-use App\Core\Shared\ValueObjects\Summary;
-use App\Core\Shared\ValueObjects\Title;
-use App\Core\Shared\ValueObjects\Website;
+use App\Shared\ValueObjects\Body;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\SubTitle;
+use App\Shared\ValueObjects\Summary;
+use App\Shared\ValueObjects\Title;
+use App\Shared\ValueObjects\Website;
 
 final readonly class ProjectEntity
 {

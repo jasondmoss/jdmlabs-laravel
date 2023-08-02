@@ -1,14 +1,13 @@
 @php
-  use App\Core\Shared\Enums\Promoted;
-  use App\Core\Shared\Enums\Status;
+  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
 @endphp
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-ClassicEditor.create(document.getElementById("summary"), {
-    removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-}).catch(error => console.error(error));
+		ClassicEditor.create(document.getElementById("summary"), {
+			removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+		}).catch(error => console.error(error));
     </script>
   @endonce
 @endpush
@@ -16,7 +15,7 @@ ClassicEditor.create(document.getElementById("summary"), {
 <x-ae.layout title="Create New Client" page="create" livewire="true">
   <!-- create.blade -->
 
-  <x-shared.session />
+  <x-shared.session/>
 
   {{ html()
     ->form('POST', '/ae/client/create')

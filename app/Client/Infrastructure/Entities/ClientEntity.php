@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Client\Infrastructure\Entities;
 
-use App\Core\Shared\ValueObjects\Id;
-use App\Core\Shared\ValueObjects\Itemprop;
-use App\Core\Shared\ValueObjects\Name;
-use App\Core\Shared\ValueObjects\Summary;
-use App\Core\Shared\ValueObjects\Website;
+use App\Shared\ValueObjects\Id;
+use App\Shared\ValueObjects\Itemprop;
+use App\Shared\ValueObjects\Name;
+use App\Shared\ValueObjects\Summary;
+use App\Shared\ValueObjects\Website;
 
 final readonly class ClientEntity
 {

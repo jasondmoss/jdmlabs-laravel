@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Client\Domain\Policies;
 
 use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use App\Core\Shared\Enums\Status;
 use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use App\Shared\Enums\Status;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;

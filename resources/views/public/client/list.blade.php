@@ -1,12 +1,12 @@
 @php
-  @endphp
+@endphp
 @if ($clients->count())
   <div class="listings client">
     @foreach ($clients as $client)
       <article class="">
         <header>
           <h3 class="">
-            <a href="{{ action(\App\Client\Interface\Http\Web\Controllers\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
+            <a href="{{ action(\App\Client\Interface\Web\Controllers\SingleController::class, $client->slug) }}">{{ $client->name }}</a>
           </h3>
         </header>
         <div class="entry-summary">
@@ -14,7 +14,7 @@
         </div>
         <footer>
           @if (@auth()->check())
-            <a rel="nofollow" class="button" href="{{ action(\App\Client\Interface\Http\Web\Controllers\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
+            <a rel="nofollow" class="button" href="{{ action(\App\Client\Interface\Web\Controllers\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
           @endif
         </footer>
       </article>

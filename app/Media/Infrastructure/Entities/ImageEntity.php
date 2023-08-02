@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Media\Infrastructure\Entities;
 
-use App\Core\Shared\ValueObjects\ImageAlt;
-use App\Core\Shared\ValueObjects\ImageCaption;
-use App\Core\Shared\ValueObjects\ImageFile;
-use App\Core\Shared\ValueObjects\ImageLabel;
+use App\Shared\ValueObjects\ImageAlt;
+use App\Shared\ValueObjects\ImageCaption;
+use App\Shared\ValueObjects\ImageFile;
+use App\Shared\ValueObjects\ImageLabel;
 use Illuminate\Http\UploadedFile;
 
 final readonly class ImageEntity

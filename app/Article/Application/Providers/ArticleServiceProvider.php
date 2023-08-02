@@ -39,6 +39,7 @@ class ArticleServiceProvider extends ServiceProvider
         // Tell Laravel of our custom templates paths.
         View::addNamespace('ArticleAdmin', resource_path('views/ae/article'));
         View::addNamespace('ArticlePublic', resource_path('views/public/article'));
+//        View::composer('article', );
     }
 
 
