@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Taxonomy\Interface\Web\Controllers;
 
 use App\Core\Laravel\Application\Controller;
-use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Application\Exceptions\CouldNotDeleteCategory;
 use App\Taxonomy\Application\UseCases\DestroyUseCase;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use App\Taxonomy\Infrastructure\ValueObjects\Id;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 

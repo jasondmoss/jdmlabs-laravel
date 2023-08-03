@@ -7,7 +7,7 @@ namespace App\Project\Interface\Web\Controllers;
 use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\Laravel\Application\Controller;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
-use App\Shared\ValueObjects\Id;
+use App\Project\Infrastructure\ValueObjects\Id;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;

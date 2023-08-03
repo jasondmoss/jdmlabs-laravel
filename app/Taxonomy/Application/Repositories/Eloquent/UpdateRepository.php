@@ -14,6 +14,9 @@ class UpdateRepository implements UpdateContract
     protected CategoryEloquentModel $category;
 
 
+    /**
+     * @param \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     */
     public function __construct(CategoryEloquentModel $category)
     {
         $this->category = $category;
@@ -26,10 +29,7 @@ class UpdateRepository implements UpdateContract
      *
      * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function update(
-        CategoryEloquentModel $category,
-        CategoryEntity $entity
-    ): CategoryEloquentModel
+    public function update(CategoryEloquentModel $category, CategoryEntity $entity): CategoryEloquentModel
     {
         $category->update([
             'name' => $entity->name

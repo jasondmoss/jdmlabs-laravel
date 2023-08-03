@@ -8,7 +8,7 @@ use App\Core\Laravel\Application\Controller;
 use App\Project\Application\Exceptions\CouldNotDeleteProject;
 use App\Project\Application\UseCases\DestroyUseCase;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
-use App\Shared\ValueObjects\Id;
+use App\Project\Infrastructure\ValueObjects\Id;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 

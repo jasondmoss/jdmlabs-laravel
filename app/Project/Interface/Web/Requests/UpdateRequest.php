@@ -8,7 +8,7 @@ use App\Project\Domain\Validation\UpdateSubmissionRules;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 
 /**
- * @property mixed $signature
+ * @property mixed $signature_image
  * @property string $listing_page
  */
 final class UpdateRequest extends UpdateSubmissionRules

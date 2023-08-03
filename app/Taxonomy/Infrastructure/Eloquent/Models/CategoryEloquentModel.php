@@ -12,10 +12,10 @@ use App\Shared\Scopes\WherePromoted;
 use App\Shared\Scopes\WherePublished;
 use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\Observable;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Application\Exceptions\CouldNotFindCategory;
 use App\Taxonomy\Infrastructure\Factories\CategoryFactory;
+use App\Taxonomy\Infrastructure\ValueObjects\Id;
+use App\Taxonomy\Infrastructure\ValueObjects\Slug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -78,14 +78,14 @@ class CategoryEloquentModel extends Model
     /**
      * @param string $key
      *
-     * @return \Illuminate\Database\Eloquent\Builder|\App\Taxonomy\Infrastructure\Category
+     * @return \Illuminate\Database\Eloquent\Builder|self
      * @throws \App\Taxonomy\Application\Exceptions\CouldNotFindCategory
      */
     public function find(string $key): Builder|self
     {
-        if (Ulid::isValid((new Id($key))->value())) {
+        if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()->find($key);
+                return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindCategory::withId($key);
             }

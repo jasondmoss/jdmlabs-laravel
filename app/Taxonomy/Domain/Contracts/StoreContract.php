@@ -10,10 +10,10 @@ interface StoreContract
 {
 
     /**
-     * @param object $data
+     * @param object $validatedRequest
      *
      * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function save(object $data): CategoryEloquentModel;
+    public function save(object $validatedRequest): CategoryEloquentModel;
 
 }

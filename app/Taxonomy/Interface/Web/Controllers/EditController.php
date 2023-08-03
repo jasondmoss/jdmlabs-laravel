@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Taxonomy\Interface\Web\Controllers;
 
 use App\Core\Laravel\Application\Controller;
-use App\Shared\ValueObjects\Id;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use App\Taxonomy\Infrastructure\ValueObjects\Id;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
 

@@ -8,6 +8,8 @@ use App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Project\Application\Exceptions\CouldNotFindProject;
 use App\Project\Infrastructure\Factories\ProjectFactory;
+use App\Project\Infrastructure\ValueObjects\Id;
+use App\Project\Infrastructure\ValueObjects\Slug;
 use App\Shared\Casts\ConvertNullToEmptyString;
 use App\Shared\Enums\Pinned;
 use App\Shared\Enums\Promoted;
@@ -18,8 +20,6 @@ use App\Shared\Scopes\WherePublished;
 use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\MediaExtended;
 use App\Shared\Traits\Observable;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -39,7 +39,8 @@ use UnexpectedValueException;
 class ProjectEloquentModel extends Model implements HasMedia
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, MediaExtended, Observable,
+    use HasEvents, HasFactory, HasSlug, HasUlids,
+        InteractsWithMedia, MediaExtended, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
@@ -162,9 +163,9 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     public function find(string $key): Builder|self
     {
-        if (Ulid::isValid((new Id($key))->value())) {
+        if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()->find($key);
+                return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindProject::withId($key);
             }

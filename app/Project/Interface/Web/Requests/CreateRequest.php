@@ -8,7 +8,7 @@ use App\Project\Domain\Validation\CreateSubmissionRules;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 
 /**
- * @property mixed $signature
+ * @property mixed $signature_image
  */
 final class CreateRequest extends CreateSubmissionRules
 {

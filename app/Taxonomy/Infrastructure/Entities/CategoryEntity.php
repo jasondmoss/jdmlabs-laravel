@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Taxonomy\Infrastructure\Entities;
 
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Name;
+use App\Taxonomy\Infrastructure\ValueObjects\Id;
+use App\Taxonomy\Infrastructure\ValueObjects\Name;
 
 final readonly class CategoryEntity
 {

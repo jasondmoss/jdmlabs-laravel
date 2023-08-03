@@ -29,10 +29,7 @@ final readonly class UpdateUseCase
      *
      * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function update(
-        CategoryEloquentModel $category,
-        CategoryEntity $entity
-    ): CategoryEloquentModel
+    public function update(CategoryEloquentModel $category, CategoryEntity $entity): CategoryEloquentModel
     {
         return $this->repository->update($category, $entity);
     }

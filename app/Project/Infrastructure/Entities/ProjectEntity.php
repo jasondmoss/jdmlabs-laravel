@@ -4,12 +4,19 @@ declare(strict_types=1);
 
 namespace App\Project\Infrastructure\Entities;
 
-use App\Shared\ValueObjects\Body;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\SubTitle;
-use App\Shared\ValueObjects\Summary;
-use App\Shared\ValueObjects\Title;
-use App\Shared\ValueObjects\Website;
+
+use App\Project\Infrastructure\ValueObjects\Body;
+use App\Project\Infrastructure\ValueObjects\CategoryId;
+use App\Project\Infrastructure\ValueObjects\ClientId;
+use App\Project\Infrastructure\ValueObjects\Id;
+use App\Project\Infrastructure\ValueObjects\Pinned;
+use App\Project\Infrastructure\ValueObjects\Promoted;
+use App\Project\Infrastructure\ValueObjects\Status;
+use App\Project\Infrastructure\ValueObjects\SubTitle;
+use App\Project\Infrastructure\ValueObjects\Summary;
+use App\Project\Infrastructure\ValueObjects\Title;
+use App\Project\Infrastructure\ValueObjects\UserId;
+use App\Project\Infrastructure\ValueObjects\Website;
 
 final readonly class ProjectEntity
 {
@@ -41,6 +48,8 @@ final readonly class ProjectEntity
 
     /**
      * @param object $projectData
+     *
+     * @throws \ReflectionException
      */
     public function __construct(object $projectData)
     {
@@ -49,7 +58,7 @@ final readonly class ProjectEntity
             : null;
 
         $this->user_id = ! empty($projectData->user_id)
-            ? (new Id($projectData->user_id))->value()
+            ? (new UserId($projectData->user_id))->value()
             : null;
 
         $this->title = ! empty($projectData->title)
@@ -73,18 +82,30 @@ final readonly class ProjectEntity
             : null;
 
         $this->client_id = ! empty($projectData->client_id)
-            ? (new Id($projectData->client_id))->value()
+            ? (new ClientId($projectData->client_id))->value()
             : null;
 
         $this->category_id = ! empty($projectData->category_id)
-            ? (new Id($projectData->category_id))->value()
+            ? (new CategoryId($projectData->category_id))->value()
             : null;
 
-        $this->status = $projectData->status;
+        $this->status = ! empty($projectData->status)
+            ? (new Status($projectData->status))->value()
+            : null;
 
-        $this->promoted = $projectData->promoted;
+        $this->promoted = ! empty($projectData->promoted)
+            ? (new Promoted($projectData->promoted))->value()
+            : null;
 
-        $this->pinned = $projectData->pinned;
+        $this->pinned = ! empty($projectData->pinned)
+            ? (new Pinned($projectData->pinned))->value()
+            : null;
+
+//        $this->status = $projectData->status;
+
+//        $this->promoted = $projectData->promoted;
+
+//        $this->pinned = $projectData->pinned;
     }
 
 }

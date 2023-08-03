@@ -44,6 +44,7 @@ class UpdateController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \ReflectionException
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {

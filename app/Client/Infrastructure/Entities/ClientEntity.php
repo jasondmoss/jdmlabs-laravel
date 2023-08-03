@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Client\Infrastructure\Entities;
 
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Itemprop;
-use App\Shared\ValueObjects\Name;
-use App\Shared\ValueObjects\Summary;
-use App\Shared\ValueObjects\Website;
+use App\Client\Infrastructure\ValueObjects\Id;
+use App\Client\Infrastructure\ValueObjects\Itemprop;
+use App\Client\Infrastructure\ValueObjects\Name;
+use App\Client\Infrastructure\ValueObjects\Promoted;
+use App\Client\Infrastructure\ValueObjects\Status;
+use App\Client\Infrastructure\ValueObjects\Summary;
+use App\Client\Infrastructure\ValueObjects\UserId;
+use App\Client\Infrastructure\ValueObjects\Website;
 
 final readonly class ClientEntity
 {
@@ -32,6 +35,8 @@ final readonly class ClientEntity
 
     /**
      * @param object $clientData
+     *
+     * @throws \ReflectionException
      */
     public function __construct(object $clientData)
     {
@@ -40,7 +45,7 @@ final readonly class ClientEntity
             : null;
 
         $this->user_id = ! empty($clientData->user_id)
-            ? (new Id($clientData->user_id))->value()
+            ? (new UserId($clientData->user_id))->value()
             : null;
 
         $this->name = ! empty($clientData->name)
@@ -59,9 +64,13 @@ final readonly class ClientEntity
             ? (new Summary($clientData->summary))->value()
             : null;
 
-        $this->status = $clientData->status;
+        $this->status = ! empty($clientData->status)
+            ? (new Status($clientData->status))->value()
+            : null;
 
-        $this->promoted = $clientData->promoted;
+        $this->promoted = ! empty($clientData->promoted)
+            ? (new Promoted($clientData->promoted))->value()
+            : null;
     }
 
 }

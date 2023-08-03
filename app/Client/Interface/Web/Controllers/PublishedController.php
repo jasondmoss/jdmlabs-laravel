@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Client\Interface\Web\Controllers;
 
-use App\Client\Application\UseCases\GetPublishedClientsUseCase;
 use App\Core\Laravel\Application\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;

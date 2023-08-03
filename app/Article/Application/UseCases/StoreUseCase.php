@@ -6,6 +6,7 @@ namespace App\Article\Application\UseCases;
 
 use App\Article\Application\Repositories\Eloquent\StoreRepository;
 use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use App\Article\Infrastructure\Entities\ArticleEntity;
 
 final readonly class StoreUseCase
 {
@@ -23,13 +24,13 @@ final readonly class StoreUseCase
 
 
     /**
-     * @param object $data
+     * @param \App\Article\Infrastructure\Entities\ArticleEntity $entity
      *
      * @return \App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel
      */
-    public function store(object $data): ArticleEloquentModel
+    public function store(ArticleEntity $entity): ArticleEloquentModel
     {
-        return $this->repository->save($data);
+        return $this->repository->save($entity);
     }
 
 }

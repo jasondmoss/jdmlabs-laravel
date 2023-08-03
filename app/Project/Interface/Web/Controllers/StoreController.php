@@ -35,6 +35,7 @@ class StoreController extends Controller
      * @param \App\Project\Interface\Web\Requests\CreateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \ReflectionException
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {

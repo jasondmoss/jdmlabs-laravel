@@ -44,6 +44,7 @@ class UpdateController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \App\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \ReflectionException
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
@@ -54,8 +55,8 @@ class UpdateController extends Controller
 
         $project = $this->bridge->update($projectInstance, $projectEntity);
 
-        if ($request->hasFile('signature')) {
-            $imageEntity = new ImageEntity((object) $request->signature);
+        if ($request->hasFile('signature_image')) {
+            $imageEntity = new ImageEntity((object) $request->signature_image);
 
             // Attach uploaded signature image.
             $this->media->attach($project, $imageEntity, 'signatures');

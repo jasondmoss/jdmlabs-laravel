@@ -23,13 +23,13 @@ final readonly class StoreUseCase
 
 
     /**
-     * @param object $data
+     * @param object $clientEntity
      *
      * @return \App\Client\Infrastructure\Eloquent\Models\ClientEloquentModel
      */
-    public function store(object $data): ClientEloquentModel
+    public function store(object $clientEntity): ClientEloquentModel
     {
-        return $this->repository->save($data);
+        return $this->repository->save($clientEntity);
     }
 
 }

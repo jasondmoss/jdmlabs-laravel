@@ -10,10 +10,10 @@ interface StoreContract
 {
 
     /**
-     * @param object $data
+     * @param object $projectEntity
      *
      * @return \App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel
      */
-    public function save(object $data): ProjectEloquentModel;
+    public function save(object $projectEntity): ProjectEloquentModel;
 
 }

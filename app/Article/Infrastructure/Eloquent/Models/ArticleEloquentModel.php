@@ -6,6 +6,8 @@ namespace App\Article\Infrastructure\Eloquent\Models;
 
 use App\Article\Application\Exceptions\CouldNotFindArticle;
 use App\Article\Infrastructure\Factories\ArticleFactory;
+use App\Article\Infrastructure\ValueObjects\Id;
+use App\Article\Infrastructure\ValueObjects\Slug;
 use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Shared\Casts\ConvertNullToEmptyString;
 use App\Shared\Enums\Promoted;
@@ -16,8 +18,6 @@ use App\Shared\Scopes\WherePublished;
 use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\MediaExtended;
 use App\Shared\Traits\Observable;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Slug;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -38,7 +38,8 @@ use UnexpectedValueException;
 class ArticleEloquentModel extends Model implements HasMedia
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, MediaExtended, Observable,
+    use HasEvents, HasFactory, HasSlug, HasUlids,
+        InteractsWithMedia, MediaExtended, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
@@ -121,7 +122,6 @@ class ArticleEloquentModel extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('signatures')
-            /*->singleFile()*/
             ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
             ->useFallbackUrl(asset('/images/placeholder/signature.png'))
             ->useFallbackPath(public_path('/images/placeholder/signature.png'));
@@ -164,9 +164,9 @@ class ArticleEloquentModel extends Model implements HasMedia
      */
     public function find(string $key): Builder|self
     {
-        if (Ulid::isValid((new Id($key))->value())) {
+        if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()->find($key);
+                return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindArticle::withId($key);
             }

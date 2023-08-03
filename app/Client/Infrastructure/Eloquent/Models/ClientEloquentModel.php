@@ -6,6 +6,7 @@ namespace App\Client\Infrastructure\Eloquent\Models;
 
 use App\Client\Application\Exceptions\CouldNotFindClient;
 use App\Client\Infrastructure\Factories\ClientFactory;
+use App\Client\Infrastructure\ValueObjects\Id;
 use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 use App\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use App\Shared\Casts\ConvertNullToEmptyString;
@@ -17,8 +18,7 @@ use App\Shared\Scopes\WherePublished;
 use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\MediaExtended;
 use App\Shared\Traits\Observable;
-use App\Shared\ValueObjects\Id;
-use App\Shared\ValueObjects\Slug;
+use App\Taxonomy\Infrastructure\ValueObjects\Slug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -154,9 +154,9 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     public function find(string $key): Builder|self
     {
-        if (Ulid::isValid((new Id($key))->value())) {
+        if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()->find($key);
+                return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindClient::withId($key);
             }

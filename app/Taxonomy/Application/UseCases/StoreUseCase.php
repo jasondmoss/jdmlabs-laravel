@@ -23,13 +23,13 @@ final class StoreUseCase
 
 
     /**
-     * @param object $data
+     * @param object $validatedRequest
      *
      * @return \App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel
      */
-    public function store(object $data): CategoryEloquentModel
+    public function store(object $validatedRequest): CategoryEloquentModel
     {
-        return $this->repository->save($data);
+        return $this->repository->save($validatedRequest);
     }
 
 }

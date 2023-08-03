@@ -13,20 +13,20 @@ final class StoreRepository implements StoreContract
     /**
      * @inheritDoc
      */
-    public function save(object $data): ProjectEloquentModel
+    public function save(object $projectEntity): ProjectEloquentModel
     {
         return ProjectEloquentModel::create([
-            'title' => $data->title,
-            'subtitle' => $data->subtitle,
-            'website' => $data->website,
-            'summary' => $data->summary,
-            'body' => $data->body,
-            'status' => $data->status,
-            'promoted' => $data->promoted,
-            'pinned' => $data->pinned,
-            'client_id' => $data->client_id,
-            'category_id' => $data->category_id,
-            'user_id' => $data->user_id
+            'title' => $projectEntity->title,
+            'subtitle' => $projectEntity->subtitle,
+            'website' => $projectEntity->website,
+            'summary' => $projectEntity->summary,
+            'body' => $projectEntity->body,
+            'status' => $projectEntity->status,
+            'promoted' => $projectEntity->promoted,
+            'pinned' => $projectEntity->pinned,
+            'client_id' => $projectEntity->client_id,
+            'category_id' => $projectEntity->category_id,
+            'user_id' => $projectEntity->user_id
         ]);
     }
 
