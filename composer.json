@@ -10,10 +10,8 @@
   "require": {
     "php": "^8.2",
     "ext-pdo": "*",
-    "arondeparon/laravel-request-sanitizer": "^5.0",
     "guzzlehttp/guzzle": "^7.2",
     "intervention/image": "^2.7",
-    "kalnoy/nestedset": "^6.0",
     "laravel/fortify": "^1.16",
     "laravel/framework": "^10.0",
     "laravel/tinker": "^2.8",

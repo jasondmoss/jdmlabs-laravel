@@ -4,71 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23b6a2277b5d22411b9a5a154e187715",
+    "content-hash": "dfeb397d086c900a72c86fc0b9488421",
     "packages": [
-        {
-            "name": "arondeparon/laravel-request-sanitizer",
-            "version": "5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ArondeParon/laravel-request-sanitizer.git",
-                "reference": "3b5a29d3ee8e1e12b07f32d1e10afb2d1fada3d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ArondeParon/laravel-request-sanitizer/zipball/3b5a29d3ee8e1e12b07f32d1e10afb2d1fada3d8",
-                "reference": "3b5a29d3ee8e1e12b07f32d1e10afb2d1fada3d8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0",
-                "symfony/http-foundation": "^4.3.4|>=5.1.3|^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.4",
-                "orchestra/testbench": "^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^8.0 || ^9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ArondeParon\\RequestSanitizer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aron Rotteveel",
-                    "email": "hi@aron.codes",
-                    "homepage": "https://github.com/arondeparon",
-                    "role": "Developer"
-                }
-            ],
-            "description": "An easy to use request sanitizer that allows you to sanitize your form data before validating it.",
-            "homepage": "https://github.com/arondeparon/laravel-request-sanitizer",
-            "keywords": [
-                "arondeparon",
-                "form",
-                "laravel",
-                "request",
-                "sanitizer",
-                "validation"
-            ],
-            "support": {
-                "issues": "https://github.com/ArondeParon/laravel-request-sanitizer/issues",
-                "source": "https://github.com/ArondeParon/laravel-request-sanitizer/tree/5.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/arondeparon",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-02-28T08:23:21+00:00"
-        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "2.0.8",
@@ -1224,69 +1161,6 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
-        },
-        {
-            "name": "kalnoy/nestedset",
-            "version": "v6.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lazychaser/laravel-nestedset.git",
-                "reference": "2d5c99fe1bfbaa4004f8d6fb24475f7ff88bb526"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/2d5c99fe1bfbaa4004f8d6fb24475f7ff88bb526",
-                "reference": "2d5c99fe1bfbaa4004f8d6fb24475f7ff88bb526",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^7.0|^8.0|^9.0|^10.0",
-                "illuminate/events": "^7.0|^8.0|^9.0|^10.0",
-                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
-                "php": "^7.2.5|^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "7.*|8.*|9.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "v5.0.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Kalnoy\\Nestedset\\NestedSetServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Kalnoy\\Nestedset\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander Kalnoy",
-                    "email": "lazychaser@gmail.com"
-                }
-            ],
-            "description": "Nested Set Model for Laravel 5.7 and up",
-            "keywords": [
-                "database",
-                "hierarchy",
-                "laravel",
-                "nested sets",
-                "nsm"
-            ],
-            "support": {
-                "issues": "https://github.com/lazychaser/laravel-nestedset/issues",
-                "source": "https://github.com/lazychaser/laravel-nestedset/tree/v6.0.2"
-            },
-            "time": "2023-02-16T14:41:24+00:00"
         },
         {
             "name": "laravel/fortify",
