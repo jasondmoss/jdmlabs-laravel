@@ -1,123 +1,124 @@
 @php
-  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;use Illuminate\Support\Facades\Date;
+  use App\Shared\Enums\Promoted;
+  use App\Shared\Enums\Status;
+  use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')
   @once
-    <style>
-      .item {
-        grid-template-columns: 1fr;
-      }
+<style>
+.item {
+  grid-template-columns: 1fr;
+}
 
-      .item--image {
-        grid-row: 4;
-        background-color: var(--debug--yellow);
-      }
+.item--image {
+  grid-row: 4;
+  background-color: hsl(var(--gray-light-h), var(--gray-light-s), calc(var(--gray-light-l) + 30%));
+}
 
-      .item--header {
-        grid-row: 1;
-      }
+.item--header {
+  grid-row: 1;
+}
 
-      .item--id {
-        grid-row: 2;
-      }
+.item--id {
+  grid-row: 2;
+}
 
-      .item--meta {
-        grid-row: 3;
-      }
+.item--meta {
+  grid-row: 3;
+}
 
-      @media screen {
-        @media (max-width: 39.9375rem) {
-          .item {
-            gap: 1rem;
-          }
-        }
+@media screen {
+  /*@media (max-width: 39.9375rem) {
+    .item {
+      gap: 1rem;
+    }
+  }*/
+  @media (min-width: 40rem) {
+    .item {
+      grid-template-columns: 10rem 1fr;
+    }
 
-        @media (min-width: 40rem) {
-          .item {
-            grid-template-columns: 10rem 1fr;
-          }
+    .item--image {
+      grid-column: 1;
+      grid-row: 1/span 3;
+    }
 
-          .item--image {
-            grid-column: 1;
-            grid-row: 1/span 3;
-          }
+    .item--header,
+    .item--id,
+    .item--taxonomy,
+    .item--actions,
+    .item--date {
+      grid-column: 2;
+    }
 
-          .item--header,
-          .item--id,
-          .item--taxonomy,
-          .item--actions,
-          .item--date {
-            grid-column: 2;
-          }
+    .item--meta {
+      grid-column: 1;
+      grid-row: 4;
+    }
 
-          .item--meta {
-            grid-column: 1;
-            grid-row: 4;
-          }
+    .item--actions menu {
+      justify-content: flex-start;
+    }
+  }
 
-          .item--actions menu {
-            justify-content: flex-start;
-          }
-        }
+  @media (min-width: 40rem) and (max-width: 59.9375rem) {
+    .item--meta {
+      margin-top: 2rem;
+    }
+  }
 
-        @media (min-width: 40rem) and (max-width: 59.9375rem) {
-          .item--meta {
-            margin-top: 2rem;
-          }
-        }
+  @media (min-width: 60rem) {
+    .item {
+      grid-template-columns: 10rem 1fr 14rem;
+    }
 
-        @media (min-width: 60rem) {
-          .item {
-            grid-template-columns: 10rem 1fr 14rem;
-          }
+    .item--header {
+      grid-row: 1/span 2;
+    }
 
-          .item--header {
-            grid-row: 1/span 2;
-          }
+    .item--id {
+      margin-top: 0.5rem;
+    }
 
-          .item--id {
-            margin-top: 0.5rem;
-          }
+    .item--taxonomy {
+      grid-row: 2;
+      align-self: end;
+      margin-top: 1rem;
+    }
 
-          .item--taxonomy {
-            grid-row: 2;
-            align-self: end;
-            margin-top: 1rem;
-          }
+    .item--meta {
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-start;
+    }
 
-          .item--meta {
-            grid-column: 3;
-            grid-row: 1;
-            justify-content: flex-start;
-          }
+    .item--meta svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
 
-          .item--meta svg {
-            width: 1.5rem;
-            height: 1.5rem;
-          }
+    .item--date {
+      grid-column: 3;
+      grid-row: 2/span 2;
+    }
 
-          .item--date {
-            grid-column: 3;
-            grid-row: 2/span 2;
-          }
+    .item--actions {
+      align-self: end;
+    }
 
-          .item--actions {
-            align-self: end;
-          }
+    .item--actions menu {
+      padding-right: 3rem;
+    }
+  }
 
-          .item--actions menu {
-            padding-right: 3rem;
-          }
-        }
-
-        @media (min-width: 75rem) {
-          .item {
-            gap: 0 2rem;
-          }
-        }
-      }
-    </style>
+  @media (min-width: 75rem) {
+    .item {
+      gap: 0.5rem 2rem;
+    }
+  }
+}
+</style>
   @endonce
 @endpush
 

@@ -44,7 +44,7 @@
   </div>
 
   <div class="form-field actions">
-    {{ html()->button('Register')->class('button submit') }}
+    {{ html()->button('Register')->class('button button--submit') }}
   </div>
 
   {{ html()->form()->close() }}

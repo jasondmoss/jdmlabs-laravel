@@ -6,7 +6,7 @@ namespace App\Article\Infrastructure\ValueObjects;
 
 use App\Shared\ValueObjects\EnumValueObject;
 
-class Status extends EnumValueObject
+final class Status extends EnumValueObject
 {
 
     /**

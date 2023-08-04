@@ -19,6 +19,7 @@ use App\Shared\Scopes\WhereRelated;
 use App\Shared\Traits\MediaExtended;
 use App\Shared\Traits\Observable;
 use App\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -179,6 +180,45 @@ class ArticleEloquentModel extends Model implements HasMedia
         } catch (UnexpectedValueException) {
             throw CouldNotFindArticle::withSlug($slug);
         }
+    }
+
+
+    /**
+     * Generate specific dates for metadata and display purposes.
+     *
+     * @return void
+     */
+    public function generateDates(): void
+    {
+        $this->date = (object) [
+            'published' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y'),
+                'path' => Carbon::parse($this->published_at)->format('Y/m/d')
+            ],
+            'create' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y')
+            ],
+            'updated' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y')
+            ]
+        ];
+    }
+
+
+    /**
+     * Generate an article 'permalink', facilitating the `generateDates()`
+     * method above.
+     *
+     * @return void
+     */
+    public function generatePermalink(): void
+    {
+        $this->permalink = url(
+            "/article/{$this->date->published->path}/$this->slug"
+        );
     }
 
 

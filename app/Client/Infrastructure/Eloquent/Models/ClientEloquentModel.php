@@ -38,11 +38,13 @@ use UnexpectedValueException;
 class ClientEloquentModel extends Model implements HasMedia
 {
 
-    use HasEvents,HasFactory,HasSlug, HasUlids, InteractsWithMedia, MediaExtended, Observable,
+    use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, MediaExtended, Observable,
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     public $timestamps = true;
+
+    public string $permalink;
 
     protected $table = 'clients';
 
@@ -112,7 +114,7 @@ class ClientEloquentModel extends Model implements HasMedia
     {
         $this->addMediaCollection('logos')
             /*->singleFile()*/
-            ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
+            ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
             ->useFallbackUrl(asset('/images/placeholder/logo.png'))
             ->useFallbackPath(public_path('/images/placeholder/logo.png'));
     }
@@ -173,21 +175,23 @@ class ClientEloquentModel extends Model implements HasMedia
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Generate a client 'permalink'.
+     *
+     * @return void
      */
-    public function user(): BelongsTo
+    public function generatePermalink(): void
     {
-        return $this->belongsTo(UserEloquentModel::class, 'user_id');
+        $this->permalink = url("/client/$this->slug");
     }
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-//    public function category(): BelongsTo
-//    {
-//        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
-//    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserEloquentModel::class, 'user_id');
+    }
 
 
     /**

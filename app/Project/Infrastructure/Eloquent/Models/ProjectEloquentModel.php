@@ -46,6 +46,11 @@ class ProjectEloquentModel extends Model implements HasMedia
 
     public $timestamps = true;
 
+    /**
+     * @var string
+     */
+    public string $permalink;
+
     protected $table = 'projects';
 
     protected $primaryKey = 'id';
@@ -178,6 +183,17 @@ class ProjectEloquentModel extends Model implements HasMedia
         } catch (UnexpectedValueException) {
             throw CouldNotFindProject::withSlug($slug);
         }
+    }
+
+
+    /**
+     * Generate a project 'permalink'.
+     *
+     * @return void
+     */
+    public function generatePermalink(): void
+    {
+        $this->permalink = url("/project/$this->slug");
     }
 
 

@@ -160,7 +160,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save Project')->class('button submit') }}
+        {{ html()->button('Save Project')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

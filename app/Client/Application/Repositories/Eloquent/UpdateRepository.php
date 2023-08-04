@@ -28,15 +28,7 @@ class UpdateRepository implements UpdateContract
      */
     public function update(ClientEloquentModel $client, ClientEntity $entity): ClientEloquentModel
     {
-        $client->update([
-            'name' => $entity->name,
-            'itemprop' => $entity->itemprop,
-            'website' => $entity->website,
-            'summary' => $entity->summary,
-            'status' => $entity->status,
-            'promoted' => $entity->promoted,
-            'user_id' => $entity->user_id
-        ]);
+        $client->update((array) $entity);
 
         return $client;
     }

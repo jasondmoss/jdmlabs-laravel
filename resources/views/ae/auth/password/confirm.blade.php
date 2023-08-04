@@ -22,7 +22,7 @@
       @enderror
     </div>
     <div class="form-field actions">
-      {{ html()->submit('Confirm Password')->class('button submit') }}
+      {{ html()->submit('Confirm Password')->class('button button--submit') }}
     </div>
   </fieldset>
   {{ html()->form()->close() }}

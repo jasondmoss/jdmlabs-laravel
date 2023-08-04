@@ -26,7 +26,7 @@ final readonly class ArticleEntity
 
     public ?string $body;
 
-    public ?string $category;
+    public ?string $category_id;
 
     public string $status;
 
@@ -60,7 +60,7 @@ final readonly class ArticleEntity
             ? (new Body($validatedRequest->body))->value()
             : null;
 
-        $this->category = ! empty($validatedRequest->category)
+        $this->category_id = ! empty($validatedRequest->category)
             ? (new CategoryId($validatedRequest->category))->value()
             : null;
 

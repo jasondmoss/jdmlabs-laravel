@@ -1,5 +1,7 @@
 @php
-  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
+  use App\Project\Interface\Web\Controllers as Project;
+  use App\Shared\Enums\Promoted;
+  use App\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -63,7 +65,7 @@
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Client\Interface\Web\Controllers\SingleController::class, $client->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ $client->permalink }}" title="{{ __('View live entry') }}">
         {{ $client->slug ? $client->slug : '' }}
       </a>
     </p>
@@ -100,15 +102,6 @@
         {{ html()->textarea('summary')->class('textarea')->rows(4) }}
       </div>
     </fieldset>
-
-    {{-- <fieldset class="container--taxonomy">
-      <legend>{{ __('Taxonomy') }}</legend>
-
-      <div class="form-field taxonomy">
-        {{ html()->label('Categories')->for('category') }}
-        {{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
-      </div>
-    </fieldset> --}}
 
     <fieldset class="container--signature-image">
       <legend>{{ __('Business Logo') }}</legend>
@@ -153,7 +146,7 @@
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(\App\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     {{--@if ($project->hasMedia('signatures'))
                       <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -165,7 +158,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(\App\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>
@@ -203,7 +196,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save Client')->class('button submit') }}
+        {{ html()->button('Save Client')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

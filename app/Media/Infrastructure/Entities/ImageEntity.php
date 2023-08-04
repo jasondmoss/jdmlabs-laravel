@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Media\Infrastructure\Entities;
 
-use App\Shared\ValueObjects\ImageAlt;
-use App\Shared\ValueObjects\ImageCaption;
-use App\Shared\ValueObjects\ImageFile;
-use App\Shared\ValueObjects\ImageLabel;
+use App\Media\Infrastructure\ValueObjects\Alt;
+use App\Media\Infrastructure\ValueObjects\Caption;
+use App\Media\Infrastructure\ValueObjects\File;
+use App\Media\Infrastructure\ValueObjects\Label;
 use Illuminate\Http\UploadedFile;
 
 final readonly class ImageEntity
@@ -32,7 +32,7 @@ final readonly class ImageEntity
     public function __construct(?object $image)
     {
         $this->file = isset($image->file)
-            ? (new ImageFile($image->file))->value()
+            ? (new File($image->file))->value()
             : null;
 
         if (! is_null($this->file)) {
@@ -40,15 +40,15 @@ final readonly class ImageEntity
         }
 
         $this->alt = ! empty($image->alt)
-            ? (new ImageAlt($image->alt))->value()
+            ? (new Alt($image->alt))->value()
             : null;
 
         $this->caption = ! empty($image->caption)
-            ? (new ImageCaption($image->caption))->value()
+            ? (new Caption($image->caption))->value()
             : null;
 
         $this->label = ! empty($image->label)
-            ? (new ImageLabel($image->label))->value()
+            ? (new Label($image->label))->value()
             : null;
     }
 

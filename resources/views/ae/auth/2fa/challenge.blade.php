@@ -15,7 +15,7 @@
         {{ html()->text('code')->class('code')->autofocus()->required()->attribute('autocomplete', 'off') }}
       </div>
       <div class="form-field actions">
-        {{ html()->submit('Verify')->class('button submit') }}
+        {{ html()->submit('Verify')->class('button button--submit') }}
       </div>
     </fieldset>
   {{ html()->form()->close() }}

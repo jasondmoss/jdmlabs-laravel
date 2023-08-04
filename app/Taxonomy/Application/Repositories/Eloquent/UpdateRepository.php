@@ -31,9 +31,7 @@ class UpdateRepository implements UpdateContract
      */
     public function update(CategoryEloquentModel $category, CategoryEntity $entity): CategoryEloquentModel
     {
-        $category->update([
-            'name' => $entity->name
-        ]);
+        $category->update((array) $entity);
 
         return $category;
     }

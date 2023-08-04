@@ -1,21 +1,22 @@
 @php
-  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
+  use App\Shared\Enums\Promoted;
+  use App\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-      document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
-        ClassicEditor.create(edit, {
-          removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-        }).catch(
-          error => console.error(error)
-        );
-      });
-      ClassicEditor.create(document.getElementById("body")).catch(
+document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
+    ClassicEditor.create(edit, {
+        removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+    }).catch(
         error => console.error(error)
-      );
+    );
+});
+ClassicEditor.create(document.getElementById("body")).catch(
+    error => console.error(error)
+);
     </script>
   @endonce
 @endpush
@@ -41,7 +42,7 @@
 
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Article\Interface\Web\Controllers\SingleController::class, $article->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ $article->permalink }}" title="{{ __('View live entry') }}">
         {{ $article->slug }}
       </a>
     </p>
@@ -156,7 +157,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save Article')->class('button submit') }}
+        {{ html()->button('Save Article')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

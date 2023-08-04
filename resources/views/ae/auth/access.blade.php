@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-field actions">
-      {{ html()->button('Login')->class('button submit') }}
+      {{ html()->button('Login')->class('button button--submit') }}
     </div>
   </fieldset>
   {{ html()->form()->close() }}

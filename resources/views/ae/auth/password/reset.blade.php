@@ -40,7 +40,7 @@
       </div>
 
       <div class="form-field actions">
-        {{ html()->submit('Reset Password')->class('button submit') }}
+        {{ html()->submit('Reset Password')->class('button button--submit') }}
       </div>
     </fieldset>
   {{ html()->form()->close() }}

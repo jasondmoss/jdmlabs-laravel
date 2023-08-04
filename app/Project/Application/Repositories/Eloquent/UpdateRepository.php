@@ -28,19 +28,7 @@ final class UpdateRepository implements UpdateContract
      */
     public function update(ProjectEloquentModel $project, ProjectEntity $entity): ProjectEloquentModel
     {
-        $project->update([
-            'user_id' => $entity->user_id,
-            'title' => $entity->title,
-            'subtitle' => $entity->subtitle,
-            'website' => $entity->website,
-            'summary' => $entity->summary,
-            'body' => $entity->body,
-            'client_id' => $entity->client_id,
-            'category_id' => $entity->category_id,
-            'status' => $entity->status,
-            'promoted' => $entity->promoted,
-            'pinned' => $entity->pinned,
-        ]);
+        $project->update((array) $entity);
 
         return $project;
     }

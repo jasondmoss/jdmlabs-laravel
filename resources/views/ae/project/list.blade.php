@@ -31,11 +31,11 @@
       }
 
       @media screen {
-        @media (max-width: 39.9375rem) {
+        /*@media (max-width: 39.9375rem) {
           .item {
-            gap: 1rem;
+            gap: 0.5rem 1rem;
           }
-        }
+        }*/
 
         @media (min-width: 40rem) {
           .item {
@@ -53,6 +53,18 @@
           .item--actions,
           .item--date {
             grid-column: 2;
+          }
+
+          .item--header {
+            grid-row: 1/span 2;
+          }
+
+          .item--id {
+            grid-row: 3;
+          }
+
+          .item--taxonomy {
+            grid-row: 4;
           }
 
           .item--meta {
@@ -87,9 +99,10 @@
           }
 
           .item--taxonomy {
-            grid-row: 3;
+            /*grid-row: 3;*/
             align-self: end;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
           }
 
           .item--meta {
@@ -119,7 +132,7 @@
 
         @media (min-width: 75rem) {
           .item {
-            gap: 0 2rem;
+            gap: 0.5rem 2rem;
           }
         }
       }
@@ -154,7 +167,8 @@
                 <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-            @endif
+               @endif
+            </a>
           </figure>
 
           <header class="item--header">
@@ -178,12 +192,6 @@
               </p>
             @endif
           </nav>
-
-          <aside class="item--meta">
-            <span class="status" title="{{ __('Published') }}">{!! Status::icon($project->status) !!}</span>
-            <span class="promoted" title="{{ __('Promoted') }}">{!! Promoted::icon($project->promoted) !!}</span>
-            <span class="promoted" title="{{ __('Pinned') }}">{!! Pinned::icon($project->pinned) !!}</span>
-          </aside>
 
           <aside class="item--meta">
             <span class="status" wire:click="toggleStatePublished('{{ $project->id }}')" title="@if ('published' === $project->status->value) {{ __('Unpublish this project') }} @else {{ __('Publish this project') }} @endif">

@@ -27,7 +27,7 @@
       @enderror
     </div>
     <div class="form-field actions">
-      {{ html()->submit('Send Password Reset Link')->class('button submit') }}
+      {{ html()->submit('Send Password Reset Link')->class('button button--submit') }}
     </div>
   </fieldset>
 

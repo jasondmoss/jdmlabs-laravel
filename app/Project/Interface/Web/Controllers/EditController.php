@@ -37,6 +37,8 @@ class EditController extends Controller
     {
         $project = $this->project->find((new Id($id))->value());
 
+        $project->generatePermalink();
+
         $clients = ClientEloquentModel::get()->pluck('name', 'id');
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 

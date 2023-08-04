@@ -137,7 +137,7 @@
     <h1>{{ __('Articles') }}</h1>
 
     <nav class="listing-tools">
-      <a class="button create-new" href="{{ action(Article\CreateController::class) }}">Create New Article</a>
+      <a class="button button--submit create-new" href="{{ action(Article\CreateController::class) }}">Create New Article</a>
 
       <div class="list-search">
         <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
@@ -146,8 +146,8 @@
     </nav>
   </header>
 
-  @if ($articles->count())
-    <div class="listing article">
+  <div class="listing article">
+    @if ($articles->count())
       @foreach ($articles as $article)
         <article id="item-{{ $article->id }}" class="item">
           <figure class="item--image">
@@ -229,14 +229,14 @@
           </footer>
         </article>
       @endforeach
-    </div>
 
-    {{-- Pagination. --}}
-    {{ $articles->links() }}
+      {{-- Pagination. --}}
+      {{ $articles->links() }}
 
-  @else
-    <div class="w-full mt-8 p-20">
-      <strong>No articles found.</strong>
-    </div>
-  @endif
+    @else
+      <div class="w-full mt-8 p-20">
+        <strong>No articles found.</strong>
+      </div>
+    @endif
+  </div>
 </div>

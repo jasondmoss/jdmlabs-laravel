@@ -1,5 +1,7 @@
 @php
-  use App\Shared\Enums\Pinned;use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
+  use App\Shared\Enums\Pinned;
+  use App\Shared\Enums\Promoted;
+  use App\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -42,7 +44,7 @@
       <i class="fa-solid fa-pen-to-square"></i> {{ $project->title }}</h1>
     <p class="">
       <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ action(\App\Project\Interface\Web\Controllers\SingleController::class, $project->slug) }}" title="{{ __('View live entry') }}">
+      <a rel="external" href="{{ $project->permalink }}" title="{{ __('View live entry') }}">
         {{ $project->slug }}
       </a>
     </p>
@@ -200,7 +202,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field">
-        {{ html()->button('Save Project')->class('button submit') }}
+        {{ html()->button('Save Project')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

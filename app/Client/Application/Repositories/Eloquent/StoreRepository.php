@@ -15,15 +15,7 @@ class StoreRepository implements StoreContract
      */
     public function save(object $clientEntity): ClientEloquentModel
     {
-        return ClientEloquentModel::create([
-            'name' => $clientEntity->name,
-            'itemprop' => $clientEntity->itemprop,
-            'website' => $clientEntity->website,
-            'summary' => $clientEntity->summary,
-            'status' => $clientEntity->status,
-            'promoted' => $clientEntity->promoted,
-            'user_id' => $clientEntity->user_id
-        ]);
+        return ClientEloquentModel::create((array) $clientEntity);
     }
 
 }

@@ -2,12 +2,12 @@
   use Carbon\Carbon;
 @endphp
 
-<x-public.layout title="Articles" page="index" schema="WebPage" type="page listing" livewire="true">
+<x-public.layout title="Articles" page="index" schema="CollectionPage" type="page listing article" livewire="true">
   <header class="">
     <h1 class="">{{ __('Articles') }}</h1>
   </header>
 
-  <div itemscope itemtype="http://schema.org/Blog" class="listings article">
+  <div itemscope itemtype="http://schema.org/Blog" class="listings">
     @if ($articles->count())
       @foreach ($articles as $article)
         <article itemscope itemtype="https://schema.org/Article" itemid="{{ url('/article/' . $article->slug) }}" id="{{ $article->id }}" class="h-entry h-as-article card">
@@ -42,9 +42,9 @@
           </footer>
         </article>
 
-        @if ($loop->first)
+        {{--@if ($loop->first)
           {{ dump($article) }}
-        @endif
+        @endif--}}
       @endforeach
     @else
       <div class="">

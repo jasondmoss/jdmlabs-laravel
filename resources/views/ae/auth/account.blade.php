@@ -37,7 +37,7 @@
           @enderror
         </div>
         <div class="form-field actions">
-          {{ html()->submit('Update Profile')->class('button submit') }}
+          {{ html()->submit('Update Profile')->class('button button--submit') }}
         </div>
       </fieldset>
     {{ html()->form()->close() }}
@@ -80,7 +80,7 @@
           @enderror
         </div>
         <div class="form-field actions">
-          {{ html()->submit('Update Password')->class('button submit') }}
+          {{ html()->submit('Update Password')->class('button button--submit') }}
         </div>
       </fieldset>
     {{ html()->form()->close() }}
@@ -106,7 +106,7 @@
         <fieldset form="2faDisable" class="">
           <legend>{{ __('Two-Factor Authentication') }}</legend>
           <div class="form-field actions">
-            {{ html()->submit('Disable 2FA')->class('button submit') }}
+            {{ html()->submit('Disable 2FA')->class('button button--submit') }}
           </div>
         </fieldset>
       {{ html()->form()->close() }}
@@ -131,7 +131,7 @@
             {{ html()->text('code')->class('code')->required()->attribute('autocomplete', 'off') }}
           </div>
           <div class="form-field actions">
-            {{ html()->submit('Validate 2FA')->class('button submit') }}
+            {{ html()->submit('Validate 2FA')->class('button button--submit') }}
           </div>
         </fieldset>
       {{ html()->form()->close() }}
@@ -150,7 +150,7 @@
         <fieldset form="2faActivate" class="">
           <legend>{{ __('Two-Factor Authentication') }}</legend>
           <div class="form-field actions">
-            {{ html()->submit('Activate 2FA')->class('button submit') }}
+            {{ html()->submit('Activate 2FA')->class('button button--submit') }}
           </div>
         </fieldset>
       {{ html()->form()->close() }}

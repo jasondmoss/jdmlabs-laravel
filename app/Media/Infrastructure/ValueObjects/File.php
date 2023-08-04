@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\ValueObjects;
+namespace App\Media\Infrastructure\ValueObjects;
 
 use Illuminate\Http\UploadedFile;
 
-final readonly class ImageFile
+final readonly class File
 {
 
     private UploadedFile $image;
@@ -26,8 +26,6 @@ final readonly class ImageFile
      */
     public function value(): UploadedFile
     {
-//        dd($this->image);
-
         return $this->image;
     }
 

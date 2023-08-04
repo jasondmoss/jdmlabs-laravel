@@ -36,6 +36,9 @@ class EditController extends Controller
     {
         $article = $this->article->find((new Id($id))->value());
 
+        $article->generateDates();
+        $article->generatePermalink();
+
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         $signature = $article->getFirstMedia('signatures');

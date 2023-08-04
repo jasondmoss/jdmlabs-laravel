@@ -103,8 +103,7 @@ class AdminListing extends Component
      */
     public function render(): View
     {
-        $articles = ArticleEloquentModel::where('user_id', auth()->user()->id)
-            ->where('title', 'LIKE', '%' . $this->search . '%')
+        $articles = ArticleEloquentModel::where('title', 'LIKE', '%' . $this->search . '%')
             ->latest('created_at')
             ->paginate(20);
 

@@ -6,7 +6,7 @@ namespace App\Project\Infrastructure\ValueObjects;
 
 use App\Shared\ValueObjects\EnumValueObject;
 
-class Promoted extends EnumValueObject
+final class Promoted extends EnumValueObject
 {
 
     /**

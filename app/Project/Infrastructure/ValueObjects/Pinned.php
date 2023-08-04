@@ -6,7 +6,7 @@ namespace App\Project\Infrastructure\ValueObjects;
 
 use App\Shared\ValueObjects\EnumValueObject;
 
-class Pinned extends EnumValueObject
+final class Pinned extends EnumValueObject
 {
 
     /**
