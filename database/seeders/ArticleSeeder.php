@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

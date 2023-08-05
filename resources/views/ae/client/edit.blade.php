@@ -1,7 +1,5 @@
 @php
-  use App\Project\Interface\Web\Controllers as Project;
-  use App\Shared\Enums\Promoted;
-  use App\Shared\Enums\Status;
+  use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -146,7 +144,7 @@
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                  <a href="{{ action(\Aenginus\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     {{--@if ($project->hasMedia('signatures'))
                       <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
                     @else
@@ -158,7 +156,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(\Aenginus\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>

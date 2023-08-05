@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Article\Application\Providers as Article;
-use App\Client\Application\Providers as Client;
-use App\Core\Auth\Application\Providers\FortifyServiceProvider;
-use App\Core\Laravel\Application\Providers as Laravel;
-use App\Project\Application\Providers as Project;
-use App\Taxonomy\Application\Providers as Taxonomy;
+use Aenginus\Article\Application\Providers as Article;
+use Aenginus\Client\Application\Providers as Client;
+use Aenginus\Project\Application\Providers as Project;
+use Aenginus\Taxonomy\Application\Providers as Taxonomy;
+use Aenginus\User\Application\Providers as Fortify;
+use App\Providers as App;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -81,16 +81,16 @@ return [
 
         /** -- Package Service Providers. */
 
-        FortifyServiceProvider::class,
+        Fortify\FortifyServiceProvider::class,
         InterventionImageServiceProvider::class,
 
         /** -- Application Service Providers. */
 
-        Laravel\AppServiceProvider::class,
-        Laravel\AuthServiceProvider::class,
-        Laravel\BroadcastServiceProvider::class,
-        Laravel\EventServiceProvider::class,
-        Laravel\RouteServiceProvider::class,
+        App\AppServiceProvider::class,
+        App\AuthServiceProvider::class,
+        App\BroadcastServiceProvider::class,
+        App\EventServiceProvider::class,
+        App\RouteServiceProvider::class,
 
         Article\ArticleAuthServiceProvider::class,
         Article\ArticleEventServiceProvider::class,

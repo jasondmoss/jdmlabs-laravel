@@ -62,7 +62,7 @@
     <h1>{{ __('Categories') }}</h1>
 
     <nav class="listing-tools">
-      <a class="button create-new" href="{{ action(\App\Taxonomy\Interface\Web\Controllers\CreateController::class) }}">Create New Category</a>
+      <a class="button create-new" href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\CreateController::class) }}">Create New Category</a>
 
       <div class="list-search">
         <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
@@ -77,7 +77,7 @@
         <li id="item-{{ $cat->id }}" class="item">
           <div class="item--header">
             <h3 class="title">
-              <a href="{{ action(\App\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
+              <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
             </h3>
           </div>
 
@@ -90,15 +90,15 @@
           <div class="navigation item--actions">
             <menu>
               <li>
-                <a href="{{ action(\App\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">
+                <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(\App\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
+                <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\App\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}">
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}">
                   @csrf
                   {{ method_field('DELETE') }}
                 </form>

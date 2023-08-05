@@ -1,5 +1,4 @@
 @php
-  use  App\Client\Interface\Web\Controllers as Client;
 @endphp
 
 <x-public.layout title="Clients" page="index" schema="WebPage" type="page listing" livewire="true">
@@ -30,7 +29,7 @@
           </div>
           <footer>
             @if (@auth()->check())
-              <a rel="nofollow" class="button" href="{{ action(Client\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
+              <a rel="nofollow" class="button" href="{{ action(\Aenginus\Client\Interface\Web\Controllers\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
             @endif
           </footer>
         </article>

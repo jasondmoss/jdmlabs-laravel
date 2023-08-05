@@ -1,7 +1,7 @@
 <?php
 
-use App\Media\Application\MediaPathGenerator;
-use App\Media\Infrastructure\Eloquent\Models\MediaEloquentModel;
+use Aenginus\Media\Application\MediaPathGenerator;
+use Aenginus\Media\Infrastructure\Eloquent\Models\MediaEloquentModel;
 use Spatie\ImageOptimizer\Optimizers;
 use Spatie\MediaLibrary\Conversions\ImageGenerators;
 use Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob;

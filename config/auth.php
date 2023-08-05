@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
 
 return [
 

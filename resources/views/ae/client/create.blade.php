@@ -1,5 +1,5 @@
 @php
-  use App\Shared\Enums\Promoted;use App\Shared\Enums\Status;
+  use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;
 @endphp
 @push('scripts')
   @once

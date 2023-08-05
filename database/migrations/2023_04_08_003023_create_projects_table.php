@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Shared\Enums\Pinned;
-use App\Shared\Enums\Promoted;
-use App\Shared\Enums\Status;
+use Aenginus\Shared\Enums\Pinned;
+use Aenginus\Shared\Enums\Promoted;
+use Aenginus\Shared\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

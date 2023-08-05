@@ -1,5 +1,4 @@
 @php
-  use App\Project\Interface\Web\Controllers as Project;
 @endphp
 
 <x-public.layout title="Projects" page="index" schema="CollectionPage" type="page listing project" livewire="true">
@@ -36,7 +35,7 @@
           </div>
           <footer>
             @if (@auth()->check())
-              <a rel="nofollow" class="button" href="{{ action(Project\EditController::class, $project->id) }}">{{ __('Edit') }}</a>
+              <a rel="nofollow" class="button" href="{{ action(\Aenginus\Project\Interface\Web\Controllers\EditController::class, $project->id) }}">{{ __('Edit') }}</a>
             @endif
           </footer>
         </article>

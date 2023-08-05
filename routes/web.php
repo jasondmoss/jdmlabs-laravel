@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Article\Interface\Web\Controllers as Article;
-use App\Client\Interface\Web\Controllers as Client;
-use App\Project\Interface\Web\Controllers as Project;
-use App\Taxonomy\Interface\Web\Controllers as Taxonomy;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(function () {
@@ -22,15 +18,15 @@ Route::middleware([ 'web' ])->group(function () {
         return view('public.page.now');
     })->name('now');
 
-    Route::get('/articles', Article\PublishedController::class);
-    Route::get('/article/{year}/{month}/{day}/{slug}', Article\SingleController::class);
-    Route::get('/article/{slug}', Article\SingleController::class);
+    Route::get('/articles', \Aenginus\Article\Interface\Web\Controllers\PublishedController::class);
+    Route::get('/article/{year}/{month}/{day}/{slug}', \Aenginus\Article\Interface\Web\Controllers\SingleController::class);
+    Route::get('/article/{slug}', \Aenginus\Article\Interface\Web\Controllers\SingleController::class);
 
-    Route::get('/clients', Client\PublishedController::class);
-    Route::get('/client/{slug}', Client\SingleController::class);
+    Route::get('/clients', \Aenginus\Client\Interface\Web\Controllers\PublishedController::class);
+    Route::get('/client/{slug}', \Aenginus\Client\Interface\Web\Controllers\SingleController::class);
 
-    Route::get('/projects', Project\PublishedController::class);
-    Route::get('/project/{slug}', Project\SingleController::class);
+    Route::get('/projects', \Aenginus\Project\Interface\Web\Controllers\PublishedController::class);
+    Route::get('/project/{slug}', \Aenginus\Project\Interface\Web\Controllers\SingleController::class);
 
 
     // -- Dashboard (Redirect).
@@ -45,33 +41,33 @@ Route::middleware([ 'web' ])->group(function () {
             return view('ae.page.dashboard');
         })->name('dashboard');
 
-        Route::get('/articles', Article\IndexController::class);
-        Route::get('/article/create', Article\CreateController::class);
-        Route::post('/article/create', Article\StoreController::class);
-        Route::get('/article/edit/{id}', Article\EditController::class);
-        Route::put('/article/update/{id}', Article\UpdateController::class);
-        Route::delete('/article/{id}', Article\DestroyController::class);
+        Route::get('/articles', \Aenginus\Article\Interface\Web\Controllers\IndexController::class);
+        Route::get('/article/create', \Aenginus\Article\Interface\Web\Controllers\CreateController::class);
+        Route::post('/article/create', \Aenginus\Article\Interface\Web\Controllers\StoreController::class);
+        Route::get('/article/edit/{id}', \Aenginus\Article\Interface\Web\Controllers\EditController::class);
+        Route::put('/article/update/{id}', \Aenginus\Article\Interface\Web\Controllers\UpdateController::class);
+        Route::delete('/article/{id}', \Aenginus\Article\Interface\Web\Controllers\DestroyController::class);
 
-        Route::get('/clients', Client\IndexController::class);
-        Route::get('/client/create', Client\CreateController::class);
-        Route::post('/client/create', Client\StoreController::class);
-        Route::get('/client/edit/{id}', Client\EditController::class);
-        Route::put('/client/update/{id}', Client\UpdateController::class);
-        Route::delete('/client/{id}', Client\DestroyController::class);
+        Route::get('/clients', \Aenginus\Client\Interface\Web\Controllers\IndexController::class);
+        Route::get('/client/create', \Aenginus\Client\Interface\Web\Controllers\CreateController::class);
+        Route::post('/client/create', \Aenginus\Client\Interface\Web\Controllers\StoreController::class);
+        Route::get('/client/edit/{id}', \Aenginus\Client\Interface\Web\Controllers\EditController::class);
+        Route::put('/client/update/{id}', \Aenginus\Client\Interface\Web\Controllers\UpdateController::class);
+        Route::delete('/client/{id}', \Aenginus\Client\Interface\Web\Controllers\DestroyController::class);
 
-        Route::get('/projects', Project\IndexController::class);
-        Route::get('/project/create', Project\CreateController::class);
-        Route::post('/project/create', Project\StoreController::class);
-        Route::get('/project/edit/{id}', Project\EditController::class);
-        Route::put('/project/update/{id}', Project\UpdateController::class);
-        Route::delete('/project/{id}', Project\DestroyController::class);
+        Route::get('/projects', \Aenginus\Project\Interface\Web\Controllers\IndexController::class);
+        Route::get('/project/create', \Aenginus\Project\Interface\Web\Controllers\CreateController::class);
+        Route::post('/project/create', \Aenginus\Project\Interface\Web\Controllers\StoreController::class);
+        Route::get('/project/edit/{id}', \Aenginus\Project\Interface\Web\Controllers\EditController::class);
+        Route::put('/project/update/{id}', \Aenginus\Project\Interface\Web\Controllers\UpdateController::class);
+        Route::delete('/project/{id}', \Aenginus\Project\Interface\Web\Controllers\DestroyController::class);
 
-        Route::get('/taxonomy/category', Taxonomy\IndexController::class);
-        Route::get('/taxonomy/category/create', Taxonomy\CreateController::class);
-        Route::post('/taxonomy/category/create', Taxonomy\StoreController::class);
-        Route::get('/taxonomy/category/edit/{id}', Taxonomy\EditController::class);
-        Route::put('/taxonomy/category/update/{id}', Taxonomy\UpdateController::class);
-        Route::delete('/taxonomy/category/{id}', Taxonomy\DestroyController::class);
+        Route::get('/taxonomy/category', \Aenginus\Taxonomy\Interface\Web\Controllers\IndexController::class);
+        Route::get('/taxonomy/category/create', \Aenginus\Taxonomy\Interface\Web\Controllers\CreateController::class);
+        Route::post('/taxonomy/category/create', \Aenginus\Taxonomy\Interface\Web\Controllers\StoreController::class);
+        Route::get('/taxonomy/category/edit/{id}', \Aenginus\Taxonomy\Interface\Web\Controllers\EditController::class);
+        Route::put('/taxonomy/category/update/{id}', \Aenginus\Taxonomy\Interface\Web\Controllers\UpdateController::class);
+        Route::delete('/taxonomy/category/{id}', \Aenginus\Taxonomy\Interface\Web\Controllers\DestroyController::class);
 
     });
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\Auth\Interface\Http\Controllers\TwoFactorAuthController;
+use Aenginus\User\Interface\Web\Controllers\TwoFactorAuthController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers as FC;

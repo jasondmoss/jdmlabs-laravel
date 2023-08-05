@@ -1,5 +1,4 @@
 @php
-  use Carbon\Carbon;
 @endphp
 
 <x-public.layout title="Articles" page="index" schema="CollectionPage" type="page listing article" livewire="true">
@@ -37,7 +36,7 @@
           </div>
           <footer>
             @if (@auth()->check())
-              <a rel="nofollow" class="button" href="{{ action(\App\Article\Interface\Web\Controllers\EditController::class, $article->id) }}">{{ __('Edit') }}</a>
+              <a rel="nofollow" class="button" href="{{ action(\Aenginus\Article\Interface\Web\Controllers\EditController::class, $article->id) }}">{{ __('Edit') }}</a>
             @endif
           </footer>
         </article>
