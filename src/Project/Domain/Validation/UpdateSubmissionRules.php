@@ -35,6 +35,8 @@ class UpdateSubmissionRules extends FormRequest
             'signature_image[alt]' => 'nullable|string|max:255',
             'signature_image[caption]' => 'nullable|string|max:255',
 
+            'showcase_images' => 'sometimes|array',
+
             'status' => [ new Enum(Status::class) ],
             'promoted' => [ new Enum(Promoted::class) ],
             'pinned' => [ new Enum(Pinned::class) ]

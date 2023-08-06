@@ -1,5 +1,8 @@
 @php
-  use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;use Carbon\Carbon;use Illuminate\Support\Facades\Date;
+  use Aenginus\Shared\Enums\Promoted;
+  use Aenginus\Shared\Enums\Status;
+  use Carbon\Carbon;
+  use Illuminate\Support\Facades\Date;
 @endphp
 
 @push('styles')

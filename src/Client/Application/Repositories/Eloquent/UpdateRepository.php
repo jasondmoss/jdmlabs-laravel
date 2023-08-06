@@ -11,18 +11,6 @@ use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 class UpdateRepository implements UpdateContract
 {
 
-    private ClientEloquentModel $client;
-
-
-    /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
-     */
-    public function __construct(ClientEloquentModel $client)
-    {
-        $this->client = $client;
-    }
-
-
     /**
      * @inheritDoc
      */
@@ -31,7 +19,7 @@ class UpdateRepository implements UpdateContract
         ClientEntity $entity
     ): ClientEloquentModel
     {
-        $this->client->update((array) $entity);
+        $client->update((array) $entity);
 
         return $client;
     }

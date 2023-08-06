@@ -6,7 +6,7 @@ namespace Aenginus\Shared\ValueObjects;
 
 use InvalidArgumentException;
 
-final class UrlValueObject
+class UrlValueObject
 {
 
     private string $value;

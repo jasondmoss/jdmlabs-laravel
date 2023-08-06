@@ -124,6 +124,11 @@ class ProjectEloquentModel extends Model implements HasMedia
             ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
             ->useFallbackUrl(asset('/images/placeholder/signature.png'))
             ->useFallbackPath(public_path('/images/placeholder/signature.png'));
+
+        $this->addMediaCollection('showcase')
+            ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
+            ->useFallbackUrl(asset('/images/placeholder/showcase.png'))
+            ->useFallbackPath(public_path('/images/placeholder/showcase.png'));
     }
 
 

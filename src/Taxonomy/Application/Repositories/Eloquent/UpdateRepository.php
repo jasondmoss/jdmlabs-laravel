@@ -11,18 +11,6 @@ use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 final class UpdateRepository implements UpdateContract
 {
 
-    private CategoryEloquentModel $category;
-
-
-    /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
-     */
-    public function __construct(CategoryEloquentModel $category)
-    {
-        $this->category = $category;
-    }
-
-
     /**
      * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
      * @param \Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity $entity
@@ -34,7 +22,7 @@ final class UpdateRepository implements UpdateContract
         CategoryEntity $entity
     ): CategoryEloquentModel
     {
-        $this->category->update((array) $entity);
+        $category->update((array) $entity);
 
         return $category;
     }

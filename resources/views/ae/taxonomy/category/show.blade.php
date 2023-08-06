@@ -3,5 +3,5 @@
 
   <x-shared.session />
 
-  <livewire:taxonomy.category-admin-listing />
+  <livewire:category-admin-listing />
 </x-ae.layout>

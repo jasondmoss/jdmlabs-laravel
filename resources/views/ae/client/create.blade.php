@@ -63,15 +63,6 @@
       </div>
     </fieldset>
 
-    {{-- <fieldset class="container--taxonomy">
-      <legend>{{ __('Taxonomy') }}</legend>
-
-      <div class="form-field taxonomy">
-        {{ html()->label('Categories')->for('category') }}
-        {{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
-      </div>
-    </fieldset> --}}
-
     <fieldset class="container--signature-image">
       <legend>{{ __('Business Logo') }}</legend>
       <div class="form-field">

@@ -16,7 +16,7 @@ class IndexController extends Controller
      */
     public function __invoke(): View
     {
-        return ViewFacade::make('CategoryEloquentModel::show');
+        return ViewFacade::make('Category::show');
     }
 
 }

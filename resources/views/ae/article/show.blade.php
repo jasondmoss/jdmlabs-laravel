@@ -1,5 +1,5 @@
 @php
-  use App\Article\Interface\Http\Controllers as Article;
+  use Aenginus\Article\Interface\Web\Controllers as Article;
 @endphp
 
 <x-ae.layout title="Articles" page="index" livewire="false">
@@ -7,5 +7,5 @@
 
   <x-shared.session />
 
-  <livewire:article.admin-listing />
+  <livewire:article-admin-listing />
 </x-ae.layout>

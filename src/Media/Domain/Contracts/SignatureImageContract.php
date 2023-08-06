@@ -7,16 +7,16 @@ namespace Aenginus\Media\Domain\Contracts;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Illuminate\Database\Eloquent\Model;
 
-interface AttachContract
+interface SignatureImageContract
 {
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param \Aenginus\Media\Infrastructure\Entities\ImageEntity $entity
-     * @param string $collection
+     * @param string $mediaCollection
      *
      * @return void
      */
-    public function attach(Model $model, ImageEntity $entity, string $collection = ''): void;
+    public function attach(Model $model, ImageEntity $entity, string $mediaCollection = 'signatures'): void;
 
 }

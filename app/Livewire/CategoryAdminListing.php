@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Livewire\Taxonomy;
+namespace App\Livewire;
 
 use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
 use Illuminate\Contracts\View\View;

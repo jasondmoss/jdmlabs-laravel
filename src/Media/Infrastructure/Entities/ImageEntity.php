@@ -19,7 +19,7 @@ final readonly class ImageEntity
 
     public int $height;
 
-    public string $alt;
+    public string|null $alt;
 
     public string|null $caption;
 
@@ -35,7 +35,9 @@ final readonly class ImageEntity
 
         [ $this->width, $this->height ] = getimagesize($this->file->getRealPath());
 
-        $this->alt = (new Alt($image->alt))->value();
+        $this->alt = ! empty($image->alt)
+            ? (new Alt($image->alt))->value()
+            : 'A placeholder image description';
 
         $this->caption = ! empty($image->caption)
             ? (new Caption($image->caption))->value()

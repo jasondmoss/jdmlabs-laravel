@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Media\Application\UseCases\AttachUseCase as MediaUseCase;
+use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
 use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
@@ -12,6 +12,7 @@ use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
+use RuntimeException;
 
 class UpdateController extends Controller
 {
@@ -26,7 +27,7 @@ class UpdateController extends Controller
     /**
      * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
      */
     public function __construct(
         ProjectEloquentModel $project,
@@ -56,10 +57,16 @@ class UpdateController extends Controller
         $project = $this->bridge->update($projectInstance, $projectEntity);
 
         if ($request->hasFile('signature_image')) {
-            $imageEntity = new ImageEntity((object) $request->signature_image);
+            $signatureImage = $request->file('signature_image');
 
-            // Attach uploaded signature image.
-            $this->media->attach($project, $imageEntity, 'signatures');
+            if ($signatureImage['file']->isValid()) {
+                $imageEntity = new ImageEntity((object) $request->signature_image);
+
+                // Attach uploaded signature image.
+                $this->media->attach($project, $imageEntity, 'signatures');
+            } else {
+                throw new RuntimeException('Signature image is invalid');
+            }
         }
 
         return redirect()

@@ -7,10 +7,11 @@ namespace Aenginus\Client\Interface\Web\Controllers;
 use Aenginus\Client\Application\UseCases\StoreUseCase;
 use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 use Aenginus\Client\Interface\Web\Requests\CreateRequest;
-use Aenginus\Media\Application\UseCases\AttachUseCase as MediaUseCase;
+use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
+use RuntimeException;
 
 class StoreController extends Controller
 {
@@ -22,7 +23,7 @@ class StoreController extends Controller
 
     /**
      * @param \Aenginus\Client\Application\UseCases\StoreUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
      */
     public function __construct(StoreUseCase $bridge, MediaUseCase $media)
     {
@@ -45,10 +46,16 @@ class StoreController extends Controller
         $client = $this->bridge->store($clientEntity);
 
         if ($request->hasFile('logo_image')) {
-            $imageEntity = new ImageEntity((object) $request->logo_image);
+            $logoImage = $request->file('logo_image');
 
-            // Attach uploaded logo image.
-            $this->media->attach($client, $imageEntity, 'logos');
+            if ($logoImage['file']->isValid()) {
+                $imageEntity = new ImageEntity((object) $request->logo_image);
+
+                // Attach uploaded logo image.
+                $this->media->attach($client, $imageEntity, 'logos');
+            } else {
+                throw new RuntimeException('Logo image is invalid');
+            }
         }
 
         return redirect()

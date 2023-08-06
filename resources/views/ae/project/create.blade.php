@@ -1,20 +1,22 @@
 @php
-  use Aenginus\Shared\Enums\Pinned;use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;
+  use Aenginus\Shared\Enums\Pinned;
+  use Aenginus\Shared\Enums\Promoted;
+  use Aenginus\Shared\Enums\Status;
 @endphp
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
-      document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
-        ClassicEditor.create(edit, {
-          removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-        }).catch(
-          error => console.error(error)
-        );
-      });
-      ClassicEditor.create(document.getElementById("body")).catch(
+document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
+    ClassicEditor.create(edit, {
+        removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
+    }).catch(
         error => console.error(error)
-      );
+    );
+});
+ClassicEditor.create(document.getElementById("body")).catch(
+    error => console.error(error)
+);
     </script>
   @endonce
 @endpush
@@ -28,6 +30,9 @@
     ->id('projectForm')
     ->class('content-editor')
     ->acceptsFiles()
+    ->attributes([
+        'wire:submit.prevent' => 'uploadMultipleFiles'
+    ])
     ->open()
   }}
 
@@ -67,7 +72,7 @@
 
       <div class="form-field body">
         {{ html()->label('Main Content')->for('body') }}
-        {{ html()->textarea('body')->class('textarea')->rows(15)->placeholder(__('Full description of this project')) }}
+        {{ html()->textarea('body')->class('textarea full')->rows(15)->placeholder(__('Full description of this project')) }}
       </div>
     </fieldset>
 
@@ -95,6 +100,7 @@
 
     <fieldset class="container--signature-image">
       <legend>{{ __('Signature Image') }}</legend>
+
       <div class="form-field">
         {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
         {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
@@ -123,6 +129,17 @@
       </figure>
     </fieldset>
 
+    <fieldset class="container--showcase-images">
+      <legend>{{ __('Showcase Images') }}</legend>
+
+      <div class="form-field">
+        {{ html()->label('Images')->for('showcase_images[][file]')->class('sr-only') }}
+        {{ html()->file('showcase_images[][file]')->multiple()->accept('jpg,png,svg')->attributes([
+          'id' => 'showcase',
+          'class' => 'upload'
+        ]) }}
+      </div>
+    </fieldset>
   </div>
 
   <aside class="editor--side">

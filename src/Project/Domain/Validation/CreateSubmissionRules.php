@@ -10,7 +10,7 @@ use Aenginus\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-final class CreateSubmissionRules extends FormRequest
+class CreateSubmissionRules extends FormRequest
 {
 
     /**
@@ -33,6 +33,9 @@ final class CreateSubmissionRules extends FormRequest
             'signature_image[label]' => 'nullable|string|max:255',
             'signature_image[alt]' => 'nullable|string|max:255',
             'signature_image[caption]' => 'nullable|string|max:255',
+
+            'showcase_images' => 'sometimes|array',
+            'showcase_images[file]' => 'nullable|image|mimes:gif,jpeg,jpg,png,svg',
 
             'status' => [ new Enum(Status::class) ],
             'promoted' => [ new Enum(Promoted::class) ],

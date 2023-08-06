@@ -3,5 +3,5 @@
 
   <x-shared.session />
 
-  <livewire:project.admin-listing />
+  <livewire:project-admin-listing />
 </x-ae.layout>

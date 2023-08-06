@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Application\Repositories\Eloquent;
 
-use Aenginus\Media\Domain\Contracts\AttachContract;
+use Aenginus\Media\Domain\Contracts\SignatureImageContract;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-final class AttachRepository implements AttachContract
+final class SignatureImageRepository implements SignatureImageContract
 {
 
     /**
      * @inheritDoc
      */
-    public function attach(Model $model, ImageEntity $entity, string $collection = ''): void
+    public function attach(Model $model, ImageEntity $entity, string $mediaCollection = 'signatures'): void
     {
         try {
-            // Delete any existing media attached to this model.
+            // Delete any existing signature image.
             foreach ($model->media as $media) {
-                $media->delete();
+//                $media->delete();
+                $media->clearMediaCollection($mediaCollection);
             }
 
             $model->addMedia($entity->file)
@@ -33,7 +34,7 @@ final class AttachRepository implements AttachContract
                     'height' => $entity->height
                 ])
                 ->withResponsiveImages()
-                ->toMediaCollection($collection);
+                ->toMediaCollection($mediaCollection);
         } catch (FileDoesNotExist|FileIsTooBig $exception) {
             report($exception);
         }

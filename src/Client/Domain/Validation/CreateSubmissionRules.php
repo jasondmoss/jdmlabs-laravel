@@ -9,13 +9,13 @@ use Aenginus\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-final class CreateSubmissionRules extends FormRequest
+class CreateSubmissionRules extends FormRequest
 {
 
     /**
      * @return array
      */
-    public function rules(): array
+    final public function rules(): array
     {
         return [
             'user_id' => 'required|ulid',

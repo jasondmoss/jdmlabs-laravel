@@ -11,7 +11,7 @@ use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
  * @property array $logo_image
  * @property string $listing_page
  */
-final class UpdateRequest extends UpdateSubmissionRules
+class UpdateRequest extends UpdateSubmissionRules
 {
 
     /**
@@ -19,9 +19,13 @@ final class UpdateRequest extends UpdateSubmissionRules
      *
      * @return bool
      */
-    public function authorize(): bool
+    final public function authorize(): bool
     {
-        return $this->user()->can('create', ClientEloquentModel::class);
+        $client = ClientEloquentModel::where('id', '=', $this->route('id'))
+            ->get()
+            ->first();
+
+        return $this->user()->can('update', $client);
     }
 
 }

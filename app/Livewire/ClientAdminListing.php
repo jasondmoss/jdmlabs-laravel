@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Livewire\Client;
+namespace App\Livewire;
 
 use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 use Aenginus\Shared\Enums\Promoted;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-final class AdminListing extends Component
+final class ClientAdminListing extends Component
 {
 
     use AuthorizesRequests, WithPagination;

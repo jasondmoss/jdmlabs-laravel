@@ -10,7 +10,7 @@ use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
 /**
  * @property array $logo_image
  */
-final class CreateRequest extends CreateSubmissionRules
+class CreateRequest extends CreateSubmissionRules
 {
 
     /**
@@ -18,7 +18,7 @@ final class CreateRequest extends CreateSubmissionRules
      *
      * @return bool
      */
-    public function authorize(): bool
+    final public function authorize(): bool
     {
         return $this->user()->can('create', ClientEloquentModel::class);
     }

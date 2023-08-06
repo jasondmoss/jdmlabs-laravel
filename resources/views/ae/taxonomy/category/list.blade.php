@@ -4,53 +4,53 @@
 @push('styles')
   @once
     <style>
-			/*.listing-wrapper {
+      /*.listing-wrapper {
         max-width: 50rem;
       }*/
 
-			.listing-wrapper .listing {
-				/*flex-flow: row wrap;*/
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-				gap: 0 1rem;
-			}
+      .listing-wrapper .listing {
+        /*flex-flow: row wrap;*/
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 0 1rem;
+      }
 
-			.item {
-				/*grid-template-columns: 1fr;*/
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem 0;
-				width: auto;
-			}
+      .item {
+        /*grid-template-columns: 1fr;*/
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem 0;
+        width: auto;
+      }
 
-			.item--actions menu {
-				justify-content: flex-start;
-			}
+      .item--actions menu {
+        justify-content: flex-start;
+      }
 
-			@media screen and (min-width: 40rem) {
-				.item {
-					grid-template-columns: 1fr 12rem;
-					gap: 0.5rem 1rem;
-				}
+      @media screen and (min-width: 40rem) {
+        .item {
+          grid-template-columns: 1fr 12rem;
+          gap: 0.5rem 1rem;
+        }
 
-				.item--header,
-				.item--id,
-				.item--actions {
-					grid-column: 1;
-				}
+        .item--header,
+        .item--id,
+        .item--actions {
+          grid-column: 1;
+        }
 
-				.item--count {
-					grid-column: 2;
-					grid-row: 1;
-					list-style: none;
-					font-size: 0.9rem;
-				}
+        .item--count {
+          grid-column: 2;
+          grid-row: 1;
+          list-style: none;
+          font-size: 0.9rem;
+        }
 
-				.item--date {
-					grid-column: 2;
-					grid-row: 2/span 2;
-				}
-			}
+        .item--date {
+          grid-column: 2;
+          grid-row: 2/span 2;
+        }
+      }
     </style>
   @endonce
 @endpush

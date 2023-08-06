@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Livewire\Project;
+namespace App\Livewire;
 
 use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
 use Aenginus\Shared\Enums\Pinned;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-final class AdminListing extends Component
+final class ProjectAdminListing extends Component
 {
 
     use WithPagination;

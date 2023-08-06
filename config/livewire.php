@@ -17,7 +17,7 @@ return [
     |
     */
 
-   'class_namespace' => 'Aenginus\\Livewire',
+   'class_namespace' => 'App\\Livewire',
 
     /*
     |--------------------------------------------------------------------------

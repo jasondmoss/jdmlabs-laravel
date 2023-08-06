@@ -1,5 +1,5 @@
 @php
-  use App\Client\Application\Controllers;
+  use Aenginus\Client\Interface\Web\Controllers as Client;
 @endphp
 <x-public.layout title="{{ $project->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
   <header>
@@ -10,7 +10,7 @@
       <p><a rel="external" href="{{ $project->website }}" title="{{ __('Visit website') }}">{{ $project->website }}</a>
       </p>
     @endif
-    @if (! is_null($project->category))
+    @if ($project->category !==  null)
       <p class="">
         <span>{{ __('Filed under') }}:</span>
         <a itemprop="tag" href="/projects/category/{{ $project->category->slug }}">{{ $project->category->name }}</a>
@@ -21,8 +21,13 @@
     <p class="">{!! $project->body !!}</p>
   </div>
   <div class="">
+    @foreach ($showcase as $image)
+      {{ $image }}
+    @endforeach
+  </div>
+  <div class="">
     <p class=""><strong>Client:</strong>
-      <a href="{{ action(\Aenginus\Client\Interface\Web\Controllers\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
+      <a href="{{ action(Client\SingleController::class, $project->clients->slug) }}">{{ $project->clients->name }}</a>
     </p>
   </div>
 </x-public.layout>

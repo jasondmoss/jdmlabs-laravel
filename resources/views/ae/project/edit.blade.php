@@ -150,6 +150,30 @@
         @endif
       </figure>
     </fieldset>
+
+    <fieldset class="container--showcase-images">
+      <legend>{{ __('Showcase Images') }}</legend>
+
+      <div class="form-field">
+        {{ html()->label('Images')->for('showcase_images[][file]')->class('sr-only') }}
+        {{ html()->file('showcase_images[][file]')->multiple()->accept('jpg,png,svg')->attributes([
+          'id' => 'showcase',
+          'class' => 'upload'
+        ]) }}
+      </div>
+
+      @if ($project->hasMedia('showcase'))
+         <figure class="item--image">
+          @foreach($project->getMedia('showcase') as $image)
+            {{ $image }}
+          @endforeach
+        </figure>
+      @else
+        <figure class="item--image">
+          <img id="previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+        </figure>
+      @endif
+    </fieldset>
   </div>
 
   <aside class="editor--side">

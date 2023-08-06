@@ -6,7 +6,7 @@ namespace Aenginus\Taxonomy\Domain\Validation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class CreateSubmissionRules extends FormRequest
+class CreateSubmissionRules extends FormRequest
 {
 
     /**

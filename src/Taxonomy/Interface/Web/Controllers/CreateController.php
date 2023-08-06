@@ -16,7 +16,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        return ViewFacade::make('CategoryEloquentModel::create');
+        return ViewFacade::make('Category::create');
     }
 
 }

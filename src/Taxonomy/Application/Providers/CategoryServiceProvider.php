@@ -34,7 +34,7 @@ final class CategoryServiceProvider extends ServiceProvider
             ->needs(Contract\StoreContract::class)
             ->give(Repository\StoreRepository::class);
 
-        // Tell Laravel of our custom templates path.
+        // Templates paths.
         View::addNamespace('Category', resource_path('views/ae/taxonomy/category'));
     }
 

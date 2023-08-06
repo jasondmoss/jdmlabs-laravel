@@ -9,7 +9,7 @@ use Aenginus\Shared\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-final class CreateSubmissionRules extends FormRequest
+class CreateSubmissionRules extends FormRequest
 {
 
     /**

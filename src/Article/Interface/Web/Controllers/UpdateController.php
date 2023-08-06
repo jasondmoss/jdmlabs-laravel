@@ -8,10 +8,11 @@ use Aenginus\Article\Application\UseCases\UpdateUseCase as ArticleUseCase;
 use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\UpdateRequest;
-use Aenginus\Media\Application\UseCases\AttachUseCase as MediaUseCase;
+use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
+use RuntimeException;
 
 class UpdateController extends Controller
 {
@@ -26,7 +27,7 @@ class UpdateController extends Controller
     /**
      * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
      * @param \Aenginus\Article\Application\UseCases\UpdateUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
      */
     public function __construct(
         ArticleEloquentModel $article,
@@ -56,10 +57,16 @@ class UpdateController extends Controller
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
         if ($request->hasFile('signature_image')) {
-            $imageEntity = new ImageEntity((object) $request->signature_image);
+            $signatureImage = $request->file('signature_image');
 
-            // Attach uploaded signature image.
-            $this->media->attach($article, $imageEntity, 'signatures');
+            if ($signatureImage['file']->isValid()) {
+                $imageEntity = new ImageEntity((object) $request->signature_image);
+
+                // Attach uploaded signature image.
+                $this->media->attach($article, $imageEntity, 'signatures');
+            } else {
+                throw new RuntimeException('Signature image is invalid');
+            }
         }
 
         return redirect()
