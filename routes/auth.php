@@ -23,7 +23,7 @@ Route::middleware([ 'web' ])->group(function () {
             ->name('access');
 
         Route::get('/access', function () {
-            return view('ae.auth.access');
+            return view('aenginus.auth.access');
         })->name('access');
 
         Route::post('/access', [ FC\AuthenticatedSessionController::class, 'store' ])->middleware(array_filter([
@@ -62,7 +62,7 @@ Route::middleware([ 'web' ])->group(function () {
                 ->name('register');
 
             Route::get('/register', function () {
-                return view('ae.auth.register');
+                return view('aenginus.auth.register');
             })->name('register');
 
             Route::post('/register', [ FC\RegisteredUserController::class, 'store' ])
@@ -77,7 +77,7 @@ Route::middleware([ 'web' ])->group(function () {
                 ->name('verification.notice');
 
             Route::get('/email/verify', function () {
-                return view('ae.auth.email.verify');
+                return view('aenginus.auth.email.verify');
             })->name('verification.notice');
 
             Route::get('/email/verify/{id}/{hash}', [ FC\VerifyEmailController::class, '__invoke' ])->middleware([
@@ -98,7 +98,7 @@ Route::middleware([ 'web' ])->group(function () {
             Route::middleware([
                 config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
             ])->get('/user', function () {
-                return view('ae.auth.account');
+                return view('aenginus.auth.account');
             })->name('account');
 
             Route::put('/user/profile-information', [ FC\ProfileInformationController::class, 'update' ])
@@ -120,7 +120,7 @@ Route::middleware([ 'web' ])->group(function () {
             ->middleware([ config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard') ]);
 
         Route::get('/user/confirm-password', function () {
-            return view('ae.auth.password.confirm');
+            return view('aenginus.auth.password.confirm');
         })->name('password.confirm');
 
         Route::get('/user/confirmed-password-status', [ FC\ConfirmedPasswordStatusController::class, 'show' ])
@@ -139,7 +139,7 @@ Route::middleware([ 'web' ])->group(function () {
                 ->name('two-factor.login');
 
             Route::get('/user/two-factor-challenge', function () {
-                return view('ae.auth.2fa.challenge');
+                return view('aenginus.auth.2fa.challenge');
             })->name('two-factor.login');
 
             Route::post('/user/two-factor-challenge', [ FC\TwoFactorAuthenticatedSessionController::class, 'store' ])

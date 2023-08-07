@@ -35,7 +35,7 @@ final class CategoryServiceProvider extends ServiceProvider
             ->give(Repository\StoreRepository::class);
 
         // Templates paths.
-        View::addNamespace('Category', resource_path('views/ae/taxonomy/category'));
+        View::addNamespace('Category', resource_path('views/aenginus/taxonomy/category'));
     }
 
 

@@ -21,31 +21,21 @@
   @endonce
 @endpush
 
-<x-ae.layout title="Edit Article" page="edit" livewire="true">
-  <!-- edit.blade -->
+<x-aenginus.layout title="Create New Article" page="create" livewire="true">
+  <!-- create.blade -->
 
   {{ html()
-    ->modelForm($article, 'PUT', '/ae/article/update/' . $article->id)
+    ->form('POST', '/ae/article/create')
     ->id('articleForm')
     ->class('content-editor')
     ->acceptsFiles()
     ->open()
   }}
 
-  {{ html()->hidden('id', $article->id) }}
   {{ html()->hidden('user_id', auth()->user()->id) }}
-  {{ html()->hidden('listing_page', URL::previous()) }}
 
   <header class="editor--header">
-    <h1>
-      <i class="fa-solid fa-pen-to-square"></i> {{ $article->title }}</h1>
-
-    <p class="">
-      <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
-      <a rel="external" href="{{ $article->permalink }}" title="{{ __('View live entry') }}">
-        {{ $article->slug }}
-      </a>
-    </p>
+    <h1>{{ __('Create New ArticleEloquentModel') }}</h1>
   </header>
 
   <div class="editor--content">
@@ -54,17 +44,17 @@
       <div class="form-field title">
         {{ html()->label('Title')->for('title') }}
         {{ html()->text('title')->class('text')->attribute('required') }}
-        <p class="title-slug"><span class="label">{{ __('slug') }}:</span> {{ $article->slug ?? '...' }}</p>
+        <p class="title-slug"><span class="label">{{ __('slug') }}:</span> ...</p>
       </div>
 
       <div class="form-field summary">
         {{ html()->label('Summary')->for('summary') }}
-        {{ html()->textarea('summary')->class('textarea summary')->rows(4) }}
+        {{ html()->textarea('summary')->attribute('required')->class('textarea summary')->rows(4) }}
       </div>
 
       <div class="form-field body">
         {{ html()->label('Body')->for('body') }}
-        {{ html()->textarea('body')->class('textarea full')->rows(15) }}
+        {{ html()->textarea('body')->attribute('required')->class('textarea full')->rows(15) }}
       </div>
     </fieldset>
 
@@ -73,12 +63,7 @@
 
       <div class="form-field taxonomy">
         {{ html()->label('Categories')->for('category') }}
-        {{ html()
-          ->select('category', $categories)
-          ->value($article->category_id)
-          ->class('form-control select')
-          ->placeholder('Choose a category')
-        }}
+        {{ html()->select('category', $categories)->class('form-control select')->placeholder('Choose a category') }}
       </div>
     </fieldset>
 
@@ -94,37 +79,21 @@
 
       <div class="form-field">
         {{ html()->label('Name')->for('signature_image[label]') }}
-        @if (! is_null($signature))
-          {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[label]')->class('text') }}
-        @endif
+        {{ html()->text('signature_image[label]')->class('text') }}
       </div>
 
       <div class="form-field">
         {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        @if (! is_null($signature))
-          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[alt]')->class('text') }}
-        @endif
+        {{ html()->text('signature_image[alt]')->class('text') }}
       </div>
 
       <div class="form-field">
         {{ html()->label('Caption')->for('signature_image[caption]') }}
-        @if (! is_null($signature))
-          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[caption]')->class('text') }}
-        @endif
+        {{ html()->text('signature_image[caption]')->class('text') }}
       </div>
 
       <figure class="item--image">
-        @if ($article->hasMedia('signatures'))
-          <img id="previewer" src="{{ $article->getFirstMediaUrl('signatures') }}" alt="">
-        @else
-          <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-        @endif
+        <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
       </figure>
     </fieldset>
   </div>
@@ -136,10 +105,8 @@
       <div class="form-field status">
         {{ html()->label('Status')->for('status') }}
         <select name="status" id="status" class="select">
-          @foreach(Status::cases() as $status)
-            <option value="{{ $status->value }}" @if ($article->status && $article->status->value == $status->value) selected @endif>
-              {{ $status->name }}
-            </option>
+          @foreach (Status::cases() as $status)
+            <option value="{{ $status->value }}">{{ $status->name }}</option>
           @endforeach
         </select>
       </div>
@@ -147,8 +114,8 @@
       <div class="form-field promoted">
         {{ html()->label('Featured?')->for('promoted') }}
         <select name="promoted" id="promoted" class="select">
-          @foreach(Promoted::cases() as $promoted)
-            <option value="{{ $promoted->value }}" @if ($article->promoted && $article->promoted->value == $promoted->value) selected @endif>{{ $promoted->name }}</option>
+          @foreach (Promoted::cases() as $promoted)
+            <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
           @endforeach
         </select>
       </div>
@@ -170,4 +137,4 @@
   </footer>
 
   {{ html()->form()->close() }}
-</x-ae.layout>
+</x-aenginus.layout>

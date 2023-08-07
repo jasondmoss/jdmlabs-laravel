@@ -1,4 +1,4 @@
-<x-ae.layout title="Password Confirm" page="confirm" livewire="true">
+<x-aenginus.layout title="Password Confirm" page="confirm" livewire="true">
   <!-- confirm.blade -->
 
   <h2 class="">{{ __('Confirm Password') }}</h2>
@@ -27,4 +27,4 @@
   </fieldset>
   {{ html()->form()->close() }}
 
-</x-ae.layout>
+</x-aenginus.layout>

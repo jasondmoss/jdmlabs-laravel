@@ -35,7 +35,7 @@ final class ClientServiceProvider extends ServiceProvider
             ->give(Repository\UpdateRepository::class);
 
         // Templates paths.
-        View::addNamespace('ClientAdmin', resource_path('views/ae/client'));
+        View::addNamespace('ClientAdmin', resource_path('views/aenginus/client'));
         View::addNamespace('ClientPublic', resource_path('views/public/client'));
     }
 

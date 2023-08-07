@@ -18,13 +18,13 @@ final readonly class ArticleEntity
 
     public string|null $id;
 
-    public string|null $user_id;
+    public string $user_id;
 
-    public string|null $title;
+    public string $title;
 
-    public string|null $summary;
+    public string $summary;
 
-    public string|null $body;
+    public string $body;
 
     public string|null $category_id;
 
@@ -44,33 +44,21 @@ final readonly class ArticleEntity
             ? (new Id($validatedRequest->id))->value()
             : null;
 
-        $this->user_id = ! empty($validatedRequest->user_id)
-            ? (new UserId($validatedRequest->user_id))->value()
-            : null;
+        $this->user_id = (new UserId($validatedRequest->user_id))->value();
 
-        $this->title = ! empty($validatedRequest->title)
-            ? (new Title($validatedRequest->title))->value()
-            : null;
+        $this->title = (new Title($validatedRequest->title))->value();
 
-        $this->summary = ! empty($validatedRequest->summary)
-            ? (new Summary($validatedRequest->summary))->value()
-            : null;
+        $this->summary = (new Summary($validatedRequest->summary))->value();
 
-        $this->body = ! empty($validatedRequest->body)
-            ? (new Body($validatedRequest->body))->value()
-            : null;
+        $this->body = (new Body($validatedRequest->body))->value();
 
         $this->category_id = ! empty($validatedRequest->category)
             ? (new CategoryId($validatedRequest->category))->value()
             : null;
 
-        $this->status = ! empty($validatedRequest->status)
-            ? (new Status($validatedRequest->status))->value()
-            : null;
+        $this->status = (new Status($validatedRequest->status))->value();
 
-        $this->promoted = ! empty($validatedRequest->promoted)
-            ? (new Promoted($validatedRequest->promoted))->value()
-            : null;
+        $this->promoted = (new Promoted($validatedRequest->promoted))->value();
     }
 
 }

@@ -109,7 +109,7 @@ final class ClientAdminListing extends Component
             ->withCount('projects')
             ->paginate(20);
 
-        return view('ae.client.list', compact('clients'));
+        return view('aenginus.client.list', compact('clients'));
     }
 
 }

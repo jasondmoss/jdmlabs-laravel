@@ -107,7 +107,7 @@ final class ArticleAdminListing extends Component
             ->latest('created_at')
             ->paginate(20);
 
-        return view('ae.article.list', compact('articles'));
+        return view('aenginus.article.list', compact('articles'));
     }
 
 }

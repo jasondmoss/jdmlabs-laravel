@@ -18,15 +18,15 @@ final readonly class ClientEntity
 
     public string|null $id;
 
-    public string|null $user_id;
+    public string $user_id;
 
-    public string|null $name;
+    public string $name;
 
-    public string|null $itemprop;
+    public string $itemprop;
 
-    public string|null $website;
+    public string $website;
 
-    public string|null $summary;
+    public string $summary;
 
     public string $status;
 
@@ -44,33 +44,19 @@ final readonly class ClientEntity
             ? (new Id($clientData->id))->value()
             : null;
 
-        $this->user_id = ! empty($clientData->user_id)
-            ? (new UserId($clientData->user_id))->value()
-            : null;
+        $this->user_id = (new UserId($clientData->user_id))->value();
 
-        $this->name = ! empty($clientData->name)
-            ? (new Name($clientData->name))->value()
-            : null;
+        $this->name = (new Name($clientData->name))->value();
 
-        $this->itemprop = ! empty($clientData->itemprop)
-            ? (new Itemprop($clientData->itemprop))->value()
-            : null;
+        $this->itemprop = (new Itemprop($clientData->itemprop))->value();
 
-        $this->website = ! empty($clientData->website)
-            ? (new Website($clientData->website))->value()
-            : null;
+        $this->website = (new Website($clientData->website))->value();
 
-        $this->summary = ! empty($clientData->summary)
-            ? (new Summary($clientData->summary))->value()
-            : null;
+        $this->summary = (new Summary($clientData->summary))->value();
 
-        $this->status = ! empty($clientData->status)
-            ? (new Status($clientData->status))->value()
-            : null;
+        $this->status = (new Status($clientData->status))->value();
 
-        $this->promoted = ! empty($clientData->promoted)
-            ? (new Promoted($clientData->promoted))->value()
-            : null;
+        $this->promoted = (new Promoted($clientData->promoted))->value();
     }
 
 }

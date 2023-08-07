@@ -1,4 +1,4 @@
-<x-ae.layout title="User Account Management" page="account" livewire="true">
+<x-aenginus.layout title="User Account Management" page="account" livewire="true">
   <!-- account.blade -->
 
   <header class="flex flex-col mb-16">
@@ -157,4 +157,4 @@
 
     @endif
   </section>
-</x-ae.layout>
+</x-aenginus.layout>

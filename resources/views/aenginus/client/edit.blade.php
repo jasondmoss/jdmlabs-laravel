@@ -40,7 +40,7 @@
 @endpush
 
 
-<x-ae.layout title="Edit Client" page="edit" livewire="true">
+<x-aenginus.layout title="Edit Client" page="edit" livewire="true">
   <!-- edit.blade -->
 
   <x-shared.session/>
@@ -75,13 +75,13 @@
 
       <div class="form-field title">
         {{ html()->label('Name')->for('name') }}
-        {{ html()->text('name')->class('text')->attribute('required') }}
+        {{ html()->text('name')->attribute('required')->class('text')->attribute('required') }}
         <p class="title-slug"><span class="label">{{ __('slug') }}:</span> {{ $client->slug ?? '...' }}</p>
       </div>
 
       <div class="form-field schema">
         {{ html()->label('Schema Itemprop')->for('itemprop') }}
-        {{ html()->text('itemprop')->class('text')->attribute('required') }}
+        {{ html()->text('itemprop')->attribute('required')->class('text')->attribute('required') }}
         <small>{{ __('See') }}
           <a rel="external" href="https://schema.org/docs/full.html" title="A set of extensible schemas to embed structured data on web pages">Schema.org</a>
         </small>
@@ -92,12 +92,13 @@
         {{ html()->input('website')->type('url')->class('text')->attributes([
           'id' => 'website',
           'name' => 'website',
+          'required'
         ])->value(old('website', $client->website)) }}
       </div>
 
       <div class="form-field summary">
         {{ html()->label('Summary')->for('summary') }}
-        {{ html()->textarea('summary')->class('textarea')->rows(4) }}
+        {{ html()->textarea('summary')->attribute('required')->class('textarea')->rows(4) }}
       </div>
     </fieldset>
 
@@ -107,7 +108,8 @@
         {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
         {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
           'id' => 'logo_image',
-          'class' => 'upload'
+          'class' => 'upload',
+          'required'
         ]) }}
       </div>
 
@@ -118,7 +120,7 @@
 
       <div class="form-field">
         {{ html()->label('Alt Description')->for('logo_image[alt]') }}
-        {{ html()->text('logo_image[alt]')->class('text') }}
+        {{ html()->text('logo_image[alt]')->attribute('required')->class('text') }}
       </div>
 
       <div class="form-field">
@@ -206,4 +208,4 @@
   </footer>
 
   {{ html()->form()->close() }}
-</x-ae.layout>
+</x-aenginus.layout>

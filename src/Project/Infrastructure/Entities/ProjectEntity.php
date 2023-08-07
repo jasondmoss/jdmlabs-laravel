@@ -11,27 +11,27 @@ final readonly class ProjectEntity
 
     public string|null $id;
 
-    public string|null $user_id;
+    public string $user_id;
 
-    public string|null $title;
+    public string $title;
 
-    public string|null $subtitle;
+    public string $subtitle;
 
-    public string|null $website;
+    public string $website;
 
-    public string|null $summary;
+    public string $summary;
 
-    public string|null $body;
+    public string $body;
 
-    public string|null $client_id;
+    public string $client_id;
 
     public string|null $category_id;
 
-    public string|null $status;
+    public string $status;
 
-    public string|null $promoted;
+    public string $promoted;
 
-    public string|null $pinned;
+    public string $pinned;
 
 
     /**
@@ -45,49 +45,29 @@ final readonly class ProjectEntity
             ? (new ValueObjects\Id($projectData->id))->value()
             : null;
 
-        $this->user_id = ! empty($projectData->user_id)
-            ? (new ValueObjects\UserId($projectData->user_id))->value()
-            : null;
+        $this->user_id = (new ValueObjects\UserId($projectData->user_id))->value();
 
-        $this->title = ! empty($projectData->title)
-            ? (new ValueObjects\Title($projectData->title))->value()
-            : null;
+        $this->title = (new ValueObjects\Title($projectData->title))->value();
 
-        $this->subtitle = ! empty($projectData->subtitle)
-            ? (new ValueObjects\SubTitle($projectData->subtitle))->value()
-            : null;
+        $this->subtitle = (new ValueObjects\SubTitle($projectData->subtitle))->value();
 
-        $this->website = ! empty($projectData->website)
-            ? (new ValueObjects\Website($projectData->website))->value()
-            : null;
+        $this->website = (new ValueObjects\Website($projectData->website))->value();
 
-        $this->summary = ! empty($projectData->summary)
-            ? (new ValueObjects\Summary($projectData->summary))->value()
-            : null;
+        $this->summary = (new ValueObjects\Summary($projectData->summary))->value();
 
-        $this->body = ! empty($projectData->body)
-            ? (new ValueObjects\Body($projectData->body))->value()
-            : null;
+        $this->body = (new ValueObjects\Body($projectData->body))->value();
 
-        $this->client_id = ! empty($projectData->client_id)
-            ? (new ValueObjects\ClientId($projectData->client_id))->value()
-            : null;
+        $this->client_id = (new ValueObjects\ClientId($projectData->client_id))->value();
 
         $this->category_id = ! empty($projectData->category_id)
             ? (new ValueObjects\CategoryId($projectData->category_id))->value()
             : null;
 
-        $this->status = ! empty($projectData->status)
-            ? (new ValueObjects\Status($projectData->status))->value()
-            : null;
+        $this->status = (new ValueObjects\Status($projectData->status))->value();
 
-        $this->promoted = ! empty($projectData->promoted)
-            ? (new ValueObjects\Promoted($projectData->promoted))->value()
-            : null;
+        $this->promoted = (new ValueObjects\Promoted($projectData->promoted))->value();
 
-        $this->pinned = ! empty($projectData->pinned)
-            ? (new ValueObjects\Pinned($projectData->pinned))->value()
-            : null;
+        $this->pinned = (new ValueObjects\Pinned($projectData->pinned))->value();
     }
 
 }

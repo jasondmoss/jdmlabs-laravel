@@ -1,4 +1,4 @@
-<x-ae.layout title="Dashboard" page="index" livewire="true">
+<x-aenginus.layout title="Dashboard" page="index" livewire="true">
   <!-- dashboard.blade -->
 
   <header class="admin--header">
@@ -12,4 +12,4 @@
     <p>{{ __('Stuff goes here ...') }}</p>
   </div>
 
-</x-ae.layout>
+</x-aenginus.layout>

@@ -20,13 +20,9 @@ final readonly class CategoryEntity
      */
     public function __construct(object $categoryData)
     {
-        $this->id = ! empty($categoryData->id)
-            ? (new Id($categoryData->id))->value()
-            : null;
+        $this->id = (new Id($categoryData->id))->value();
 
-        $this->name = ! empty($categoryData->name)
-            ? (new Name($categoryData->name))->value()
-            : null;
+        $this->name = (new Name($categoryData->name))->value();
     }
 
 }

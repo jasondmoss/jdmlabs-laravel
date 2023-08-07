@@ -36,7 +36,7 @@ final class ArticleServiceProvider extends ServiceProvider
             ->give(Repository\UpdateRepository::class);
 
         // Templates paths.
-        View::addNamespace('ArticleAdmin', resource_path('views/ae/article'));
+        View::addNamespace('ArticleAdmin', resource_path('views/aenginus/article'));
         View::addNamespace('ArticlePublic', resource_path('views/public/article'));
     }
 

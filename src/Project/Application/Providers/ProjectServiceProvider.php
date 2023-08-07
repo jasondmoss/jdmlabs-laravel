@@ -35,7 +35,7 @@ final class ProjectServiceProvider extends ServiceProvider
             ->give(Repository\UpdateRepository::class);
 
         // Templates paths.
-        View::addNamespace('ProjectAdmin', resource_path('views/ae/project'));
+        View::addNamespace('ProjectAdmin', resource_path('views/aenginus/project'));
         View::addNamespace('ProjectPublic', resource_path('views/public/project'));
     }
 

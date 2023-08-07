@@ -1,4 +1,4 @@
-<x-ae.layout title="Create New Category" page="create" livewire="true">
+<x-aenginus.layout title="Create New Category" page="create" livewire="true">
   <!-- create.blade -->
 
   {{ html()
@@ -42,4 +42,4 @@
   </footer>
 
   {{ html()->form()->close() }}
-</x-ae.layout>
+</x-aenginus.layout>

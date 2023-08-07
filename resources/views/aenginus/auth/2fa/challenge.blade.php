@@ -1,4 +1,4 @@
-<x-ae.layout title="Two-Factor Challenge" page="challenge" livewire="true">
+<x-aenginus.layout title="Two-Factor Challenge" page="challenge" livewire="true">
   <!-- challenge.blade -->
 
   {{ html()
@@ -20,4 +20,4 @@
     </fieldset>
   {{ html()->form()->close() }}
   <p class="text-center"><a href="{{route('register')}}">Register</a></p>
-</x-ae.layout>
+</x-aenginus.layout>

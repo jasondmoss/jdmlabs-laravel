@@ -27,7 +27,7 @@
   @endonce
 @endpush
 
-<x-ae.layout title="Edit Category" page="edit" livewire="true">
+<x-aenginus.layout title="Edit Category" page="edit" livewire="true">
   <!-- edit.blade -->
 
   {{ html()
@@ -109,4 +109,4 @@
   </footer>
 
   {{ html()->form()->close() }}
-</x-ae.layout>
+</x-aenginus.layout>

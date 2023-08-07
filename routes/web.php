@@ -42,7 +42,7 @@ Route::middleware([ 'web' ])->group(static function () {
     ])->group(static function () {
 
         Route::get('/dashboard', static function () {
-            return view('ae.page.dashboard');
+            return view('aenginus.page.dashboard');
         })->name('dashboard');
 
         Route::get('/articles', Article\IndexController::class);

@@ -1,8 +1,7 @@
 @php
-  use Aenginus\Shared\Enums\Pinned;
-  use Aenginus\Shared\Enums\Promoted;
-  use Aenginus\Shared\Enums\Status;
+  use Aenginus\Shared\Enums\Pinned;use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;
 @endphp
+
 @push('scripts')
   @once
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
@@ -21,25 +20,32 @@ ClassicEditor.create(document.getElementById("body")).catch(
   @endonce
 @endpush
 
-<x-ae.layout title="Create New Project" page="create" livewire="true">
-  <!-- create.blade -->
+<x-aenginus.layout title="Edit Project" page="edit" livewire="true">
+  <!-- edit.blade -->
 
   <x-shared.session/>
 
-  {{ html()->form('POST', '/ae/project/create')
+  {{ html()
+    ->modelForm($project, 'PUT', '/ae/project/update/' . $project->id)
     ->id('projectForm')
     ->class('content-editor')
     ->acceptsFiles()
-    ->attributes([
-        'wire:submit.prevent' => 'uploadMultipleFiles'
-    ])
     ->open()
   }}
 
+  {{ html()->hidden('id', $project->id) }}
   {{ html()->hidden('user_id', auth()->user()->id) }}
+  {{ html()->hidden('listing_page', URL::previous()) }}
 
   <header class="editor--header">
-    <h1>{{ __('Create New Project') }}</h1>
+    <h1>
+      <i class="fa-solid fa-pen-to-square"></i> {{ $project->title }}</h1>
+    <p class="">
+      <i class="fa-solid fa-eye"> {{ __('Preview') }}</i> &#160;
+      <a rel="external" href="{{ $project->permalink }}" title="{{ __('View live entry') }}">
+        {{ $project->slug }}
+      </a>
+    </p>
   </header>
 
   <div class="editor--content">
@@ -49,7 +55,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <div class="form-field title">
         {{ html()->label('Title')->for('title') }}
         {{ html()->text('title')->class('text')->attribute('required')->placeholder(__('Project name')) }}
-        <p class="title-slug"><span class="label">{{ __('slug') }}</span> ...</p>
+        <p class="title-slug"><span class="label">{{ __('slug') }}</span> {{ $project->slug ?? '...' }}</p>
       </div>
 
       <div class="form-field subtitle">
@@ -62,17 +68,18 @@ ClassicEditor.create(document.getElementById("body")).catch(
         {{ html()->input('website')->type('url')->class('text')->attributes([
           'id' => 'website',
           'name' => 'website',
-        ]) }}
+          'required'
+        ])->value(old('website', $project->website)) }}
       </div>
 
       <div class="form-field summary">
         {{ html()->label('Summary')->for('summary') }}
-        {{ html()->textarea('summary')->class('textarea')->rows(4)->placeholder(__('An SEO compatible summary')) }}
+        {{ html()->textarea('summary')->class('textarea')->attribute('required')->rows(4)->placeholder(__('An SEO  compatible summary')) }}
       </div>
 
       <div class="form-field body">
         {{ html()->label('Main Content')->for('body') }}
-        {{ html()->textarea('body')->class('textarea full')->rows(15)->placeholder(__('Full description of this project')) }}
+        {{ html()->textarea('body')->class('textarea')->attribute('required')->rows(15)->placeholder(__('Full description of this project')) }}
       </div>
     </fieldset>
 
@@ -81,7 +88,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
       <div class="form-field clients">
         {{ html()->label('Client')->for('client_id') }}
-        {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Choose a client') }}
+        {{ html()->select('client_id', $clients)->class('form-control select')->attribute('required')->placeholder('Select a client') }}
       </div>
     </fieldset>
 
@@ -92,6 +99,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
         {{ html()->label('Categories')->for('category_id') }}
         {{ html()
           ->select('category_id', $categories)
+          ->value($project->category_id)
           ->class('form-control select')
           ->placeholder('Choose a category')
         }}
@@ -100,7 +108,6 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
     <fieldset class="container--signature-image">
       <legend>{{ __('Signature Image') }}</legend>
-
       <div class="form-field">
         {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
         {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
@@ -111,21 +118,37 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
       <div class="form-field">
         {{ html()->label('Name')->for('signature_image[label]') }}
-        {{ html()->text('signature_image[label]')->class('text') }}
+        @if ($signature !== null)
+          {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
+        @else
+          {{ html()->text('signature_image[label]')->class('text') }}
+        @endif
       </div>
 
       <div class="form-field">
         {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        {{ html()->text('signature_image[alt]')->class('text') }}
+        @if ($signature !== null)
+          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
+        @else
+          {{ html()->text('signature_image[alt]')->class('text') }}
+        @endif
       </div>
 
       <div class="form-field">
         {{ html()->label('Caption')->for('signature_image[caption]') }}
-        {{ html()->text('signature_image[caption]')->class('text') }}
+        @if ($signature !== null)
+          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
+        @else
+          {{ html()->text('signature_image[caption]')->class('text') }}
+        @endif
       </div>
 
       <figure class="item--image">
-        <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+        @if ($project->hasMedia('signatures'))
+          <img id="previewer" src="{{ $project->getFirstMediaUrl('signatures') }}" alt="">
+        @else
+          <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+        @endif
       </figure>
     </fieldset>
 
@@ -139,6 +162,18 @@ ClassicEditor.create(document.getElementById("body")).catch(
           'class' => 'upload'
         ]) }}
       </div>
+
+      @if ($project->hasMedia('showcase'))
+        <figure class="item--image">
+          @foreach($project->getMedia('showcase') as $image)
+            {{ $image }}
+          @endforeach
+        </figure>
+      @else
+        <figure class="item--image">
+          <img id="previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+        </figure>
+      @endif
     </fieldset>
   </div>
 
@@ -149,35 +184,47 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <div class="form-field status">
         {{ html()->label('Status')->for('status') }}
         <select name="status" id="status" class="select">
-          @foreach(Status::cases() as $status)
-            <option value="{{ $status->value }}">{{ $status->name }}</option>
+          @foreach(Status::cases() as $state)
+            <option value="{{ $state->value }}"{{ $project->status && ($project->status->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
+
+        @error('status')
+        <x-shared.message type="error" context="status" :message="$errors"/>
+        @enderror
       </div>
 
       <div class="form-field promoted">
         {{ html()->label('Featured?')->for('promoted') }}
         <select name="promoted" id="promoted" class="select">
-          @foreach(Promoted::cases() as $promoted)
-            <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
+          @foreach(Promoted::cases() as $state)
+            <option value="{{ $state->value }}"{{ $project->promoted && ($project->promoted->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
+
+        @error('promoted')
+        <x-shared.message type="error" context="promoted" :message="$errors"/>
+        @enderror
       </div>
 
       <div class="form-field pinned">
-        {{ html()->label('Featured?')->for('pinned') }}
+        {{ html()->label('Pin?')->for('pinned') }}
         <select name="pinned" id="pinned" class="select">
-          @foreach(Pinned::cases() as $pinned)
-            <option value="{{ $pinned->value }}">{{ $pinned->name }}</option>
+          @foreach(Pinned::cases() as $state)
+            <option value="{{ $state->value }}"{{ $project->pinned && ($project->pinned->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
+
+        @error('pinned')
+        <x-shared.message type="error" context="pinned" :message="$errors"/>
+        @enderror
       </div>
     </fieldset>
 
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
-      <div class="form-field actions">
+      <div class="form-field">
         {{ html()->button('Save Project')->class('button button--submit') }}
       </div>
     </fieldset>
@@ -190,4 +237,4 @@ ClassicEditor.create(document.getElementById("body")).catch(
   </footer>
 
   {{ html()->form()->close() }}
-</x-ae.layout>
+</x-aenginus.layout>

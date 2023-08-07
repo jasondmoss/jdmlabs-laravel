@@ -47,7 +47,7 @@ final class CategoryAdminListing extends Component
             ->withCount('articles')
             ->paginate(50);
 
-        return view('ae.taxonomy.category.list', compact('categories'));
+        return view('aenginus.taxonomy.category.list', compact('categories'));
     }
 
 }

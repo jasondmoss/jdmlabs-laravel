@@ -2,10 +2,10 @@
   use Aenginus\Article\Interface\Web\Controllers as Article;
 @endphp
 
-<x-ae.layout title="Articles" page="index" livewire="false">
+<x-aenginus.layout title="Articles" page="index" livewire="false">
   <!-- show.blade -->
 
   <x-shared.session />
 
   <livewire:article-admin-listing />
-</x-ae.layout>
+</x-aenginus.layout>
