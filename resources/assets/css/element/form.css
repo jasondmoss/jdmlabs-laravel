@@ -37,13 +37,21 @@ input,
 select,
 select option,
 textarea {
-  max-width: 100%;
+  width: 100%;
   padding: 0.25rem 0.5rem;
   border: 0.0125rem solid hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) - 15%));
-  /*background-color: hsl(var(--base--bg-h), var(--base--bg-s), calc(var(--base--bg-l) + 3%));*/
   background-color: #f6f6f6;
   line-height: 1.6;
   appearance: none;
+}
+
+select option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+select option[selected] {
+  font-size: 0.75rem;
 }
 
 input:focus,
@@ -57,7 +65,6 @@ input.upload {
 
 select {
   padding-right: 1.5rem;
-  /*background-image: ;*/
 }
 
 .form-input--text:focus {
@@ -76,18 +83,24 @@ fieldset.container--meta .form-field {
 
 
 @media screen and (min-width: 60rem) {
-  fieldset.container--signature-image {
+  fieldset.container--images.signature,
+  fieldset.container--images.showcase .repeatable {
     display: grid;
     grid-template-columns: 1fr 20rem;
     align-content: start;
-    gap: 2rem;
+    gap: 1rem;
   }
 
-  fieldset.container--signature-image .form-field {
+  fieldset.container--images.showcase .repeatable + .repeatable {
+    padding-top: 1rem;
+    border-top: 0.25rem solid hsl(var(--gray-light-h), var(--gray-light-s), calc(var(--gray-light-l) + 25%));
+  }
+
+  fieldset.container--images .form-field {
     grid-column: 1;
   }
 
-  fieldset.container--signature-image .item--image {
+  fieldset.container--images .item--image {
     grid-column: 2;
     grid-row: 1/span 4;
     justify-self: end;

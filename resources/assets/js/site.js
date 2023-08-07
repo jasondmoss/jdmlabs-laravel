@@ -15,7 +15,10 @@ window.Choices = Choices;*/
 import { exists } from "./modules/exists.js";
 import { newWindow } from "./modules/window.js";
 
-import.meta.glob([ "../fonts/**", "../images/**" ]);
+import.meta.glob([
+    "../fonts/**",
+    "../images/**"
+]);
 
 (function (window) {
     window.addEventListener("load", () => {
@@ -67,28 +70,54 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
             }
 
 
-            // /**
-            //  * Temporary image preview.
-            //  */
-            // const fileInput = document.getElementById("signature_image");
-            // if (exists(fileInput)) {
-            //     fileInput.addEventListener('change', () => {
-            //         const file = fileInput.files;
-            //
-            //         if (file) {
-            //             const fileReader = new FileReader();
-            //             const preview = document.getElementById("previewer");
-            //
-            //             fileReader.onload = event => {
-            //                 console.log(event.target.result);
-            //                 preview.setAttribute('src', event.target.result);
-            //             };
-            //
-            //             fileReader.readAsDataURL(file[0]);
-            //         }
-            //     });
-            // }
+            const imageContainers = document.querySelectorAll(".container--images");
+            if (exists(imageContainers)) {
+                imageContainers.forEach((container) => {
 
+                    /**
+                     * Temporary image preview.
+                     */
+                    const inputs = container.querySelectorAll(".uploader");
+                    inputs.forEach((input) => input.addEventListener("change", () => {
+                        const file = input.files;
+
+                        if (file) {
+                            const fileReader = new FileReader();
+                            const preview = container.querySelector(".image-previewer");
+
+                            fileReader.onload = event => {
+                                console.log(event.target.result);
+                                preview.setAttribute("src", event.target.result);
+                            };
+
+                            fileReader.readAsDataURL(file[0]);
+                        }
+                    }))
+
+
+                    /**
+                     * Showcase image replicator.
+                     */
+                    const repeater = container.querySelector("button.repeater")
+                    if (exists(repeater)) {
+
+                        repeater.addEventListener("click", (event) => {
+                            event.preventDefault();
+
+                            const repeatable = container.querySelectorAll(".repeatable");
+                            let num = repeatable.length;
+                            let cloned = repeatable[0].cloneNode(true);
+
+                            cloned.querySelector(".uploader").setAttribute("name", "showcase_images[" + num + "][file]");
+                            cloned.querySelector(".label").setAttribute("name", "showcase_images[" + num + "][label]");
+                            cloned.querySelector(".alt").setAttribute("name", "showcase_images[" + num + "][alt]");
+                            cloned.querySelector(".caption").setAttribute("name", "showcase_images[" + num + "][caption]");
+
+                            container.insertBefore(cloned, repeatable[0]);
+                        });
+                    }
+                });
+            }
         }
 
     }, false);

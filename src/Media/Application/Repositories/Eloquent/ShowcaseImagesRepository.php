@@ -24,7 +24,8 @@ final class ShowcaseImagesRepository implements ShowcaseImagesContract
         try {
             // Delete any existing signature image.
             foreach ($model->media as $media) {
-                $media->delete();
+//                $media->delete();
+                $media->clearMediaCollection($mediaCollection);
             }
 
             foreach ($showcaseImages as $image) {

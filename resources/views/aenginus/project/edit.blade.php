@@ -79,7 +79,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
       <div class="form-field body">
         {{ html()->label('Main Content')->for('body') }}
-        {{ html()->textarea('body')->class('textarea')->attribute('required')->rows(15)->placeholder(__('Full description of this project')) }}
+        {{ html()->textarea('body')->class('textarea full')->attribute('required')->rows(15)->placeholder(__('Full description of this project')) }}
       </div>
     </fieldset>
 
@@ -106,13 +106,12 @@ ClassicEditor.create(document.getElementById("body")).catch(
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
+    <fieldset class="container--images signature">
       <legend>{{ __('Signature Image') }}</legend>
       <div class="form-field">
         {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
         {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature',
-          'class' => 'upload'
+          'class' => 'file-uploader'
         ]) }}
       </div>
 
@@ -145,35 +144,62 @@ ClassicEditor.create(document.getElementById("body")).catch(
 
       <figure class="item--image">
         @if ($project->hasMedia('signatures'))
-          <img id="previewer" src="{{ $project->getFirstMediaUrl('signatures') }}" alt="">
+          <img src="{{ $project->getFirstMediaUrl('signatures') }}" alt="">
         @else
-          <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
         @endif
       </figure>
     </fieldset>
 
-    <fieldset class="container--showcase-images">
+    <fieldset class="container--images showcase">
       <legend>{{ __('Showcase Images') }}</legend>
 
-      <div class="form-field">
-        {{ html()->label('Images')->for('showcase_images[][file]')->class('sr-only') }}
-        {{ html()->file('showcase_images[][file]')->multiple()->accept('jpg,png,svg')->attributes([
-          'id' => 'showcase',
-          'class' => 'upload'
-        ]) }}
+      <div class="repeatable">
+        <div class="form-field">
+          {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
+          {{ html()->file('showcase_images[0][file]')
+            ->forgetAttribute('id')
+            ->class('uploader')
+            ->accept('jpg,png,svg')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Name')->for('showcase_images[0][label]') }}
+          {{ html()->text('showcase_images[0][label]')
+            ->forgetAttribute('id')
+            ->class('label')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
+          {{ html()->text('showcase_images[0][alt]')
+            ->forgetAttribute('id')
+            ->class('alt')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
+          {{ html()->text('showcase_images[0][caption]')
+            ->forgetAttribute('id')
+            ->class('caption')
+          }}
+        </div>
+
+        <figure class="item--image">
+          @if ($project->hasMedia('showcase'))
+            @foreach($project->getMedia('showcase') as $image)
+              {{ $image }}
+            @endforeach
+          @else
+            <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+          @endif
+        </figure>
       </div>
 
-      @if ($project->hasMedia('showcase'))
-        <figure class="item--image">
-          @foreach($project->getMedia('showcase') as $image)
-            {{ $image }}
-          @endforeach
-        </figure>
-      @else
-        <figure class="item--image">
-          <img id="previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
-        </figure>
-      @endif
+      <button type="button" class="repeater">{{ __('New Showcase Image') }}</button>
     </fieldset>
   </div>
 
@@ -188,10 +214,6 @@ ClassicEditor.create(document.getElementById("body")).catch(
             <option value="{{ $state->value }}"{{ $project->status && ($project->status->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
-
-        @error('status')
-        <x-shared.message type="error" context="status" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field promoted">
@@ -201,10 +223,6 @@ ClassicEditor.create(document.getElementById("body")).catch(
             <option value="{{ $state->value }}"{{ $project->promoted && ($project->promoted->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
-
-        @error('promoted')
-        <x-shared.message type="error" context="promoted" :message="$errors"/>
-        @enderror
       </div>
 
       <div class="form-field pinned">
@@ -214,10 +232,6 @@ ClassicEditor.create(document.getElementById("body")).catch(
             <option value="{{ $state->value }}"{{ $project->pinned && ($project->pinned->value === $state->value) ? ' selected'  : '' }}>{{ $state->name }}</option>
           @endforeach
         </select>
-
-        @error('pinned')
-        <x-shared.message type="error" context="pinned" :message="$errors"/>
-        @enderror
       </div>
     </fieldset>
 
@@ -230,7 +244,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
     </fieldset>
   </aside>
 
-  <footer class="editor--footer">
+  <footer id="temp" class="editor--footer">
     <a rel="prev" class="back-link" href="{{ URL::previous() }}">
       <span class="fa-solid fa-arrow-left mr-6"></span> {{ __('Back to last page') }}
     </a>

@@ -21,8 +21,7 @@ final class SignatureImageRepository implements SignatureImageContract
         try {
             // Delete any existing signature image.
             foreach ($model->media as $media) {
-//                $media->delete();
-                $media->clearMediaCollection($mediaCollection);
+                $media->delete();
             }
 
             $model->addMedia($entity->file)

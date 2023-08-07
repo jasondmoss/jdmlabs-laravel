@@ -103,26 +103,26 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend>{{ __('Signature Image') }}</legend>
 
       <div class="form-field">
-        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
+        {{ html()->label('Image')->for('signature_image[][file]')->class('sr-only') }}
+        {{ html()->file('signature_image[][file]')->accept('jpg,png,svg')->attributes([
           'id' => 'signature',
           'class' => 'upload'
         ]) }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Name')->for('signature_image[label]') }}
-        {{ html()->text('signature_image[label]')->class('text') }}
+        {{ html()->label('Name')->for('signature_image[][label]') }}
+        {{ html()->text('signature_image[][label]')->class('text') }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        {{ html()->text('signature_image[alt]')->class('text') }}
+        {{ html()->label('Alt Description')->for('signature_image[][alt]') }}
+        {{ html()->text('signature_image[][alt]')->class('text') }}
       </div>
 
       <div class="form-field">
-        {{ html()->label('Caption')->for('signature_image[caption]') }}
-        {{ html()->text('signature_image[caption]')->class('text') }}
+        {{ html()->label('Caption')->for('signature_image[][caption]') }}
+        {{ html()->text('signature_image[][caption]')->class('text') }}
       </div>
 
       <figure class="item--image">
@@ -133,6 +133,39 @@ ClassicEditor.create(document.getElementById("body")).catch(
     <fieldset class="container--showcase-images">
       <legend>{{ __('Showcase Images') }}</legend>
 
+      <div class="image-unit">
+        <div class="form-field">
+          {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
+          {{ html()->file('showcase_images[0][file]')->accept('jpg,png,svg')->attributes([
+            'id' => 'showcase',
+            'class' => 'upload'
+          ]) }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Name')->for('showcase_images[0][label]') }}
+          {{ html()->text('showcase_images[0][label]')->class('text') }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
+          {{ html()->text('showcase_images[0][alt]')->class('text') }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
+          {{ html()->text('showcase_images[0][caption]')->class('text') }}
+        </div>
+
+        <figure class="item--image">
+          <img id="previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+        </figure>
+      </div>
+    </fieldset>
+
+    {{-- <fieldset class="container--showcase-images">
+      <legend>{{ __('Showcase Images') }}</legend>
+
       <div class="form-field">
         {{ html()->label('Images')->for('showcase_images[][file]')->class('sr-only') }}
         {{ html()->file('showcase_images[][file]')->multiple()->accept('jpg,png,svg')->attributes([
@@ -140,7 +173,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
           'class' => 'upload'
         ]) }}
       </div>
-    </fieldset>
+    </fieldset> --}}
   </div>
 
   <aside class="editor--side">
