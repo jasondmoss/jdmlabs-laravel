@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

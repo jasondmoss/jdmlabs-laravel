@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Interface\Web\Requests;
 
 use Aenginus\Taxonomy\Domain\Validation\CreateSubmissionRules;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 
 final class CreateRequest extends CreateSubmissionRules
 {

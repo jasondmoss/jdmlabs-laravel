@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Domain\Observers;
 
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Illuminate\Support\Facades\App;
 
 final readonly class ArticleObserver
 {
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */
@@ -24,7 +24,7 @@ final readonly class ArticleObserver
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */
@@ -32,7 +32,7 @@ final readonly class ArticleObserver
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */
@@ -40,7 +40,7 @@ final readonly class ArticleObserver
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */
@@ -48,7 +48,7 @@ final readonly class ArticleObserver
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */
@@ -56,7 +56,7 @@ final readonly class ArticleObserver
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Application\Providers;
 
 use Aenginus\Article\Domain\Policies\ArticlePolicy;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use App\Providers\AuthServiceProvider;
 
 class ArticleAuthServiceProvider extends AuthServiceProvider

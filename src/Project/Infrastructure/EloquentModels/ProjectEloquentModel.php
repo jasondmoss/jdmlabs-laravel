@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Article\Infrastructure\Eloquent\Models;
+namespace Aenginus\Project\Infrastructure\EloquentModels;
 
-use Aenginus\Article\Application\Exceptions\CouldNotFindArticle;
-use Aenginus\Article\Infrastructure\Factories\ArticleFactory;
-use Aenginus\Article\Infrastructure\ValueObjects\Id;
-use Aenginus\Article\Infrastructure\ValueObjects\Slug;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Project\Application\Exceptions\CouldNotFindProject;
+use Aenginus\Project\Infrastructure\Factories\ProjectFactory;
+use Aenginus\Project\Infrastructure\ValueObjects\Id;
+use Aenginus\Project\Infrastructure\ValueObjects\Slug;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
+use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Aenginus\Shared\Scopes\FindBySlug;
@@ -17,9 +19,8 @@ use Aenginus\Shared\Scopes\WherePublished;
 use Aenginus\Shared\Scopes\WhereRelated;
 use Aenginus\Shared\Traits\MediaExtended;
 use Aenginus\Shared\Traits\Observable;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
-use Carbon\Carbon;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -35,8 +36,7 @@ use Spatie\Sluggable\SlugOptions;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
-
-class ArticleEloquentModel extends Model implements HasMedia
+class ProjectEloquentModel extends Model implements HasMedia
 {
 
     use HasEvents, HasFactory, HasSlug, HasUlids,
@@ -45,29 +45,27 @@ class ArticleEloquentModel extends Model implements HasMedia
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
     /**
-     * Generated 'permalink' per each article, using the published_at
-     * date (Y/m/d), upon eloquent model query.
-     *
      * @var string
      */
     public string $permalink;
 
-    protected $table = 'articles';
-
-    protected $primaryKey = 'id';
+    protected $table = 'projects';
 
     protected $fillable = [
+        'user_id',
         'title',
         'slug',
+        'subtitle',
+        'website',
         'summary',
         'body',
+        'client_id',
+        'category_id',
         'status',
         'promoted',
-        'published_at',
+        'pinned',
         'created_at',
         'updated_at',
-        'category_id',
-        'user_id'
     ];
 
     protected $guarded = [];
@@ -77,28 +75,30 @@ class ArticleEloquentModel extends Model implements HasMedia
         'summary' => ConvertNullToEmptyString::class,
         'published_at' => 'immutable_datetime',
         'status' => Status::class,
-        'promoted' => Promoted::class
+        'promoted' => Promoted::class,
+        'pinned' => Pinned::class
     ];
 
     protected $with = [
         'category',
+        /*'clients',*/
         'media'
     ];
 
 
     /**
-     * @return \Aenginus\Article\Infrastructure\Factories\ArticleFactory
+     * @return \Aenginus\Project\Infrastructure\Factories\ProjectFactory
      */
-    private static function newFactory(): ArticleFactory
+    private static function newFactory(): ProjectFactory
     {
-        return ArticleFactory::new();
+        return ProjectFactory::new();
     }
 
 
     /**
      * @return \Spatie\Sluggable\SlugOptions
      */
-    private function getSlugOptions(): SlugOptions
+    final public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
@@ -124,6 +124,11 @@ class ArticleEloquentModel extends Model implements HasMedia
             ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
             ->useFallbackUrl(asset('/images/placeholder/signature.png'))
             ->useFallbackPath(public_path('/images/placeholder/signature.png'));
+
+        $this->addMediaCollection('showcase')
+            ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
+            ->useFallbackUrl(asset('/images/placeholder/showcase.png'))
+            ->useFallbackPath(public_path('/images/placeholder/showcase.png'));
     }
 
 
@@ -159,7 +164,7 @@ class ArticleEloquentModel extends Model implements HasMedia
      * @param string $key
      *
      * @return \Illuminate\Database\Eloquent\Builder|self
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
+     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
      */
     final public function find(string $key): Builder|self
     {
@@ -167,7 +172,7 @@ class ArticleEloquentModel extends Model implements HasMedia
             try {
                 return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
-                throw CouldNotFindArticle::withId($key);
+                throw CouldNotFindProject::withId($key);
             }
         }
 
@@ -176,45 +181,19 @@ class ArticleEloquentModel extends Model implements HasMedia
         try {
             return $this->newQuery()->slug($slug);
         } catch (UnexpectedValueException) {
-            throw CouldNotFindArticle::withSlug($slug);
+            throw CouldNotFindProject::withSlug($slug);
         }
     }
 
 
     /**
-     * Generate specific dates for metadata and display purposes.
-     *
-     * @return void
-     */
-    final public function generateDates(): void
-    {
-        $this->date = (object) [
-            'published' => (object) [
-                'iso' => Carbon::parse($this->published_at)->format('c'),
-                'display' => Carbon::parse($this->published_at)->format('F j, Y'),
-                'path' => Carbon::parse($this->published_at)->format('Y/m/d')
-            ],
-            'create' => (object) [
-                'iso' => Carbon::parse($this->published_at)->format('c'),
-                'display' => Carbon::parse($this->published_at)->format('F j, Y')
-            ],
-            'updated' => (object) [
-                'iso' => Carbon::parse($this->published_at)->format('c'),
-                'display' => Carbon::parse($this->published_at)->format('F j, Y')
-            ]
-        ];
-    }
-
-
-    /**
-     * Generate an article 'permalink', facilitating the `generateDates()`
-     * method above.
+     * Generate a project 'permalink'.
      *
      * @return void
      */
     final public function generatePermalink(): void
     {
-        $this->permalink = url("/article/{$this->date->published->path}/$this->slug");
+        $this->permalink = url("/project/$this->slug");
     }
 
 
@@ -224,6 +203,15 @@ class ArticleEloquentModel extends Model implements HasMedia
     final public function user(): BelongsTo
     {
         return $this->belongsTo(UserEloquentModel::class, 'user_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    final public function clients(): BelongsTo
+    {
+        return $this->belongsTo(ClientEloquentModel::class, 'client_id');
     }
 
 

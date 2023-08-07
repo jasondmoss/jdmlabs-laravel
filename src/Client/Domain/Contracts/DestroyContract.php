@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Domain\Contracts;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 
 interface DestroyContract
 {
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */

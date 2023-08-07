@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Client\Infrastructure\Eloquent\Models;
+namespace Aenginus\Article\Infrastructure\EloquentModels;
 
-use Aenginus\Client\Application\Exceptions\CouldNotFindClient;
-use Aenginus\Client\Infrastructure\Factories\ClientFactory;
-use Aenginus\Client\Infrastructure\ValueObjects\Id;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Article\Application\Exceptions\CouldNotFindArticle;
+use Aenginus\Article\Infrastructure\Factories\ArticleFactory;
+use Aenginus\Article\Infrastructure\ValueObjects\Id;
+use Aenginus\Article\Infrastructure\ValueObjects\Slug;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
@@ -17,15 +17,15 @@ use Aenginus\Shared\Scopes\WherePublished;
 use Aenginus\Shared\Scopes\WhereRelated;
 use Aenginus\Shared\Traits\MediaExtended;
 use Aenginus\Shared\Traits\Observable;
-use Aenginus\Taxonomy\Infrastructure\ValueObjects\Slug;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -35,7 +35,8 @@ use Spatie\Sluggable\SlugOptions;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
-class ClientEloquentModel extends Model implements HasMedia
+
+class ArticleEloquentModel extends Model implements HasMedia
 {
 
     use HasEvents, HasFactory, HasSlug, HasUlids,
@@ -43,31 +44,36 @@ class ClientEloquentModel extends Model implements HasMedia
         /* Scopes */
         FindBySlug, WherePromoted, WherePublished, WhereRelated;
 
-    public $timestamps = true;
-
+    /**
+     * Generated 'permalink' per each article, using the published_at
+     * date (Y/m/d), upon eloquent model query.
+     *
+     * @var string
+     */
     public string $permalink;
 
-    protected $table = 'clients';
+    protected $table = 'articles';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name',
+        'title',
         'slug',
-        'itemprop',
-        'website',
         'summary',
+        'body',
         'status',
         'promoted',
         'published_at',
         'created_at',
         'updated_at',
+        'category_id',
         'user_id'
     ];
 
     protected $guarded = [];
 
     protected $casts = [
+        'body' => ConvertNullToEmptyString::class,
         'summary' => ConvertNullToEmptyString::class,
         'published_at' => 'immutable_datetime',
         'status' => Status::class,
@@ -75,26 +81,27 @@ class ClientEloquentModel extends Model implements HasMedia
     ];
 
     protected $with = [
-        'projects'
+        'category',
+        'media'
     ];
 
 
     /**
-     * @return \Aenginus\Client\Infrastructure\Factories\ClientFactory
+     * @return \Aenginus\Article\Infrastructure\Factories\ArticleFactory
      */
-    private static function newFactory(): ClientFactory
+    private static function newFactory(): ArticleFactory
     {
-        return ClientFactory::new();
+        return ArticleFactory::new();
     }
 
 
     /**
      * @return \Spatie\Sluggable\SlugOptions
      */
-    final public function getSlugOptions(): SlugOptions
+    private function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 
@@ -113,11 +120,10 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logos')
-            /*->singleFile()*/
-            ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
-            ->useFallbackUrl(asset('/images/placeholder/logo.png'))
-            ->useFallbackPath(public_path('/images/placeholder/logo.png'));
+        $this->addMediaCollection('signatures')
+            ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
+            ->useFallbackUrl(asset('/images/placeholder/signature.png'))
+            ->useFallbackPath(public_path('/images/placeholder/signature.png'));
     }
 
 
@@ -153,7 +159,7 @@ class ClientEloquentModel extends Model implements HasMedia
      * @param string $key
      *
      * @return \Illuminate\Database\Eloquent\Builder|self
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
      */
     final public function find(string $key): Builder|self
     {
@@ -161,7 +167,7 @@ class ClientEloquentModel extends Model implements HasMedia
             try {
                 return $this->newQuery()->find((new Id($key))->value());
             } catch (UnexpectedValueException) {
-                throw CouldNotFindClient::withId($key);
+                throw CouldNotFindArticle::withId($key);
             }
         }
 
@@ -170,19 +176,45 @@ class ClientEloquentModel extends Model implements HasMedia
         try {
             return $this->newQuery()->slug($slug);
         } catch (UnexpectedValueException) {
-            throw CouldNotFindClient::withSlug($slug);
+            throw CouldNotFindArticle::withSlug($slug);
         }
     }
 
 
     /**
-     * Generate a client 'permalink'.
+     * Generate specific dates for metadata and display purposes.
+     *
+     * @return void
+     */
+    final public function generateDates(): void
+    {
+        $this->date = (object) [
+            'published' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y'),
+                'path' => Carbon::parse($this->published_at)->format('Y/m/d')
+            ],
+            'create' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y')
+            ],
+            'updated' => (object) [
+                'iso' => Carbon::parse($this->published_at)->format('c'),
+                'display' => Carbon::parse($this->published_at)->format('F j, Y')
+            ]
+        ];
+    }
+
+
+    /**
+     * Generate an article 'permalink', facilitating the `generateDates()`
+     * method above.
      *
      * @return void
      */
     final public function generatePermalink(): void
     {
-        $this->permalink = url("/client/$this->slug");
+        $this->permalink = url("/article/{$this->date->published->path}/$this->slug");
     }
 
 
@@ -196,11 +228,11 @@ class ClientEloquentModel extends Model implements HasMedia
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    final public function projects(): HasMany
+    final public function category(): BelongsTo
     {
-        return $this->hasMany(ProjectEloquentModel::class, 'client_id');
+        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
     }
 
 }

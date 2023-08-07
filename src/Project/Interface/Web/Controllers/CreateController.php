@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;

@@ -6,7 +6,7 @@ namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
 use Aenginus\Taxonomy\Application\Exceptions\CouldNotDeleteCategory;
 use Aenginus\Taxonomy\Application\UseCases\DestroyUseCase;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Exception;
@@ -21,7 +21,7 @@ class DestroyController extends Controller
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      * @param \Aenginus\Taxonomy\Application\UseCases\DestroyUseCase $bridge
      */
     public function __construct(CategoryEloquentModel $category, DestroyUseCase $bridge)

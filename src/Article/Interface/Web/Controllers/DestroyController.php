@@ -6,7 +6,7 @@ namespace Aenginus\Article\Interface\Web\Controllers;
 
 use Aenginus\Article\Application\Exceptions\CouldNotDeleteArticle;
 use Aenginus\Article\Application\UseCases\DestroyUseCase;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Article\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Exception;
@@ -21,7 +21,7 @@ class DestroyController extends Controller
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      * @param \Aenginus\Article\Application\UseCases\DestroyUseCase $bridge
      */
     public function __construct(ArticleEloquentModel $article, DestroyUseCase $bridge)

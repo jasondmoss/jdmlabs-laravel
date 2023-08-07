@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Infrastructure\Factories;
 
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Config;

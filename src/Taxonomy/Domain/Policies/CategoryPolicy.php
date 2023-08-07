@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Domain\Policies;
 
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -16,7 +16,7 @@ final readonly class CategoryPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -31,7 +31,7 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -46,7 +46,7 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      * @param string $id
      *
      * @return \Illuminate\Auth\Access\Response

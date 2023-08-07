@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 
 return [
 
@@ -48,7 +48,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | UserEloquentModel Providers
+    | User Providers
     |--------------------------------------------------------------------------
     |
     | All authentication drivers have a user provider. This defines how the

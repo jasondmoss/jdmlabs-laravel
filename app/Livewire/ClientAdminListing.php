@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -26,7 +26,7 @@ final class ClientAdminListing extends Component
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */

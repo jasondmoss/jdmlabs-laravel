@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\UseCases;
 
 use Aenginus\Project\Application\Repositories\Eloquent\UpdateRepository;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 
 final readonly class UpdateUseCase
@@ -24,10 +24,10 @@ final readonly class UpdateUseCase
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      * @param \Aenginus\Project\Infrastructure\Entities\ProjectEntity $entity
      *
-     * @return \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel
+     * @return \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel
      */
     public function update(ProjectEloquentModel $project, ProjectEntity $entity): ProjectEloquentModel
     {

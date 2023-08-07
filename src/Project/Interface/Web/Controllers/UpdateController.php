@@ -7,7 +7,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
@@ -25,7 +25,7 @@ class UpdateController extends Controller
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $bridge
      * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
      */

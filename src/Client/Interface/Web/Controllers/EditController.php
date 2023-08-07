@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Aenginus\Client\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -17,7 +17,7 @@ class EditController extends Controller
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      */
     public function __construct(ClientEloquentModel $client)
     {

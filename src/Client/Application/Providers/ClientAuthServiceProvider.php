@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Application\Providers;
 
 use Aenginus\Client\Domain\Policies\ClientPolicy;
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use App\Providers\AuthServiceProvider;
 
 class ClientAuthServiceProvider extends AuthServiceProvider

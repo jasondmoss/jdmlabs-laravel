@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\UseCases;
 
 use Aenginus\Taxonomy\Application\Repositories\Eloquent\DeleteRepository;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 
 final readonly class DestroyUseCase
 {
@@ -23,7 +23,7 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */

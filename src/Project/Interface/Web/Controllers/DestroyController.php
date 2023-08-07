@@ -6,7 +6,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Project\Application\Exceptions\CouldNotDeleteProject;
 use Aenginus\Project\Application\UseCases\DestroyUseCase;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Project\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Exception;
@@ -21,7 +21,7 @@ class DestroyController extends Controller
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      * @param \Aenginus\Project\Application\UseCases\DestroyUseCase $bridge
      */
     public function __construct(ProjectEloquentModel $project, DestroyUseCase $bridge)

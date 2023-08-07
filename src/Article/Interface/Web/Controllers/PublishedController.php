@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Controllers;
 
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;

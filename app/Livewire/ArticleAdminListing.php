@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -26,7 +26,7 @@ final class ArticleAdminListing extends Component
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */

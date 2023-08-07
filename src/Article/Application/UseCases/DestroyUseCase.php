@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Application\UseCases;
 
 use Aenginus\Article\Application\Repositories\Eloquent\DestroyRepository;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 
 final readonly class DestroyUseCase
 {
@@ -23,7 +23,7 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return void
      */

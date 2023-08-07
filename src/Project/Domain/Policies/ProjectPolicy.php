@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Domain\Policies;
 
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -17,7 +17,7 @@ final readonly class ProjectPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -32,8 +32,8 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -48,8 +48,8 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -64,7 +64,7 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */

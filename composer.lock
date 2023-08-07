@@ -538,16 +538,16 @@
         },
         {
             "name": "free2one/php-accessor",
-            "version": "0.3.6",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kkguan/php-accessor.git",
-                "reference": "33c4a0a22a63c205a395212bfed1544c9fb09dc1"
+                "reference": "5895d569990569bfab412b1a97cc37df366838b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kkguan/php-accessor/zipball/33c4a0a22a63c205a395212bfed1544c9fb09dc1",
-                "reference": "33c4a0a22a63c205a395212bfed1544c9fb09dc1",
+                "url": "https://api.github.com/repos/kkguan/php-accessor/zipball/5895d569990569bfab412b1a97cc37df366838b8",
+                "reference": "5895d569990569bfab412b1a97cc37df366838b8",
                 "shasum": ""
             },
             "require": {
@@ -579,9 +579,9 @@
             "description": "Generate getter and setter methods automatically",
             "support": {
                 "issues": "https://github.com/kkguan/php-accessor/issues",
-                "source": "https://github.com/kkguan/php-accessor/tree/0.3.6"
+                "source": "https://github.com/kkguan/php-accessor/tree/0.4.1"
             },
-            "time": "2023-07-12T12:24:53+00:00"
+            "time": "2023-08-07T09:08:24+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -7290,16 +7290,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v7.8.0",
+            "version": "v7.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "1813f0a3470f2ac171443bc37b324c2a693005f9"
+                "reference": "61553ad3260845d7e3e49121b7074619233d361b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/1813f0a3470f2ac171443bc37b324c2a693005f9",
-                "reference": "1813f0a3470f2ac171443bc37b324c2a693005f9",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/61553ad3260845d7e3e49121b7074619233d361b",
+                "reference": "61553ad3260845d7e3e49121b7074619233d361b",
                 "shasum": ""
             },
             "require": {
@@ -7379,7 +7379,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-08-04T10:26:10+00:00"
+            "time": "2023-08-07T08:03:21+00:00"
         },
         {
             "name": "phar-io/manifest",

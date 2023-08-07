@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Domain\Observers;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Illuminate\Support\Facades\App;
 
 final readonly class ClientObserver
 {
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */
@@ -24,7 +24,7 @@ final readonly class ClientObserver
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */
@@ -32,7 +32,7 @@ final readonly class ClientObserver
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */
@@ -40,7 +40,7 @@ final readonly class ClientObserver
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */
@@ -48,7 +48,7 @@ final readonly class ClientObserver
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */
@@ -56,7 +56,7 @@ final readonly class ClientObserver
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      *
      * @return void
      */

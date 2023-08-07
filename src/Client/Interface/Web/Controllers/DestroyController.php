@@ -6,7 +6,7 @@ namespace Aenginus\Client\Interface\Web\Controllers;
 
 use Aenginus\Client\Application\Exceptions\CouldNotDeleteClient;
 use Aenginus\Client\Application\UseCases\DestroyUseCase;
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Aenginus\Client\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Exception;
@@ -21,7 +21,7 @@ class DestroyController extends Controller
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel $client
+     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      * @param \Aenginus\Client\Application\UseCases\DestroyUseCase $bridge
      */
     public function __construct(ClientEloquentModel $client, DestroyUseCase $bridge)

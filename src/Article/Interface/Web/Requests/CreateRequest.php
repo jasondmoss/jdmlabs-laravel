@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Interface\Web\Requests;
 
 use Aenginus\Article\Domain\Validation\CreateSubmissionRules;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 
 /**
  * @property array $signature_image

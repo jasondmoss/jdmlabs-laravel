@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Interface\Web\Controllers;
 
 use Aenginus\Article\Application\UseCases\UpdateUseCase as ArticleUseCase;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\UpdateRequest;
 use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
@@ -25,7 +25,7 @@ class UpdateController extends Controller
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      * @param \Aenginus\Article\Application\UseCases\UpdateUseCase $bridge
      * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
      */

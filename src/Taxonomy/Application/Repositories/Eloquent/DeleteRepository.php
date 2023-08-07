@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\Repositories\Eloquent;
 
 use Aenginus\Taxonomy\Domain\Contracts\DeleteContract;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 
 final class DeleteRepository implements DeleteContract
 {

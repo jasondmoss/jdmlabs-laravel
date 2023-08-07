@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Project\Infrastructure\ValueObjects\Id;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
@@ -19,7 +19,7 @@ class EditController extends Controller
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      */
     public function __construct(ProjectEloquentModel $project)
     {

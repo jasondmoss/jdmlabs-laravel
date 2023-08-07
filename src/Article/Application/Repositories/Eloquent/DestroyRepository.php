@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Application\Repositories\Eloquent;
 
 use Aenginus\Article\Domain\Contracts\DestroyContract;
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 
 final class DestroyRepository implements DestroyContract
 {

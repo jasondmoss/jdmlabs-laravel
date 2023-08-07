@@ -92,7 +92,7 @@ Route::middleware([ 'web' ])->group(function () {
             ])->name('verification.send');
         }
 
-        /** -- UserEloquentModel Profile. */
+        /** -- User Profile. */
 
         if (Features::enabled(Features::updateProfileInformation())) {
             Route::middleware([

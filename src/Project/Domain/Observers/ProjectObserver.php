@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Domain\Observers;
 
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Illuminate\Support\Facades\App;
 
 final readonly class ProjectObserver
 {
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */
@@ -24,7 +24,7 @@ final readonly class ProjectObserver
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */
@@ -32,7 +32,7 @@ final readonly class ProjectObserver
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */
@@ -40,7 +40,7 @@ final readonly class ProjectObserver
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */
@@ -48,7 +48,7 @@ final readonly class ProjectObserver
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */
@@ -56,7 +56,7 @@ final readonly class ProjectObserver
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      *
      * @return void
      */

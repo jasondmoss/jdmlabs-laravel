@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\UseCases;
 
 use Aenginus\Project\Application\Repositories\Eloquent\DestroyRepository;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 
 final readonly class DestroyUseCase
 {
@@ -23,7 +23,7 @@ final readonly class DestroyUseCase
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      */
     public function delete(ProjectEloquentModel $project): void
     {

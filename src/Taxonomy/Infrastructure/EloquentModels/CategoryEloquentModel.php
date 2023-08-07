@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Taxonomy\Infrastructure\Eloquent\Models;
+namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Shared\Scopes\FindBySlug;
 use Aenginus\Shared\Scopes\WherePromoted;
 use Aenginus\Shared\Scopes\WherePublished;

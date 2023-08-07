@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Domain\Observers;
 
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 
 final readonly class CategoryObserver
 {
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */
@@ -23,7 +23,7 @@ final readonly class CategoryObserver
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */
@@ -31,7 +31,7 @@ final readonly class CategoryObserver
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */
@@ -39,7 +39,7 @@ final readonly class CategoryObserver
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */
@@ -47,7 +47,7 @@ final readonly class CategoryObserver
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */
@@ -55,7 +55,7 @@ final readonly class CategoryObserver
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return void
      */

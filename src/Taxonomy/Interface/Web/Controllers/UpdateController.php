@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
 use Aenginus\Taxonomy\Application\UseCases\UpdateUseCase;
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 use Aenginus\Taxonomy\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
@@ -20,7 +20,7 @@ class UpdateController extends Controller
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      * @param \Aenginus\Taxonomy\Application\UseCases\UpdateUseCase $bridge
      */
     public function __construct(CategoryEloquentModel $category, UpdateUseCase $bridge)

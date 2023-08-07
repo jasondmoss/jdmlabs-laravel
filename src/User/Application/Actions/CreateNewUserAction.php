@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Application\Actions;
 
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,7 +20,7 @@ class CreateNewUserAction implements CreatesNewUsers
      *
      * @param array $input
      *
-     * @return \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel
+     * @return \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel
      */
     final public function create(array $input): UserEloquentModel
     {

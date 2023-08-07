@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Infrastructure\Factories;
 
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;

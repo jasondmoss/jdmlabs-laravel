@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Media\Infrastructure\Eloquent\Models;
+namespace Aenginus\Media\Infrastructure\EloquentModels;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;

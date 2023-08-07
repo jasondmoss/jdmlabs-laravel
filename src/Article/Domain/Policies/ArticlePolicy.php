@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Domain\Policies;
 
-use Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel;
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Config;
@@ -17,7 +17,7 @@ final readonly class ArticlePolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -32,8 +32,8 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -48,8 +48,8 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\Eloquent\Models\UserEloquentModel $user
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -64,7 +64,7 @@ final readonly class ArticlePolicy
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\Eloquent\Models\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */

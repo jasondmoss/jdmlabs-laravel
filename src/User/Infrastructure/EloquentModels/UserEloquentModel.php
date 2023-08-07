@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\User\Infrastructure\Eloquent\Models;
+namespace Aenginus\User\Infrastructure\EloquentModels;
 
 use Aenginus\User\Infrastructure\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;

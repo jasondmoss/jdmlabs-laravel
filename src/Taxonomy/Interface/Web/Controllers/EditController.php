@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
-use Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel;
+use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -17,7 +17,7 @@ class EditController extends Controller
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\Eloquent\Models\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      */
     public function __construct(CategoryEloquentModel $category)
     {

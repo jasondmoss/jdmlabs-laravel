@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Interface\Web\Requests;
 
 use Aenginus\Client\Domain\Validation\UpdateSubmissionRules;
-use Aenginus\Client\Infrastructure\Eloquent\Models\ClientEloquentModel;
+use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 
 /**
  * @property array $logo_image

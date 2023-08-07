@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\UseCases;
 
 use Aenginus\Project\Application\Repositories\Eloquent\StoreRepository;
-use Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 
 final readonly class StoreUseCase
 {
@@ -25,7 +25,7 @@ final readonly class StoreUseCase
     /**
      * @param object $projectEntity
      *
-     * @return \Aenginus\Project\Infrastructure\Eloquent\Models\ProjectEloquentModel
+     * @return \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel
      */
     public function store(object $projectEntity): ProjectEloquentModel
     {
