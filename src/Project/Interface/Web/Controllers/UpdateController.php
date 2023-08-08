@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Media\Application\ProcessMedia;
-use Aenginus\Media\Application\UseCases\AttachShowcaseImagesUseCase;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase;
+use Aenginus\Media\Application\UseCases\MultiImageUseCase;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
@@ -24,22 +24,22 @@ class UpdateController extends Controller
 
     protected ProjectUseCase $bridge;
 
-    protected AttachSignatureImageUseCase $signature;
+    protected SingleImageUseCase $signature;
 
-    protected AttachShowcaseImagesUseCase $showcase;
+    protected MultiImageUseCase $showcase;
 
 
     /**
      * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $signature
-     * @param \Aenginus\Media\Application\UseCases\AttachShowcaseImagesUseCase $showcase
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
+     * @param \Aenginus\Media\Application\UseCases\MultiImageUseCase $showcase
      */
     public function __construct(
         ProjectEloquentModel $project,
         ProjectUseCase $bridge,
-        AttachSignatureImageUseCase $signature,
-        AttachShowcaseImagesUseCase $showcase
+        SingleImageUseCase $signature,
+        MultiImageUseCase $showcase
     ) {
         $this->project = $project;
         $this->bridge = $bridge;
@@ -68,26 +68,28 @@ class UpdateController extends Controller
          * Signature image (single).
          */
         if ($request->hasFile('signature_image')) {
-            $signatureImage = $request->file('signature_image');
-
-            if ($signatureImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $signatureImage);
-
-                // Attach uploaded signature image.
-                try {
-                    $this->signature->attach($project, $imageEntity);
-                } catch (Exception) {
-                    throw new RuntimeException('Signature image could not  be saved.');
-                }
-            } else {
-                throw new RuntimeException('Signature image is not valid.');
-            }
+            $this->signature->attach(
+                $project,
+                (object) $request->file('signature_image'),
+                'signature'
+            );
         }
 
         /**
          * Showcase images (multiple).
          */
         if ($request->file('showcase_images') !== null) {
+            $this->showcase->attach(
+                $project,
+                $request->file('showcase_images'),
+                'showcase'
+            );
+        }
+
+        /**
+         * Showcase images (multiple).
+         */
+        /*if ($request->file('showcase_images') !== null) {
             $showcaseImages = [];
 
             foreach ($request->file('showcase_images') as $showcaseImage) {
@@ -106,7 +108,7 @@ class UpdateController extends Controller
             } catch (Exception) {
                 throw new RuntimeException('Signature image could not  be saved.');
             }
-        }
+        }*/
 
         return redirect()
             ->to($request->listing_page)

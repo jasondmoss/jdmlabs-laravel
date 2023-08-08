@@ -14,6 +14,7 @@ window.Choices = Choices;*/
 // Local modules.
 import { exists } from "./modules/exists.js";
 import { newWindow } from "./modules/window.js";
+// import {document} from "postcss";
 
 import.meta.glob([
     "../fonts/**",
@@ -69,53 +70,56 @@ import.meta.glob([
                 observer.observe(listingHeader);
             }
 
+            const form = document.querySelector("form.content-editor");
+            const button = form.querySelector(".button--submit");
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
 
-            const imageContainers = document.querySelectorAll(".container--images");
-            if (exists(imageContainers)) {
-                imageContainers.forEach((container) => {
-
-                    /**
-                     * Temporary image preview.
-                     */
-                    const inputs = container.querySelectorAll(".uploader");
-                    inputs.forEach((input) => input.addEventListener("change", () => {
-                        const file = input.files;
-
-                        if (file) {
-                            const fileReader = new FileReader();
-                            const preview = container.querySelector(".image-previewer");
-
-                            fileReader.onload = event => {
-                                console.log(event.target.result);
-                                preview.setAttribute("src", event.target.result);
-                            };
-
-                            fileReader.readAsDataURL(file[0]);
-                        }
-                    }))
+                form.submit();
+            });
 
 
-                    /**
-                     * Showcase image replicator.
-                     */
-                    const repeater = container.querySelector("button.repeater")
-                    if (exists(repeater)) {
+            const single = document.querySelector(".container--images.single .wrapper");
+            if (exists(single)) {
+                /**
+                 * Temporary image preview.
+                 */
+                const input = single.querySelector(".file-uploader");
+                input.addEventListener("change", () => {
+                    const file = input.files;
 
-                        repeater.addEventListener("click", (event) => {
-                            event.preventDefault();
+                    if (file) {
+                        const fileReader = new FileReader();
+                        const preview = single.querySelector(".image-previewer");
 
-                            const repeatable = container.querySelectorAll(".repeatable");
-                            let num = repeatable.length;
-                            let cloned = repeatable[0].cloneNode(true);
+                        fileReader.onload = (event) => {
+                            preview.setAttribute("src", event.target.result);
+                        };
 
-                            cloned.querySelector(".uploader").setAttribute("name", "showcase_images[" + num + "][file]");
-                            cloned.querySelector(".label").setAttribute("name", "showcase_images[" + num + "][label]");
-                            cloned.querySelector(".alt").setAttribute("name", "showcase_images[" + num + "][alt]");
-                            cloned.querySelector(".caption").setAttribute("name", "showcase_images[" + num + "][caption]");
-
-                            container.insertBefore(cloned, repeatable[0]);
-                        });
+                        fileReader.readAsDataURL(file[0]);
                     }
+                });
+            }
+
+
+            /**
+             * Multi-image replicator.
+             */
+            const multi = document.querySelector(".container--images.multi .wrapper");
+            if (exists(multi)) {
+                const repeatable = multi.querySelector(".repeatable");
+                const repeater = multi.parentElement.querySelector(".repeater");
+
+                repeater.addEventListener("click", () => {
+                    let num = multi.querySelectorAll(".repeatable").length;
+                    let cloned = repeatable.cloneNode(true);
+
+                    cloned.querySelector(".file-uploader").setAttribute("name", "showcase_images[" + num + "][file]");
+                    cloned.querySelector(".label").setAttribute("name", "showcase_images[" + num + "][label]");
+                    cloned.querySelector(".alt").setAttribute("name", "showcase_images[" + num + "][alt]");
+                    cloned.querySelector(".caption").setAttribute("name", "showcase_images[" + num + "][caption]");
+
+                    multi.appendChild(cloned);
                 });
             }
         }

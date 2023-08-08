@@ -8,11 +8,9 @@ use Aenginus\Client\Application\UseCases\UpdateUseCase;
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 use Aenginus\Client\Interface\Web\Requests\UpdateRequest;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
-use RuntimeException;
 
 class UpdateController extends Controller
 {
@@ -21,22 +19,22 @@ class UpdateController extends Controller
 
     protected UpdateUseCase $bridge;
 
-    protected MediaUseCase $media;
+    protected SingleImageUseCase $logo;
 
 
     /**
      * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
      * @param \Aenginus\Client\Application\UseCases\UpdateUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $logo
      */
     public function __construct(
         ClientEloquentModel $client,
         UpdateUseCase $bridge,
-        MediaUseCase $media
+        SingleImageUseCase $logo
     ) {
         $this->client = $client;
         $this->bridge = $bridge;
-        $this->media = $media;
+        $this->logo = $logo;
     }
 
 
@@ -56,17 +54,15 @@ class UpdateController extends Controller
 
         $client = $this->bridge->update($clientInstance, $clientEntity);
 
+        /**
+         * Logo image (single).
+         */
         if ($request->hasFile('logo_image')) {
-            $logoImage = $request->file('logo_image');
-
-            if ($logoImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $request->logo_image);
-
-                // Attach uploaded logo image.
-                $this->media->attach($client, $imageEntity, 'logos');
-            } else {
-                throw new RuntimeException('Logo image is invalid');
-            }
+            $this->logo->attach(
+                $client,
+                (object) $request->file('logo_image'),
+                'logo'
+            );
         }
 
         return redirect()

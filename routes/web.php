@@ -10,18 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware([ 'web' ])->group(static function () {
 
-    Route::get('/', static function () {
-        return view('public.page.home');
-    })->name('home');
-
-    Route::get('/about', static function () {
-        return view('public.page.about');
-    })->name('about');
-
-    Route::get('/now', static function () {
-        return view('public.page.now');
-    })->name('now');
-
     Route::get('/articles', Article\PublishedController::class);
     Route::get('/article/{year}/{month}/{day}/{slug}', Article\SingleController::class);
     Route::get('/article/{slug}', Article\SingleController::class);

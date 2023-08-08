@@ -42,7 +42,7 @@ class EditController extends Controller
         $clients = ClientEloquentModel::get()->pluck('name', 'id');
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
-        $signature = $project->getFirstMedia('signatures');
+        $signature = $project->getFirstMedia('signature');
 
         return ViewFacade::make(
             'ProjectAdmin::edit',

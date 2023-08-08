@@ -168,8 +168,8 @@
 
           <figure class="item--image">
             <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-              @if ($project->hasMedia('signatures'))
-                <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
+              @if ($project->hasMedia('signature'))
+                <img src="{{ $project->getFirstMediaUrl('signature', 'preview') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
               @endif

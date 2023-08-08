@@ -106,83 +106,86 @@ ClassicEditor.create(document.getElementById("body")).catch(
       </div>
     </fieldset>
 
-    <fieldset class="container--images signature">
+    <fieldset class="container--images single">
       <legend>{{ __('Signature Image') }}</legend>
-      <div class="form-field">
-        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'class' => 'file-uploader'
-        ]) }}
-      </div>
 
-      <div class="form-field">
-        {{ html()->label('Name')->for('signature_image[label]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[label]')->class('text') }}
-        @endif
-      </div>
+      <div class="wrapper">
+        <div class="form-field">
+          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
+          ]) }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[alt]')->class('text') }}
-        @endif
-      </div>
+        <div class="form-field">
+          {{ html()->label('Name')->for('signature_image[label]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[label]')->class('text') }}
+          @endif
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Caption')->for('signature_image[caption]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[caption]')->class('text') }}
-        @endif
-      </div>
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('signature_image[alt]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[alt]')->class('text') }}
+          @endif
+        </div>
 
-      <figure class="item--image">
-        @if ($project->hasMedia('signatures'))
-          <img src="{{ $project->getFirstMediaUrl('signatures') }}" alt="">
-        @else
-          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-        @endif
-      </figure>
+        <div class="form-field">
+          {{ html()->label('Caption')->for('signature_image[caption]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[caption]')->class('text') }}
+          @endif
+        </div>
+
+        <figure class="item--image">
+          @if ($project->hasMedia('signature'))
+            <img src="{{ $project->getFirstMediaUrl('signature') }}" alt="">
+          @else
+            <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          @endif
+        </figure>
+      </div>
     </fieldset>
 
-    <fieldset class="container--images showcase">
+    <fieldset class="container--images multi">
       <legend>{{ __('Showcase Images') }}</legend>
 
-      <div class="repeatable">
+      <div class="wrapper"><div class="repeatable">
         <div class="form-field">
-          {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-          {{ html()->file('showcase_images[0][file]')
+          {{ html()->label('Image')->for('showcase_images[][file]')->class('sr-only') }}
+          {{ html()->file('showcase_images[][file]')
             ->forgetAttribute('id')
-            ->class('uploader')
+            ->class('file-uploader')
             ->accept('jpg,png,svg')
           }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Name')->for('showcase_images[0][label]') }}
-          {{ html()->text('showcase_images[0][label]')
+          {{ html()->label('Name')->for('showcase_images[][label]') }}
+          {{ html()->text('showcase_images[][label]')
             ->forgetAttribute('id')
             ->class('label')
           }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
-          {{ html()->text('showcase_images[0][alt]')
+          {{ html()->label('Alt Description')->for('showcase_images[][alt]') }}
+          {{ html()->text('showcase_images[][alt]')
             ->forgetAttribute('id')
             ->class('alt')
           }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
-          {{ html()->text('showcase_images[0][caption]')
+          {{ html()->label('Caption')->for('showcase_images[][caption]') }}
+          {{ html()->text('showcase_images[][caption]')
             ->forgetAttribute('id')
             ->class('caption')
           }}
@@ -197,7 +200,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
             <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
           @endif
         </figure>
-      </div>
+      </div></div>
 
       <button type="button" class="repeater">{{ __('New Showcase Image') }}</button>
     </fieldset>

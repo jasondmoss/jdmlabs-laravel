@@ -67,34 +67,36 @@
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
+    <fieldset class="container--images single">
       <legend>{{ __('Signature Image') }}</legend>
-      <div class="form-field">
-        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature_image',
-          'class' => 'upload'
-        ]) }}
-      </div>
 
-      <div class="form-field">
-        {{ html()->label('Name')->for('signature_image[label]') }}
-        {{ html()->text('signature_image[label]')->class('text') }}
-      </div>
+      <div class="wrapper">
+        <div class="form-field">
+          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
+          ]) }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        {{ html()->text('signature_image[alt]')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Name')->for('signature_image[label]') }}
+          {{ html()->text('signature_image[label]')->class('text') }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Caption')->for('signature_image[caption]') }}
-        {{ html()->text('signature_image[caption]')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('signature_image[alt]') }}
+          {{ html()->text('signature_image[alt]')->class('text') }}
+        </div>
 
-      <figure class="item--image">
-        <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-      </figure>
+        <div class="form-field">
+          {{ html()->label('Caption')->for('signature_image[caption]') }}
+          {{ html()->text('signature_image[caption]')->class('text') }}
+        </div>
+
+        <figure class="item--image">
+          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+        </figure>
+      </div>
     </fieldset>
   </div>
 

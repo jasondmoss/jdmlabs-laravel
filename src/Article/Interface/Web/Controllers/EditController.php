@@ -41,7 +41,7 @@ class EditController extends Controller
 
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
-        $signature = $article->getFirstMedia('signatures');
+        $signature = $article->getFirstMedia('signature');
 
         return ViewFacade::make(
             'ArticleAdmin::edit',

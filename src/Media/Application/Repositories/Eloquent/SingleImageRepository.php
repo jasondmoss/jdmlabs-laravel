@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Application\Repositories\Eloquent;
 
-use Aenginus\Media\Domain\Contracts\SignatureImageContract;
+use Aenginus\Media\Domain\Contracts\SingleImageContract;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-final class SignatureImageRepository implements SignatureImageContract
+final class SingleImageRepository implements SingleImageContract
 {
 
     /**
      * @inheritDoc
      */
-    public function attach(Model $model, ImageEntity $entity, string $mediaCollection = 'signatures'): void
+    public function attach(Model $model, ImageEntity $entity, string $mediaCollection = ''): void
     {
         try {
-            // Delete any existing signature image.
+            // Delete any existing image.
             foreach ($model->media as $media) {
                 $media->delete();
             }

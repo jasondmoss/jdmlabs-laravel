@@ -113,8 +113,8 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logos')
-            /*->singleFile()*/
+        $this->addMediaCollection('logo')
+            ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
             ->useFallbackUrl(asset('/images/placeholder/logo.png'))
             ->useFallbackPath(public_path('/images/placeholder/logo.png'));

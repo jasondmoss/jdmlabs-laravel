@@ -82,50 +82,52 @@
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
+    <fieldset class="container--images single">
       <legend>{{ __('Signature Image') }}</legend>
-      <div class="form-field">
-        {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-        {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature_image',
-          'class' => 'upload'
-        ]) }}
-      </div>
 
-      <div class="form-field">
-        {{ html()->label('Name')->for('signature_image[label]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[label]')->class('text') }}
-        @endif
-      </div>
+      <div class="wrapper">
+        <div class="form-field">
+          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
+          ]) }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[alt]')->class('text') }}
-        @endif
-      </div>
+        <div class="form-field">
+          {{ html()->label('Name')->for('signature_image[label]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[label]')->class('text') }}
+          @endif
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Caption')->for('signature_image[caption]') }}
-        @if ($signature !== null)
-          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
-        @else
-          {{ html()->text('signature_image[caption]')->class('text') }}
-        @endif
-      </div>
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('signature_image[alt]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[alt]')->class('text') }}
+          @endif
+        </div>
 
-      <figure class="item--image">
-        @if ($article->hasMedia('signatures'))
-          <img id="previewer" src="{{ $article->getFirstMediaUrl('signatures') }}" alt="">
-        @else
-          <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-        @endif
-      </figure>
+        <div class="form-field">
+          {{ html()->label('Caption')->for('signature_image[caption]') }}
+          @if ($signature !== null)
+            {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
+          @else
+            {{ html()->text('signature_image[caption]')->class('text') }}
+          @endif
+        </div>
+
+        <figure class="item--image">
+          @if ($article->hasMedia('signature'))
+            <img class="image-previewer" src="{{ $article->getFirstMediaUrl('signature') }}" alt="">
+          @else
+            <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          @endif
+        </figure>
+      </div>
     </fieldset>
   </div>
 

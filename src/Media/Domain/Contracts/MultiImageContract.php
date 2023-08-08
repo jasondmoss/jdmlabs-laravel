@@ -6,20 +6,16 @@ namespace Aenginus\Media\Domain\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface ShowcaseImagesContract
+interface MultiImageContract
 {
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @param array $showcaseImages
+     * @param array $images
      * @param string $mediaCollection
      *
      * @return void
      */
-    public function attach(
-        Model $model,
-        array $showcaseImages,
-        string $mediaCollection = ''
-    ): void;
+    public function attach(Model $model, array $images, string $mediaCollection = ''): void;
 
 }

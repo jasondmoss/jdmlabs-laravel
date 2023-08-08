@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Media\Application\UseCases\AttachShowcaseImagesUseCase;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase;
+use Aenginus\Media\Application\UseCases\MultiImageUseCase;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Aenginus\Project\Application\UseCases\StoreUseCase;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
@@ -20,20 +20,20 @@ class StoreController extends Controller
 
     protected StoreUseCase $usecase;
 
-    protected AttachSignatureImageUseCase $signature;
+    protected SingleImageUseCase $signature;
 
-    protected AttachShowcaseImagesUseCase $showcase;
+    protected MultiImageUseCase $showcase;
 
 
     /**
      * @param \Aenginus\Project\Application\UseCases\StoreUseCase $usecase
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $signature
-     * @param \Aenginus\Media\Application\UseCases\AttachShowcaseImagesUseCase $showcase
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
+     * @param \Aenginus\Media\Application\UseCases\MultiImageUseCase $showcase
      */
     public function __construct(
         StoreUseCase $usecase,
-        AttachSignatureImageUseCase $signature,
-        AttachShowcaseImagesUseCase $showcase
+        SingleImageUseCase $signature,
+        MultiImageUseCase $showcase
     ) {
         $this->usecase = $usecase;
         $this->signature = $signature;
@@ -58,20 +58,11 @@ class StoreController extends Controller
          * Signature image (single).
          */
         if ($request->hasFile('signature_image')) {
-            $signatureImage = $request->file('signature_image');
-
-            if ($signatureImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $signatureImage);
-
-                // Attach uploaded signature image.
-                try {
-                    $this->signature->attach($project, $imageEntity);
-                } catch (Exception) {
-                    throw new RuntimeException('Signature image could not  be saved.');
-                }
-            } else {
-                throw new RuntimeException('Signature image is not valid.');
-            }
+            $this->signature->attach(
+                $project,
+                (object) $request->file('signature_image'),
+                'signature'
+            );
         }
 
         /**

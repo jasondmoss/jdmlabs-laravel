@@ -26,7 +26,7 @@ final class ProjectFactory extends Factory
     {
         $faker = FakerFactory::create();
 
-        $title = Str::title($faker->sentence(10, true));
+        $title = Str::title($faker->sentence(4));
         $created = Date::today()->subDays(random_int(0, 365));
 
         return [

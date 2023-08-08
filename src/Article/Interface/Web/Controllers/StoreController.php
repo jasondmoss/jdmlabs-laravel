@@ -7,28 +7,26 @@ namespace Aenginus\Article\Interface\Web\Controllers;
 use Aenginus\Article\Application\UseCases\StoreUseCase;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\CreateRequest;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
-use RuntimeException;
 
 class StoreController extends Controller
 {
 
     protected StoreUseCase $bridge;
 
-    protected MediaUseCase $media;
+    protected SingleImageUseCase $signature;
 
 
     /**
      * @param \Aenginus\Article\Application\UseCases\StoreUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
      */
-    public function __construct(StoreUseCase $bridge, MediaUseCase $media)
+    public function __construct(StoreUseCase $bridge, SingleImageUseCase $signature)
     {
         $this->bridge = $bridge;
-        $this->media = $media;
+        $this->signature = $signature;
     }
 
 
@@ -45,17 +43,15 @@ class StoreController extends Controller
 
         $article = $this->bridge->store($articleEntity);
 
+        /**
+         * Signature image (single).
+         */
         if ($request->hasFile('signature_image')) {
-            $signatureImage = $request->file('signature_image');
-
-            if ($signatureImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $request->signature_image);
-
-                // Attach uploaded signature image.
-                $this->media->attach($article, $imageEntity, 'signatures');
-            } else {
-                throw new RuntimeException('Signature image is invalid');
-            }
+            $this->signature->attach(
+                $article,
+                (object) $request->file('signature_image'),
+                'signature'
+            );
         }
 
         return redirect()

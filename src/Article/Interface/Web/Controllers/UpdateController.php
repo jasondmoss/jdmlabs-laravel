@@ -8,11 +8,9 @@ use Aenginus\Article\Application\UseCases\UpdateUseCase as ArticleUseCase;
 use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\UpdateRequest;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
-use RuntimeException;
 
 class UpdateController extends Controller
 {
@@ -21,22 +19,22 @@ class UpdateController extends Controller
 
     protected ArticleUseCase $bridge;
 
-    protected MediaUseCase $media;
+    protected SingleImageUseCase $signature;
 
 
     /**
      * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      * @param \Aenginus\Article\Application\UseCases\UpdateUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
      */
     public function __construct(
         ArticleEloquentModel $article,
         ArticleUseCase $bridge,
-        MediaUseCase $media
+        SingleImageUseCase $signature
     ) {
         $this->article = $article;
         $this->bridge = $bridge;
-        $this->media = $media;
+        $this->signature = $signature;
     }
 
 
@@ -56,17 +54,15 @@ class UpdateController extends Controller
 
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
+        /**
+         * Signature image (single).
+         */
         if ($request->hasFile('signature_image')) {
-            $signatureImage = $request->file('signature_image');
-
-            if ($signatureImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $request->signature_image);
-
-                // Attach uploaded signature image.
-                $this->media->attach($article, $imageEntity, 'signatures');
-            } else {
-                throw new RuntimeException('Signature image is invalid');
-            }
+            $this->signature->attach(
+                $article,
+                (object) $request->file('signature_image'),
+                'signature'
+            );
         }
 
         return redirect()

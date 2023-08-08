@@ -64,35 +64,36 @@
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
-      <legend>{{ __('Business Logo') }}</legend>
-      <div class="form-field">
-        {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
-        {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'logo_image',
-          'class' => 'upload',
-          'required'
-        ]) }}
-      </div>
+    <fieldset class="container--images single">
+      <legend>{{ __('Company Logo') }}</legend>
 
-      <div class="form-field">
-        {{ html()->label('Name')->for('logo_image[label]') }}
-        {{ html()->text('logo_image[label]')->class('text') }}
-      </div>
+      <div class="wrapper">
+        <div class="form-field">
+          {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
+          {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
+          ]) }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('logo_image[alt]') }}
-        {{ html()->text('logo_image[alt]')->attribute('required')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Name')->for('logo_image[label]') }}
+          {{ html()->text('logo_image[label]')->class('text') }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Caption')->for('logo_image[caption]') }}
-        {{ html()->text('logo_image[caption]')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('logo_image[alt]') }}
+          {{ html()->text('logo_image[alt]')->class('text') }}
+        </div>
 
-      <figure class="item--image">
-        <img id="previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
-      </figure>
+        <div class="form-field">
+          {{ html()->label('Caption')->for('logo_image[caption]') }}
+          {{ html()->text('logo_image[caption]')->class('text') }}
+        </div>
+
+        <figure class="item--image">
+          <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+        </figure>
+      </div>
     </fieldset>
   </div>
 

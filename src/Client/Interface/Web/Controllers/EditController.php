@@ -37,7 +37,7 @@ class EditController extends Controller
 
         $client->generatePermalink();
 
-        $logo = $client->getFirstMedia('logos');
+        $logo = $client->getFirstMedia('logo');
 
         return ViewFacade::make('ClientAdmin::edit', compact('client', 'logo'));
     }

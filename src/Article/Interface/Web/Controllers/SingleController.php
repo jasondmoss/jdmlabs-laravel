@@ -42,7 +42,7 @@ class SingleController extends Controller
     {
         $article = $this->article->find($key);
 
-        $signature = $article->getFirstMedia('signatures');
+        $signature = $article->getFirstMedia('signature');
 
         return ViewFacade::make('ArticlePublic::single', compact('article', 'signature'));
     }

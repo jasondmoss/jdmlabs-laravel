@@ -90,6 +90,7 @@ return [
         App\AuthServiceProvider::class,
         App\BroadcastServiceProvider::class,
         App\EventServiceProvider::class,
+        App\FolioServiceProvider::class,
         App\RouteServiceProvider::class,
 
         Article\ArticleAuthServiceProvider::class,

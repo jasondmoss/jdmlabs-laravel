@@ -120,7 +120,8 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('signatures')
+        $this->addMediaCollection('signature')
+            ->singleFile()
             ->acceptsMimeTypes([ 'image/jpg', 'image/png', 'image/svg' ])
             ->useFallbackUrl(asset('/images/placeholder/signature.png'))
             ->useFallbackPath(public_path('/images/placeholder/signature.png'));

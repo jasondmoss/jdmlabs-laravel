@@ -83,16 +83,22 @@ fieldset.container--meta .form-field {
 
 
 @media screen and (min-width: 60rem) {
-  fieldset.container--images.signature,
-  fieldset.container--images.showcase .repeatable {
+  fieldset.container--images.single .wrapper,
+  fieldset.container--images.multi .wrapper .repeatable {
     display: grid;
     grid-template-columns: 1fr 20rem;
     align-content: start;
     gap: 1rem;
   }
 
-  fieldset.container--images.showcase .repeatable + .repeatable {
-    padding-top: 1rem;
+  fieldset.container--images.multi .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem 0;
+  }
+
+  fieldset.container--images.multi .wrapper .repeatable:not(:first-of-type) {
+    padding-top: 2rem;
     border-top: 0.25rem solid hsl(var(--gray-light-h), var(--gray-light-s), calc(var(--gray-light-l) + 25%));
   }
 

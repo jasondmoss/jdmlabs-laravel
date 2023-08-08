@@ -34,7 +34,7 @@ class SingleController extends Controller
     {
         $project = $this->project->find($key);
 
-        $signature = $project->getFirstMedia('signatures');
+        $signature = $project->getFirstMedia('signature');
         $showcase = $project->getMedia('showcase');
 
         return ViewFacade::make(

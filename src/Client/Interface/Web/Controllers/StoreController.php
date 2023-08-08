@@ -7,28 +7,26 @@ namespace Aenginus\Client\Interface\Web\Controllers;
 use Aenginus\Client\Application\UseCases\StoreUseCase;
 use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 use Aenginus\Client\Interface\Web\Requests\CreateRequest;
-use Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase as MediaUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
+use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
-use RuntimeException;
 
 class StoreController extends Controller
 {
 
     protected StoreUseCase $bridge;
 
-    protected MediaUseCase $media;
+    protected SingleImageUseCase $logo;
 
 
     /**
      * @param \Aenginus\Client\Application\UseCases\StoreUseCase $bridge
-     * @param \Aenginus\Media\Application\UseCases\AttachSignatureImageUseCase $media
+     * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $logo
      */
-    public function __construct(StoreUseCase $bridge, MediaUseCase $media)
+    public function __construct(StoreUseCase $bridge, SingleImageUseCase $logo)
     {
         $this->bridge = $bridge;
-        $this->media = $media;
+        $this->logo = $logo;
     }
 
 
@@ -45,17 +43,15 @@ class StoreController extends Controller
 
         $client = $this->bridge->store($clientEntity);
 
+        /**
+         * Logo image (single).
+         */
         if ($request->hasFile('logo_image')) {
-            $logoImage = $request->file('logo_image');
-
-            if ($logoImage['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $request->logo_image);
-
-                // Attach uploaded logo image.
-                $this->media->attach($client, $imageEntity, 'logos');
-            } else {
-                throw new RuntimeException('Logo image is invalid');
-            }
+            $this->logo->attach(
+                $client,
+                (object) $request->file('logo_image'),
+                'logo'
+            );
         }
 
         return redirect()

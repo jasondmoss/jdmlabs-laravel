@@ -4,31 +4,23 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Application\Repositories\Eloquent;
 
-use Aenginus\Media\Domain\Contracts\ShowcaseImagesContract;
+use Aenginus\Media\Domain\Contracts\MultiImageContract;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
-final class ShowcaseImagesRepository implements ShowcaseImagesContract
+final class MultiImageRepository implements MultiImageContract
 {
 
     /**
      * @inheritDoc
      */
-    public function attach(
-        Model $model,
-        array $showcaseImages,
-        string $mediaCollection = 'showcase'
-    ): void
+    public function attach(Model $model, array $images, string $mediaCollection = ''): void
     {
         try {
-            // Delete any existing signature image.
-            foreach ($model->media as $media) {
-//                $media->delete();
-                $media->clearMediaCollection($mediaCollection);
-            }
+            $model->clearMediaCollection($mediaCollection);
 
-            foreach ($showcaseImages as $image) {
+            foreach ($images as $image) {
                 $model->addMedia($image->file)
                     ->withCustomProperties([
                         'label' => $image->label,

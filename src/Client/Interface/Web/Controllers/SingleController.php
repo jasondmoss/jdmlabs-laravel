@@ -31,7 +31,7 @@ class SingleController extends Controller
     {
         $client = $this->client->find($key);
 
-        $logo = $client->getFirstMedia('logos');
+        $logo = $client->getFirstMedia('logo');
 
         return ViewFacade::make('ClientPublic::single', compact('client', 'logo'));
     }

@@ -1,5 +1,7 @@
 @php
-  use Aenginus\Shared\Enums\Promoted;use Aenginus\Shared\Enums\Status;
+  use Aenginus\Project\Interface\Web\Controllers as Project;
+  use Aenginus\Shared\Enums\Promoted;
+  use Aenginus\Shared\Enums\Status;
 @endphp
 
 @push('scripts')
@@ -102,35 +104,52 @@
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
-      <legend>{{ __('Business Logo') }}</legend>
-      <div class="form-field">
-        {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
-        {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'logo_image',
-          'class' => 'upload',
-          'required'
-        ]) }}
-      </div>
+    <fieldset class="container--images single">
+      <legend>{{ __('Company Logo') }}</legend>
 
-      <div class="form-field">
-        {{ html()->label('Name')->for('logo_image[label]') }}
-        {{ html()->text('logo_image[label]')->class('text') }}
-      </div>
+      <div class="wrapper">
+        <div class="form-field">
+          {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
+          {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
+          ]) }}
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('logo_image[alt]') }}
-        {{ html()->text('logo_image[alt]')->attribute('required')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Name')->for('logo_image[label]') }}
+          @if ($logo !== null)
+            {{ html()->text('logo_image[label]', old('logo_image[label]', $logo->custom_properties['label']))->class('text') }}
+          @else
+            {{ html()->text('logo_image[label]')->class('text') }}
+          @endif
+        </div>
 
-      <div class="form-field">
-        {{ html()->label('Caption')->for('logo_image[caption]') }}
-        {{ html()->text('logo_image[caption]')->class('text') }}
-      </div>
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('logo_image[alt]') }}
+          @if ($logo !== null)
+            {{ html()->text('logo_image[alt]', old('logo_image[alt]', $logo->custom_properties['alt']))->class('text') }}
+          @else
+            {{ html()->text('logo_image[alt]')->class('text') }}
+          @endif
+        </div>
 
-      <figure class="item--image">
-        <img id="previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
-      </figure>
+        <div class="form-field">
+          {{ html()->label('Caption')->for('logo_image[caption]') }}
+          @if ($logo !== null)
+            {{ html()->text('logo_image[caption]', old('logo_image[caption]', $logo->custom_properties['caption']))->class('text') }}
+          @else
+            {{ html()->text('logo_image[caption]')->class('text') }}
+          @endif
+        </div>
+
+        <figure class="item--image">
+          @if ($client->hasMedia('logo'))
+            <img class="image-previewer" src="{{ $client->getFirstMediaUrl('logo') }}" alt="">
+          @else
+            <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+          @endif
+        </figure>
+      </div>
     </fieldset>
 
     {{--
@@ -146,9 +165,9 @@
             <dl id="Project_{{ $project->id }}" class="item">
               <dt>
                 <figure class="item--image">
-                  <a href="{{ action(\Aenginus\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-                    {{--@if ($project->hasMedia('signatures'))
-                      <img src="{{ $project->getFirstMediaUrl('signatures', 'preview') }}" alt="">
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
+                    {{--@if ($project->hasMedia('signature'))
+                      <img src="{{ $project->getFirstMediaUrl('signature', 'preview') }}" alt="">
                     @else
                       <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
                     @endif--}}
@@ -158,7 +177,7 @@
               </dt>
               <dd>
                 <h3>
-                  <a href="{{ action(\Aenginus\Project\Interface\Web\Controllers\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+                  <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
                 </h3>
                 <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
               </dd>

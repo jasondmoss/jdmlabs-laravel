@@ -143,8 +143,8 @@
 
           <figure class="item--image">
             <a href="{{ action(\Aenginus\Client\Interface\Web\Controllers\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
-              @if ($client->hasMedia('logos'))
-                <img src="{{ $client->getFirstMediaUrl('logos', 'preview') }}" alt="">
+              @if ($client->hasMedia('logo'))
+                <img src="{{ $client->getFirstMediaUrl('logo', 'preview') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/logo.png') }}" alt="">
               @endif

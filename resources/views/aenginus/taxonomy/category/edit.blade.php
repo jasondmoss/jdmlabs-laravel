@@ -71,8 +71,8 @@
               <dt>
                 <figure class="item--image">
                   <a href="{{ action(\Aenginus\Article\Interface\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-                    @if ($article->hasMedia('signatures'))
-                      <img src="{{ $article->getFirstMediaUrl('signatures', 'preview') }}" alt="">
+                    @if ($article->hasMedia('signature'))
+                      <img src="{{ $article->getFirstMediaUrl('signature', 'preview') }}" alt="">
                     @else
                       <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
                     @endif

@@ -30,9 +30,6 @@ ClassicEditor.create(document.getElementById("body")).catch(
     ->id('projectForm')
     ->class('content-editor')
     ->acceptsFiles()
-    ->attributes([
-        'wire:submit.prevent' => 'uploadMultipleFiles'
-    ])
     ->open()
   }}
 
@@ -99,81 +96,82 @@ ClassicEditor.create(document.getElementById("body")).catch(
       </div>
     </fieldset>
 
-    <fieldset class="container--signature-image">
+    <fieldset class="container--images single">
       <legend>{{ __('Signature Image') }}</legend>
 
-      <div class="form-field">
-        {{ html()->label('Image')->for('signature_image[][file]')->class('sr-only') }}
-        {{ html()->file('signature_image[][file]')->accept('jpg,png,svg')->attributes([
-          'id' => 'signature',
-          'class' => 'upload'
-        ]) }}
-      </div>
-
-      <div class="form-field">
-        {{ html()->label('Name')->for('signature_image[][label]') }}
-        {{ html()->text('signature_image[][label]')->class('text') }}
-      </div>
-
-      <div class="form-field">
-        {{ html()->label('Alt Description')->for('signature_image[][alt]') }}
-        {{ html()->text('signature_image[][alt]')->class('text') }}
-      </div>
-
-      <div class="form-field">
-        {{ html()->label('Caption')->for('signature_image[][caption]') }}
-        {{ html()->text('signature_image[][caption]')->class('text') }}
-      </div>
-
-      <figure class="item--image">
-        <img id="previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-      </figure>
-    </fieldset>
-
-    <fieldset class="container--showcase-images">
-      <legend>{{ __('Showcase Images') }}</legend>
-
-      <div class="image-unit">
+      <div class="wrapper">
         <div class="form-field">
-          {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-          {{ html()->file('showcase_images[0][file]')->accept('jpg,png,svg')->attributes([
-            'id' => 'showcase',
-            'class' => 'upload'
+          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
+          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
+            'class' => 'file-uploader'
           ]) }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Name')->for('showcase_images[0][label]') }}
-          {{ html()->text('showcase_images[0][label]')->class('text') }}
+          {{ html()->label('Name')->for('signature_image[label]') }}
+          {{ html()->text('signature_image[label]')->class('text') }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
-          {{ html()->text('showcase_images[0][alt]')->class('text') }}
+          {{ html()->label('Alt Description')->for('signature_image[alt]') }}
+          {{ html()->text('signature_image[alt]')->class('text') }}
         </div>
 
         <div class="form-field">
-          {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
-          {{ html()->text('showcase_images[0][caption]')->class('text') }}
+          {{ html()->label('Caption')->for('signature_image[caption]') }}
+          {{ html()->text('signature_image[caption]')->class('text') }}
         </div>
 
         <figure class="item--image">
-          <img id="previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
         </figure>
       </div>
     </fieldset>
 
-    {{-- <fieldset class="container--showcase-images">
+    <fieldset class="container--images multi">
       <legend>{{ __('Showcase Images') }}</legend>
 
-      <div class="form-field">
-        {{ html()->label('Images')->for('showcase_images[][file]')->class('sr-only') }}
-        {{ html()->file('showcase_images[][file]')->multiple()->accept('jpg,png,svg')->attributes([
-          'id' => 'showcase',
-          'class' => 'upload'
-        ]) }}
-      </div>
-    </fieldset> --}}
+      <div class="wrapper"><div class="repeatable">
+        <div class="form-field">
+          {{ html()->label('Image')->for('showcase_images[][file]')->class('sr-only') }}
+          {{ html()->file('showcase_images[][file]')
+            ->forgetAttribute('id')
+            ->class('file-uploader')
+            ->accept('jpg,png,svg')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Name')->for('showcase_images[][label]') }}
+          {{ html()->text('showcase_images[][label]')
+            ->forgetAttribute('id')
+            ->class('label')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Alt Description')->for('showcase_images[][alt]') }}
+          {{ html()->text('showcase_images[][alt]')
+            ->forgetAttribute('id')
+            ->class('alt')
+          }}
+        </div>
+
+        <div class="form-field">
+          {{ html()->label('Caption')->for('showcase_images[][caption]') }}
+          {{ html()->text('showcase_images[][caption]')
+            ->forgetAttribute('id')
+            ->class('caption')
+          }}
+        </div>
+
+        <figure class="item--image">
+          <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+        </figure>
+      </div></div>
+
+      <button type="button" class="repeater">{{ __('New Showcase Image') }}</button>
+    </fieldset>
   </div>
 
   <aside class="editor--side">
