@@ -19,11 +19,17 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      * @param array $input
      */
-    final public function update(UserEloquentModel $user, array $input): void
+    final public function update (UserEloquentModel $user, array $input): void
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'name' => [ 'required', 'string', 'max:255' ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id)
+            ],
         ])->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email && $user instanceof MustVerifyEmail) {
@@ -43,7 +49,7 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      * @param array $input
      */
-    private function updateVerifiedUser(UserEloquentModel $user, array $input): void
+    private function updateVerifiedUser (UserEloquentModel $user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

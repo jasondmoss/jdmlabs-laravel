@@ -15,18 +15,7 @@ final class CategoryAdminListing extends Component
 
     use AuthorizesRequests, WithPagination;
 
-    protected string $paginationTheme = 'tailwind';
-
-    public string $search = '';
-
-
-    /**
-     * @return string
-     */
-    public function paginationView(): string
-    {
-        return 'shared.pager';
-    }
+    public string $query = '';
 
 
     /**
@@ -43,7 +32,7 @@ final class CategoryAdminListing extends Component
      */
     public function render(): View
     {
-        $categories = CategoryEloquentModel::where('name', 'LIKE', '%' . $this->search . '%')
+        $categories = CategoryEloquentModel::where('name', 'LIKE', '%' . $this->query . '%')
             ->withCount('articles')
             ->paginate(50);
 

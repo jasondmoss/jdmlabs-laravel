@@ -1,85 +1,32 @@
 @php
+  use Aenginus\Taxonomy\Interface\Web\Controllers as Category;
 @endphp
 
-@push('styles')
-  @once
-    <style>
-      /*.listing-wrapper {
-        max-width: 50rem;
-      }*/
-
-      .listing-wrapper .listing {
-        /*flex-flow: row wrap;*/
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-        gap: 0 1rem;
-      }
-
-      .item {
-        /*grid-template-columns: 1fr;*/
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem 0;
-        width: auto;
-      }
-
-      .item--actions menu {
-        justify-content: flex-start;
-      }
-
-      @media screen and (min-width: 40rem) {
-        .item {
-          grid-template-columns: 1fr 12rem;
-          gap: 0.5rem 1rem;
-        }
-
-        .item--header,
-        .item--id,
-        .item--actions {
-          grid-column: 1;
-        }
-
-        .item--count {
-          grid-column: 2;
-          grid-row: 1;
-          list-style: none;
-          font-size: 0.9rem;
-        }
-
-        .item--date {
-          grid-column: 2;
-          grid-row: 2/span 2;
-        }
-      }
-    </style>
-  @endonce
-@endpush
-
 <!-- list.blade -->
-<div class="listing-wrapper">
+<div class="listing-wrapper flex flex-col gap-y-10">
 
-  <header id="listingHeader" class="listing-header">
-    <h1>{{ __('Categories') }}</h1>
+  <header id="listingHeader" class="listing-header flex align-middle justify-between sticky mt-0">
+    <h1 class="text-4xl">{{ __('Categories') }}</h1>
 
-    <nav class="listing-tools">
-      <a class="button create-new" href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\CreateController::class) }}">Create New Category</a>
+    <nav class="listing-tools flex items-center gap-x-10">
+      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{ action(Category\CreateController::class) }}">Create New Category</a>
 
-      <div class="list-search">
+      <form wire:submit="search" wire:model="query" class="list-search">
         <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-          <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
-      </div>
+          <input wire:model.live="search" class="form-input--text" placeholder="Search"> </label>
+      </form>
     </nav>
   </header>
 
   @if ($categories->count())
-    <ul class="listing taxonomy category">
+    <div class="listing taxonomy category flex flex-wrap">
       @foreach ($categories as $cat)
-        <li id="item-{{ $cat->id }}" class="item">
-          <div class="item--header">
-            <h3 class="title">
-              <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
+        <article id="item-{{ $cat->id }}" class="flex flex-col gap-y-3 odd:bg-white even:bg-slate-100 hover:bg-amber-50 p-10 w-full lg:w-1/2 xl:w-1/3">
+          <header class="item--header">
+            <h3 class="title text-2xl">
+              <a class="text-blue-500" href="{{ action(Category\EditController::class, $cat->id) }}" title="{{ __('Edit') }}">{{ $cat->name }}</a>
             </h3>
-          </div>
+          </header>
 
           <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $cat->id }}</p>
 
@@ -87,30 +34,25 @@
             <li class="article"><strong class="label">{{ __('Articles') }}:</strong> {{ $cat->articles_count }}</li>
           </ul>
 
-          <div class="navigation item--actions">
-            <menu>
+          <footer class="item--actions">
+            <menu class="flex gap-4">
               <li>
-                <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">
-                  <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
-                </a>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <a class="text-blue-500" href="{{ action(Category\EditController::class, $cat->id) }}" title="{{ __('Edit article') }}">{{ __('Edit') }}</a>
               </li>
               <li>
-                <a href="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">
-                  <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
-                </a>
-                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(\Aenginus\Taxonomy\Interface\Web\Controllers\DestroyController::class, $cat->id) }}">
-                  @csrf
-                  {{ method_field('DELETE') }}
-                </form>
+                <i class="fa-solid fa-trash"></i>
+                <a class="text-blue-500" href="{{ action(Category\DestroyController::class, $cat->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete article') }}">{{ __('Delete') }}</a>
+                <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Category\DestroyController::class, $cat->id) }}">@csrf {{ method_field('DELETE') }}</form>
               </li>
             </menu>
-          </div>
-        </li>
+          </footer>
+        </article>
+
       @endforeach
-    </ul>
+    </div>
 
     {{-- Pagination. --}}
     {{ $categories->links() }}
-
   @endif
 </div>

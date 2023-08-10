@@ -17,7 +17,7 @@
     "laravel/fortify": "^1.16",
     "laravel/framework": "^10.0",
     "laravel/tinker": "^2.8",
-    "livewire/livewire": "^2.12",
+    "livewire/livewire": "^3.0@beta",
     "ramsey/uuid": "^4.7",
     "spatie/laravel-html": "^3.2",
     "spatie/laravel-medialibrary": "^10.11",

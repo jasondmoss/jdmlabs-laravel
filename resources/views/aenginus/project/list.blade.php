@@ -8,165 +8,28 @@
   use Illuminate\Support\Facades\Date;
 @endphp
 
-@push('styles')
-  @once
-<style>
-.item {
-  grid-template-columns: 1fr;
-}
-
-.item--image {
-  grid-row: 4;
-}
-
-.item--header {
-  grid-row: 1;
-}
-
-.item--header .subtitle {
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-}
-
-.item--id {
-  grid-row: 2;
-}
-
-.item--meta {
-  grid-row: 3;
-}
-
-@media screen {
-  /*@media (max-width: 39.9375rem) {
-    .item {
-      gap: 0.5rem 1rem;
-    }
-  }*/
-  @media (min-width: 40rem) {
-    .item {
-      grid-template-columns: 10rem 1fr;
-    }
-
-    .item--image {
-      grid-column: 1;
-      grid-row: 1/span 3;
-    }
-
-    .item--header,
-    .item--id,
-    .item--taxonomy,
-    .item--actions,
-    .item--date {
-      grid-column: 2;
-    }
-
-    .item--header {
-      grid-row: 1/span 2;
-    }
-
-    .item--id {
-      grid-row: 3;
-    }
-
-    .item--taxonomy {
-      grid-row: 4;
-    }
-
-    .item--meta {
-      grid-column: 1;
-      grid-row: 4;
-    }
-
-    .item--actions menu {
-      justify-content: flex-start;
-    }
-  }
-
-  @media (min-width: 40rem) and (max-width: 59.9375rem) {
-    .item--meta {
-      margin-top: 2rem;
-    }
-  }
-
-  @media (min-width: 60rem) {
-    .item {
-      grid-template-columns: 10rem 1fr 14rem;
-    }
-
-    .item--header {
-      grid-row: 1/span 3;
-    }
-
-    .item--id {
-      grid-row: 3;
-      align-self: center;
-      margin-top: 0.5rem;
-    }
-
-    .item--taxonomy {
-      /*grid-row: 3;*/
-      align-self: end;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .item--meta {
-      grid-column: 3;
-      grid-row: 1;
-      justify-content: flex-start;
-    }
-
-    .item--meta svg {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-
-    .item--date {
-      grid-column: 3;
-      grid-row: 2/span 2;
-    }
-
-    .item--actions {
-      align-self: end;
-    }
-
-    .item--actions menu {
-      padding-right: 3rem;
-    }
-  }
-
-  @media (min-width: 75rem) {
-    .item {
-      gap: 0.5rem 2rem;
-    }
-  }
-}
-</style>
-  @endonce
-@endpush
-
 <!-- list.blade -->
-<div class="listing-wrapper">
+<div class="listing-wrapper flex flex-col gap-y-10">
 
-  <header id="listingHeader" class="listing-header">
-    <h1>{{ __('Projects') }}</h1>
+  <header id="listingHeader" class="listing-header flex align-middle justify-between sticky mt-2">
+    <h1 class="text-4xl">{{ __('Projects') }}</h1>
 
-    <nav class="listing-tools">
-      <a class="button create-new" href="{{ action(Project\CreateController::class) }}">Create New Project</a>
+    <nav class="listing-tools flex items-center gap-x-10">
+      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{ action(Project\CreateController::class) }}">Create New Project</a>
 
-      <div class="list-search">
+      <form wire:submit="search" wire:model="query" class="list-search">
         <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-          <input wire:model="search" class="form-input--text" placeholder="Search"> </label>
-      </div>
+          <input wire:model.live="search" class="form-input--text" placeholder="Search"> </label>
+      </form>
     </nav>
   </header>
 
   @if ($projects->count())
-    <div class="listing project">
+    <div class="listing project flex flex-col">
       @foreach ($projects as $project)
-        <project id="item-{{ $project->id }}" class="item">
+        <article id="item-{{ $project->id }}" class="item grid md:grid-cols-8 gap-x-5 gap-y-3 odd:bg-white even:bg-slate-100 hover:bg-amber-50 px-2 py-10">
 
-          <figure class="item--image">
+          <figure class="item--image md:row-start-1 md:col-start-1 md:col-span-2 md:row-span-4">
             <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
               @if ($project->hasMedia('signature'))
                 <img src="{{ $project->getFirstMediaUrl('signature', 'preview') }}" alt="">
@@ -176,29 +39,29 @@
             </a>
           </figure>
 
-          <header class="item--header">
-            <h3 class="title">
-              <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
+          <header class="item--header md:row-start-1 md:row-span-2 md:col-start-3 md:col-span-5">
+            <h3 class="title text-2xl">
+              <a class="text-blue-500 hover:text-blue-700 hover:underline" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">{{ $project->title }}</a>
             </h3>
             <p class="subtitle">
-              <a href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit ClientEloquentModel') }}">{{ $project->clients->name }}</a>
+              <a class="hover:text-red-700 hover:underline" href="{{ action(Client\EditController::class, $project->clients->id) }}" title="{{ __('Edit Client') }}">{{ $project->clients->name }}</a>
             </p>
           </header>
 
-          <p class="item--id"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
+          <p class="item--id md:row-start-3 md:col-start-3 md:col-span-4"><strong class="label">{{ __('ID') }}:</strong> {{ $project->id }}</p>
 
-          <nav class="navigation item--taxonomy">
-            @if (! is_null($project->category))
-              <i class="fa-solid fa-tag"></i>
-              <a itemprop="tag" class="label-category" href="{{ action(Taxonomy\EditController::class, $project->category->id) }}" title="{{ __('Edit category') }}">{{ $project->category->name }}</a>
+          <nav class="navigation item--taxonomy md:row-start-4 md:col-start-5 md:col-span-3 self-end py-1 flex align-bottom gap-2">
+            @if ($project->category !== null)
+              <i class="fa-solid fa-tag text-lg self-center mt-1"></i>
+              <a itemprop="tag" class="label-category bg-amber-500 hover:bg-amber-600 text-white font-bold py-1 px-3 rounded drop-shadow-md" href="{{ action(Taxonomy\EditController::class, $project->category->id) }}" title="{{ __('Edit category') }}">{{ $project->category->name }}</a>
             @else
               <p class="w-full">
-                <i class="fa-solid fa-tag" style="color: var(--gray-light)"></i> &#160;
+                <i class="fa-solid fa-tag text-lg self-center mt-1" style="color: var(--gray-light)"></i> &#160;
               </p>
             @endif
           </nav>
 
-          <aside class="item--meta">
+          <aside class="item--meta md:row-start-1 md:col-start-7 md:col-span-2 justify-end flex gap-4">
             <span class="status" wire:click="toggleStatePublished('{{ $project->id }}')" title="@if ($project->status->value === 'published') {{ __('Unpublish this project') }} @else {{ __('Publish this project') }} @endif">
               {!! Status::icon($project->status) !!}
             </span>
@@ -210,47 +73,47 @@
             </span>
           </aside>
 
-          <aside class="item--date">
-            <time class="created" datetime="{{ Date::parse($project->created_at)->format('c') }}" title="{{ Date::parse($project->created_at)->format('c') }}">
+          <aside class="item--date md:row-start-2 md:row-span-3 md:col-start-7 md:col-span-2 flex flex-col gap-y-3 self-end py-2">
+            <time class="created flex justify-end gap-x-4" datetime="{{ Date::parse($project->created_at)->format('c') }}" title="{{ Date::parse($project->created_at)->format('c') }}">
               <strong class="label">{{ __('Created') }}:</strong>
               {{ Date::parse($project->created_at)->format('Y/m/d') }}
             </time>
-            <time class="updated" datetime="{{ Date::parse($project->updated_at)->format('c') }}" title="{{ Date::parse($project->updated_at)->format('c') }}">
+            <time class="updated flex justify-end gap-x-4" datetime="{{ Date::parse($project->updated_at)->format('c') }}" title="{{ Date::parse($project->updated_at)->format('c') }}">
               <strong class="label">{{ __('Updated') }}:</strong>
               {{ Date::parse($project->updated_at)->format('Y/m/d') }}
             </time>
-            @if (! is_null($project->published_at))
-              <time class="published" datetime="{{ Date::parse($project->published_at)->format('c') }}" title="{{ Date::parse($project->published_at)->format('c') }}">
+            @if ($project->published_at !== null)
+              <time class="published flex justify-end gap-x-4" datetime="{{ Date::parse($project->published_at)->format('c') }}" title="{{ Date::parse($project->published_at)->format('c') }}">
                 <strong class="label">{{ __('Published') }}:</strong>
                 {{ Date::parse($project->published_at)->format('Y/m/d') }}
               </time>
             @else
-              <span class="published">{{ __('Not Published') }}</span>
+              <span class="published flex justify-end gap-x-4">{{ __('Not Published') }}</span>
             @endif
           </aside>
 
-          <footer class="navigation item--actions">
-            <menu>
+          <footer class="navigation item--actions md:row-start-4 md:col-start-3 md:col-span-2 self-end py-2">
+            <menu class="flex gap-4">
               <li>
-                <a href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit project') }}">
+                <a class="text-blue-500 hover:text-blue-700 hover:underline" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit project') }}">
                   <i class="fa-solid fa-pen-to-square"></i> {{ __('Edit') }}
                 </a>
               </li>
               <li>
-                <a rel="external" href="{{ action(Project\SingleController::class, $project->slug) }}" title="{{ __('View project') }}">
+                <a rel="external" class="text-blue-500 hover:text-blue-700 hover:underline" href="{{ action(Project\SingleController::class, $project->slug) }}" title="{{ __('View project') }}">
                   <i class="fa-solid fa-eye" style="color: #2ec27e;"></i> {{ __('View') }}
                 </a>
               </li>
               <li>
-                <a href="{{ action(Project\DestroyController::class, $project->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete project') }}">
+                <a class="text-blue-500 hover:text-blue-700 hover:underline" href="{{ action(Project\DestroyController::class, $project->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete project') }}">
                   <i class="fa-solid fa-trash"></i> {{ __('Delete') }}
                 </a>
                 <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Project\DestroyController::class, $project->id) }}">@csrf {{ method_field('DELETE') }}</form>
               </li>
             </menu>
           </footer>
+        </article>
 
-        </project>
       @endforeach
     </div>
     {{-- Pagination. --}}

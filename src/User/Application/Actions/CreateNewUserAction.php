@@ -22,10 +22,10 @@ class CreateNewUserAction implements CreatesNewUsers
      *
      * @return \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel
      */
-    final public function create(array $input): UserEloquentModel
+    final public function create (array $input): UserEloquentModel
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [ 'required', 'string', 'max:255' ],
             'email' => [
                 'required',
                 'string',

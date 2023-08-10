@@ -1,4 +1,5 @@
 @php
+  use Aenginus\Client\Interface\Web\Controllers as Client;
 @endphp
 
 <x-public.layout title="Clients" page="index" schema="WebPage" type="page listing" livewire="true">
@@ -27,9 +28,17 @@
           <div class="entry-summary">
             {!! $client->summary !!}
           </div>
+          @if ($client->projects->count() > 0)
+            @foreach($client->projects as $project) 
+              {{ dump($project) }}
+            @endforeach
+            <aside class="">
+
+            </aside>
+          @endif
           <footer>
             @if (@auth()->check())
-              <a rel="nofollow" class="button" href="{{ action(\Aenginus\Client\Interface\Web\Controllers\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
+              <a rel="nofollow" class="button" href="{{ action(Client\EditController::class, $client->id) }}">{{ __('Edit') }}</a>
             @endif
           </footer>
         </article>

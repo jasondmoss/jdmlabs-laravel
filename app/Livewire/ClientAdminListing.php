@@ -18,31 +18,7 @@ final class ClientAdminListing extends Component
 
     use AuthorizesRequests, WithPagination;
 
-    public ClientEloquentModel $client;
-
-    public string $search = '';
-
-    protected string $paginationTheme = 'tailwind';
-
-
-    /**
-     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
-     *
-     * @return void
-     */
-    public function mount(ClientEloquentModel $client): void
-    {
-        $this->client = $client;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function paginationView(): string
-    {
-        return 'shared.pager';
-    }
+    public string $query = '';
 
 
     /**
@@ -62,7 +38,9 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $client = $this->client->find($id);
+        $clientModel = new ClientEloquentModel;
+
+        $client = $clientModel->find($id);
 
         $state = ($client->promoted->value === 'not_promoted')
             ? Promoted::YES->value
@@ -82,7 +60,9 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $client = $this->client->find($id);
+        $clientModel = new ClientEloquentModel;
+
+        $client = $clientModel->find($id);
 
         if ($client->status->value === 'draft') {
             $client->update([
@@ -104,7 +84,7 @@ final class ClientAdminListing extends Component
     public function render(): View
     {
         $clients = ClientEloquentModel::where('user_id', auth()->user()->id)
-            ->where('name', 'LIKE', '%' . $this->search . '%')
+            ->where('name', 'LIKE', '%' . $this->query . '%')
             ->latest('created_at')
             ->withCount('projects')
             ->paginate(20);

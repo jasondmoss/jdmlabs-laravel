@@ -48,7 +48,7 @@ final class FortifyServiceProvider extends ServiceProvider
 
         Fortify::resetUserPasswordsUsing(ResetUserPasswordAction::class);
 
-        Fortify::authenticateThrough(function () {
+        Fortify::authenticateThrough(static function () {
             return array_filter([
                 config('fortify.limiters.login')
                     ? null : EnsureLoginIsNotThrottled::class,
@@ -59,7 +59,7 @@ final class FortifyServiceProvider extends ServiceProvider
             ]);
         });
 
-        $this->app->bind(DisableTwoFactorAuthentication::class, function () {
+        $this->app->bind(DisableTwoFactorAuthentication::class, static function () {
             return new DisableTwoFactorAuthentication();
         });
 
@@ -69,7 +69,7 @@ final class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($email . $request->ip());
         });
 
-        RateLimiter::for('two-factor', function (Request $request) {
+        RateLimiter::for('two-factor', static function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 

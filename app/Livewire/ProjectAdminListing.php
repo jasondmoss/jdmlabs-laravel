@@ -9,6 +9,7 @@ use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,33 +17,9 @@ use Livewire\WithPagination;
 final class ProjectAdminListing extends Component
 {
 
-    use WithPagination;
+    use AuthorizesRequests, WithPagination;
 
-    public ProjectEloquentModel $project;
-
-    public string $search = '';
-
-    protected string $paginationTheme = 'tailwind';
-
-
-    /**
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
-     *
-     * @return void
-     */
-    public function mount(ProjectEloquentModel $project): void
-    {
-        $this->project = $project;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function paginationView(): string
-    {
-        return 'shared.pager';
-    }
+    public string $query = '';
 
 
     /**
@@ -62,7 +39,9 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePinned(string $id): void
     {
-        $project = $this->project->find($id);
+        $projectModel = new ProjectEloquentModel;
+
+        $project = $projectModel->find($id);
 
         $state = ($project->pinned->value === 'not_pinned')
             ? Pinned::IsPinned->value
@@ -82,7 +61,9 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $project = $this->project->find($id);
+        $projectModel = new ProjectEloquentModel;
+
+        $project = $projectModel->find($id);
 
         $state = ($project->promoted->value === 'not_promoted')
             ? Promoted::YES->value
@@ -102,7 +83,9 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $project = $this->project->find($id);
+        $projectModel = new ProjectEloquentModel;
+
+        $project = $projectModel->find($id);
 
         if ($project->status->value === 'draft') {
             $project->update([
@@ -123,7 +106,7 @@ final class ProjectAdminListing extends Component
      */
     public function render(): View
     {
-        $projects = ProjectEloquentModel::where('title', 'LIKE', '%' . $this->search . '%')
+        $projects = ProjectEloquentModel::where('title', 'LIKE', '%' . $this->query . '%')
             ->latest('created_at')
             ->with('clients')
             ->paginate(20);

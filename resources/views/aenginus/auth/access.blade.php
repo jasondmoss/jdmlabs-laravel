@@ -29,6 +29,11 @@
       @enderror
     </div>
 
+    <div class="form-field remember">
+      {{ html()->label('Remember me')->for('remember') }}
+      {{ html()->checkbox('remember')->class('remember-me') }}
+    </div>
+
     <div class="form-field actions">
       {{ html()->button('Login')->class('button button--submit') }}
     </div>

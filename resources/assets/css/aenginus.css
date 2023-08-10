@@ -1,18 +1,9 @@
 @charset "utf-8";
 
-/* @import "choices.js/public/assets/styles/choices.css"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "global/variables.css";
-@import "global/base.css";
-@import "component/messages.css";
-
-@import  "aenginus/layout.css";
-@import  "navigation/navigation.css";
-@import  "aenginus/navigation.css";
-@import  "navigation/nav--account.css";
-@import  "element/form.css";
-@import  "element/button.css";
-@import  "aenginus/listings.css";
-@import  "aenginus/editor.css";
-
-/* <> */
+.label-category {
+  text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.8);
+}

@@ -25,10 +25,10 @@ enum Pinned: string
     public static function icon(self $status): string
     {
         if ($status->value === 'pinned') {
-            return '<i class="fa-solid fa-thumbtack"></i>';
+            return '<i class="fa-solid fa-thumbtack h-7 w-7"></i>';
         }
 
-        return '<i class="fa-solid fa-not-equal" style="color: #c0bfbc;"></i>';
+        return '<i class="fa-solid fa-not-equal h-7 w-7" style="color: #c0bfbc;"></i>';
     }
 
 }

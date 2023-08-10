@@ -19,6 +19,7 @@ class PublishedController extends Controller
     {
         $clients = ClientEloquentModel::published()
             ->orderBy('created_at', 'desc')
+            ->with('projects')
             ->get()
             ->each(static fn ($client) => $client->generatePermalink());
 
