@@ -25,10 +25,10 @@ enum Promoted: string
     public static function icon(self $status): string
     {
         if ($status->value === 'promoted') {
-            return '<i class="fa-solid fa-award h-7 w-7" style="color: #ff5542;"></i>';
+            return '<i class="fa-solid fa-award h-8 w-8" style="color: #ff5542;"></i>';
         }
 
-        return '<i class="fa-solid fa-not-equal h-7 w-7" style="color: #c0bfbc;"></i>';
+        return '<i class="fa-solid fa-not-equal h-8 w-8" style="color: #c0bfbc;"></i>';
     }
 
 }

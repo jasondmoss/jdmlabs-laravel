@@ -25,10 +25,10 @@ enum Status: string
     public static function icon(self $status): string
     {
         if ($status->value === 'published') {
-            return '<i class="fa-solid fa-eye h-7 w-7" style="color: #2ec27e;"></i>';
+            return '<i class="fa-solid fa-eye h-8 w-8" style="color: #2ec27e;"></i>';
         }
 
-        return '<i class="fa-solid fa-not-equal h-7 w-7" style="color: #c0bfbc;"></i>';
+        return '<i class="fa-solid fa-not-equal h-8 w-8" style="color: #c0bfbc;"></i>';
     }
 
 }

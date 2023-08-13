@@ -4,6 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+#listingHeader {
+  top: -2px;
+}
+
+#listingHeader[stuck] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  box-shadow: 0 1rem 0.75rem -1rem rgba(0, 0, 0, 0.4);
+  opacity: 0.875;
+}
+
 .label-category {
   text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.8);
 }
