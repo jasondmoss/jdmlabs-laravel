@@ -1,5 +1,5 @@
 <!-- session.blade -->
-@if (session('errors') or session('create') or session('update') or session('delete'))
+@if (session('errors') || session('create') || session('update') || session('delete'))
   @if (session('errors'))
     <x-shared.message type="error" context="error" :message="session('errors')" />
   @elseif (session('create'))

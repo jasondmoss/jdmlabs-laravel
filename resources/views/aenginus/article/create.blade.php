@@ -126,7 +126,7 @@
     <fieldset class="container--actions">
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
       <div class="form-field">
-        {{ html()->button('Save Article')->class('button button--submit') }}
+        {{ html()->button('Save Article')->class('bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
       </div>
     </fieldset>
   </aside>

@@ -51,7 +51,6 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
 
 @stack('vendor-styles')
 @vite('resources/assets/css/aenginus.css')
-{{--@stack('styles')--}}
 
 </head><body class="admin {{ $page }}{{ Auth::check() ? ' logged-in' : '' }} container mx-auto cursor-default">
 
@@ -100,13 +99,14 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
       </li>
     </menu>
   </aside>
+
   <main class="grow lg:w-4/5 lg:pt-1 lg:pl-4">
-    @if ($errors->any())
-      <x-shared.message type="error" :message="$errors"/>
+    {{--@if ($errors->any())
+      <x-shared.session type="error" :message="$errors"/>
     @endif
     @if (session('status'))
-      <x-shared.message type="status" :message="session('status')"/>
-    @endif
+      <x-shared.session type="info" :message="session('status')"/>
+    @endif--}}
 
     {{ $slot }}
   </main>
