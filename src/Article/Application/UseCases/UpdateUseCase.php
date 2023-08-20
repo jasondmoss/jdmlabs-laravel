@@ -29,10 +29,7 @@ final readonly class UpdateUseCase
      *
      * @return \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel
      */
-    public function update(
-        ArticleEloquentModel $article,
-        ArticleEntity $entity
-    ): ArticleEloquentModel
+    public function update(ArticleEloquentModel $article, ArticleEntity $entity): ArticleEloquentModel
     {
         return $this->repository->update($article, $entity);
     }

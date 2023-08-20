@@ -23,6 +23,7 @@
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
     <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
+
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Title')->for('title')->class('font-medium text-sm') }}
         {{ html()->text('title')->attribute('required') }}
@@ -30,9 +31,6 @@
       </div>
 
       <div class="flex flex-col gap-y-3">
-        {{--{{ html()->label('Summary')->for('summary')->class('font-medium text-sm') }}--}}
-        {{--{{ html()->textarea('summary')->class('max-w-full textarea sr-only')->rows(4) }}--}}
-
         <x-shared.trix-editor
           type="minimal"
           label="Summary"
@@ -41,9 +39,6 @@
       </div>
 
       <div class="flex flex-col gap-y-3">
-        {{--{{ html()->label('Body')->for('body')->class('font-medium text-sm') }}--}}
-        {{--{{ html()->textarea('body')->class('max-w-full textarea sr-only')->rows(15) }}--}}
-
         <x-shared.trix-editor
           type="full"
           label="Body"
@@ -101,7 +96,7 @@
 
         <div class="flex items-center justify-between">
           {{ html()->label('Status')->for('status') }}
-          <select name="status" id="status" class="">
+          <select name="status" id="status" class="form-select">
             @foreach (Status::cases() as $status)
               <option value="{{ $status->value }}">{{ $status->name }}</option>
             @endforeach
@@ -110,7 +105,7 @@
 
         <div class="flex items-center justify-between">
           {{ html()->label('Featured?')->for('promoted') }}
-          <select name="promoted" id="promoted" class="">
+          <select name="promoted" id="promoted" class="form-select">
             @foreach (Promoted::cases() as $promoted)
               <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
             @endforeach
@@ -120,6 +115,7 @@
 
       <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
+
         <div class="flex justify-end">
           {{ html()->button('Save Article')->type('submit')->class('bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
         </div>

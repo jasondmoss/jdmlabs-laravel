@@ -84,6 +84,7 @@ final class ArticleAdminListing extends Component
     public function render(): View
     {
         $articles = ArticleEloquentModel::where('title', 'LIKE', '%' . $this->query . '%')
+            ->with('category')
             ->latest('created_at')
             ->paginate(20);
 

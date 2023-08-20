@@ -1,12 +1,12 @@
+"use strict";
+
 /**
  * Has (Object|Node) been defined? Does (Object|Node) exist?
  *
  * @param {object|array|string} thing
  */
-function exists (thing)
+function exists(thing)
 {
-    "use strict";
-
     return ! (typeof thing === "undefined" ||
         thing === null ||
         thing === false ||

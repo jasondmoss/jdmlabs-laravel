@@ -34,6 +34,7 @@ final readonly class SingleImageUseCase
      */
     public function attach(Model $model, object $image, string $mediaCollection = ''): void
     {
+
         if ($image->file->isValid()) {
             $imageEntity = new ImageEntity($image);
 

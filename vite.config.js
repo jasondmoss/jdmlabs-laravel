@@ -8,11 +8,14 @@ export default defineConfig({
                 "resources/assets/css/aenginus.css",
                 "resources/assets/css/public.css",
 
-                "resources/assets/js/modules/turbolinks.js",
-                "resources/assets/js/modules/trix-editor.js",
                 "resources/assets/js/modules/exists.js",
-                "resources/assets/js/modules/window.js",
-                "resources/assets/js/site.js"
+                "resources/assets/js/modules/new-window.js",
+                "resources/assets/js/modules/trix-editor-paragraphs.js",
+                "resources/assets/js/modules/trix-editor-toolbar.js",
+                "resources/assets/js/modules/turbolinks.js",
+
+                "resources/assets/js/aenginus.js",
+                "resources/assets/js/public.js"
             ],
             refresh: [
                 ...refreshPaths,

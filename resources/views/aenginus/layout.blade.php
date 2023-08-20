@@ -112,6 +112,7 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
     <span class="rights">{{ __('All rights freely given') }} [<a itemprop="license" rel="external" href="{{ url('/LICENSE.md') }}" title="{{ __('The MIT License (MIT)') }}">MIT</a>].</span>
   </p>
 </footer>
+
 @stack('scripts')
-@vite('resources/assets/js/site.js')
+@vite('resources/assets/js/aenginus.js')
 </body></html>

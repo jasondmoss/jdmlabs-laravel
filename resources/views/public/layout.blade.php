@@ -180,5 +180,5 @@
     <span class="rights">{{ __('All rights freely given') }} [<a itemprop="license" rel="external" href="{{ url('/LICENSE.md') }}" title="{{ __('The MIT License (MIT)') }}">MIT</a>].</span>
   </p>
 </footer>
-@vite('resources/assets/js/site.js')
+@vite('resources/assets/js/public.js')
 </body></html>
