@@ -215,7 +215,7 @@
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save Client')->class('button button--submit') }}
+        {{ html()->button('Save Client')->type('submit')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

@@ -16,22 +16,22 @@ module.exports = {
         plugin(function ({ addComponents }) {
             addComponents({
                 // Alerts.
-                ".error": {
+                ".status-error": {
                     borderColor: '#fca5a5',
                     backgroundColor: '#fee2e2',
                     boxShadow: '#fee2e2'
                 },
-                '.create': {
+                '.status-create': {
                     borderColor: '#bef264',
                     backgroundColor: '#ecfccb',
                     boxShadow: '#ecfccb'
                 },
-                '.delete': {
+                '.status-delete': {
                     borderColor: '#fca5a5',
                     backgroundColor: '#fee2e2',
                     boxShadow: '#fee2e2'
                 },
-                '.update': {
+                '.status-update': {
                     borderColor: '#bef264',
                     backgroundColor: '#ecfccb',
                     boxShadow: '#ecfccb'

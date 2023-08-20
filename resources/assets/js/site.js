@@ -1,6 +1,4 @@
-// Local modules.
-import "alpinejs";
-// import { document } from "postcss";
+import { TrixEditor } from "./modules/trix-editor.js";
 import { exists } from "./modules/exists.js";
 import { newWindow } from "./modules/window.js";
 
@@ -34,6 +32,8 @@ document.querySelectorAll("a").forEach((link) => {
 
 // Admin only.
 if (document.querySelector("body.admin")) {
+    TrixEditor();
+
     /**
      * Create a {position: sticky} 'event'.
      */
@@ -49,24 +49,12 @@ if (document.querySelector("body.admin")) {
         observer.observe(listingHeader);
     }
 
-    /*const form = document.querySelector("");
-    if (exists(form)) {
-        const button = form.querySelector(".button--submit");
-        if (exists(button)) {
-            button.addEventListener("click", (event) => {
-                event.preventDefault();
 
-                form.submit();
-            });
-        }
-    }*/
-
-
+    /**
+     * Temporary image preview.
+     */
     const single = document.querySelector(".container--images.single .wrapper");
     if (exists(single)) {
-        /**
-         * Temporary image preview.
-         */
         const input = single.querySelector(".file-uploader");
         input.addEventListener("change", () => {
             const file = input.files;

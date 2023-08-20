@@ -1,6 +1,0 @@
-body.logged-in .site--topbar {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  background-color: var(--system--danger);
-  box-shadow: -1px 0 3px 1px rgba(0, 0, 0, 0.3333);
-}

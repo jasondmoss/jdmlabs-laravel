@@ -54,7 +54,7 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
 
 </head><body class="admin {{ $page }}{{ Auth::check() ? ' logged-in' : '' }} container mx-auto cursor-default">
 
-<header class="flex flex-wrap justify-between pb-0 pt-0 pr-4 border-solid border-b-2 border-slate-200 sm:bg-red-200 md:bg-lime-200 lg:pb-0 lg:bg-sky-200 xl:bg-yellow-200">
+<header id="adminHeader" class="flex flex-wrap justify-between pb-0 pt-0 pr-4 border-solid border-b-2 border-slate-200 sm:bg-red-200 md:bg-lime-200 lg:pb-0 lg:bg-sky-200 xl:bg-yellow-200">
   <nav class="flex justify-center">
     <a itemprop="url" rel="index" class="group p-4 lg:p-6 max-w-sm flex align-middle items-center space-x-4" href="{{ config('app.url') }}" title="@yield('title')">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 569.16 569.16" class="shrink-0 sm:group-hover:animate-spin h-8 w-8 mr-2" width="32" height="32" role="img" aria-label="JdmLabs logo">
@@ -75,8 +75,8 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
   </menu>
 </header>
 
-<div class="flex flex-col relative lg:flex-row lg:pb-4">
-  <aside class="grow relative min-h-full py-5 lg:w-1/5 lg:bg-slate-100 lg:border-r lg:border-r-400">
+<div id="adminBody" class="flex flex-col relative lg:flex-row lg:pb-4">
+  <aside class="grow relative min-h-full py-5 lg:basis-1/6 lg:bg-slate-100 lg:border-r lg:border-r-400">
     <menu itemscope
         itemtype="https://schema.org/SiteNavigationElement"
         class="flex flex-wrap justify-center gap-x-4 max-w-none mt-0 text-xl md:text-2xl lg:flex-col lg:sticky lg:top-10 lg:text-xl"
@@ -100,27 +100,18 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
     </menu>
   </aside>
 
-  <main class="grow lg:w-4/5 lg:pt-1 lg:pl-4">
-    {{--@if ($errors->any())
-      <x-shared.session type="error" :message="$errors"/>
-    @endif
-    @if (session('status'))
-      <x-shared.session type="info" :message="session('status')"/>
-    @endif--}}
-
+  <main class="grow lg:basis-10/12 lg:pt-1 lg:pl-2">
     {{ $slot }}
   </main>
 </div>
 
-<footer class="mt-10 px-2 py-5">
+<footer id="adminFooter" class="mt-10 px-2 py-5">
   <p class="site--credits text-center text-sm">
     &#169; <span itemprop="copyrightYear">2005</span>-<span itemprop="copyrightYear">2023</span>
     <span itemprop="name copyrightHolder" title="Jason D. Moss, Web Developer Extra(ordinaire)">Jason D. Moss</span>.
-    <span class="rights">{{ __('All rights freely given') }} [<a itemprop="license" rel="external" href="/LICENSE.md" title="{{ __('The MIT License (MIT)') }}">MIT</a>].</span>
+    <span class="rights">{{ __('All rights freely given') }} [<a itemprop="license" rel="external" href="{{ url('/LICENSE.md') }}" title="{{ __('The MIT License (MIT)') }}">MIT</a>].</span>
   </p>
 </footer>
 @stack('scripts')
-<script defer src="{{ asset('/vendor/fa-solid.min.js') }}"></script>
-<script defer src="{{ asset('/vendor/fa.min.js') }}"></script>
 @vite('resources/assets/js/site.js')
 </body></html>

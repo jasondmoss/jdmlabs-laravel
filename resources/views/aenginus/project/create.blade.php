@@ -10,13 +10,9 @@
 document.querySelectorAll(".textarea:not(.full)").forEach((edit) => {
     ClassicEditor.create(edit, {
         removePlugins: [ "Heading", "List", "Alignment", "CodeBlock", "MediaEmbed" ]
-    }).catch(
-        error => console.error(error)
-    );
+    }).catch(error => console.error(error));
 });
-ClassicEditor.create(document.getElementById("body")).catch(
-    error => console.error(error)
-);
+ClassicEditor.create(document.getElementById("body")).catch(error => console.error(error));
     </script>
   @endonce
 @endpush
@@ -72,6 +68,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
         {{ html()->label('Main Content')->for('body') }}
         {{ html()->textarea('body')->class('textarea full')->attribute('required')->rows(15)->placeholder(__('Full description of this project')) }}
       </div>
+      <style>.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items { flex-wrap: wrap; }</style>
     </fieldset>
 
     <fieldset class="container--clients">
@@ -210,7 +207,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field actions">
-        {{ html()->button('Save Project')->class('button button--submit') }}
+        {{ html()->button('Save Project')->type('submit')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

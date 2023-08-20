@@ -242,7 +242,7 @@ ClassicEditor.create(document.getElementById("body")).catch(
       <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
       <div class="form-field">
-        {{ html()->button('Save Project')->class('button button--submit') }}
+        {{ html()->button('Save Project')->type('submit')->class('button button--submit') }}
       </div>
     </fieldset>
   </aside>

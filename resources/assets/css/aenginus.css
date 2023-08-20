@@ -1,19 +1,15 @@
 @charset "utf-8";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/tailwind.css";
+@import "modules/trix.css";
 
 :root {
-  /* #a8a29e; */
-  --icon-gray: hsla(24, 5%, 64%, 1);
-  --icon-gray-shadow: hsla(24, 5%, 64%, 0.4);
-  /* #10b981; */
-  --icon-green: hsla(160, 84%, 39%, 1);
-  --icon-green-shadow: hsla(160, 84%, 39%, 0.4);
-  /* #facc15; */
-  --icon-yellow: hsla(48, 96%, 53%, 1);
-  --icon-yellow-shadow: hsla(48, 96%, 53%, 0.4);
+  --color-gray: hsla(24, 5%, 64%, 1);
+  --color-gray-shadow: hsla(24, 5%, 64%, 0.4);
+  --color-green: hsla(160, 84%, 39%, 1);
+  --color-green-shadow: hsla(160, 84%, 39%, 0.4);
+  --color-yellow: hsla(48, 96%, 53%, 1);
+  --color-yellow-shadow: hsla(48, 96%, 53%, 0.4);
 }
 
 #listingHeader {
@@ -40,7 +36,7 @@
 .icon-default {
   width: 1.25rem;
   height: 1.25rem;
-  fill: var(--icon-gray);
+  fill: var(--color-gray);
 }
 
 .icon:hover,
@@ -50,22 +46,22 @@
 }
 
 .icon.pinned {
-  fill: var(--icon-green);
-  filter: drop-shadow(0 0 0.25rem var(--icon-green-shadow));
+  fill: var(--color-green);
+  filter: drop-shadow(0 0 0.25rem var(--color-green-shadow));
 }
 
 .icon.promoted {
-  fill: var(--icon-yellow);
-  filter: drop-shadow(0 0 0.25rem var(--icon-yellow-shadow));
+  fill: var(--color-yellow);
+  filter: drop-shadow(0 0 0.25rem var(--color-yellow-shadow));
 }
 
 .icon.published {
-  fill: var(--icon-green);
-  filter: drop-shadow(0 0 0.25rem var(--icon-green-shadow));
+  fill: var(--color-green);
+  filter: drop-shadow(0 0 0.25rem var(--color-green-shadow));
 }
 
 .icon.not-pinned,
 .icon.not-promoted,
 .icon.not-published {
-  fill: var(--icon-gray);
+  fill: var(--color-gray);
 }
