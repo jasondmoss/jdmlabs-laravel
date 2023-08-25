@@ -20,7 +20,7 @@ class PublishedController extends Controller
         $articles = ArticleEloquentModel::published()
             ->orderBy('created_at', 'desc')
             ->get()
-            ->each(function ($article) {
+            ->each(static function ($article) {
                 $article->generateDates();
                 $article->generatePermalink();
             });

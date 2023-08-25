@@ -16,9 +16,6 @@ interface UpdateContract
      *
      * @return \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel
      */
-    public function update(
-        ArticleEloquentModel $article,
-        ArticleEntity $entity
-    ): ArticleEloquentModel;
+    public function update(ArticleEloquentModel $article, ArticleEntity $entity): ArticleEloquentModel;
 
 }
