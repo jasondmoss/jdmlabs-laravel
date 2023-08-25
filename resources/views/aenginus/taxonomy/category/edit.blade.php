@@ -1,39 +1,12 @@
-@php
-@endphp
-
-@push('styles')
-  @once
-    <style>
-			.items {
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem 0;
-			}
-
-			.item {
-				display: grid;
-				grid-template-columns: 4rem 1fr;
-				padding: 0.5rem 0.5rem 1rem;
-			}
-
-			.item dt {
-				grid-column: 1;
-			}
-
-			.item dd {
-				grid-column: 2;
-			}
-    </style>
-  @endonce
-@endpush
-
 <x-aenginus.layout title="Edit Category" page="edit" livewire="true">
   <!-- edit.blade -->
 
+  <x-shared.session/>
+
   {{ html()
     ->modelForm($category, 'PUT', '/ae/taxonomy/category/update/' . $category->id)
-    ->id('categoryForm')
-    ->class('content-editor')
+    ->id('entryForm')
+    ->class('content-editor flex flex-col relative p-2 lg:flex-row lg:flex-wrap lg:pb-4')
     ->open()
   }}
 
@@ -41,19 +14,21 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('listing_page', URL::previous()) }}
 
-  <header class="editor--header">
-    <h1>
-      <i class="fa-solid fa-pen-to-square"></i> {{ $category->name }}</h1>
+  <header class="flex flex-col basis-full gap-3 align-middle justify-center z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-5 xl:pb-4">
+    <h1 class="flex items-center gap-x-5 w-full pl-2 text-4xl font-medium">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+      {{ $category->name }}
+    </h1>
   </header>
 
-  <div class="editor--content">
-    <fieldset class="container--content">
-      <legend class="sr-only">{{ __('Content') }}</legend>
+  <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
+    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
-      <div class="form-field title">
-        {{ html()->label('Name')->for('name') }}
-        {{ html()->text('name')->class('text')->attribute('required') }}
-        <p class="title-slug"><span class="label">{{ __('slug') }}:</span> {{ $category->slug ?? '...' }}</p>
+      <div class="flex flex-col gap-y-3">
+        {{ html()->label('Name')->for('name')->class('font-medium text-sm') }}
+        {{ html()->text('name')->required()->class('text') }}
+        <p><span class="font-bold mr-5">{{ __('slug') }}:</span> {{ $category->slug ?? '...' }}</p>
       </div>
     </fieldset>
 
@@ -92,21 +67,15 @@
     @endif
   </div>
 
-  <aside class="editor--side">
-    <fieldset class="container--actions">
-      <legend class="sr-only">{{ __('Form Actions') }}</legend>
-      <div class="form-field">
-        {{ html()->button('Save Category')->type('submit')->class('button button--submit') }}
+  <aside class="lg:basis-1/3 p-2">
+    <fieldset class="px-2 py-10 border-t border-gray-300">
+      <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Actions') }}</legend>
+
+      <div class="flex justify-end">
+        {{ html()->button('Save Category')->type('submit')->class('form-submit bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
       </div>
     </fieldset>
   </aside>
-
-  <footer class="editor--footer">
-    <a rel="prev" class="back-link" href="{{ URL::previous() }}">
-      <span class="fa-solid fa-arrow-left mr-6"></span>
-      {{ __('Back to last page') }}
-    </a>
-  </footer>
 
   {{ html()->form()->close() }}
 </x-aenginus.layout>

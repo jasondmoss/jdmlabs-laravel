@@ -6,6 +6,8 @@
 <x-aenginus.layout title="Edit Article" page="edit" livewire="true">
   <!-- edit.blade -->
 
+  <x-shared.session/>
+
   {{ html()
     ->modelForm($article, 'PUT', '/ae/article/update/' . $article->id)
     ->id('entryForm')
@@ -18,7 +20,7 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
   {{ html()->hidden('listing_page', URL::previous()) }}
 
-  <header class="flex flex-col basis-full gap-3 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-5 xl:pb-4">
+  <header class="flex flex-col basis-full gap-3 align-middle justify-center z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-5 xl:pb-4">
     <h1 class="flex items-center gap-x-5 w-full pl-2 text-4xl font-medium">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
       {{ $article->title }}
@@ -38,27 +40,25 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Title')->for('title')->class('font-medium text-sm') }}
-        {{ html()->text('title')->attribute('required')->class('text')->attribute('required') }}
-        <p class=""><span class="label">{{ __('slug') }}:</span> {{ $article->slug ?? '...' }}</p>
+        {{ html()->text('title')->required()->class('text') }}
+        <p><span class="font-bold mr-5">{{ __('slug') }}:</span> {{ $article->slug ?? '...' }}</p>
       </div>
 
       <div class="flex flex-col gap-y-3">
-        @php $summary = ($article->summary && ! empty($article->summary)) ? $article->summary : ''; @endphp
         <x-shared.trix-editor
           type="minimal"
           label="Summary"
           name="summary"
-          value="{!! $summary !!}"
+          value="{!! $article->summary !!}"
           placeholder="Write something..." />
       </div>
 
       <div class="flex flex-col gap-y-3">
-        @php $body = ($article->body && ! empty($article->body)) ? $article->body : ''; @endphp
         <x-shared.trix-editor
           type="full"
           label="Body"
           name="body"
-          value="{!! $body !!}"
+          value="{!! $article->body !!}"
           placeholder="Write something..." />
       </div>
     </fieldset>
@@ -88,7 +88,7 @@
           @if ($signature !== null)
             {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
           @else
-            {{ html()->text('signature_image[label]')->class('text') }}
+            {{ html()->text('signature_image[label]') }}
           @endif
         </div>
 
@@ -97,7 +97,7 @@
           @if ($signature !== null)
             {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
           @else
-            {{ html()->text('signature_image[alt]')->class('text') }}
+            {{ html()->text('signature_image[alt]') }}
           @endif
         </div>
 
@@ -106,7 +106,7 @@
           @if ($signature !== null)
             {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
           @else
-            {{ html()->text('signature_image[caption]')->class('text') }}
+            {{ html()->text('signature_image[caption]') }}
           @endif
         </div>
 
@@ -151,7 +151,7 @@
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">
-          {{ html()->button('Save Article')->type('submit')->class('bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
+          {{ html()->button('Save Article')->type('submit')->class('form-submit bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
         </div>
       </fieldset>
     </div>

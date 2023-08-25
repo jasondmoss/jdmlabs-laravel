@@ -8,6 +8,7 @@ use Aenginus\Project\Domain\Validation\UpdateSubmissionRules;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 
 /**
+ * @property mixed $showcase_images
  * @property mixed $signature_image
  * @property string $listing_page
  */

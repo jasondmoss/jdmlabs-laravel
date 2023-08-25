@@ -113,10 +113,10 @@ class CategoryEloquentModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    final public function clients(): HasMany
-    {
-        return $this->hasMany(ClientEloquentModel::class, 'category_id');
-    }
+//    final public function clients(): HasMany
+//    {
+//        return $this->hasMany(ClientEloquentModel::class, 'category_id');
+//    }
 
 
     /**

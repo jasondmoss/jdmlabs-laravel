@@ -1,9 +1,3 @@
-@php
-use Aenginus\Article\Interface\Web\Controllers as Article;
-use Aenginus\Project\Interface\Web\Controllers as Project;
-use Aenginus\Client\Interface\Web\Controllers as Client;
-use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
-@endphp
 <!DOCTYPE html><html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8">
 <!--
@@ -77,27 +71,7 @@ use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
 
 <div id="adminBody" class="flex flex-col relative lg:flex-row lg:pb-4">
   <aside class="grow relative min-h-full py-5 lg:basis-1/6 lg:bg-slate-100 lg:border-r lg:border-r-400">
-    <menu itemscope
-        itemtype="https://schema.org/SiteNavigationElement"
-        class="flex flex-wrap justify-center gap-x-4 max-w-none mt-0 text-xl md:text-2xl lg:flex-col lg:sticky lg:top-10 lg:text-xl"
-        aria-label="Main"
-    >
-      <li class="group"{{ Route::currentRouteName() === 'dashboard' ? ' aria-selected=true' : '' }}>
-        <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 active:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ route('dashboard') }}" title="{{ __('Dashboard') }}"><span>{{ __('Dashboard') }}</span></a>
-      </li>
-      <li class="group"{{ Route::currentRouteAction() === Article\IndexController::class ? ' aria-selected=true' : '' }}>
-        <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ action(Article\IndexController::class) }}" title="{{ __('Articles') }}"><span>{{ __('Articles') }}</span></a>
-      </li>
-      <li class="group"{{ Route::currentRouteAction() === Project\IndexController::class ? ' aria-selected=true' : '' }}>
-        <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ action(Project\IndexController::class) }}" title="{{ __('Projects') }}"><span>{{ __('Projects') }}</span></a>
-      </li>
-      <li class="group"{{ Route::currentRouteAction() === Client\IndexController::class ? ' aria-selected=true' : '' }}>
-        <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ action(Client\IndexController::class) }}" title="{{ __('Clients') }}"><span>{{ __('Clients') }}</span></a>
-      </li>
-      <li class="group"{{ Route::currentRouteAction() === Taxonomy\IndexController::class ? ' aria-selected=true' : '' }}>
-        <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ action(Taxonomy\IndexController::class) }}" title="{{ __('Categories') }}"><span>{{ __('Categories') }}</span></a>
-      </li>
-    </menu>
+    <x-aenginus._partials.menu />
   </aside>
 
   <main class="grow lg:basis-10/12 lg:pt-1 lg:pl-2">

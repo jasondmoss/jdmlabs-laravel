@@ -8,6 +8,7 @@ use Aenginus\Project\Domain\Validation\CreateSubmissionRules;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 
 /**
+ * @property mixed $showcase_images
  * @property mixed $signature_image
  */
 final class CreateRequest extends CreateSubmissionRules

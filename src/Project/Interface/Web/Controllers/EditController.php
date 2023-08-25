@@ -43,10 +43,17 @@ class EditController extends Controller
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         $signature = $project->getFirstMedia('signature');
+        $showcase_images = $project->getMedia('showcase');
 
         return ViewFacade::make(
             'ProjectAdmin::edit',
-            compact('project', 'clients', 'categories', 'signature')
+            compact(
+                'project',
+                'clients',
+                'categories',
+                'signature',
+                'showcase_images'
+            )
         );
     }
 

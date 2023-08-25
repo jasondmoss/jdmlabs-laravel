@@ -14,10 +14,7 @@ final class UpdateRepository implements UpdateContract
     /**
      * @inheritDoc
      */
-    public function update(
-        ProjectEloquentModel $project,
-        ProjectEntity $entity
-    ): ProjectEloquentModel
+    public function update(ProjectEloquentModel $project, ProjectEntity $entity): ProjectEloquentModel
     {
         $project->update((array) $entity);
 

@@ -6,6 +6,8 @@
 <x-aenginus.layout title="Create New Article" page="create" livewire="true">
   <!-- create.blade -->
 
+  <x-shared.session/>
+
   {{ html()
     ->form('POST', '/ae/article/create')
     ->id('entryForm')
@@ -26,8 +28,8 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Title')->for('title')->class('font-medium text-sm') }}
-        {{ html()->text('title')->attribute('required') }}
-        <p class=""><span class="label">{{ __('slug') }}:</span> ...</p>
+        {{ html()->text('title')->required() }}
+        <p><span class="font-bold mr-5">{{ __('slug') }}:</span> ...</p>
       </div>
 
       <div class="flex flex-col gap-y-3">
@@ -52,7 +54,7 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Categories')->for('category')->class('font-medium text-sm') }}
-        {{ html()->select('category', $categories)->class('form-select')->placeholder('Choose a category') }}
+        {{ html()->select('category', $categories)->placeholder('Choose a category') }}
       </div>
     </fieldset>
 
@@ -62,24 +64,22 @@
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->attributes([
-            'class' => 'file-uploader'
-          ]) }}
+          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[label]')->class('form-input') }}
+          {{ html()->text('signature_image[label]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[alt]')->class('form-input') }}
+          {{ html()->text('signature_image[alt]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[caption]')->class('form-input') }}
+          {{ html()->text('signature_image[caption]') }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
@@ -96,7 +96,7 @@
 
         <div class="flex items-center justify-between">
           {{ html()->label('Status')->for('status') }}
-          <select name="status" id="status" class="form-select">
+          <select name="status">
             @foreach (Status::cases() as $status)
               <option value="{{ $status->value }}">{{ $status->name }}</option>
             @endforeach
@@ -105,7 +105,7 @@
 
         <div class="flex items-center justify-between">
           {{ html()->label('Featured?')->for('promoted') }}
-          <select name="promoted" id="promoted" class="form-select">
+          <select name="promoted">
             @foreach (Promoted::cases() as $promoted)
               <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
             @endforeach
@@ -117,7 +117,7 @@
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">
-          {{ html()->button('Save Article')->type('submit')->class('bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
+          {{ html()->button('Save Article')->type('submit')->class('form-submit bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm') }}
         </div>
       </fieldset>
     </div>

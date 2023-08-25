@@ -49,7 +49,8 @@ class StoreController extends Controller
         if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $article,
-                (object) $request->file('signature_image'),
+                /*(object) $request->file('signature_image'),*/
+                (object) $request->signature_image,
                 'signature'
             );
         }

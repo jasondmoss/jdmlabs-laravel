@@ -6,14 +6,11 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Media\Application\UseCases\MultiImageUseCase;
 use Aenginus\Media\Application\UseCases\SingleImageUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Aenginus\Project\Application\UseCases\StoreUseCase;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\CreateRequest;
 use App\Controller;
-use Exception;
 use Illuminate\Http\RedirectResponse;
-use RuntimeException;
 
 class StoreController extends Controller
 {
@@ -60,7 +57,7 @@ class StoreController extends Controller
         if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
-                (object) $request->file('signature_image'),
+                (object) $request->signature_image,
                 'signature'
             );
         }
@@ -69,24 +66,11 @@ class StoreController extends Controller
          * Showcase images (multiple).
          */
         if ($request->file('showcase_images') !== null) {
-            $showcaseImages = [];
-
-            foreach ($request->file('showcase_images') as $showcaseImage) {
-                if ($showcaseImage['file']->isValid()) {
-                    $imageEntity = new ImageEntity((object) $showcaseImage);
-
-                    $showcaseImages[] = $imageEntity;
-                } else {
-                    throw new RuntimeException('Showcase image is not valid');
-                }
-            }
-
-            try {
-                // Attach uploaded showcase images as a whole.
-                $this->showcase->attach($project, $showcaseImages, 'showcase');
-            } catch (Exception) {
-                throw new RuntimeException('Signature image could not  be saved.');
-            }
+            $this->showcase->attach(
+                $project,
+                $request->showcase_images,
+                'showcase'
+            );
         }
 
         return redirect()

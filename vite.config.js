@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
     plugins: [
@@ -17,10 +18,19 @@ export default defineConfig({
                 "resources/assets/js/aenginus.js",
                 "resources/assets/js/public.js"
             ],
+            build: {
+                minify: false
+            },
             refresh: [
                 ...refreshPaths,
                 "app/Livewire/**"
             ]
+        }),
+        debug({
+            enabled: true,
+            apply: 'serve',
+            enabledByKey: 'open',
+            enabledByValue: 'true'
         })
     ]
 });

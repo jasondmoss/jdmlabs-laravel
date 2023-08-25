@@ -16,9 +16,6 @@ interface UpdateContract
      *
      * @return \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel
      */
-    public function update(
-        ProjectEloquentModel $project,
-        ProjectEntity $entity
-    ): ProjectEloquentModel;
+    public function update(ProjectEloquentModel $project, ProjectEntity $entity): ProjectEloquentModel;
 
 }

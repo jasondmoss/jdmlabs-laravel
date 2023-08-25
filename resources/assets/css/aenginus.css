@@ -12,6 +12,10 @@
   --color-yellow-shadow: hsla(48, 96%, 53%, 0.4);
 }
 
+.text-shadow {
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
 #listingHeader {
   top: -2px;
 }
@@ -36,7 +40,14 @@
 .icon-default {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.icon-default-fill {
   fill: var(--color-gray);
+}
+
+.icon-default-stroke {
+  stroke: var(--color-gray);
 }
 
 .icon:hover,
@@ -64,4 +75,9 @@
 .icon.not-promoted,
 .icon.not-published {
   fill: var(--color-gray);
+}
+
+.content-editor .repeatable-wrapper .repeatable:not(:first-of-type) {
+  padding-top: 2rem;
+  border-top: 0.0125rem solid var(--color-gray-shadow);
 }

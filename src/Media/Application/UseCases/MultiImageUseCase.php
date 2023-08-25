@@ -35,13 +35,7 @@ final readonly class MultiImageUseCase
         $multiImages = [];
 
         foreach ($images as $image) {
-            if ($image['file']->isValid()) {
-                $imageEntity = new ImageEntity((object) $image);
-
-                $multiImages[] = $imageEntity;
-            } else {
-                throw new RuntimeException('Showcase image is not valid');
-            }
+            $multiImages[] = new ImageEntity((object) $image);
         }
 
         try {
@@ -49,7 +43,6 @@ final readonly class MultiImageUseCase
         } catch (Exception) {
             throw new RuntimeException('Signature image could not  be saved.');
         }
-
     }
 
 }

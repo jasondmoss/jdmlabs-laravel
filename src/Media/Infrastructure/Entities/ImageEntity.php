@@ -31,9 +31,13 @@ final readonly class ImageEntity
      */
     public function __construct(object $image)
     {
-        $this->file = (new File($image->file))->value();
+        if (! empty($image->file)) {
+            $this->file = (new File($image->file))->value();
 
-        [ $this->width, $this->height ] = getimagesize($this->file->getRealPath());
+            [ $this->width, $this->height ] = getimagesize(
+                $this->file->getRealPath()
+            );
+        }
 
         $this->alt = ! empty($image->alt)
             ? (new Alt($image->alt))->value()

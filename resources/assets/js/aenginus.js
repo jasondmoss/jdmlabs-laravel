@@ -31,7 +31,7 @@ if (exists(listingHeader)) {
  */
 const single = document.querySelector(".container--images.single .wrapper");
 if (exists(single)) {
-    const input = single.querySelector(".file-uploader");
+    const input = single.querySelector(".file");
     input.addEventListener("change", () => {
         const file = input.files;
 
@@ -52,21 +52,28 @@ if (exists(single)) {
 /**
  * Multi-image replicator.
  */
-const multi = document.querySelector(".container--images.multi .wrapper");
-if (exists(multi)) {
-    const repeatable = multi.querySelector(".repeatable");
-    const repeater = multi.parentElement.querySelector(".repeater");
+const repeatable = document.querySelector(".showcase-images .repeatable-wrapper");
+if (exists(repeatable)) {
+    const repeater = repeatable.parentElement.querySelector("button.repeater");
+    let fieldsetCount = 0;
 
-    repeater.addEventListener("click", () => {
-        let num = multi.querySelectorAll(".repeatable").length;
-        let cloned = repeatable.cloneNode(true);
+    repeater.addEventListener("click", (event) => {
+        let cloned = event
+            .target
+            .offsetParent
+            .querySelector("div.repeatable")
+            .cloneNode(true);
 
-        cloned.querySelector(".file-uploader").setAttribute("name", "showcase_images[" + num + "][file]");
-        cloned.querySelector(".label").setAttribute("name", "showcase_images[" + num + "][label]");
-        cloned.querySelector(".alt").setAttribute("name", "showcase_images[" + num + "][alt]");
-        cloned.querySelector(".caption").setAttribute("name", "showcase_images[" + num + "][caption]");
+        fieldsetCount++;
 
-        multi.appendChild(cloned);
+        cloned.querySelectorAll(".repeatable input").forEach((field, index) => {
+            let fieldName = field.getAttribute("name");
+            let fieldNameLabel = fieldName.match(/\[([a-z]+)\]/)[1];
+
+            field.setAttribute("name", "showcase_images[" + fieldsetCount +"][" + fieldNameLabel + "]");
+        });
+
+        repeatable.appendChild(cloned);
     });
 }
 
@@ -76,6 +83,6 @@ if (exists(multi)) {
  */
 const entryForm = document.getElementById("entryForm");
 if (exists(entryForm)) {
-    entryForm.querySelector("button[type=submit]")
-        .addEventListener("click", (event) => entryForm.submit());
+    entryForm.querySelector("button.form-submit")
+        .addEventListener("click", () => entryForm.submit());
 }
