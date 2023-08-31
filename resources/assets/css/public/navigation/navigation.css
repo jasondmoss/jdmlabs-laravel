@@ -1,0 +1,32 @@
+menu {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+menu,
+menu > li > a,
+menu > li > a span {
+  width: 100%;
+}
+
+menu > li {
+  display: block;
+}
+
+menu > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+
+menu > li > a .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

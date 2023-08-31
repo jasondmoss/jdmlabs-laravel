@@ -1,4 +1,9 @@
-<x-aenginus.layout title="Create New Category" page="create" livewire="true">
+<x-aenginus.layout
+  title="Create New Category"
+  page=" taxonomy category"
+  context=" create"
+  livewire="true"
+>
   <!-- create.blade -->
 
   <x-shared.session/>

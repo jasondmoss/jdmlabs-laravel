@@ -1,0 +1,166 @@
+/*  ------------------------------------------------------------------------
+      Panel (Controls)
+    ------------------------------------------------------------------------  */
+
+.panel {
+  grid-column: 1;
+  grid-row: 1/span 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 0;
+
+  background-color: rgba(255, 0, 0, 1);
+}
+
+.toggle-button,
+.return-to-top {
+  appearance: none;
+  z-index: 5;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.toggle-button {
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 480px) {
+  .panel {
+    width: 0;
+  }
+
+  .toggle-button {
+    margin-left: 1rem;
+  }
+
+  .return-to-top {
+    margin-left: -2rem;
+  }
+}
+
+.toggle-button span {
+  display: inline-block;
+}
+
+.toggle-button span:nth-child(1),
+.toggle-button span:nth-child(2),
+.toggle-button span:nth-child(3) {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  width: 1.75rem;
+  height: 0.25rem;
+  border-radius: 0.2rem;
+  background-color: #000;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.open .toggle-button span:nth-child(1),
+.open .toggle-button span:nth-child(2),
+.open .toggle-button span:nth-child(3) {
+  @media screen and (max-width: 479px) {
+    background-color: #fff;
+  }
+}
+
+.toggle-button span:nth-child(1) {
+  top: 0.25rem;
+}
+
+.toggle-button span:nth-child(2) {
+  top: 0.75rem;
+}
+
+.toggle-button span:nth-child(3) {
+  top: 1.25rem;
+}
+
+.toggle-button span:nth-child(4) {
+  margin-left: auto;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.open .toggle-button span:nth-child(1),
+.open .toggle-button span:nth-child(2),
+.open .toggle-button span:nth-child(3) {
+  height: 0.3rem;
+}
+
+.open .toggle-button span:nth-child(1) {
+  top: 0.75rem;
+  transform: rotate(135deg);
+}
+
+.open .toggle-button span:nth-child(2) {
+  opacity: 0;
+  left: -1.5rem;
+}
+
+.open .toggle-button span:nth-child(3) {
+  top: 0.75rem;
+  transform: rotate(-135deg);
+}
+
+/*  ------------------------------------------------------------------------
+      Overlay
+    ------------------------------------------------------------------------  */
+
+.panel .overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh 0;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: auto;
+  height: 0;
+  margin: 0;
+  border-radius: 0 0.15rem 0.15rem 0;
+  background: rgba(72, 65, 77, 0.75);
+  backdrop-filter: blur(0.5rem);;
+  transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+
+  @media screen and (min-width: 480px) {
+    left: 2.5rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    left: 3.5rem;
+    border-top-width: 1.5rem;
+    border-right-width: 1.5rem;
+    border-bottom-width: 1.5rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    left: 4rem;
+    border-top-width: 2rem;
+    border-right-width: 2rem;
+    border-bottom-width: 2rem;
+  }
+}
+
+/** -- Is toggled open. */
+.panel.open .overlay {
+  visibility: visible;
+  opacity: 1;
+  height: calc(100% - 3rem);
+}

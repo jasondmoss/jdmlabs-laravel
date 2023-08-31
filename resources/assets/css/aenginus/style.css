@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 @import "tailwindcss/tailwind.css";
-@import "modules/trix.css";
+@import "../modules/trix.css";
 
 :root {
   --color-gray: hsla(24, 5%, 64%, 1);

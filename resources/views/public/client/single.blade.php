@@ -1,6 +1,10 @@
-@php
-@endphp
-<x-public.layout title="{{ $client->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
+<x-public.layout
+  schema="ItemPage"
+  title="{{ $client->title }}"
+  page=" client"
+  context=" detail"
+  livewire="true"
+>
   <header>
     {{ $logo }}
     <h1>{{ $client->name }}</h1>

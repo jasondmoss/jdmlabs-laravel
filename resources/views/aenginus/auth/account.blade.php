@@ -1,4 +1,9 @@
-<x-aenginus.layout title="User Account Management" page="account" livewire="true">
+<x-aenginus.layout
+  title="User Account Management"
+  page=" account"
+  context=" auth"
+  livewire="true"
+>
   <!-- account.blade -->
 
   <header class="flex flex-col mb-16">

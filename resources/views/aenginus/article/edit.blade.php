@@ -1,9 +1,13 @@
-@php
+<?php
   use Aenginus\Shared\Enums\Promoted;
   use Aenginus\Shared\Enums\Status;
-@endphp
-
-<x-aenginus.layout title="Edit Article" page="edit" livewire="true">
+?>
+<x-aenginus.layout
+  title="Edit Article"
+  page=" article"
+  context=" edit"
+  livewire="true"
+>
   <!-- edit.blade -->
 
   <x-shared.session/>

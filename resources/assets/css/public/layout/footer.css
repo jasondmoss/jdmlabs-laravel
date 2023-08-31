@@ -1,0 +1,19 @@
+.site--footer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: var(--debug--teal);
+}
+
+.site--footer > * {
+  width: 100%;
+}
+
+.site--footer .site--credits {
+  text-align: center;
+  font-size: 0.8rem;
+}

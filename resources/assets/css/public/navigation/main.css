@@ -1,0 +1,61 @@
+menu.main {
+  visibility: hidden;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 0;
+  transition:
+    width 0.3s ease-in-out,
+    height 0.3s ease-in-out;
+
+  @media screen and (min-width: 1024px) {
+    visibility: visible;
+    height: auto;
+  }
+}
+
+menu.main .menu-link {
+  text-underline-offset: 0.35rem;
+  transition:
+    font-size 0.3s ease-in-out,
+    text-decoration 0.5s linear;
+}
+
+menu.main .menu-link,
+menu.main .menu-link:link,
+menu.main .menu-link:visited {
+  text-decoration: underline dotted;
+}
+
+menu.main .menu-link:active,
+menu.main .menu-link:hover,
+menu.main .menu-link:focus {
+  text-decoration: underline double;
+}
+
+menu.main .menu-item.active .menu-link {
+  color: red;
+}
+
+
+@media screen {
+  @media (min-width: 29.375rem) {
+    menu.main .menu-link {
+      font-size: 1.25rem;
+    }
+  }
+  @media (min-width: 42.5rem) {
+    menu.main {
+      justify-content: flex-end;
+      gap: 0 3rem;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    menu.main .menu-link {
+      font-size: 1.5rem;
+    }
+  }
+
+}

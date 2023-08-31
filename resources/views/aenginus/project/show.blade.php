@@ -1,4 +1,9 @@
-<x-aenginus.layout title="Projects" page="index" livewire="true">
+<x-aenginus.layout
+  title="Projects"
+  page=" project"
+  context=" index"
+  livewire="true"
+>
   <!-- show.blade -->
 
   <x-shared.session />

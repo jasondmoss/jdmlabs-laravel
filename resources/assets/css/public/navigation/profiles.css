@@ -1,0 +1,26 @@
+menu.profile {
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+menu.profile .menu-link {
+  gap: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+menu.profile .menu-link svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+menu.profile .menu-link span {
+  text-indent: -1000em;
+}
+
+menu.profile .menu-link:hover,
+menu.profile .menu-link:focus,
+menu.profile .menu-link:focus-visible {
+  transform: scale(1.5);
+}

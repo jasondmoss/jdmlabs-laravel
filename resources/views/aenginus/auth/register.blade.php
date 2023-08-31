@@ -1,4 +1,10 @@
-<x-public.layout title="Register" page="register" schema="WebPage" type="page" livewire="false">
+<x-public.layout
+  schema="WebPage"
+  title="Register"
+  page=" register"
+  context=" auth"
+  livewire="false"
+>
   <!-- register.blade -->
 
   {{ html()

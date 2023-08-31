@@ -1,7 +1,6 @@
-@php
+<?php
   use Aenginus\Taxonomy\Interface\Web\Controllers as Category;
-@endphp
-
+?>
 <!-- list.blade -->
 <div class="listing-wrapper flex flex-col gap-y-10">
 
@@ -59,5 +58,4 @@
   @else
     <p>{{ __('No categories available.') }}</p>
   @endif
-
 </div>

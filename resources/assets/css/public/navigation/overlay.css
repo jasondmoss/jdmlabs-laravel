@@ -1,0 +1,100 @@
+/*  ------------------------------------------------------------------------
+      Main Menu (Clone)
+    ------------------------------------------------------------------------  */
+
+menu.main-clone,
+menu.account-clone {
+  list-style: none;
+  display: flex;
+  width: 85%;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  text-align: left;
+
+  background-color: var(--debug--lime);
+
+  @media screen and (min-width: 1500px) {
+    width: 60rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+menu.main-clone {
+  flex-direction: column;
+  margin-top: 12vh;
+  font-size: 2rem;
+  color: #f2eaf7;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media screen and (min-width: 1500px) {
+    font-size: 3.25rem;
+  }
+}
+
+menu.main-clone > li > a {
+  padding: 0.5rem 2rem;
+  border-left: 0.15rem solid transparent;
+  text-decoration: none;
+  color: #f2eaf7;
+
+  @media screen and (min-width: 480px) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 4rem;
+    border-left-width: 0.25rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 6rem;
+    border-left-width: 0.5rem;
+  }
+}
+
+menu.main-clone > li[aria-selected="true"] > a {
+  border-bottom: 0.15rem solid #fff;
+  color: #fff;
+}
+
+menu.main-clone > li >a:hover {
+  border-color: #f2eaf7;
+  background-color: #3d3741;
+  text-decoration: none;
+  color: #fff;
+}
+
+/*  ------------------------------------------------------------------------
+      Admin Menu (Clone)
+    ------------------------------------------------------------------------  */
+
+menu.account-clone {
+  justify-content: center;
+  gap: 1.25rem;
+  font-size: 1.15rem;
+
+  @media screen and (min-width: 480px) {
+    gap: 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 1.75rem;
+  }
+}

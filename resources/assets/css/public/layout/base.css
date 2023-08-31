@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.exo {
+  flex-grow: 1;
+
+  display: grid;
+  grid-template-columns: 1px 1fr;
+  gap: 0;
+  max-width: 72rem;
+  height: 100%;
+  margin: 0;
+}
+
+@media screen and (min-width: 480px) {
+  .exo {
+    grid-template-columns: 2.5rem 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .exo {
+    grid-template-columns: 3rem 1fr;
+  }
+}
+
+.endo {
+  grid-column: 2;
+  grid-row: 1/span 2;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  background-color: rgba(0, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 1023px) {
+  .phpdebugbar {
+    display: none;
+  }
+}

@@ -1,7 +1,10 @@
-@php
-@endphp
-
-<x-public.layout title="Projects" page="index" schema="CollectionPage" type="page listing project" livewire="true">
+<x-public.layout
+  schema="CollectionPage"
+  title="Projects"
+  page=" project"
+  context=" listing"
+  livewire="true"
+>
   <header class="">
     <h1>{{ __('Projects') }}</h1>
   </header>

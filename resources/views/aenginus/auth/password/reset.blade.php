@@ -1,4 +1,9 @@
-<x-aenginus.layout title="Password Reset" page="reset" livewire="true">
+<x-aenginus.layout
+  title="Password Reset"
+  page=" reset"
+  context=" auth"
+  livewire="true"
+>
   <!-- reset.blade -->
 
   <h2 class="">{{ __('Reset Password') }}</h2>

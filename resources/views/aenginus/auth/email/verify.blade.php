@@ -1,4 +1,10 @@
-<x-public.layout title="Email Verification" page="verify" schema="WebPage" type="page verify" livewire="true">
+<x-public.layout
+  schema="WebPage"
+  title="Email Verification"
+  page=" email-verify"
+  context=" auth"
+  livewire="true"
+>
   <!-- verify.blade -->
 
   <h2 class="">{{ __('Verify Your Email Address') }}</h2>

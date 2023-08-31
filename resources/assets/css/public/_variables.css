@@ -1,0 +1,171 @@
+/*  ------------------------------------------------------------------------
+      DEFINITIONS
+    ------------------------------------------------------------------------  */
+
+:root {
+
+  /** -- Constraints */
+  --constraint--website: 76rem;
+  --constraint--main: 65rem;
+  --constraint--content: 56rem;
+
+  /** -- Fonts. */
+  --font-family: "Berkeley Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Sans-Serif;
+  --font-base: 16px;
+
+  /** -- Colours. */
+
+  /* [#fffdf2] Base Background */
+  /*--base--bg-h: 51;
+  --base--bg-s: 100%;
+  --base--bg-l: 97%;
+  --base--bg: hsl(var(--base--bg-h), var(--base--bg-s), var(--base--bg-l));*/
+
+  /* [#edecef] Base Background */
+  --base--bg-h: 267;
+  --base--bg-s: 8%;
+  --base--bg-l: 93%;
+  --base--bg: hsl(var(--base--bg-h), var(--base--bg-s), var(--base--bg-l));
+
+  /* [#2C1145] Base foreground */
+  --base--fg-h: 268;
+  --base--fg-s: 48%;
+  --base--fg-l: 16%;
+  --base--fg: hsl(var(--base--fg-h), var(--base--fg-s), var(--base--fg-l));
+
+  /* [#ff5500] */
+  --primary-h: 20;
+  --primary-s: 100%;
+  --primary-l: 50%;
+  --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+
+  /* [#48414d] */
+  --bg-primary-h: 275;
+  --bg-primary-s: 8%;
+  --bg-primary-l: 28%;
+  --bg-primary: hsl(var(--bg-primary-h), var(--bg-primary-s), var(--bg-primary-l));
+
+  /* [#d4db00] */
+  --electric-h: 62;
+  --electric-s: 100%;
+  --electric-l: 43%;
+  --electric: hsl(var(--electric-h), var(--electric-s), var(--electric-l));
+
+  /* [#5c5c5c] Gray */
+  --gray-h: 0;
+  --gray-s: 0%;
+  --gray-l: 36%;
+  --gray: hsl(var(--gray-h), var(--gray-s), var(--gray-l));
+
+  /* [#95989a] Gray Medium */
+  --gray-medium-h: 204;
+  --gray-medium-s: 2%;
+  --gray-medium-l: 59%;
+  --gray-medium: hsl(var(--gray-medium-h), var(--gray-medium-s), var(--gray-medium-l));
+
+  /* [#acacac] Gray Light */
+  --gray-light-h: 0;
+  --gray-light-s: 0%;
+  --gray-light-l: 67%;
+  --gray-light-alpha: 100%;
+  --gray-light: hsl(var(--gray-light-h), var(--gray-light-s), var(--gray-light-l));
+
+  /** -- System Messages. */
+
+  /* [#4e0000] Danger */
+  --system--danger-h: 0;
+  --system--danger-s: 100%;
+  --system--danger-l: 45%;
+  --system--danger: hsl(var(--system--danger-h), var(--system--danger-s), var(--system--danger-l));
+
+  /* [#f39b9c] Danger Light */
+  --system--danger-light-h: 0;
+  --system--danger-light-s: 100%;
+  --system--danger-light-l: 96%;
+  --system--danger-light: hsl(var(--system--danger-light-h), var(--system--danger-light-s), var(--system--danger-light-l));
+
+  /* [#08263a] Info */
+  --system--status-h: 219;
+  --system--status-s: 100%;
+  --system--status-l: 48%;
+  --system--status: hsl(var(--system--status-h), var(--system--status-s), var(--system--status-l));
+
+  /* [#f5faff] Info Light */
+  --system--status-light-h: 210;
+  --system--status-light-s: 100%;
+  --system--status-light-l: 97%;
+  --system--status-light: hsl(var(--system--status-light-h), var(--system--status-light-s), var(--system--status-light-l));
+
+  /* [#058260] Success */
+  --system--success-h: 115;
+  --system--success-s: 100%;
+  --system--success-l: 34%;
+  --system--success: hsl(var(--system--success-h), var(--system--success-s), var(--system--success-l));
+
+  /* [#32cea4] Success Light */
+  --system--success-light-h: 96;
+  --system--success-light-s: 100%;
+  --system--success-light-l: 94%;
+  --system--success-light: hsl(var(--system--success-light-h), var(--system--success-light-s), var(--system--success-light-l));
+
+  /* [#d8b234] Warning */
+  --system--warning-h: 50;
+  --system--warning-s: 100%;
+  --system--warning-l: 50%;
+  --system--warning: hsl(var(--system--warning-h), var(--system--warning-s), var(--system--warning-l));
+
+  /* [#efcf64] Warning Light */
+  --system--warning-light-h: 55;
+  --system--warning-light-s: 100%;
+  --system--warning-light-l: 92%;
+  --system--warning-light: hsl(var(--system--warning-light-h), var(--system--warning-light-s), var(--system--warning-light-l));
+
+  --background--highlight: #fff4b1;
+  /* --focus-ring: rgba(0, 181, 255, 1); */
+
+  /** -- Debug. */
+  --debug--blue: rgba(0, 108, 255, 0.2);
+  --debug--green: rgba(20, 255, 0, 0.2);
+  --debug--lime: rgba(192, 255, 0, 0.4);
+  --debug--orange: rgba(255, 26, 0, 0.2);
+  --debug--pink: rgba(255, 0, 201, 0.2);
+  --debug--purple: rgba(171, 0, 255, 0.2);
+  --debug--red: rgba(255, 203, 203, 0.4);
+  --debug--teal: rgba(0, 255, 255, 0.2);
+  --debug--yellow: rgba(250, 255, 203, 0.6);
+
+}
+
+/*  ------------------------------------------------------------------------
+      ANIMATION
+    ------------------------------------------------------------------------  */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Grow */
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.4);
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

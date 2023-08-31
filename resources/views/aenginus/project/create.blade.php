@@ -1,10 +1,14 @@
-@php
+<?php
   use Aenginus\Shared\Enums\Pinned;
   use Aenginus\Shared\Enums\Promoted;
   use Aenginus\Shared\Enums\Status;
-@endphp
-
-<x-aenginus.layout title="Create New Project" page="create" livewire="true">
+?>
+<x-aenginus.layout
+  title="Create New Project"
+  page=" project"
+  context=" create"
+  livewire="true"
+>
   <!-- create.blade -->
 
   <x-shared.session/>

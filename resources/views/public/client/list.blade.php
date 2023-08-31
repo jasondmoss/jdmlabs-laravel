@@ -1,8 +1,13 @@
 @php
   use Aenginus\Client\Interface\Web\Controllers as Client;
 @endphp
-
-<x-public.layout title="Clients" page="index" schema="WebPage" type="page listing" livewire="true">
+<x-public.layout
+  title="Clients"
+  schema="WebPage"
+  page=" client"
+  context=" listing"
+  livewire="true"
+>
   <header>
     <h1 class="">{{ __('Clients') }}</h1>
   </header>
@@ -29,7 +34,7 @@
             {!! $client->summary !!}
           </div>
           @if ($client->projects->count() > 0)
-            @foreach($client->projects as $project) 
+            @foreach($client->projects as $project)
               {{ dump($project) }}
             @endforeach
             <aside class="">

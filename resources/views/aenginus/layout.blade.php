@@ -44,9 +44,9 @@
 <link rel="dns-prefetch" href="https://unpkg.com">
 
 @stack('vendor-styles')
-@vite('resources/assets/css/aenginus.css')
+@vite('resources/assets/css/aenginus/style.css')
 
-</head><body class="admin {{ $page }}{{ Auth::check() ? ' logged-in' : '' }} container mx-auto cursor-default">
+</head><body class="admin {{ Auth::check() ? 'logged-in ': '' }}page{{ $page . $context }} container mx-auto cursor-default">
 
 <header id="adminHeader" class="flex flex-wrap justify-between pb-0 pt-0 pr-4 border-solid border-b-2 border-slate-200 sm:bg-red-200 md:bg-lime-200 lg:pb-0 lg:bg-sky-200 xl:bg-yellow-200">
   <nav class="flex justify-center">

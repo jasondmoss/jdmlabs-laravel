@@ -1,4 +1,10 @@
-<x-public.layout title="Login" page="login" schema="WebPage" type="page" livewire="false">
+<x-public.layout
+  schema="WebPage"
+  title="Login"
+  page=" access"
+  context=" auth"
+  livewire="false"
+>
   <!-- access.blade -->
 
   {{ html()

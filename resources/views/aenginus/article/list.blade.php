@@ -7,7 +7,6 @@
   use Carbon\Carbon;
   use Illuminate\Support\Facades\Date;
 ?>
-
 <!-- list.blade -->
 <div class="relative">
 

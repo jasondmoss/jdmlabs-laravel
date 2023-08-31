@@ -6,8 +6,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/assets/css/aenginus.css",
-                "resources/assets/css/public.css",
+                "resources/assets/css/aenginus/style.css",
+                "resources/assets/css/public/style.css",
 
                 "resources/assets/js/modules/exists.js",
                 "resources/assets/js/modules/new-window.js",

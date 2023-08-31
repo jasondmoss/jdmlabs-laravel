@@ -1,7 +1,13 @@
 @php
   use Aenginus\Client\Interface\Web\Controllers as Client;
 @endphp
-<x-public.layout title="{{ $project->title }}" page="show" schema="ItemPage" type="page detail" livewire="true">
+<x-public.layout
+  schema="ItemPage"
+  title="{{ $project->title }}"
+  page=" project"
+  context=" detail"
+  livewire="true"
+>
   <header>
     {{ $signature }}
     <h1>{{ $project->title }}</h1>

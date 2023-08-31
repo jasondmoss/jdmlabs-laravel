@@ -1,4 +1,4 @@
-@php
+<?php
   use Aenginus\Client\Interface\Web\Controllers as Client;
   use Aenginus\Project\Interface\Web\Controllers as  Project;
   use Aenginus\Shared\Enums\Pinned;
@@ -7,8 +7,7 @@
   use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel as Category;
   use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
   use Illuminate\Support\Facades\Date;
-@endphp
-
+?>
 <!-- list.blade -->
 <div class="relative">
 

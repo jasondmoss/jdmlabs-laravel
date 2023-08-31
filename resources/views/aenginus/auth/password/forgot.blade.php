@@ -1,4 +1,10 @@
-<x-public.layout title="Forgot Password" page="forgot" schema="WebPage" type="page forgot" livewire="true">
+<x-public.layout
+  schema="WebPage"
+  title="Forgot Password"
+  page=" forgot"
+  context=" auth"
+  livewire="true"
+>
   <!-- forgot.blade -->
 
   <h2 class="card-header">{{ __('Reset Password') }}</h2>

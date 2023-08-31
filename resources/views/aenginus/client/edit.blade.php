@@ -1,12 +1,16 @@
-@php
+<?php
   use Aenginus\Project\Interface\Web\Controllers as Project;
   use Aenginus\Shared\Enums\Pinned;
   use Aenginus\Shared\Enums\Promoted;
   use Aenginus\Shared\Enums\Status;
   use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel as Category;
-@endphp
-
-<x-aenginus.layout title="Edit Client" page="edit" livewire="true">
+?>
+<x-aenginus.layout
+  title="Edit Client"
+  page=" client"
+  context=" edit"
+  livewire="true"
+>
   <!-- edit.blade -->
 
   <x-shared.session/>

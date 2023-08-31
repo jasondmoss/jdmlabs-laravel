@@ -1,5 +1,10 @@
-<x-public.layout title="{{ $article->title }}" page="show" schema="ItemPage" type="page single" livewire="true">
-
+<x-public.layout
+  schema="ItemPage"
+  title="{{ $article->title }}"
+  page=" article"
+  context=" detail"
+  livewire="true"
+>
   <article itemscope itemtype="https://schema.org/Article" itemid="{{ url('/article/' . $article->slug) }}" id="{{ $article->id }}" class="h-entry h-as-article card">
     <header class="entry--header">
       {{ $signature }}

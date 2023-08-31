@@ -1,4 +1,9 @@
-<x-aenginus.layout title="Dashboard" page="index" livewire="true">
+<x-aenginus.layout
+  title="Dashboard"
+  page=" dashboard"
+  context=" index"
+  livewire="true"
+>
   <!-- dashboard.blade -->
 
   <header class="admin--header">

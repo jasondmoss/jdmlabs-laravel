@@ -7,7 +7,7 @@
         throw "Livewire Turbolinks Plugin: window.Livewire is undefined. Make sure @livewireScripts is placed above this script include";
     }
 
-    var firstTime = true;
+    let firstTime = true;
 
     function wireTurboAfterFirstVisit ()
     {
@@ -19,13 +19,15 @@
         }
 
         window.Livewire.restart();
+
         window.Alpine &&
             window.Alpine.flushAndStopDeferringMutations &&
             window.Alpine.flushAndStopDeferringMutations();
     }
 
-    function wireTurboBeforeCache () {
-        document.querySelectorAll("[wire\\:id]").forEach(function (el) {
+    function wireTurboBeforeCache ()
+    {
+        document.querySelectorAll("[wire\\:id]").forEach((el) => {
             const component = el.__livewire;
             const dataObject = {
                 fingerprint: component.fingerprint,
@@ -36,7 +38,9 @@
             el.setAttribute("wire:initial-data", JSON.stringify(dataObject));
         });
 
-        window.Alpine && window.Alpine.deferMutations && window.Alpine.deferMutations();
+        window.Alpine &&
+            window.Alpine.deferMutations &&
+            window.Alpine.deferMutations();
     }
 
     document.addEventListener("turbo:load", wireTurboAfterFirstVisit);
@@ -44,13 +48,13 @@
     document.addEventListener("turbolinks:load", wireTurboAfterFirstVisit);
     document.addEventListener("turbolinks:before-cache", wireTurboBeforeCache);
 
-    Livewire.hook("beforePushState", state => {
+    Livewire.hook("beforePushState", (state) => {
         if (! state.turbolinks) {
             state.turbolinks = {};
         }
     });
 
-    Livewire.hook("beforeReplaceState", state => {
+    Livewire.hook("beforeReplaceState", (state) => {
         if (! state.turbolinks) {
             state.turbolinks = {};
         }
