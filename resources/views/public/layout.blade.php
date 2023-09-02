@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  @include('public._partials.prolog')
-</head>
-<body itemscope itemtype="https://schema.org/{{ $schema }}" class="{{ Auth::check() ? 'logged-in ': '' }}page{{ $page . $context }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
+@include('public._partials.prolog')
+</head><body itemscope itemtype="https://schema.org/{{ $schema }}" class="{{ Auth::check() ? 'logged-in ': '' }}page{{ $page . $context }}">
+<ul class="a11y-nav">
+  <li><a class="" href="#">Skip to main content</a></li>
+  <li><a class="" href="#">Skip to navigation</a></li>
+</ul>
 <div class="exo">
   @include('public._partials.overlay')
   <div class="endo">
@@ -15,5 +17,4 @@
   </div>
 </div>
 @vite('resources/assets/js/public.js')
-</body>
-</html>
+</body></html>

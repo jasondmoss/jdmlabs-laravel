@@ -8,6 +8,8 @@
   context=" detail"
   livewire="true"
 >
+  <x-shared.session/>
+
   <header>
     {{ $signature }}
     <h1>{{ $project->title }}</h1>

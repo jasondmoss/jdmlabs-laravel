@@ -14,15 +14,15 @@ body {
   margin: 0;
 }
 
-@media screen and (min-width: 480px) {
+@media only screen and (min-width: 480px) {
   .exo {
-    grid-template-columns: 2.5rem 1fr;
+    grid-template-columns: 3.5rem 1fr;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .exo {
-    grid-template-columns: 3rem 1fr;
+    grid-template-columns: 4rem 1fr;
   }
 }
 
@@ -32,12 +32,11 @@ body {
 
   display: flex;
   flex-direction: column;
-  padding: 0;
 
-  background-color: rgba(0, 255, 255, 0.3);
+  background-color: var(--debug--yellow);
 }
 
-@media screen and (max-width: 1023px) {
+@media only screen and (max-width: 1023px) {
   .phpdebugbar {
     display: none;
   }

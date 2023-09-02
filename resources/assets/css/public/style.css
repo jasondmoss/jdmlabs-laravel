@@ -7,12 +7,8 @@
 @import "layout/footer.css";
 @import "layout/page.css";
 @import "layout/overlay.css";
-@import "navigation/navigation.css";
-@import "navigation/account.css";
-@import "navigation/branding.css";
-@import "navigation/main.css";
-@import "navigation/profiles.css";
-@import "navigation/overlay.css";
+@import "_navigation.css";
+@import "component/message.css";
 @import "_accessibility.css";
 
 

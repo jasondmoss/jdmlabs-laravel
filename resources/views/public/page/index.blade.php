@@ -9,6 +9,8 @@ name('home');
   context=""
   livewire="true"
 >
+  <x-shared.session/>
+
   <figure itemprop="primaryImageOfPage" itemscope itemtype="https://schema.org/ImageObject" role="group" class="site--primary-image" title="Rugged good looks and boyish grin">
     <meta itemprop="url" content="{{ Vite::asset('resources/assets/images/mugshot--525.jpg') }}">
     <meta itemprop="width" content="525">

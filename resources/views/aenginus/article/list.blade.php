@@ -157,17 +157,13 @@
                 </div>
               </div></td>
             </tr>
-            <!-- \Item -->
           @endforeach
-
         </tbody>
 
         <tfoot class="block md:table-footer-group">
-          <tr>
-            <td colspan="4">
-              {{ $articles->links() }}
-            </td>
-          </tr>
+          <tr><td colspan="4">
+            {{ $articles->links() }}
+          </td></tr>
         </tfoot>
       </table>
     @else

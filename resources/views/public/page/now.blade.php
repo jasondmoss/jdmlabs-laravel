@@ -9,6 +9,8 @@ name('now');
   context=""
   livewire="true"
 >
+  <x-shared.session/>
+
   <article itemscope itemtype="https://schema.org/Article" class="h-entry h-as-article">
     <header class="entry--header">
       <h2 itemprop="headline">What I am doing NOW.</h2>

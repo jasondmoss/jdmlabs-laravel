@@ -5,14 +5,7 @@ menu.account {
   justify-content: flex-end;
   gap: 1rem;
   height: 0;
-  transition:
-    width 0.3s ease-in-out,
-    height 0.3s ease-in-out;
-
-  @media screen and (min-width: 1024px) {
-    visibility: visible;
-    height: auto;
-  }
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 menu.account > li {
@@ -26,14 +19,22 @@ menu.account > li > a {
   font-size: 0.8rem;
 }
 
+@media only screen {
+  @media (min-width: 42.5rem) {
+    menu.account {
+      justify-content: flex-end;
+      gap: 0 1rem;
+    }
 
-@media screen and (min-width: 42.5rem) {
-  menu.account {
-    justify-content: flex-end;
-    gap: 0 1rem;
+    menu.account > li {
+      width: fit-content;
+    }
   }
 
-  menu.account > li {
-    width: fit-content;
+  @media (min-width: 64rem) {
+    menu.account {
+      visibility: visible;
+      height: auto;
+    }
   }
 }

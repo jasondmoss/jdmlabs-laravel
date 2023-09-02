@@ -8,6 +8,8 @@
   context=" listing"
   livewire="true"
 >
+  <x-shared.session/>
+
   <header>
     <h1 class="">{{ __('Clients') }}</h1>
   </header>
@@ -33,14 +35,14 @@
           <div class="entry-summary">
             {!! $client->summary !!}
           </div>
-          @if ($client->projects->count() > 0)
+          {{--@if ($client->projects->count() > 0)
             @foreach($client->projects as $project)
               {{ dump($project) }}
             @endforeach
             <aside class="">
 
             </aside>
-          @endif
+          @endif--}}
           <footer>
             @if (@auth()->check())
               <a rel="nofollow" class="button" href="{{ action(Client\EditController::class, $client->id) }}">{{ __('Edit') }}</a>

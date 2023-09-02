@@ -5,6 +5,8 @@
   context=" detail"
   livewire="true"
 >
+  <x-shared.session/>
+
   <header>
     {{ $logo }}
     <h1>{{ $client->name }}</h1>

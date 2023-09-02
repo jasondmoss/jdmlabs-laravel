@@ -8,6 +8,8 @@
   context=" listing"
   livewire="true"
 >
+  <x-shared.session/>
+
   <header class="">
     <h1 class="">{{ __('Articles') }}</h1>
   </header>

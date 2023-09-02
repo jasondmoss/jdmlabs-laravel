@@ -9,6 +9,8 @@ name('about');
   context=""
   livewire="true"
 >
+<x-shared.session/>
+
 <article itemscope itemtype="https://schema.org/Article" class="h-entry h-as-article">
   <header class="entry--header">
     <h2 itemprop="headline" class="entry--title">About me.</h2>

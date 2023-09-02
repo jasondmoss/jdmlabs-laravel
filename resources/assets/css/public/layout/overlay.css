@@ -19,6 +19,7 @@
 .return-to-top {
   appearance: none;
   z-index: 5;
+  position: sticky;
   width: 2rem;
   height: 2rem;
   margin: 0;
@@ -29,17 +30,22 @@
 }
 
 .toggle-button {
+  top: 3rem;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
 }
 
-@media screen and (max-width: 480px) {
+.return-to-top {
+  bottom: 3rem;
+}
+
+@media only screen and (max-width: 480px) {
   .panel {
     width: 0;
   }
 
   .toggle-button {
-    margin-left: 1rem;
+    margin-left: 4rem;
   }
 
   .return-to-top {
@@ -68,7 +74,7 @@
 .open .toggle-button span:nth-child(1),
 .open .toggle-button span:nth-child(2),
 .open .toggle-button span:nth-child(3) {
-  @media screen and (max-width: 479px) {
+  @media only screen and (max-width: 479px) {
     background-color: #fff;
   }
 }
@@ -113,6 +119,7 @@
   transform: rotate(-135deg);
 }
 
+
 /*  ------------------------------------------------------------------------
       Overlay
     ------------------------------------------------------------------------  */
@@ -129,32 +136,25 @@
   right: 0;
   left: 0;
   width: auto;
+  max-width: 66rem;
   height: 0;
-  margin: 0;
-  border-radius: 0 0.15rem 0.15rem 0;
+  margin: 0.25rem 0 0;
   background: rgba(72, 65, 77, 0.75);
   backdrop-filter: blur(0.5rem);;
   transition: opacity 0.35s, visibility 0.35s, height 0.35s;
 
-  @media screen and (min-width: 480px) {
-    left: 2.5rem;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  @media screen and (min-width: 768px) {
+  @media only screen and (min-width: 480px) {
     left: 3.5rem;
-    border-top-width: 1.5rem;
-    border-right-width: 1.5rem;
-    border-bottom-width: 1.5rem;
+    margin-right: 1rem;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media only screen and (min-width: 768px) {
     left: 4rem;
-    border-top-width: 2rem;
-    border-right-width: 2rem;
-    border-bottom-width: 2rem;
+    margin-right: 1.5rem;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin-right: 2rem;
   }
 }
 
@@ -162,5 +162,5 @@
 .panel.open .overlay {
   visibility: visible;
   opacity: 1;
-  height: calc(100% - 3rem);
+  height: calc(100% - 0.25rem);
 }

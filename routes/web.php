@@ -6,6 +6,7 @@ use Aenginus\Article\Interface\Web\Controllers as Article;
 use Aenginus\Client\Interface\Web\Controllers as Client;
 use Aenginus\Project\Interface\Web\Controllers as Project;
 use Aenginus\Taxonomy\Interface\Web\Controllers as Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->group(static function () {
@@ -78,6 +79,12 @@ Route::middleware(['web'])->group(static function () {
             ->name('ae-category-edit');
         Route::put('/taxonomy/category/update/{id}', Category\UpdateController::class);
         Route::delete('/taxonomy/category/{id}', Category\DestroyController::class);
+
+        Route::get('/clear', static function () {
+            Cache::flush();
+
+             return back()->with('update', 'All caches have been cleared.');
+        })->name('clear-cache');
 
     });
 

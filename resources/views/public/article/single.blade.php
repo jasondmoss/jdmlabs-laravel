@@ -5,6 +5,8 @@
   context=" detail"
   livewire="true"
 >
+  <x-shared.session/>
+
   <article itemscope itemtype="https://schema.org/Article" itemid="{{ url('/article/' . $article->slug) }}" id="{{ $article->id }}" class="h-entry h-as-article card">
     <header class="entry--header">
       {{ $signature }}

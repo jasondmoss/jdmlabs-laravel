@@ -5,6 +5,8 @@
   context=" listing"
   livewire="true"
 >
+  <x-shared.session/>
+
   <header class="">
     <h1>{{ __('Projects') }}</h1>
   </header>

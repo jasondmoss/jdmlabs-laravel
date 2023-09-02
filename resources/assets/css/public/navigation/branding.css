@@ -61,7 +61,7 @@
 }
 
 
-@media screen {
+@media only screen {
   @media (min-width: 23.125rem) {
     .site--branding a {
       gap: 0 5%;

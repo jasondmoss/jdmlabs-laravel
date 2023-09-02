@@ -1,42 +1,52 @@
-:is(a, button, input, summary, textarea) {
-  --outline-color: #000;
-  --outline-offset: 0.15rem;
-  --outline-size: 0.15rem;
-  --outline-style: dashed;
-}
-
-:is(a, button:not(.toggle), input, textarea, summary):focus-visible {
-  outline: var(--outline-size) var(--outline-style) var(--outline-color);
-  outline-offset: var(--outline-offset);
-}
-
-:is(a, button:not(.toggle), input, textarea, summary):focus:not(:focus-visible) {
+*:focus {
   outline: none;
 }
 
-button {
-  --outline-offset: -0.15rem;
+*:focus-visible {
+  outline: 0.125rem solid rgba(0, 187, 255, 1);
 }
 
-button:focus,
-input:focus,
-select:focus,
-option:focus,
-.ck-editor__editable_inline:focus {
-  --outline-style: none;
+
+/*  ------------------------------------------------------------------------
+      'Flying Focus'
+      @link https://github.com/Q42/floating-focus-a11y
+    ------------------------------------------------------------------------  */
+.floating-focus-enabled :focus, .floating-focus-enabled .focus {
+  outline: 0.125rem solid rgba(0, 187, 255, 1);
+  outline-offset: 0.15rem;
 }
 
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-option:focus-visible,
-.ck-editor__editable_inline:focus-visible {
-  --outline-style: dashed;
+.floating-focus-enabled [type="button"]:focus {
+  outline-color: green;
+  outline-offset: 0.15rem;
 }
 
-summary {
-  --outline-offset: 0.5em;
-  --outline-style: dotted;
+
+/*  ------------------------------------------------------------------------
+      Overlay
+    ------------------------------------------------------------------------  */
+
+.a11y-nav {
+  z-index: 99;
+  position: absolute;
+  top: -20em;
+  width: 100%;
+}
+
+.a11y-nav a {
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #0ff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.a11y-nav a:focus {
+  top: 20em;
+  box-shadow: 0 1px 2px 0 rgba(43, 42, 51, 0.05);
+  text-decoration: none;
 }
 
 ::selection {
@@ -46,41 +56,27 @@ summary {
 
 /** -- Screen reader. */
 
-.sr-only {
+.srt {
   overflow: hidden;
-  clip-path: inset(50%);
+  clip: rect(0, 0, 0, 0);
   position: absolute;
   width: 1px;
   height: 1px;
   margin: -1px;
   padding: 0;
+  border-width: 0;
   white-space: nowrap;
 }
 
-.sr-only:active,
-.sr-only:focus {
+.not-srt,
+.srt:active,
+.srt:focus {
   overflow: visible;
-  clip-path: inset(0);
+  clip: auto;
   position: static;
   width: auto;
   height: auto;
   margin: 0;
+  padding: 0;
   white-space: normal;
-}
-
-/** -- Skip to content. */
-
-.skip-content {
-  --outline-offset: -0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  padding: 3rem 1rem;
-  background-color: var(--background--highlight);
-  text-decoration: overline underline dashed var(--system--success-light);
-  text-underline-offset: 0.65rem;
-  font-weight: 700;
-  font-size: 2rem;
-  color: #000;
 }
