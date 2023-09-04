@@ -16,12 +16,14 @@
     <nav class="flex flex-wrap justify-center items-center gap-10 sm:flex-row">
       <a class="bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm" href="{{ action(Article\CreateController::class) }}">New Article</a>
 
-      <form wire:submit="search" wire:model="query" class="flex justify-center w-full px-5 sm:w-auto">
-        <label for="search" class="w-full">
-          <span class="sr-only">{{ __('Search') }}</span>
-          <input wire:model.live="search" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="{{ __('Search') }}">
-        </label>
-      </form>
+      <search>
+        <form wire:submit="search" wire:model="query" class="flex justify-center w-full px-5 sm:w-auto">
+          <label for="search" class="w-full">
+            <span class="sr-only">{{ __('Search') }}</span>
+            <input wire:model.live="search" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="{{ __('Search') }}">
+          </label>
+        </form>
+      </search>
     </nav>
   </header>
 

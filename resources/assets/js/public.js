@@ -16,6 +16,11 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
         window.addEventListener("click", (event) => {
             if (overlayToggle.contains(event.target)) {
                 panel.classList.toggle("open");
+            } else if (! (
+                overlayToggle.contains(event.target) ||
+                panel.contains(event.target)
+            )) {
+                panel.classList.remove("open");
             }
         });
 

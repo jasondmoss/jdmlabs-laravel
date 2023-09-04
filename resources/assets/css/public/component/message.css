@@ -1,4 +1,4 @@
-figure[role="alert"] {
+figure.alert {
   display: flex;
   gap: 1.5rem;
   margin: 2rem;
@@ -13,11 +13,11 @@ figure[role="alert"] {
     rgba(0, 0, 0, 0.1) 0 2px 4px -2px
 }
 
-figure[role="alert"] > svg {
+figure.alert > svg {
   display: block;
   width: 24px;
   height: 24px;
   vertical-align: middle;
 }
 
-figure[role="alert"] figcaption {}
+figure.alert figcaption {}

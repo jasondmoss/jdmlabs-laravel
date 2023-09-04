@@ -10,10 +10,14 @@
     <nav class="listing-tools flex items-center gap-x-10">
       <a class="bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm" href="{{ action(Category\CreateController::class) }}">New Category</a>
 
-      <form wire:submit="search" wire:model="query" class="list-search">
-        <label for="search"> <span class="sr-only">{{ __('Search') }}</span>
-          <input wire:model.live="search" class="form-input--text" placeholder="Search"> </label>
-      </form>
+      <search>
+        <form wire:submit="search" wire:model="query" class="list-search">
+          <label for="search">
+            <span class="sr-only">{{ __('Search') }}</span>
+            <input wire:model.live="search" class="form-input--text" placeholder="Search">
+          </label>
+        </form>
+      </search>
     </nav>
   </header>
 

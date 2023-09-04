@@ -1,6 +1,6 @@
 body {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 0.25rem);
 }
 
 .exo {
@@ -9,20 +9,20 @@ body {
   display: grid;
   grid-template-columns: 1px 1fr;
   gap: 0;
-  max-width: 72rem;
+  max-width: 100rem;
   height: 100%;
   margin: 0;
-}
 
-@media only screen and (min-width: 480px) {
-  .exo {
-    grid-template-columns: 3.5rem 1fr;
-  }
-}
+  background-color: var(--debug--yellow);
 
-@media only screen and (min-width: 768px) {
-  .exo {
-    grid-template-columns: 4rem 1fr;
+  @media only screen {
+    @media (min-width: 480px) {
+      grid-template-columns: 3.5rem 1fr;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: 4rem 1fr;
+    }
   }
 }
 
@@ -32,8 +32,7 @@ body {
 
   display: flex;
   flex-direction: column;
-
-  background-color: var(--debug--yellow);
+  max-width: 72rem;
 }
 
 @media only screen and (max-width: 1023px) {

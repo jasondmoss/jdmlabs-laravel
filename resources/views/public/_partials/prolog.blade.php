@@ -12,18 +12,18 @@
  * @link {Profile} https://www.last.fm/user/jasonmoss
 -->
 @if (Request::is('/'))
-  <title>{{ config('jdmlabs.title_home', 'JdmLabs') }}</title>
+<title>{{ config('jdmlabs.title_home', 'JdmLabs') }}</title>
 @elseif ($title)
-  <title>{{ $title }} &#160;&#11825;&#160; {{ config('jdmlabs.title', 'JdmLabs') }}</title>
+<title>{{ $title }} &#160;&#11825;&#160; {{ config('jdmlabs.title', 'JdmLabs') }}</title>
 @endif
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
 <meta name="canonical" content="{{ config('app.url') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="application-name" content="Laravel">
-<meta name="author" content="jasondmoss">
+<meta name="generator" content="Laravel 10">
 <meta name="title" content="@if ($title) {{ $title }} &#160;&#11825;&#160; @endif {{ config('jdmlabs.title', 'JdmLabs') }}">
 <meta name="description" content="{{ config('jdmlabs.description') }}">
+<meta name="author" content="jasondmoss">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
 
 <link rel="profile" href="https://microformats.org/profile/hcard">
 <link rel="profile me" href="https://mastodon.online/@jasondmoss">

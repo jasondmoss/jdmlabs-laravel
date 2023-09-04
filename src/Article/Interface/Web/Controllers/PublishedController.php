@@ -17,7 +17,10 @@ class PublishedController extends Controller
      */
     public function __invoke(): View
     {
-        $articles = ArticleEloquentModel::published()
+        $articles = ArticleEloquentModel::select([
+                'id', 'title', 'slug', 'promoted'
+            ])
+            ->published()
             ->orderBy('created_at', 'desc')
             ->get()
             ->each(static function ($article) {
