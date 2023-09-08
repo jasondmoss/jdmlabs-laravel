@@ -14,9 +14,9 @@ trait Observable
      */
     public static function bootObservable(): void
     {
-        static::updating(function (Model $model) {
-            // dd('updating');
-        });
+        /*static::updating(static function (Model $model) {
+             dd('updating');
+        });*/
     }
 
 }

@@ -42,7 +42,7 @@ return [
 
     /*
     |---------------------------------------------------------------------------
-    | Temporary File Uploads
+    | Temporary UploadedFileValueObject Uploads
     |---------------------------------------------------------------------------
     |
     | Livewire handles file uploads by storing uploads in a temporary directory

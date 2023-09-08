@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Infrastructure\Entities;
 
-use Aenginus\Taxonomy\Infrastructure\ValueObjects\Id;
-use Aenginus\Taxonomy\Infrastructure\ValueObjects\Name;
+use Aenginus\Shared\ValueObjects\StringValueObject;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 
 final readonly class CategoryEntity
 {
 
     public string|null $id;
-
     public string|null $name;
 
 
@@ -20,9 +19,8 @@ final readonly class CategoryEntity
      */
     public function __construct(object $categoryData)
     {
-        $this->id = (new Id($categoryData->id))->value();
-
-        $this->name = (new Name($categoryData->name))->value();
+        $this->id = (new UlidValueObject($categoryData->id))->value();
+        $this->name = (new StringValueObject($categoryData->name))->value();
     }
 
 }

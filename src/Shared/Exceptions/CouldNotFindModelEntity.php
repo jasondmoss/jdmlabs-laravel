@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Taxonomy\Application\Exceptions;
+namespace Aenginus\Shared\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-final class CouldNotDeleteCategory
-    extends Exception
-    implements HttpExceptionInterface
+class CouldNotFindModelEntity extends Exception implements HttpExceptionInterface
 {
 
     /**
@@ -20,7 +18,18 @@ final class CouldNotDeleteCategory
      */
     public static function withId(string $id): self
     {
-        return new self("Could not delete category with ID, '{$id}'.");
+        return new self("Could not find entity with ID, '{$id}'.");
+    }
+
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public static function withSlug(string $slug): self
+    {
+        return new self("Could not find entity by slug, '{$slug}'.");
     }
 
 
@@ -29,7 +38,7 @@ final class CouldNotDeleteCategory
      */
     public function getStatusCode(): int
     {
-        return Response::HTTP_EXPECTATION_FAILED;
+        return Response::HTTP_NOT_FOUND;
     }
 
 

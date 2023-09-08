@@ -18,8 +18,6 @@ class UserEloquentModel extends Authenticatable
 
     use HasFactory, HasUlids, Notifiable, TwoFactorAuthenticatable;
 
-    public $timestamps = true;
-
     protected $table = 'users';
 
     /**
@@ -73,11 +71,7 @@ class UserEloquentModel extends Authenticatable
      */
     final public function canManageContent(): bool
     {
-        if ($this->email === config('admin_email', 'jason@jdmlabs.com')) {
-            return true;
-        }
-
-        return false;
+        return $this->email === config('admin_email', 'jason@jdmlabs.com');
     }
 
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Media\Infrastructure\ValueObjects;
+namespace Aenginus\Shared\ValueObjects;
 
 use Illuminate\Http\UploadedFile;
 
-final readonly class File
+final readonly class UploadedFileValueObject
 {
 
     private UploadedFile $image;

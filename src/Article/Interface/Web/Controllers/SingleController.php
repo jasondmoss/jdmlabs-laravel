@@ -31,20 +31,17 @@ class SingleController extends Controller
      * @param string $key
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
-    public function __invoke(
-        int|null $year,
-        int|null $month,
-        int|null $day,
-        string $key
-    ): View
+    public function __invoke(int|null $year, int|null $month, int|null $day, string $key): View
     {
         $article = $this->article->find($key);
-
         $signature = $article->getFirstMedia('signature');
 
-        return ViewFacade::make('ArticlePublic::single', compact('article', 'signature'));
+        return ViewFacade::make(
+            'ArticlePublic::single',
+            compact('article', 'signature')
+        );
     }
 
 }

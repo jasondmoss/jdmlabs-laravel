@@ -13,7 +13,6 @@ use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 final class CreateRequest extends CreateSubmissionRules
 {
 
-
     /**
      * Determine if the user is authorized to make this request.
      *

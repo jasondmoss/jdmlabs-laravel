@@ -16,6 +16,10 @@ interface MultiImageContract
      *
      * @return void
      */
-    public function attach(Model $model, array $images, string $mediaCollection = ''): void;
+    public function attach(
+        Model $model,
+        array $images,
+        string $mediaCollection = ''
+    ): void;
 
 }

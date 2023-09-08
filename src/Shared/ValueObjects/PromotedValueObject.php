@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Article\Infrastructure\ValueObjects;
+namespace Aenginus\Shared\ValueObjects;
 
-use Aenginus\Shared\ValueObjects\EnumValueObject;
-
-final class Status extends EnumValueObject
+final class PromotedValueObject extends EnumValueObject
 {
 
     /**

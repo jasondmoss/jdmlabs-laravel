@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Interface\Web\Controllers;
 
 use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
-use Aenginus\Article\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -30,18 +30,17 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): View
     {
-        $article = $this->article->find((new Id($id))->value());
-
+        $article = $this->article->find((new UlidValueObject($id))->value());
         $article->generateDates();
         $article->generatePermalink();
 
-        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
-
         $signature = $article->getFirstMedia('signature');
+
+        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
             'ArticleAdmin::edit',

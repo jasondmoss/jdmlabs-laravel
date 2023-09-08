@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Controllers;
 
-use Aenginus\Article\Application\Exceptions\CouldNotDeleteArticle;
 use Aenginus\Article\Application\UseCases\DestroyUseCase;
 use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
-use Aenginus\Article\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use App\Controller;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +16,6 @@ class DestroyController extends Controller
 {
 
     protected ArticleEloquentModel $article;
-
     protected DestroyUseCase $bridge;
 
 
@@ -35,17 +34,17 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotDeleteArticle
+     * @throws \Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $toBeDeleted = $this->article->find((new Id($id))->value());
+        $toBeDeleted = $this->article->find((new UlidValueObject($id))->value());
 
         try {
             $this->bridge->delete($toBeDeleted);
         } catch (Exception $exception) {
-            throw CouldNotDeleteArticle::withId($toBeDeleted->id);
+            throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
         }
 
         return redirect()

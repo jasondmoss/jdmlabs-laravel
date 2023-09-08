@@ -19,6 +19,7 @@ final class ClientFactory extends Factory
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function definition(): array
     {
@@ -26,7 +27,7 @@ final class ClientFactory extends Factory
 
         $name = Str::title($faker->words(7, true));
         $slug = Str::of($name)->slug('-');
-        $created = Date::today()->subDays(rand(0, 365));
+        $created = Date::today()->subDays(random_int(0, 365));
 
         return [
             'id' => Str::ulid(),
@@ -35,16 +36,12 @@ final class ClientFactory extends Factory
             'itemprop' => ucfirst($faker->word()),
             'website' => 'https://' . $faker->domainName() . '/',
             'summary' => $faker->text(170),
-
             'status' => 'published',
             'promoted' => 'not_promoted',
-
             'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')
                 ->first()
                 ->id,
-
             'published_at' => $created,
-
             'created_at' => $created,
             'updated_at' => Date::now()
         ];

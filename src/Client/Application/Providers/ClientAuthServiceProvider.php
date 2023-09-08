@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Application\Providers;
 
-use Aenginus\Client\Domain\Policies\ClientPolicy;
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Shared\Policies\ModelEntityPolicy;
 use App\Providers\AuthServiceProvider;
 
 class ClientAuthServiceProvider extends AuthServiceProvider
@@ -17,7 +17,7 @@ class ClientAuthServiceProvider extends AuthServiceProvider
      * @var array
      */
     protected $policies = [
-        ClientEloquentModel::class => ClientPolicy::class
+        ClientEloquentModel::class => ModelEntityPolicy::class
     ];
 
 }

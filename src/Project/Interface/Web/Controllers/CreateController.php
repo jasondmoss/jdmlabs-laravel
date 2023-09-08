@@ -19,7 +19,6 @@ class CreateController extends Controller
     public function __invoke(): View
     {
         $clients = ClientEloquentModel::get()->pluck('name', 'id');
-
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(

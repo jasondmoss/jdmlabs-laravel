@@ -17,6 +17,10 @@ interface SingleImageContract
      *
      * @return void
      */
-    public function attach(Model $model, ImageEntity $entity, string $mediaCollection = ''): void;
+    public function attach(
+        Model $model,
+        ImageEntity $entity,
+        string $mediaCollection = ''
+    ): void;
 
 }

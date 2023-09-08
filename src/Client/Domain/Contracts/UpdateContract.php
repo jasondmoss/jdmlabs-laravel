@@ -16,9 +16,6 @@ interface UpdateContract
      *
      * @return \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel
      */
-    public function update(
-        ClientEloquentModel $client,
-        ClientEntity $entity
-    ): ClientEloquentModel;
+    public function update(ClientEloquentModel $client, ClientEntity $entity): ClientEloquentModel;
 
 }

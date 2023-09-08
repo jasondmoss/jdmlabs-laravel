@@ -12,12 +12,20 @@ class MediaEloquentModel extends BaseMedia
 
     use HasUlids;
 
-    protected $primaryKey = 'id';
-
     protected $keyType = 'string';
 
-    public $timestamps = true;
-
     public $incrementing = false;
+
+
+    /**
+     * @return int
+     */
+    public function getHighestOrderNumber(): int
+    {
+        return (int) $this->where('model_type', $this->model_type)
+            ->where('model_id', $this->model_id)
+            ->where('collection_name', $this->collection_name)
+            ->max($this->determineOrderColumnName());
+    }
 
 }

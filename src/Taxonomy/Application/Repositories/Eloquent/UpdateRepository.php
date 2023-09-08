@@ -17,10 +17,7 @@ final class UpdateRepository implements UpdateContract
      *
      * @return \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel
      */
-    public function update(
-        CategoryEloquentModel $category,
-        CategoryEntity $entity
-    ): CategoryEloquentModel
+    public function update(CategoryEloquentModel $category, CategoryEntity $entity): CategoryEloquentModel
     {
         $category->update((array) $entity);
 

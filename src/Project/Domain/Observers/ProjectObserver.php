@@ -28,7 +28,7 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function created(ProjectEloquentModel $project): void {}
+//    public function created(ProjectEloquentModel $project): void {}
 
 
     /**
@@ -36,7 +36,7 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function deleting(ProjectEloquentModel $project): void {}
+//    public function deleting(ProjectEloquentModel $project): void {}
 
 
     /**
@@ -44,7 +44,7 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function deleted(ProjectEloquentModel $project): void {}
+//    public function deleted(ProjectEloquentModel $project): void {}
 
 
     /**
@@ -52,7 +52,7 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function updating(ProjectEloquentModel $project): void {}
+//    public function updating(ProjectEloquentModel $project): void {}
 
 
     /**
@@ -60,5 +60,6 @@ final readonly class ProjectObserver
      *
      * @return void
      */
-    public function updated(ProjectEloquentModel $project): void {}
+//    public function updated(ProjectEloquentModel $project): void {}
+
 }

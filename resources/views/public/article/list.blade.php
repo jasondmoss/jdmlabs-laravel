@@ -20,20 +20,23 @@
 @foreach ($articles as $article)
 
     <article itemid="{{ $article->permalink }}" itemscope itemtype="https://schema.org/Article" id="{{ $article->id }}" class="h-entry h-as-article">
-      <figure itemscope itemtype="https://schema.org/ImageObject" role="group" class="entry--image" style="background-image:url({{ $article->getFirstMediaUrl('signature', 'preview') }})">
+
+      <figure itemscope itemtype="https://schema.org/ImageObject" role="group" class="entry--image">
         <a href="{{ $article->permalink }}" title="{{ __('View article') }}">
-          <img class="srt" src="{{ $article->getFirstMediaPath('signature', 'preview') }}" alt="">
+          <img src="{{ $article->getSignaturePreview() }}" alt="">
         </a>
       </figure>
+
       <header class="entry--header">
-        <h3><a href="{{ $article->permalink }}">{{ $article->title }}</a></h3>
 @if ($article->category !== null)
         <nav class="nav--taxonomy">
           <i class="fa-solid fa-tag" sttyle="color:#f00"></i>
           <a itemprop="tag" href="#" title="{{ __('') }}">{{ $article->category->name }}</a>
         </nav>
 @endif
+        <h3><a href="{{ $article->permalink }}">{{ $article->title }}</a></h3>
       </header>
+
       <footer class="entry--footer">
         <time itemprop="datePublished" datetime="{{ $article->date->published->iso }}" class="dt-published">{{ $article->date->published->path }}</time>
         <time itemprop="dateUpdate" datetime="{{ $article->date->updated->iso }}" class="dt-updated srt">{{ $article->date->updated->display }}</time>
@@ -44,6 +47,7 @@
         </a>
 @endif
       </footer>
+
     </article>
 @endforeach
 @else

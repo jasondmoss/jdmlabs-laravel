@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Project\Application\Exceptions\CouldNotDeleteProject;
 use Aenginus\Project\Application\UseCases\DestroyUseCase;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
-use Aenginus\Project\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use App\Controller;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +16,6 @@ class DestroyController extends Controller
 {
 
     protected ProjectEloquentModel $project;
-
     protected DestroyUseCase $bridge;
 
 
@@ -35,17 +34,17 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotDeleteProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $toBeDeleted = $this->project->find((new Id($id))->value());
+        $toBeDeleted = $this->project->find((new UlidValueObject($id))->value());
 
         try {
             $this->bridge->delete($toBeDeleted);
         } catch (Exception $exception) {
-            throw CouldNotDeleteProject::withId($toBeDeleted->id);
+            throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
         }
 
         return redirect()

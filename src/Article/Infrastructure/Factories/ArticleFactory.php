@@ -33,16 +33,12 @@ final class ArticleFactory extends Factory
             'title' => $title,
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(4, true),
-
             'status' => 'published',
             'promoted' => 'not_promoted',
-
             'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')
                 ->first()
                 ->id,
-
             'published_at' => $created,
-
             'created_at' => $created,
             'updated_at' => Date::now()
         ];

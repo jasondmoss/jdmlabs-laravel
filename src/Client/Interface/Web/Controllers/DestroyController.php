@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Controllers;
 
-use Aenginus\Client\Application\Exceptions\CouldNotDeleteClient;
 use Aenginus\Client\Application\UseCases\DestroyUseCase;
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
-use Aenginus\Client\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use App\Controller;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +16,6 @@ class DestroyController extends Controller
 {
 
     protected ClientEloquentModel $client;
-
     protected DestroyUseCase $bridge;
 
 
@@ -35,17 +34,17 @@ class DestroyController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotDeleteClient
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): RedirectResponse
     {
-        $toBeDeleted = $this->client->find((new Id($id))->value());
+        $toBeDeleted = $this->client->find((new UlidValueObject($id))->value());
 
         try {
             $this->bridge->delete($toBeDeleted);
         } catch (Exception $exception) {
-            throw CouldNotDeleteClient::withId($toBeDeleted->id);
+            throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
         }
 
         return redirect()

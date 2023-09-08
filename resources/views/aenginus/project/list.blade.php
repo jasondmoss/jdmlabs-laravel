@@ -11,7 +11,7 @@
 <!-- list.blade -->
 <div class="relative">
 
-  <header id="listingHeader" class="flex flex-col md:flex-row md:justify-between gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-7 xl:pb-6">
+  <header id="listingHeader" class="flex flex-col md:flex-row md:justify-between gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:px-4 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-7 xl:pb-6">
     <h1 class="text-center pl-2 text-4xl font-medium">{{ __('Projects') }}</h1>
 
     <nav class="flex flex-wrap justify-center items-center gap-10 sm:flex-row">
@@ -33,7 +33,7 @@
       <table class="flex flex-col gap-y-4 max-w-sm mx-auto mt-10 mb-0 md:table md:max-w-full md:m-0 lg:mt-4 text-left text-sm font-medium">
         <thead class="hidden md:table-header-group border-b dark:border-neutral-500">
           <tr>
-            <th scope="col" class="md:w-16 md:px-6 py-2 my-2">{{ __('Signature') }}</th>
+            <th scope="col" class="md:w-10 md:px-6 py-2 my-2">{{ __('Signature') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Title') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Updated') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Actions') }}</th>
@@ -45,8 +45,8 @@
             @php $permalink = url('/project/' . $project->slug); @endphp
 
             <!-- Item -->
-            <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50">
-              <td class="block w-full md:table-cell md:w-16 py-2">
+            <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
+              <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
                     @if ($project->hasMedia('signature'))
@@ -57,7 +57,7 @@
                   </a>
                 </figure>
               </td>
-              <td class="block md:table-cell md:align-top md:px-6 py-6"><div class="flex flex-col gap-y-2">
+              <td class="block md:table-cell md:align-top md:px-6 py-2"><div class="flex flex-col gap-y-2">
                 <a rel="external" class="font-bold text-base xl:text-xl text-sky-600 hover:text-black" href="{{ $permalink }}" title="{{ __('View project') }}">{{ $project->title }}</a>
                 <p class="flex gap-x-3">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-default mt-0.5 rotate-90"><path fill-rule="evenodd" d="M21.53 9.53a.75.75 0 01-1.06 0l-4.72-4.72V15a6.75 6.75 0 01-13.5 0v-3a.75.75 0 011.5 0v3a5.25 5.25 0 1010.5 0V4.81L9.53 9.53a.75.75 0 01-1.06-1.06l6-6a.75.75 0 011.06 0l6 6a.75.75 0 010 1.06z" clip-rule="evenodd" /></svg>
@@ -75,12 +75,12 @@
                   </p>
                 @endif
               </div></td>
-              <td class="block py-6 md:table-cell md:align-top md:w-32 md:px-6 lg:w-56">
+              <td class="block py-2 md:table-cell md:align-top md:w-32 md:px-6 lg:w-56">
                 <time class="flex md:justify-end gap-x-4 pt-1 text-lg lg:text-base" datetime="{{ Date::parse($project->updated_at)->format('c') }}" title="{{ Date::parse($project->updated_at)->format('c') }}">
                   {{ Date::parse($project->updated_at)->format('Y/m/d \\@ H:i:s') }}
                 </time>
               </td>
-              <td class="block py-6 md:table-cell md:align-top md:w-32 md:px-6">
+              <td class="block py-2 md:table-cell md:align-top md:w-32 md:px-6">
                 <div class="flex gap-3">
                   <span class="status" wire:click="toggleStatePublished('{{ $project->id }}')" title="@if ($project->status->value === 'published') {{ __('Unpublish this project') }} @else {{ __('Publish this project') }} @endif">
                     {!! Status::icon($project->status) !!}

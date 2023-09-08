@@ -16,9 +16,7 @@ class UpdateController extends Controller
 {
 
     protected ArticleEloquentModel $article;
-
     protected ArticleUseCase $bridge;
-
     protected SingleImageUseCase $signature;
 
 
@@ -42,21 +40,17 @@ class UpdateController extends Controller
      * @param \Aenginus\Article\Interface\Web\Requests\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
-     * @throws \Exception
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
+     * @throws \ReflectionException
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
         $validated = (object) $request->validated();
         $articleEntity = new ArticleEntity($validated);
-
         $articleInstance = $this->article->find($articleEntity->id);
-
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
-        /**
-         * Signature image (single).
-         */
+        // Signature image (single).
         if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $article,

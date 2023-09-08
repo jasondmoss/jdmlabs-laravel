@@ -17,11 +17,8 @@ class UpdateController extends Controller
 {
 
     protected ProjectEloquentModel $project;
-
     protected ProjectUseCase $bridge;
-
     protected SingleImageUseCase $signature;
-
     protected MultiImageUseCase $showcase;
 
 
@@ -48,21 +45,17 @@ class UpdateController extends Controller
      * @param \Aenginus\Project\Interface\Web\Requests\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      * @throws \ReflectionException
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
         $validated = (object) $request->validated();
         $projectEntity = new ProjectEntity($validated);
-
         $projectInstance = $this->project->find($projectEntity->id);
-
         $project = $this->bridge->update($projectInstance, $projectEntity);
 
-        /**
-         * Signature image (single).
-         */
+        // Signature image (single).
         if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
@@ -71,9 +64,7 @@ class UpdateController extends Controller
             );
         }
 
-        /**
-         * Showcase images (multiple).
-         */
+        // Showcase images (multiple).
         if ($request->file('showcase_images') !== null) {
             $this->showcase->attach(
                 $project,

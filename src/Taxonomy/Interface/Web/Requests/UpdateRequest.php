@@ -20,9 +20,11 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $category = CategoryEloquentModel::where('id', '=', $this->route('id'))
-            ->get()
-            ->first();
+        $category = CategoryEloquentModel::where(
+            'id',
+            '=',
+            $this->route('id')
+        )->get()->first();
 
         return $this->user()->can('update', $category);
     }

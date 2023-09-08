@@ -22,9 +22,7 @@ class PublishedController extends Controller
             ->get()
             ->each(static fn ($project) => $project->generatePermalink());
 
-        /**
-         * Generate a 'permalink' for each article.
-         */
+        // Generate a 'permalink' for each article.
         $projects->each(
             static fn ($project): string => $project->permalink = url(
                 "/project/$project->slug"

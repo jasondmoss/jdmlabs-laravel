@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
-use Aenginus\Taxonomy\Infrastructure\ValueObjects\Id;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -34,7 +34,7 @@ class EditController extends Controller
     {
         $category = $this->category
             ->with('articles')
-            ->find((new Id($id))->value());
+            ->find((new UlidValueObject($id))->value());
 
         return ViewFacade::make('Category::edit', compact('category'));
     }

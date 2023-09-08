@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Media\Application\Exceptions;
+namespace Aenginus\Shared\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
-final class CouldNotDeleteImage
-    extends Exception
-    implements HttpExceptionInterface
+final class CouldNotDeleteModelEntity extends Exception implements HttpExceptionInterface
 {
 
     /**
@@ -20,7 +18,7 @@ final class CouldNotDeleteImage
      */
     public static function withId(string $id): self
     {
-        return new self("Could not delete image with ID, '{$id}'.");
+        return new self("Could not delete article with ID, '{$id}'.");
     }
 
 

@@ -15,7 +15,6 @@ class StoreController extends Controller
 {
 
     protected StoreUseCase $bridge;
-
     protected SingleImageUseCase $logo;
 
 
@@ -40,12 +39,9 @@ class StoreController extends Controller
     {
         $validated = (object) $request->validated();
         $clientEntity = new ClientEntity($validated);
-
         $client = $this->bridge->store($clientEntity);
 
-        /**
-         * Logo image (single).
-         */
+        // Logo image (single).
         if ($request->hasFile('logo_image')) {
             $this->logo->attach(
                 $client,

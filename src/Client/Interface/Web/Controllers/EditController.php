@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Interface\Web\Controllers;
 
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
-use Aenginus\Client\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -29,17 +29,20 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): View
     {
-        $client = $this->client->find((new Id($id))->value());
+        $client = $this->client->find((new UlidValueObject($id))->value());
 
         $client->generatePermalink();
 
         $logo = $client->getFirstMedia('logo');
 
-        return ViewFacade::make('ClientAdmin::edit', compact('client', 'logo'));
+        return ViewFacade::make(
+            'ClientAdmin::edit',
+            compact('client', 'logo')
+        );
     }
 
 }

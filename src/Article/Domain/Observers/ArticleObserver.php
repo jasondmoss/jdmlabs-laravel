@@ -28,7 +28,7 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function created(ArticleEloquentModel $article): void {}
+//    public function created(ArticleEloquentModel $article): void {}
 
 
     /**
@@ -36,7 +36,7 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function deleting(ArticleEloquentModel $article): void {}
+//    public function deleting(ArticleEloquentModel $article): void {}
 
 
     /**
@@ -44,7 +44,7 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function deleted(ArticleEloquentModel $article): void {}
+//    public function deleted(ArticleEloquentModel $article): void {}
 
 
     /**
@@ -52,7 +52,7 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function updating(ArticleEloquentModel $article): void {}
+//    public function updating(ArticleEloquentModel $article): void {}
 
 
     /**
@@ -60,6 +60,6 @@ final readonly class ArticleObserver
      *
      * @return void
      */
-    public function updated(ArticleEloquentModel $article): void {}
+//    public function updated(ArticleEloquentModel $article): void {}
 
 }

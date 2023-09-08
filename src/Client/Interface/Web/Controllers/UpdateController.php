@@ -16,9 +16,7 @@ class UpdateController extends Controller
 {
 
     protected ClientEloquentModel $client;
-
     protected UpdateUseCase $bridge;
-
     protected SingleImageUseCase $logo;
 
 
@@ -42,21 +40,17 @@ class UpdateController extends Controller
      * @param \Aenginus\Client\Interface\Web\Requests\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      * @throws \ReflectionException
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
         $validated = (object) $request->validated();
         $clientEntity = new ClientEntity($validated);
-
         $clientInstance = $this->client->find($clientEntity->id);
-
         $client = $this->bridge->update($clientInstance, $clientEntity);
 
-        /**
-         * Logo image (single).
-         */
+        // Logo image (single).
         if ($request->hasFile('logo_image')) {
             $this->logo->attach(
                 $client,

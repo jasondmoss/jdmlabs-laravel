@@ -27,7 +27,7 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function created(CategoryEloquentModel $category): void {}
+//    public function created(CategoryEloquentModel $category): void {}
 
 
     /**
@@ -35,7 +35,7 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function deleting(CategoryEloquentModel $category): void {}
+//    public function deleting(CategoryEloquentModel $category): void {}
 
 
     /**
@@ -43,7 +43,7 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function deleted(CategoryEloquentModel $category): void {}
+//    public function deleted(CategoryEloquentModel $category): void {}
 
 
     /**
@@ -51,7 +51,7 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function updating(CategoryEloquentModel $category): void {}
+//    public function updating(CategoryEloquentModel $category): void {}
 
 
     /**
@@ -59,6 +59,6 @@ final readonly class CategoryObserver
      *
      * @return void
      */
-    public function updated(CategoryEloquentModel $category): void {}
+//    public function updated(CategoryEloquentModel $category): void {}
 
 }

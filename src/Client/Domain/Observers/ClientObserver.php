@@ -28,7 +28,7 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function created(ClientEloquentModel $client): void {}
+//    public function created(ClientEloquentModel $client): void {}
 
 
     /**
@@ -36,7 +36,7 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function deleting(ClientEloquentModel $client): void {}
+//    public function deleting(ClientEloquentModel $client): void {}
 
 
     /**
@@ -44,7 +44,7 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function deleted(ClientEloquentModel $client): void {}
+//    public function deleted(ClientEloquentModel $client): void {}
 
 
     /**
@@ -52,7 +52,7 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function updating(ClientEloquentModel $client): void {}
+//    public function updating(ClientEloquentModel $client): void {}
 
 
     /**
@@ -60,6 +60,6 @@ final readonly class ClientObserver
      *
      * @return void
      */
-    public function updated(ClientEloquentModel $client): void {}
+//    public function updated(ClientEloquentModel $client): void {}
 
 }

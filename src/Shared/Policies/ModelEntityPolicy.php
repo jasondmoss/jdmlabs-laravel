@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Project\Domain\Policies;
+namespace Aenginus\Shared\Policies;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Shared\Enums\Status;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Database\Eloquent\Model as EntityModel;
 use Illuminate\Support\Facades\Config;
 
-final readonly class ProjectPolicy
+final readonly class ModelEntityPolicy
 {
 
     use HandlesAuthorization;
@@ -27,54 +27,54 @@ final readonly class ProjectPolicy
             return Response::allow();
         }
 
-        return Response::deny('You are not authorized to create a new project.');
+        return Response::deny('You are not authorized to create a new entity.');
     }
 
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
+     * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function owner(UserEloquentModel $user, ProjectEloquentModel $project): Response
+    public function owner(UserEloquentModel $user, EntityModel $model): Response
     {
-        if ($user->id === $project->user_id) {
+        if ($user->id === $model->user_id) {
             return Response::allow();
         }
 
-        return Response::deny('You are not the owner of this project.');
+        return Response::deny('You are not the owner of this entity.');
     }
 
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
+     * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, ProjectEloquentModel $project): Response
+    public function update(UserEloquentModel $user, EntityModel $model): Response
     {
-        if ($user->id === $project->user_id) {
+        if ($user->id === $model->user_id) {
             return Response::allow();
         }
 
-        return Response::deny('You do not have permission to edit this project.');
+        return Response::deny('You do not have permission to edit this entity.');
     }
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
+     * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(ProjectEloquentModel $project): Response
+    public function view(EntityModel $model): Response
     {
-        if ($project->status === Status::Published) {
+        if ($model->status === Status::Published) {
             return Response::allow();
         }
 
-        return Response::deny('You do not have permission to view this project.');
+        return Response::deny('You do not have permission to view this entity.');
     }
 
 }

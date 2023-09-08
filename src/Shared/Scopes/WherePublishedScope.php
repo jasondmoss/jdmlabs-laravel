@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Shared\Scopes;
 
-trait WherePublished
+trait WherePublishedScope
 {
 
     /**

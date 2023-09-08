@@ -15,7 +15,6 @@ class UpdateController extends Controller
 {
 
     protected CategoryEloquentModel $category;
-
     protected UpdateUseCase $bridge;
 
 
@@ -34,13 +33,12 @@ class UpdateController extends Controller
      * @param \Aenginus\Taxonomy\Interface\Web\Requests\UpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Aenginus\Taxonomy\Application\Exceptions\CouldNotFindCategory
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
         $validated = (object) $request->validated();
         $categoryEntity = new CategoryEntity($validated);
-
         $categoryInstance = $this->category->find($categoryEntity->id);
 
         $this->bridge->update($categoryInstance, $categoryEntity);

@@ -25,12 +25,11 @@ class SingleController extends Controller
      * @param string $key
      *
      * @return \Illuminate\Contracts\View\View
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $key): View
     {
         $client = $this->client->find($key);
-
         $logo = $client->getFirstMedia('logo');
 
         return ViewFacade::make('ClientPublic::single', compact('client', 'logo'));

@@ -16,9 +16,7 @@ class StoreController extends Controller
 {
 
     protected StoreUseCase $usecase;
-
     protected SingleImageUseCase $signature;
-
     protected MultiImageUseCase $showcase;
 
 
@@ -48,12 +46,9 @@ class StoreController extends Controller
     {
         $validated = (object) $request->validated();
         $projectEntity = new ProjectEntity($validated);
-
         $project = $this->usecase->store($projectEntity);
 
-        /**
-         * Signature image (single).
-         */
+        // Signature image (single).
         if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
@@ -62,9 +57,7 @@ class StoreController extends Controller
             );
         }
 
-        /**
-         * Showcase images (multiple).
-         */
+        // Showcase images (multiple).
         if ($request->file('showcase_images') !== null) {
             $this->showcase->attach(
                 $project,

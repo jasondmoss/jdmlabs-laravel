@@ -36,18 +36,12 @@ final class ProjectFactory extends Factory
             'website' => 'https://' . $faker->domainName() . '/',
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(2, true),
-
             'status' => 'published',
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',
-
             'client_id' => ClientEloquentModel::inRandomOrder()->first(),
-            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')
-                ->first()
-                ->id,
-
+            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
             'published_at' => $created,
-
             'created_at' => $created,
             'updated_at' => Date::now()
         ];

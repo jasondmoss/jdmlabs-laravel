@@ -4,52 +4,50 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Infrastructure\EloquentModels;
 
-use Aenginus\Client\Application\Exceptions\CouldNotFindClient;
 use Aenginus\Client\Infrastructure\Factories\ClientFactory;
-use Aenginus\Client\Infrastructure\ValueObjects\Id;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\Shared\Scopes\FindBySlug;
-use Aenginus\Shared\Scopes\WherePromoted;
-use Aenginus\Shared\Scopes\WherePublished;
-use Aenginus\Shared\Scopes\WhereRelated;
+use Aenginus\Shared\Scopes\FindBySlugScope;
+use Aenginus\Shared\Scopes\WherePromotedScope;
+use Aenginus\Shared\Scopes\WherePublishedScope;
+use Aenginus\Shared\Scopes\WhereRelatedScope;
 use Aenginus\Shared\Traits\MediaExtended;
+use Aenginus\Shared\Traits\ModelExtended;
 use Aenginus\Shared\Traits\Observable;
-use Aenginus\Taxonomy\Infrastructure\ValueObjects\Slug;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Symfony\Component\Uid\Ulid;
-use UnexpectedValueException;
 
 class ClientEloquentModel extends Model implements HasMedia
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids,
-        InteractsWithMedia, MediaExtended, Observable,
-        /* Scopes */
-        FindBySlug, WherePromoted, WherePublished, WhereRelated;
+    use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, Observable;
 
-    public $timestamps = true;
+    /** -- Global Helpers */
+    use MediaExtended, ModelExtended;
 
+    /** -- Global Scopes */
+    use FindBySlugScope, WherePromotedScope, WherePublishedScope, WhereRelatedScope;
+
+    /**
+     * Generated 'permalink' per each client.
+     *
+     * @var string
+     */
     public string $permalink;
 
     protected $table = 'clients';
-
-    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
@@ -64,8 +62,6 @@ class ClientEloquentModel extends Model implements HasMedia
         'updated_at',
         'user_id'
     ];
-
-    protected $guarded = [];
 
     protected $casts = [
         'summary' => ConvertNullToEmptyString::class,
@@ -93,18 +89,8 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function getSlugOptions(): SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
-
-    /**
-     * @return string
-     */
-    final public function getRouteKeyName(): string
-    {
-        return 'slug';
+        /** @see \Aenginus\Shared\Traits\ModelExtended */
+        return $this->getCustomSlugOptions('name');
     }
 
 
@@ -113,11 +99,7 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logo')
-            ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
-            ->useFallbackUrl(asset('/images/placeholder/logo.png'))
-            ->useFallbackPath(public_path('/images/placeholder/logo.png'));
+        $this->registerLogoImageCollection();
     }
 
 
@@ -129,49 +111,26 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaConversions(Media|null $media = null): void
     {
-        $this->addMediaConversion('thumb100')
-            ->fit(Manipulations::FIT_CROP, 100, 100)
-            ->nonQueued();
+        /** @see \Aenginus\Shared\Traits\MediaExtended */
+        $this->registerDefaultMediaConversions();
 
-        $this->addMediaConversion('preview')
-            ->fit(Manipulations::FIT_CROP, 250, 250)
-            ->nonQueued();
-
-        $this->addMediaConversion('card')
-            ->fit(Manipulations::FIT_CROP, 800, 400)
-            ->withResponsiveImages()
-            ->nonQueued();
-
-        $this->addMediaConversion('detail')
-            ->fit(Manipulations::FIT_CROP, 1400, 600)
-            ->withResponsiveImages()
-            ->nonQueued();
-    }
-
-
-    /**
-     * @param string $key
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|self
-     * @throws \Aenginus\Client\Application\Exceptions\CouldNotFindClient
-     */
-    final public function find(string $key): Builder|self
-    {
-        if (Ulid::isValid($key)) {
-            try {
-                return $this->newQuery()->find((new Id($key))->value());
-            } catch (UnexpectedValueException) {
-                throw CouldNotFindClient::withId($key);
-            }
-        }
-
-        $slug = (new Slug($key))->value();
-
-        try {
-            return $this->newQuery()->slug($slug);
-        } catch (UnexpectedValueException) {
-            throw CouldNotFindClient::withSlug($slug);
-        }
+//        $this->addMediaConversion('thumb100')
+//            ->fit(Manipulations::FIT_CROP, 100, 100)
+//            ->nonQueued();
+//
+//        $this->addMediaConversion('preview')
+//            ->fit(Manipulations::FIT_CROP, 250, 250)
+//            ->nonQueued();
+//
+//        $this->addMediaConversion('card')
+//            ->fit(Manipulations::FIT_CROP, 800, 400)
+//            ->withResponsiveImages()
+//            ->nonQueued();
+//
+//        $this->addMediaConversion('detail')
+//            ->fit(Manipulations::FIT_CROP, 1400, 600)
+//            ->withResponsiveImages()
+//            ->nonQueued();
     }
 
 

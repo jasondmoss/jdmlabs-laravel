@@ -15,7 +15,6 @@ class StoreController extends Controller
 {
 
     protected StoreUseCase $bridge;
-
     protected SingleImageUseCase $signature;
 
 
@@ -40,7 +39,6 @@ class StoreController extends Controller
     {
         $validated = (object) $request->validated();
         $articleEntity = new ArticleEntity($validated);
-
         $article = $this->bridge->store($articleEntity);
 
         /**

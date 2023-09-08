@@ -6,7 +6,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
-use Aenginus\Project\Infrastructure\ValueObjects\Id;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -31,19 +31,18 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\View\View
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): View
     {
-        $project = $this->project->find((new Id($id))->value());
-
+        $project = $this->project->find((new UlidValueObject($id))->value());
         $project->generatePermalink();
-
-        $clients = ClientEloquentModel::get()->pluck('name', 'id');
-        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         $signature = $project->getFirstMedia('signature');
         $showcase_images = $project->getMedia('showcase');
+
+        $clients = ClientEloquentModel::get()->pluck('name', 'id');
+        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
             'ProjectAdmin::edit',

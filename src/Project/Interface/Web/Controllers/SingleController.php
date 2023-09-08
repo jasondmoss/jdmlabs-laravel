@@ -28,7 +28,7 @@ class SingleController extends Controller
      * @param string $key
      *
      * @return \Illuminate\View\View
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $key): View
     {
