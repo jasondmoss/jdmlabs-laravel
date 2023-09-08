@@ -113,24 +113,6 @@ class ClientEloquentModel extends Model implements HasMedia
     {
         /** @see \Aenginus\Shared\Traits\MediaExtended */
         $this->registerDefaultMediaConversions();
-
-//        $this->addMediaConversion('thumb100')
-//            ->fit(Manipulations::FIT_CROP, 100, 100)
-//            ->nonQueued();
-//
-//        $this->addMediaConversion('preview')
-//            ->fit(Manipulations::FIT_CROP, 250, 250)
-//            ->nonQueued();
-//
-//        $this->addMediaConversion('card')
-//            ->fit(Manipulations::FIT_CROP, 800, 400)
-//            ->withResponsiveImages()
-//            ->nonQueued();
-//
-//        $this->addMediaConversion('detail')
-//            ->fit(Manipulations::FIT_CROP, 1400, 600)
-//            ->withResponsiveImages()
-//            ->nonQueued();
     }
 
 

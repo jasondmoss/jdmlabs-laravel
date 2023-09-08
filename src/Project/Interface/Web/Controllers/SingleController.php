@@ -25,12 +25,13 @@ class SingleController extends Controller
 
 
     /**
+     * @param string $client
      * @param string $key
      *
      * @return \Illuminate\View\View
      * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
-    public function __invoke(string $key): View
+    public function __invoke(string $client, string $key): View
     {
         $project = $this->project->find($key);
 

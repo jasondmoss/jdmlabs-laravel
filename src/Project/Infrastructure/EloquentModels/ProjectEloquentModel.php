@@ -129,7 +129,7 @@ class ProjectEloquentModel extends Model implements HasMedia
      */
     final public function generatePermalink(): void
     {
-        $this->permalink = url("/project/$this->slug");
+        $this->permalink = url("/project/{$this->clients->slug}/$this->slug");
     }
 
 

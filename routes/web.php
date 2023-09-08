@@ -24,7 +24,7 @@ Route::middleware(['web'])->group(static function () {
 
     Route::get('/projects', Project\PublishedController::class)
         ->name('project-list');
-    Route::get('/project/{slug}', Project\SingleController::class)
+    Route::get('/project/{client_slug}/{slug}', Project\SingleController::class)
         ->name('project-single');
 
 

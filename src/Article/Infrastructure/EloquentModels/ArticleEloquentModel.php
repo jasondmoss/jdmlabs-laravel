@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Date;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -127,7 +128,9 @@ class ArticleEloquentModel extends Model implements HasMedia
      */
     final public function generatePermalink(): void
     {
-        $this->permalink = url("/article/{$this->date->published->path}/$this->slug");
+        $pubdate = Date::parse($this->published_at)->format('Y/m/d');
+
+        $this->permalink = url("/article/{$pubdate}/$this->slug");
     }
 
 

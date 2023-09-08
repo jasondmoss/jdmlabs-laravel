@@ -21,7 +21,10 @@ class PublishedController extends Controller
             ->orderBy('created_at', 'desc')
             ->with('projects')
             ->get()
-            ->each(static fn ($client) => $client->generatePermalink());
+            ->each(static function ($client) {
+                $client->entityDates();
+                $client->generatePermalink();
+            });
 
         return ViewFacade::make('ClientPublic::list', compact('clients'));
     }

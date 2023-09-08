@@ -17,11 +17,47 @@ trait ModelExtended
 {
 
     /**
-     * @param $fieldName
+     * @return object
+     */
+    private function generateCreateDate(): object
+    {
+        return (object) [
+            'iso' => Date::parse($this->published_at)->format('c'),
+            'display' => Date::parse($this->published_at)->format('F j, Y')
+        ];
+    }
+
+
+    /**
+     * @return object
+     */
+    private function generatePublishDate(): object
+    {
+        return (object) [
+            'iso' => Date::parse($this->published_at)->format('c'),
+            'display' => Date::parse($this->published_at)->format('F j, Y')
+        ];
+    }
+
+
+    /**
+     * @return object
+     */
+    private function generateUpdateDate(): object
+    {
+        return (object) [
+            'iso' => Date::parse($this->published_at)->format('c'),
+            'display' => Date::parse($this->published_at)->format('F j, Y')
+        ];
+    }
+
+
+    /**
+     * @param string $fieldName
      *
      * @return \Spatie\Sluggable\SlugOptions
      */
-    final public function getCustomSlugOptions($fieldName = 'title'): SlugOptions
+    final public function getCustomSlugOptions(string $fieldName = 'title'): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom($fieldName)
@@ -66,22 +102,12 @@ trait ModelExtended
      *
      * @return void
      */
-    final public function generateDates(): void
+    final public function entityDates(): void
     {
         $this->date = (object) [
-            'published' => (object) [
-                'iso' => Date::parse($this->published_at)->format('c'),
-                'display' => Date::parse($this->published_at)->format('F j, Y'),
-                'path' => Date::parse($this->published_at)->format('Y/m/d')
-            ],
-            'create' => (object) [
-                'iso' => Date::parse($this->published_at)->format('c'),
-                'display' => Date::parse($this->published_at)->format('F j, Y')
-            ],
-            'updated' => (object) [
-                'iso' => Date::parse($this->published_at)->format('c'),
-                'display' => Date::parse($this->published_at)->format('F j, Y')
-            ]
+            'published' => $this->generatePublishDate(),
+            'create' => $this->generateCreateDate(),
+            'updated' => $this->generateUpdateDate()
         ];
     }
 

@@ -36,6 +36,7 @@ class EditController extends Controller
     public function __invoke(string $id): View
     {
         $project = $this->project->find((new UlidValueObject($id))->value());
+        $project->entityDates();
         $project->generatePermalink();
 
         $signature = $project->getFirstMedia('signature');

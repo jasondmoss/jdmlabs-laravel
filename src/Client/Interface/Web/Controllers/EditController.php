@@ -34,7 +34,7 @@ class EditController extends Controller
     public function __invoke(string $id): View
     {
         $client = $this->client->find((new UlidValueObject($id))->value());
-
+        $client->entityDates();
         $client->generatePermalink();
 
         $logo = $client->getFirstMedia('logo');

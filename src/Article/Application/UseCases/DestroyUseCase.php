@@ -6,30 +6,44 @@ namespace Aenginus\Article\Application\UseCases;
 
 use Aenginus\Article\Application\Repositories\Eloquent\DestroyRepository;
 use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
+use Aenginus\Shared\ValueObjects\UlidValueObject;
+use Exception;
 
 final readonly class DestroyUseCase
 {
 
+    protected ArticleEloquentModel $article;
     private DestroyRepository $repository;
 
 
     /**
+     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
      * @param \Aenginus\Article\Application\Repositories\Eloquent\DestroyRepository $repository
      */
-    public function __construct(DestroyRepository $repository)
+    public function __construct(ArticleEloquentModel $article, DestroyRepository $repository)
     {
+        $this->article = $article;
         $this->repository = $repository;
     }
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param string $id
      *
      * @return void
+     * @throws \Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
-    public function delete(ArticleEloquentModel $article): void
+    public function delete(string $id): void
     {
-        $this->repository->delete($article);
+        $toBeDeleted = $this->article->find((new UlidValueObject($id))->value());
+
+        try {
+            $this->repository->delete($toBeDeleted);
+        } catch (Exception) {
+            throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
+        }
     }
 
 }

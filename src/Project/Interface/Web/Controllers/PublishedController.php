@@ -19,15 +19,12 @@ class PublishedController extends Controller
     {
         $projects = ProjectEloquentModel::published()
             ->orderBy('created_at', 'desc')
+            ->with('clients')
             ->get()
-            ->each(static fn ($project) => $project->generatePermalink());
-
-        // Generate a 'permalink' for each article.
-        $projects->each(
-            static fn ($project): string => $project->permalink = url(
-                "/project/$project->slug"
-            )
-        );
+            ->each(static function ($project) {
+                $project->generateDates();
+                $project->generatePermalink();
+            });
 
         return ViewFacade::make('ProjectPublic::list', compact('projects'));
     }
