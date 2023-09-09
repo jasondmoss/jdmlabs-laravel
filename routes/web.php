@@ -27,6 +27,9 @@ Route::middleware(['web'])->group(static function () {
     Route::get('/project/{client_slug}/{slug}', Project\SingleController::class)
         ->name('project-single');
 
+//    Route::get('/taxonomy/category/{slug}', Category\SingleController::class)
+//        ->name('category-single');
+
 
     // -- Dashboard (Redirect).
     Route::redirect('/ae', '/ae/dashboard');

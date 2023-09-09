@@ -34,6 +34,7 @@ final class CategoryAdminListing extends Component
     {
         $categories = CategoryEloquentModel::where('name', 'LIKE', '%' . $this->query . '%')
             ->withCount('articles', 'projects')
+            ->orderBy('name')
             ->paginate(50);
 
         return view('aenginus.taxonomy.category.list', compact('categories'));

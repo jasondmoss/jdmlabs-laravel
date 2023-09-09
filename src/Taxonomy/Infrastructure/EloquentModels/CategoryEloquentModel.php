@@ -13,9 +13,11 @@ use Aenginus\Shared\Scopes\WhereRelatedScope;
 use Aenginus\Shared\Traits\ModelExtended;
 use Aenginus\Shared\Traits\Observable;
 use Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory;
+use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -36,17 +38,18 @@ class CategoryEloquentModel extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'user_id'
     ];
 
 
     /**
      * @return \Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory
      */
-    private static function newFactory(): CategoryFactory
+    /*private static function newFactory(): CategoryFactory
     {
         return CategoryFactory::new();
-    }
+    }*/
 
 
     /**
@@ -56,6 +59,27 @@ class CategoryEloquentModel extends Model
     {
         /** @see \Aenginus\Shared\Traits\ModelExtended */
         return $this->getCustomSlugOptions('name');
+    }
+
+
+    /**
+     * Generate an article 'permalink', facilitating the `generateDates()`
+     * method above.
+     *
+     * @return void
+     */
+    final public function generatePermalink(): void
+    {
+        $this->permalink = url("/taxonomy/category/$this->slug");
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    final public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserEloquentModel::class, 'user_id');
     }
 
 

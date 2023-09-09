@@ -59,8 +59,8 @@
                   </li>
                   <li>
                     <i class="fa-solid fa-trash"></i>
-                    <a class="text-blue-500" href="{{ action(Category\DestroyController::class, $category->id) }}" onclick="event.preventDefault();document.getElementById('deleteForm').submit();" title="{{ __('Delete category') }}">{{ __('Delete') }}</a>
-                    <form id="deleteForm" class="sr-only" method="POST" action="{{ action(Category\DestroyController::class, $category->id) }}">@csrf {{ method_field('DELETE') }}</form>
+                    <a class="text-blue-500" href="{{ action(Category\DestroyController::class, $category->id) }}" onclick="event.preventDefault();document.getElementById('Delete_{{ $category->id }}').submit();" title="{{ __('Delete category') }}">{{ __('Delete') }}</a>
+                    <form id="Delete_{{ $category->id }}" class="sr-only" method="POST" action="{{ action(Category\DestroyController::class, $category->id) }}">@csrf {{ method_field('DELETE') }}</form>
                   </li>
                 </menu>
               </td>

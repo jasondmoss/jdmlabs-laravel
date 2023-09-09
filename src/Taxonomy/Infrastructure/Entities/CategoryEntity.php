@@ -12,15 +12,19 @@ final readonly class CategoryEntity
 
     public string|null $id;
     public string|null $name;
+    public string $user_id;
 
 
     /**
-     * @param object $categoryData
+     * @param object $validatedRequest
      */
-    public function __construct(object $categoryData)
+    public function __construct(object $validatedRequest)
     {
-        $this->id = (new UlidValueObject($categoryData->id))->value();
-        $this->name = (new StringValueObject($categoryData->name))->value();
+        $this->id = ! empty($validatedRequest->id)
+            ? (new UlidValueObject($validatedRequest->id))->value()
+            : null;
+        $this->name = (new StringValueObject($validatedRequest->name))->value();
+        $this->user_id = (new UlidValueObject($validatedRequest->user_id))->value();
     }
 
 }

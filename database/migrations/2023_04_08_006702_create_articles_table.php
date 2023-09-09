@@ -15,7 +15,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('articles', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 
             $table->string('title');

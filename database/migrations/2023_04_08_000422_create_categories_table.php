@@ -11,13 +11,19 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('categories', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 
             $table->string('name');
             $table->string('slug')->unique();
 
             $table->timestamps();
+
+            $table->ulid('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
