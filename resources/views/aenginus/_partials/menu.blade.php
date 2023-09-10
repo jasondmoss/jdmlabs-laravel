@@ -4,7 +4,7 @@
   use Aenginus\Client\Interface\Web\Controllers as Client;
   use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
 @endphp
-<menu itemscope itemtype="https://schema.org/SiteNavigationElement" class="flex flex-wrap justify-center gap-x-4 max-w-none mt-0 text-xl md:text-2xl lg:flex-col lg:sticky lg:top-10 lg:text-xl" aria-label="Main">
+<menu itemscope itemtype="https://schema.org/SiteNavigationElement" class="flex flex-wrap justify-center gap-x-4 max-w-none mt-0 px-1 text-xl md:text-2xl lg:flex-col lg:sticky lg:top-10 lg:text-xl" aria-label="Main">
   <li class="group"{{ Route::currentRouteName() === 'dashboard' ? ' aria-selected=true' : '' }}>
     <a itemprop="url" class="block p-2 hover:bg-amber-50 group-aria-selected:bg-amber-200 active:bg-amber-200 hover:text-blue-500 lg:py-2 lg:px-4" href="{{ route('dashboard') }}" title="{{ __('Dashboard') }}">
       <span>{{ __('Dashboard') }}</span></a>
