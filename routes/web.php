@@ -11,17 +11,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->group(static function () {
 
+    // Article
     Route::get('/articles', Article\PublishedController::class)
         ->name('article-list');
     Route::get('/article/{year}/{month}/{day}/{slug}', Article\SingleController::class)
         ->name('article-single');
     Route::redirect('/article/{slug}', '/article/{year}/{month}/{day}/{slug}');
 
+    // Client
     Route::get('/clients', Client\PublishedController::class)
         ->name('client-list');
     Route::get('/client/{slug}', Client\SingleController::class)
         ->name('client-single');
 
+    // Project
     Route::get('/projects', Project\PublishedController::class)
         ->name('project-list');
     Route::get('/project/{client_slug}/{slug}', Project\SingleController::class)
@@ -33,16 +36,21 @@ Route::middleware(['web'])->group(static function () {
 
     // -- Dashboard (Redirect).
     Route::redirect('/ae', '/ae/dashboard');
+    Route::redirect('/ae/register', '/ae/access');
     Route::redirect('/dashboard', '/ae/dashboard');
+    Route::redirect('/register', '/ae/access');
+
 
     Route::prefix('ae')->middleware([
         config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
     ])->group(static function () {
 
+        // Dashboard
         Route::get('/dashboard', static function () {
             return view('aenginus.page.dashboard');
         })->name('dashboard');
 
+        // Article
         Route::get('/articles', Article\IndexController::class)
             ->name('ae-article-list');
         Route::get('/article/create', Article\CreateController::class)
@@ -53,6 +61,7 @@ Route::middleware(['web'])->group(static function () {
         Route::put('/article/update/{id}', Article\UpdateController::class);
         Route::delete('/article/{id}', Article\DestroyController::class);
 
+        // Client
         Route::get('/clients', Client\IndexController::class)
             ->name('ae-client-list');
         Route::get('/client/create', Client\CreateController::class)
@@ -63,6 +72,7 @@ Route::middleware(['web'])->group(static function () {
         Route::put('/client/update/{id}', Client\UpdateController::class);
         Route::delete('/client/{id}', Client\DestroyController::class);
 
+        // Project
         Route::get('/projects', Project\IndexController::class)
             ->name('ae-project-list');
         Route::get('/project/create', Project\CreateController::class)
@@ -73,6 +83,7 @@ Route::middleware(['web'])->group(static function () {
         Route::put('/project/update/{id}', Project\UpdateController::class);
         Route::delete('/project/{id}', Project\DestroyController::class);
 
+        // Taxonomy: Category
         Route::get('/taxonomy/category', Category\IndexController::class)
             ->name('ae-category-list');
         Route::get('/taxonomy/category/create', Category\CreateController::class)
@@ -83,10 +94,11 @@ Route::middleware(['web'])->group(static function () {
         Route::put('/taxonomy/category/update/{id}', Category\UpdateController::class);
         Route::delete('/taxonomy/category/{id}', Category\DestroyController::class);
 
+        // Clear cache.
         Route::get('/clear', static function () {
             Cache::flush();
 
-             return back()->with('update', 'All caches have been cleared.');
+            return back()->with('update', 'All caches have been cleared.');
         })->name('clear-cache');
 
     });

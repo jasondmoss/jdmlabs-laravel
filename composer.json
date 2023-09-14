@@ -21,6 +21,7 @@
     "ramsey/uuid": "^4.7",
     "spatie/laravel-html": "^3.2",
     "spatie/laravel-medialibrary": "^10.11",
+    "spatie/laravel-permission": "^5.11",
     "spatie/laravel-sluggable": "^3.5"
   },
   "require-dev": {

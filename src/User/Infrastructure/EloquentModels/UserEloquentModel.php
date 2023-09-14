@@ -12,11 +12,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticationProvider;
+use Spatie\Permission\Traits\HasRoles;
 
 class UserEloquentModel extends Authenticatable
 {
 
-    use HasFactory, HasUlids, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, HasRoles, HasUlids, Notifiable, TwoFactorAuthenticatable;
 
     protected $table = 'users';
 
