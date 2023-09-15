@@ -34,7 +34,7 @@ final class ArticleAdminListing extends Component
      * @param string $id
      *
      * @return void
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function toggleStatePromoted(string $id): void
     {
@@ -56,7 +56,7 @@ final class ArticleAdminListing extends Component
      * @param string $id
      *
      * @return void
-     * @throws \Aenginus\Article\Application\Exceptions\CouldNotFindArticle
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function toggleStatePublished(string $id): void
     {

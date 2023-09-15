@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticationProvider;
 use Spatie\Permission\Traits\HasRoles;
@@ -17,7 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 class UserEloquentModel extends Authenticatable
 {
 
-    use HasFactory, HasRoles, HasUlids, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, HasRoles, HasUlids, TwoFactorAuthenticatable;
 
     protected $table = 'users';
 
@@ -70,10 +69,10 @@ class UserEloquentModel extends Authenticatable
      * @return bool - true = UserEloquentModel can edit/manage posts,
      *                false = UserEloquentModel has no access to the admin panel
      */
-    final public function canManageContent(): bool
-    {
-        return $this->email === config('admin_email', 'jason@jdmlabs.com');
-    }
+//    final public function canManageContent(): bool
+//    {
+//        return $this->email === config('admin_email', 'jason@jdmlabs.com');
+//    }
 
 
     /**

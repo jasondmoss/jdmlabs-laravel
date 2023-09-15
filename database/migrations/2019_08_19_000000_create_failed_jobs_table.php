@@ -13,6 +13,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::dropIfExists('failed_jobs');
         Schema::create('failed_jobs', static function (Blueprint $table) {
             $table->id();
 

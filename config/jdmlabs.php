@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Spatie\Permission\Models\Permission;
-
 return [
 
     'title' => env('APP_NAME', 'JdmLabs'),
@@ -16,48 +14,42 @@ return [
     'admin_password' => env('APP_PASSWORD', 'not_a_real_password'),
     'contact_email' => 'work@jdmlabs.com',
 
-    'auth' => [
-        'permissions' => [
-            'article' => [
-                'create article',
-                'delete article',
-                'edit article',
-                'promote article',
-                'publish article',
-                'view article'
+    'permissions' => [
+        'roles' => [
+            'administrator' => [
+                'display_name' => 'Administrator',
+                'description' => "This is the 'God' role.",
+                'allowed' => [
+                    'articles' => 'c,d,f,p,s,u,v',
+                    'categories' => 'c,d,f,p,s,u,v',
+                    'clients' => 'c,d,f,p,s,u,v',
+                    'media' => 'c,d,f,p,s,u,v',
+                    'projects' => 'c,d,f,p,s,u,v'
+                ]
             ],
-            'client' => [
-                'create client',
-                'delete client',
-                'edit client',
-                'promote client',
-                'publish client',
-                'view client'
-            ],
-            'project' => [
-                'create project',
-                'delete project',
-                'edit project',
-                'pin project',
-                'promote project',
-                'publish project',
-                'view project'
-            ],
-            'media' => [
-                'create media',
-                'delete media',
-                'edit media',
-                'view media'
-            ],
-            'category' => [
-                'create category',
-                'delete category',
-                'edit category',
-                'view category'
+
+            'guest' => [
+                'display_name' => 'Guest',
+                'description' => 'The default account for all non-active users.',
+                'allowed' => [
+                    'articles' => 'v',
+                    'categories' => 'v',
+                    'clients' => 'v',
+                    'media' => 'v',
+                    'projects' => 'v'
+                ]
             ]
         ],
 
-        'roles' => [ 'god' ]
+        'map' => [
+            'c' => 'create',
+            'd' => 'delete',
+            'f' => 'promote',
+            'p' => 'publish',
+            's' => 'pin',
+            'u' => 'update',
+            'v' => 'view'
+        ]
     ]
 
 ];

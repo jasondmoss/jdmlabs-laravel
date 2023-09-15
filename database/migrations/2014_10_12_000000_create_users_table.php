@@ -14,6 +14,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::dropIfExists('users');
         Schema::create('users', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 

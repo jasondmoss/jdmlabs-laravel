@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::dropIfExists('media');
         Schema::create('media', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 

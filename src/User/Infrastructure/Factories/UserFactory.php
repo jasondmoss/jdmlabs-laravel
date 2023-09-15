@@ -22,7 +22,7 @@ final class UserFactory extends Factory
         return [
             'id' => Str::ulid(),
             'name' => 'Jason D. Moss',
-            'email' => 'jason@jdmlabs.com',
+            'email' => Config::get('jdmlabs.admin_email'),
             'email_verified_at' => now(),
             'password' => Hash::make(Config::get('jdmlabs.admin_password')),
             'remember_token' => Str::random(10),

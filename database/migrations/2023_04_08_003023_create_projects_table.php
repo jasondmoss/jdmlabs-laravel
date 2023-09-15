@@ -16,6 +16,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::dropIfExists('projects');
         Schema::create('projects', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 

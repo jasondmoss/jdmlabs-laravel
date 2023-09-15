@@ -35,7 +35,7 @@ final class ProjectAdminListing extends Component
      * @param string $id
      *
      * @return void
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function toggleStatePinned(string $id): void
     {
@@ -57,7 +57,7 @@ final class ProjectAdminListing extends Component
      * @param string $id
      *
      * @return void
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function toggleStatePromoted(string $id): void
     {
@@ -79,7 +79,7 @@ final class ProjectAdminListing extends Component
      * @param string $id
      *
      * @return void
-     * @throws \Aenginus\Project\Application\Exceptions\CouldNotFindProject
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function toggleStatePublished(string $id): void
     {
