@@ -46,10 +46,10 @@ class CategoryEloquentModel extends Model
     /**
      * @return \Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory
      */
-    /*private static function newFactory(): CategoryFactory
+    private static function newFactory(): CategoryFactory
     {
         return CategoryFactory::new();
-    }*/
+    }
 
 
     /**
@@ -68,10 +68,10 @@ class CategoryEloquentModel extends Model
      *
      * @return void
      */
-    final public function generatePermalink(): void
-    {
-        $this->permalink = url("/taxonomy/category/$this->slug");
-    }
+//    final public function generatePermalink(): void
+//    {
+//        $this->permalink = url("/taxonomy/category/$this->slug");
+//    }
 
 
     /**

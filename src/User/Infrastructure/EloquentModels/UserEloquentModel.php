@@ -69,10 +69,12 @@ class UserEloquentModel extends Authenticatable
      * @return bool - true = UserEloquentModel can edit/manage posts,
      *                false = UserEloquentModel has no access to the admin panel
      */
-//    final public function canManageContent(): bool
-//    {
-//        return $this->email === config('admin_email', 'jason@jdmlabs.com');
-//    }
+    final public function canManageContent(): bool
+    {
+        return $this->canAny([
+
+        ]);
+    }
 
 
     /**

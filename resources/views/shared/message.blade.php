@@ -6,10 +6,10 @@
   <figcaption>
     @if (count($errors) > 0)
       @foreach ($errors->all() as $error)
-        <p>{{ $error }}</p>
+        <p>{!! $error !!}</p>
       @endforeach
     @else
-      {{ $message }}
+      {!! $message !!}
     @endif
   </figcaption>
 </figure>

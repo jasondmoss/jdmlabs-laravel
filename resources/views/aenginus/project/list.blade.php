@@ -42,7 +42,7 @@
 
         <tbody class="flex flex-col gap-y-10 md:table-row-group w-full">
           @foreach ($projects as $project)
-            @php $permalink = url('/project/' . $project->slug); @endphp
+            @php $permalink = url('/project/' . $project->clients->slug . '/' . $project->slug); @endphp
 
             <!-- Item -->
             <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">

@@ -46,6 +46,4 @@
   </fieldset>
   {{ html()->form()->close() }}
 
-  <p class=""><a href="{{  route('register') }}">{{ __('Register') }}</a></p>
-
 </x-public.layout>

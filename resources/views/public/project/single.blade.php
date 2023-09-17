@@ -1,6 +1,6 @@
-@php
+<?php
   use Aenginus\Client\Interface\Web\Controllers as Client;
-@endphp
+?>
 <x-public.layout
   schema="ItemPage"
   title="{{ $project->title }}"

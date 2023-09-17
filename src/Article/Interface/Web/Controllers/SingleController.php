@@ -36,6 +36,9 @@ class SingleController extends Controller
     public function __invoke(int|null $year, int|null $month, int|null $day, string $key): View
     {
         $article = $this->article->find($key);
+
+        $this->authorize('view', $article);
+
         $signature = $article->getFirstMedia('signature');
 
         return ViewFacade::make(

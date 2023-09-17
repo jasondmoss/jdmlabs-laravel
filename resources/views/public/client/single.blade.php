@@ -1,3 +1,6 @@
+<?php
+  use Aenginus\Project\Interface\Web\Controllers as Project;
+?>
 <x-public.layout
   schema="ItemPage"
   title="{{ $client->title }}"
@@ -20,7 +23,7 @@
     @if ($client->projects)
       @foreach ($client->projects as $project)
         <p class="">
-          <a href="{{ action(\Aenginus\Project\Interface\Web\Controllers\SingleController::class, $project->slug) }}">{{ $project->title }}</a>
+          <a href="{{ action(Project\SingleController::class, [ $client->slug, $project->slug ]) }}">{{ $project->title }}</a>
         </p>
       @endforeach
     @endif

@@ -23,7 +23,7 @@ class PublishedController extends Controller
             ->get()
             ->each(static function ($client) {
                 $client->entityDates();
-                $client->generatePermalink();
+                $client->generatePermalink('client');
             });
 
         return ViewFacade::make('ClientPublic::list', compact('clients'));

@@ -24,5 +24,5 @@
       </div>
     </fieldset>
   {{ html()->form()->close() }}
-  <p class="text-center"><a href="{{route('register')}}">Register</a></p>
+
 </x-aenginus.layout>

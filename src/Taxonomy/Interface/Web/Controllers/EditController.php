@@ -29,12 +29,11 @@ class EditController extends Controller
      * @param string $id
      *
      * @return \Illuminate\Contracts\View\View
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function __invoke(string $id): View
     {
-        $category = $this->category
-            ->with('articles')
-            ->find((new UlidValueObject($id))->value());
+        $category = $this->category->find((new UlidValueObject($id))->value());
 
         return ViewFacade::make('Category::edit', compact('category'));
     }

@@ -8,12 +8,20 @@ use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Config;
 
 final readonly class CategoryPolicy
 {
 
     use HandlesAuthorization;
+
+    /**
+     * @return \Illuminate\Auth\Access\Response
+     */
+    public function view(): Response
+    {
+        return Response::allow();
+    }
+
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
@@ -22,22 +30,25 @@ final readonly class CategoryPolicy
      */
     public function create(UserEloquentModel $user): Response
     {
-        if ($user->email === Config::get('jdmlabs.admin_email')) {
+        if ($user->can('categories-create')) {
             return Response::allow();
         }
 
-        return Response::deny('You are not have permission to create a new category.');
+        return Response::deny('You are not authorized to create a new category.');
     }
 
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user): Response
+    public function update(UserEloquentModel $user, CategoryEloquentModel $category): Response
     {
-        if ($user->email === Config::get('jdmlabs.admin_email')) {
+        if ($user->can('categories-update')
+            && $user->id === $category->user_id
+        ) {
             return Response::allow();
         }
 
@@ -46,18 +57,17 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
-     * @param string $id
+     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(CategoryEloquentModel $category, string $id): Response
+    public function delete(UserEloquentModel $user): Response
     {
-        if ($category->id === $id) {
+        if ($user->can('categories-delete')) {
             return Response::allow();
         }
 
-        return Response::deny('You do not have permission to view this category.');
+        return Response::deny('You are not the owner of this category.');
     }
 
 }

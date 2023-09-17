@@ -23,12 +23,12 @@ class PublishedController extends Controller
             ->published()
             ->orderBy('created_at', 'desc')
             ->get()
-            ->each(static function ($article) {
-                $article->generateDates();
-                $article->generatePermalink();
-            });
+            ->each(static fn ($article) => $article->entityDates())
+            ->each(static fn ($article) => $article->generatePermalink('article'));
 
-        return ViewFacade::make('ArticlePublic::list', compact('articles'));
+        return ViewFacade::make('ArticlePublic::list', [
+            'articles' => $articles
+        ]);
     }
 
 }

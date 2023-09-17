@@ -29,6 +29,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @property \Illuminate\Validation\Rules\Enum $status
+ */
 class ClientEloquentModel extends Model implements HasMedia
 {
 
@@ -113,17 +116,6 @@ class ClientEloquentModel extends Model implements HasMedia
     {
         /** @see \Aenginus\Shared\Traits\MediaExtended */
         $this->registerDefaultMediaConversions();
-    }
-
-
-    /**
-     * Generate a client 'permalink'.
-     *
-     * @return void
-     */
-    final public function generatePermalink(): void
-    {
-        $this->permalink = url("/client/$this->slug");
     }
 
 

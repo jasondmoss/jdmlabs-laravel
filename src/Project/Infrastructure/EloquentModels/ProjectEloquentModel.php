@@ -30,6 +30,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @property \Illuminate\Validation\Rules\Enum $status
+ */
 class ProjectEloquentModel extends Model implements HasMedia
 {
 
@@ -119,17 +122,6 @@ class ProjectEloquentModel extends Model implements HasMedia
     {
         /** @see \Aenginus\Shared\Traits\MediaExtended */
         $this->registerDefaultMediaConversions();
-    }
-
-
-    /**
-     * Generate a project 'permalink'.
-     *
-     * @return void
-     */
-    final public function generatePermalink(): void
-    {
-        $this->permalink = url("/project/{$this->clients->slug}/$this->slug");
     }
 
 

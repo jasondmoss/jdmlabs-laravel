@@ -24,14 +24,12 @@
     ->class('content-editor')
     ->open()
   }}
-
-  <fieldset form="emailVerify" class="">
-    <legend>{{ __('Email Verification') }}</legend>
-    <div class="form-field actions">
-      {{ html()->submit('Re-Verify')->class('button button--submit') }}
-    </div>
-  </fieldset>
-
+    <fieldset form="emailVerify" class="">
+      <legend>{{ __('Email Verification') }}</legend>
+      <div class="form-field actions">
+        {{ html()->submit('Re-Verify')->class('button button--submit') }}
+      </div>
+    </fieldset>
   {{ html()->form()->close() }}
 
 </x-public.layout>

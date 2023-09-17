@@ -17,14 +17,13 @@ final class UpdateRequest extends UpdateSubmissionRules
      * Determine if the user is authorized to make this request.
      *
      * @return bool
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
     public function authorize(): bool
     {
-        $category = CategoryEloquentModel::where(
-            'id',
-            '=',
-            $this->route('id')
-        )->get()->first();
+        $category = CategoryEloquentModel::where('id', '=', $this->route('id'))
+            ->get()
+            ->first();
 
         return $this->user()->can('update', $category);
     }

@@ -29,6 +29,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @property \Illuminate\Validation\Rules\Enum $status
+ * @property string $permalink
+ */
 class ArticleEloquentModel extends Model implements HasMedia
 {
 
@@ -117,20 +121,6 @@ class ArticleEloquentModel extends Model implements HasMedia
     {
         /** @see \Aenginus\Shared\Traits\MediaExtended */
         $this->registerDefaultMediaConversions();
-    }
-
-
-    /**
-     * Generate an article 'permalink', facilitating the `generateDates()`
-     * method above.
-     *
-     * @return void
-     */
-    final public function generatePermalink(): void
-    {
-        $pubdate = Date::parse($this->published_at)->format('Y/m/d');
-
-        $this->permalink = url("/article/{$pubdate}/$this->slug");
     }
 
 

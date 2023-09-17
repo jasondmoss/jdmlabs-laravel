@@ -36,7 +36,7 @@ class EditController extends Controller
     {
         $article = $this->article->find((new UlidValueObject($id))->value());
         $article->entityDates();
-        $article->generatePermalink();
+        $article->generatePermalink('article');
 
         $signature = $article->getFirstMedia('signature');
 

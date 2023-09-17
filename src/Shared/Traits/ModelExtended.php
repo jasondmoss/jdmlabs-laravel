@@ -17,6 +17,21 @@ trait ModelExtended
 {
 
     /**
+     * Generate specific dates for metadata and display purposes.
+     *
+     * @return void
+     */
+    final public function entityDates(): void
+    {
+        $this->date = (object) [
+            'published' => $this->generatePublishDate(),
+            'create' => $this->generateCreateDate(),
+            'updated' => $this->generateUpdateDate()
+        ];
+    }
+
+
+    /**
      * @return object
      */
     private function generateCreateDate(): object
@@ -49,6 +64,28 @@ trait ModelExtended
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
+    }
+
+
+    /**
+     * Generate an 'permalink' for the requesting entity.
+     *
+     * @param string $entity
+     *
+     * @return void
+     */
+    final public function generatePermalink(string $entity = ''): void
+    {
+        $this->permalink = match ($entity) {
+            'article' => url(
+                "/article/" .
+                Date::parse($this->date->published->iso)->format('Y/m/d') .
+                "/" . $this->slug
+            ),
+            'client' => url("/client/$this->slug"),
+            'project' => url("/project/{$this->clients->slug}/$this->slug"),
+            default => url("/$this->slug")
+        };
     }
 
 
@@ -94,21 +131,6 @@ trait ModelExtended
         } catch (UnexpectedValueException) {
             throw CouldNotFindModelEntity::withSlug($slug);
         }
-    }
-
-
-    /**
-     * Generate specific dates for metadata and display purposes.
-     *
-     * @return void
-     */
-    final public function entityDates(): void
-    {
-        $this->date = (object) [
-            'published' => $this->generatePublishDate(),
-            'create' => $this->generateCreateDate(),
-            'updated' => $this->generateUpdateDate()
-        ];
     }
 
 }

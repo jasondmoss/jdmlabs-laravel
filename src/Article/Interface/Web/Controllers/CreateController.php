@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Controllers;
 
+use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;

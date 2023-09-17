@@ -34,8 +34,8 @@ class RolesAndPermissionsSeeder extends Seeder
                 'guard_name' => config('auth.defaults.guard')
             ]);
 
-            foreach ($value['allowed'] as $entity => $permission_raw) {
-                foreach (explode(',', $permission_raw) as $p => $permission) {
+            foreach ($value['allowed'] as $entity => $permission_key) {
+                foreach (explode(',', $permission_key) as $p => $permission) {
                     $permission = PermissionEloquentModel::firstOrCreate([
                         'id' => (string) Str::ulid(),
                         'name' => $entity . '-' . $map[ $permission ],

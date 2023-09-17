@@ -7,6 +7,9 @@ namespace Aenginus\Media\Infrastructure\EloquentModels;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
+/**
+ * @property \Illuminate\Validation\Rules\Enum $status
+ */
 class MediaEloquentModel extends BaseMedia
 {
 

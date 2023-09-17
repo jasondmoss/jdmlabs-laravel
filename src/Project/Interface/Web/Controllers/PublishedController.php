@@ -22,8 +22,8 @@ class PublishedController extends Controller
             ->with('clients')
             ->get()
             ->each(static function ($project) {
-                $project->generateDates();
-                $project->generatePermalink();
+                $project->entityDates();
+                $project->generatePermalink('project');
             });
 
         return ViewFacade::make('ProjectPublic::list', compact('projects'));

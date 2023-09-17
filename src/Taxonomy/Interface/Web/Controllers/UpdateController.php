@@ -41,11 +41,13 @@ class UpdateController extends Controller
         $categoryEntity = new CategoryEntity($validated);
         $categoryInstance = $this->category->find($categoryEntity->id);
 
-        $this->bridge->update($categoryInstance, $categoryEntity);
+        $category = $this->bridge->update($categoryInstance, $categoryEntity);
+
+        $keyword = '"<span class="font-bold">' . $category->name . '</span>"';
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'Category successfully updated.');
+            ->with('update', "{$keyword} successfully updated.");
     }
 
 }
