@@ -46,7 +46,7 @@
                 <figure class="">
                   <a class="block" href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
                     @if ($client->hasMedia('logo'))
-                      <img class="max-w-full mx-auto" src="{{ $client->getFirstMediaUrl('logo', 'thumb100') }}" alt="">
+                      <img class="max-w-full mx-auto" src="{{ $client->getFirstMediaUrl('logo', 'thumbnail') }}" alt="">
                     @else
                       <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/logo.png') }}" alt="">
                     @endif

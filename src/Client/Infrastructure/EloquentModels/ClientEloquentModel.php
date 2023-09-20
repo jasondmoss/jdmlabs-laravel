@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Infrastructure\EloquentModels;
 
 use Aenginus\Client\Infrastructure\Factories\ClientFactory;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -102,7 +103,11 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaCollections(): void
     {
-        $this->registerLogoImageCollection();
+        $this->addMediaCollection('logo')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
+            ->useFallbackUrl(asset('/images/placeholder/logo.png'))
+            ->useFallbackPath(public_path('/images/placeholder/logo.png'));
     }
 
 
@@ -114,8 +119,19 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function registerMediaConversions(Media|null $media = null): void
     {
-        /** @see \Aenginus\Shared\Traits\MediaExtended */
-        $this->registerDefaultMediaConversions();
+        $this->addMediaConversion('thumbnail')
+            ->fit(Manipulations::FIT_CROP, 100, 100)
+            ->nonQueued();
+
+        $this->addMediaConversion('card')
+            ->fit(Manipulations::FIT_CROP, 800, 400)
+            ->withResponsiveImages()
+            ->nonQueued();
+
+        $this->addMediaConversion('detail')
+            ->fit(Manipulations::FIT_CROP, 1400, 600)
+            ->withResponsiveImages()
+            ->nonQueued();
     }
 
 
@@ -133,7 +149,7 @@ class ClientEloquentModel extends Model implements HasMedia
      */
     final public function projects(): HasMany
     {
-        return $this->hasMany(ProjectEloquentModel::class, 'client_id');
+        return $this->hasMany(ProjectModel::class, 'client_id');
     }
 
 }

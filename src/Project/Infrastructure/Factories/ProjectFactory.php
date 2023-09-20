@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Infrastructure\Factories;
 
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 final class ProjectFactory extends Factory
 {
 
-    protected $model = ProjectEloquentModel::class;
+    protected $model = ProjectModel::class;
 
 
     /**

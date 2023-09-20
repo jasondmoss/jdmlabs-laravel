@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "bunx --bun vite build",
-    "watch": "bunx --bun vite build --watch"
+    "serve": "vite",
+    "build": "vite build",
+    "watch": "vite build --watch"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",

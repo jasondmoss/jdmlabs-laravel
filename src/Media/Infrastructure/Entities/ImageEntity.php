@@ -8,15 +8,15 @@ use Aenginus\Shared\ValueObjects\StringValueObject;
 use Aenginus\Shared\ValueObjects\UploadedFileValueObject;
 use Illuminate\Http\UploadedFile;
 
-final readonly class ImageEntity
+final class ImageEntity
 {
 
-    public UploadedFile $file;
-    public int $width;
-    public int $height;
-    public string|null $alt;
-    public string|null $caption;
-    public string|null $label;
+    public ?UploadedFile $file;
+    public ?int $width;
+    public ?int $height;
+    public ?string $caption;
+    public ?string $label;
+    public ?string $alt;
 
 
     /**
@@ -31,13 +31,16 @@ final readonly class ImageEntity
                 $this->file->getRealPath()
             );
         }
+
         $this->alt = ! empty($image->alt)
             ? (new StringValueObject($image->alt))->value()
             : 'A placeholder image description';
-        $this->caption = ! empty($image->caption)
+
+        $image->caption = ! empty($image->caption)
             ? (new StringValueObject($image->caption))->value()
             : null;
-        $this->label = ! empty($image->label)
+
+        $image->label = ! empty($image->label)
             ? (new StringValueObject($image->label))->value()
             : null;
     }

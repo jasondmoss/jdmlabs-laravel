@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
@@ -39,7 +39,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePinned(string $id): void
     {
-        $projectModel = new ProjectEloquentModel;
+        $projectModel = new ProjectModel;
 
         $project = $projectModel->find($id);
 
@@ -61,7 +61,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $projectModel = new ProjectEloquentModel;
+        $projectModel = new ProjectModel;
 
         $project = $projectModel->find($id);
 
@@ -83,7 +83,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $projectModel = new ProjectEloquentModel;
+        $projectModel = new ProjectModel;
 
         $project = $projectModel->find($id);
 
@@ -106,7 +106,7 @@ final class ProjectAdminListing extends Component
      */
     public function render(): View
     {
-        $projects = ProjectEloquentModel::where('title', 'LIKE', '%' . $this->query . '%')
+        $projects = ProjectModel::where('title', 'LIKE', '%' . $this->query . '%')
             ->latest('created_at')
             ->with('clients')
             ->paginate(20);

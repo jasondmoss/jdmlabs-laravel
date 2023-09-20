@@ -1,26 +1,18 @@
 /*  ------------------------------------------------------------------------
-      Main Menu (Clone)
+      Overlay Menu
     ------------------------------------------------------------------------  */
+
+/** -- Main clone */
 
 menu.main-clone,
 menu.account-clone {
   list-style: none;
   display: flex;
-  width: 85%;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  width: calc(100% - 2rem);
+  max-width: 50rem;
+  margin-right: auto;
+  margin-left: auto;
   text-align: left;
-
-  background-color: var(--debug--lime);
-
-  @media only screen and (min-width: 1500px) {
-    width: 60rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
 }
 
 menu.main-clone {
@@ -32,10 +24,6 @@ menu.main-clone {
   @media only screen and (min-width: 768px) {
     font-size: 2.5rem;
   }
-
-  @media only screen and (min-width: 1500px) {
-    font-size: 3.25rem;
-  }
 }
 
 menu.main-clone > li > a {
@@ -44,7 +32,7 @@ menu.main-clone > li > a {
   text-decoration: none;
   color: #f2eaf7;
 
-  @media only screen and (min-width: 480px) {
+  @media only screen and (min-width: 640px) {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
@@ -65,7 +53,7 @@ menu.main-clone > li > a {
 }
 
 menu.main-clone > li[aria-selected="true"] > a {
-  border-bottom: 0.15rem solid #fff;
+  border-left: 0.5rem solid #fff;
   color: #fff;
 }
 
@@ -76,25 +64,36 @@ menu.main-clone > li >a:hover {
   color: #fff;
 }
 
-/*  ------------------------------------------------------------------------
-      Admin Menu (Clone)
-    ------------------------------------------------------------------------  */
+/** -- Account clone */
 
 menu.account-clone {
   justify-content: center;
-  gap: 1.25rem;
-  font-size: 1.15rem;
+  gap: 2rem;
+  font-size: 0.9rem;
 
-  @media only screen and (min-width: 480px) {
+  @media only screen and (min-width: 640px) {
     gap: 0 2rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   @media only screen and (min-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
+}
 
-  @media only screen and (min-width: 1024px) {
-    font-size: 1.75rem;
-  }
+menu.account-clone > li > a {
+  text-decoration: none;
+  color: #f2eaf7;
+}
+
+menu.account-clone > li > a svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+menu.account-clone > li > a:active,
+menu.account-clone > li > a:hover,
+menu.account-clone > li > a:focus {
+  text-decoration: underline dotted;
+  color: #fff;
 }

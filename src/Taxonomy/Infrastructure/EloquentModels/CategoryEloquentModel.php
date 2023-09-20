@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
 use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
@@ -63,18 +63,6 @@ class CategoryEloquentModel extends Model
 
 
     /**
-     * Generate an article 'permalink', facilitating the `generateDates()`
-     * method above.
-     *
-     * @return void
-     */
-//    final public function generatePermalink(): void
-//    {
-//        $this->permalink = url("/taxonomy/category/$this->slug");
-//    }
-
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     final public function user(): BelongsTo
@@ -97,7 +85,7 @@ class CategoryEloquentModel extends Model
      */
     final public function projects(): HasMany
     {
-        return $this->hasMany(ProjectEloquentModel::class, 'category_id');
+        return $this->hasMany(ProjectModel::class, 'category_id');
     }
 
 }

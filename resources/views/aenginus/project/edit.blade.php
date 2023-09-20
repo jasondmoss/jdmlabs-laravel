@@ -55,7 +55,7 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Sub-Title')->for('subtitle')->class('font-medium text-sm') }}
-        {{ html()->text('subtitle')->required()->placeholder(__('Project sub-title or tagline')) }}
+        {{ html()->text('subtitle')->required()->placeholder(__('ProjectModel sub-title or tagline')) }}
       </div>
 
       <div class="flex flex-col gap-y-3">

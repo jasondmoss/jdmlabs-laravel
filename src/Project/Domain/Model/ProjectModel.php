@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Article\Infrastructure\EloquentModels;
+namespace Aenginus\Project\Domain\Model;
 
-use Aenginus\Article\Infrastructure\Factories\ArticleFactory;
-use Aenginus\Shared\Casts\ConvertNullToEmptyString;
-use Aenginus\Shared\Enums\Promoted;
-use Aenginus\Shared\Enums\Status;
+use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Infrastructure\Factories\ProjectFactory;
 use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
@@ -15,14 +13,9 @@ use Aenginus\Shared\Scopes\WhereRelatedScope;
 use Aenginus\Shared\Traits\MediaExtended;
 use Aenginus\Shared\Traits\ModelExtended;
 use Aenginus\Shared\Traits\Observable;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Date;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -30,11 +23,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-/**
- * @property \Illuminate\Validation\Rules\Enum $status
- * @property string $permalink
- */
-class ArticleEloquentModel extends Model implements HasMedia
+class ProjectModel extends ProjectEloquentModel implements HasMedia
 {
 
     use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, Observable;
@@ -46,49 +35,17 @@ class ArticleEloquentModel extends Model implements HasMedia
     use FindBySlugScope, WherePromotedScope, WherePublishedScope, WhereRelatedScope;
 
     /**
-     * Generated 'permalink' per each article, using the published_at
-     * date (Y/m/d), upon eloquent model query.
-     *
      * @var string
      */
     public string $permalink;
 
-    protected $table = 'articles';
-
-    protected $fillable = [
-        'title',
-        'slug',
-        'summary',
-        'body',
-        'status',
-        'promoted',
-        'published_at',
-        'created_at',
-        'updated_at',
-        'category_id',
-        'user_id'
-    ];
-
-    protected $casts = [
-        'body' => ConvertNullToEmptyString::class,
-        'summary' => ConvertNullToEmptyString::class,
-        'published_at' => 'immutable_datetime',
-        'status' => Status::class,
-        'promoted' => Promoted::class
-    ];
-
-    protected $with = [
-        'category',
-        'media'
-    ];
-
 
     /**
-     * @return \Aenginus\Article\Infrastructure\Factories\ArticleFactory
+     * @return \Aenginus\Project\Infrastructure\Factories\ProjectFactory
      */
-    private static function newFactory(): ArticleFactory
+    private static function newFactory(): ProjectFactory
     {
-        return ArticleFactory::new();
+        return ProjectFactory::new();
     }
 
 
@@ -109,9 +66,22 @@ class ArticleEloquentModel extends Model implements HasMedia
     {
         $this->addMediaCollection('signature')
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/png', 'image/svg'])
+            ->acceptsMimeTypes([
+                'image/jpg',
+                'image/png',
+                'image/svg'
+            ])
             ->useFallbackUrl(asset('/images/placeholder/signature.png'))
             ->useFallbackPath(public_path('/images/placeholder/signature.png'));
+
+        $this->addMediaCollection('showcase')
+            ->acceptsMimeTypes([
+                'image/jpg',
+                'image/png',
+                'image/svg'
+            ])
+            ->useFallbackUrl(asset('/images/placeholder/showcase.png'))
+            ->useFallbackPath(public_path('/images/placeholder/showcase.png'));
     }
 
 
@@ -132,28 +102,20 @@ class ArticleEloquentModel extends Model implements HasMedia
             ->withResponsiveImages()
             ->nonQueued();
 
-        $this->addMediaConversion('detail')
+        $this->addMediaConversion('signature_detail')
             ->fit(Manipulations::FIT_CROP, 1400, 600)
             ->withResponsiveImages()
             ->nonQueued();
-    }
 
+        $this->addMediaConversion('showcase_preview')
+            ->fit(Manipulations::FIT_CROP, 600, 700)
+            ->withResponsiveImages()
+            ->nonQueued();
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    final public function user(): BelongsTo
-    {
-        return $this->belongsTo(UserEloquentModel::class, 'user_id');
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    final public function category(): BelongsTo
-    {
-        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
+        $this->addMediaConversion('showcase_detail')
+            ->fit(Manipulations::FIT_CROP, 1400, 600)
+            ->withResponsiveImages()
+            ->nonQueued();
     }
 
 }

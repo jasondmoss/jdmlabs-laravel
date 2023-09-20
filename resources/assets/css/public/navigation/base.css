@@ -26,7 +26,7 @@ menu > li > a {
   font-weight: bold;
 }
 
-menu > li > a .icon {
+menu > li > a svg {
   width: 1.5rem;
   height: 1.5rem;
 }

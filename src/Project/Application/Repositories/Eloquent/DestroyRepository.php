@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\Repositories\Eloquent;
 
 use Aenginus\Project\Domain\Contracts\DestroyContract;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 
 final class DestroyRepository implements DestroyContract
 {
@@ -13,7 +13,7 @@ final class DestroyRepository implements DestroyContract
     /**
      * @inheritDoc
      */
-    public function delete(ProjectEloquentModel $project): void
+    public function delete(ProjectModel $project): void
     {
         $project->delete();
     }

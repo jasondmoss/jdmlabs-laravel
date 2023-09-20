@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Domain\Contracts;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 
 interface StoreContract
 {
@@ -12,8 +12,8 @@ interface StoreContract
     /**
      * @param object $projectEntity
      *
-     * @return \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel
+     * @return \Aenginus\Project\Domain\Model\ProjectModel
      */
-    public function save(object $projectEntity): ProjectEloquentModel;
+    public function save(object $projectEntity): ProjectModel;
 
 }

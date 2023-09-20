@@ -21,7 +21,7 @@
           <figure class="item--image">
             <a href="{{ $client->permalink }}" title="{{ __('View client') }}">
               @if ($client->hasMedia('logo'))
-                <img src="{{ $client->getFirstMediaUrl('logo', 'preview') }}" alt="">
+                <img src="{{ $client->getFirstMediaUrl('logo', 'thumbnail') }}" alt="">
               @else
                 <img class="placeholder" src="{{ asset('images/placeholder/logo.png') }}" alt="">
               @endif

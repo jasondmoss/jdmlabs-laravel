@@ -14,7 +14,11 @@ final class SingleImageRepository implements SingleImageContract
 {
 
     /**
-     * @inheritDoc
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param \Aenginus\Media\Infrastructure\Entities\ImageEntity $entity
+     * @param string $mediaCollection
+     *
+     * @return void
      */
     public function attach(Model $model, ImageEntity $entity, string $mediaCollection = ''): void
     {

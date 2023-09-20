@@ -7,7 +7,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 use Aenginus\Media\Application\UseCases\MultiImageUseCase;
 use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
@@ -16,20 +16,20 @@ use Illuminate\Http\RedirectResponse;
 class UpdateController extends Controller
 {
 
-    protected ProjectEloquentModel $project;
+    protected ProjectModel $project;
     protected ProjectUseCase $bridge;
     protected SingleImageUseCase $signature;
     protected MultiImageUseCase $showcase;
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $bridge
      * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
      * @param \Aenginus\Media\Application\UseCases\MultiImageUseCase $showcase
      */
     public function __construct(
-        ProjectEloquentModel $project,
+        ProjectModel $project,
         ProjectUseCase $bridge,
         SingleImageUseCase $signature,
         MultiImageUseCase $showcase
@@ -56,26 +56,26 @@ class UpdateController extends Controller
         $project = $this->bridge->update($projectInstance, $projectEntity);
 
         // Signature image (single).
-        if ($request->hasFile('signature_image')) {
+        // if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
                 (object) $request->signature_image,
                 'signature'
             );
-        }
+        // }
 
         // Showcase images (multiple).
-        if ($request->file('showcase_images') !== null) {
+        // if ($request->file('showcase_images') !== null) {
             $this->showcase->attach(
                 $project,
                 $request->showcase_images,
                 'showcase'
             );
-        }
+        // }
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'Project updated successfully');
+            ->with('update', 'ProjectModel updated successfully');
     }
 
 }

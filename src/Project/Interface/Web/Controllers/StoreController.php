@@ -68,7 +68,7 @@ class StoreController extends Controller
 
         return redirect()
             ->action(IndexController::class)
-            ->with('create', 'Project created successfully.');
+            ->with('create', 'ProjectModel created successfully.');
     }
 
 }

@@ -23,7 +23,7 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
 
   <header class="flex flex-col basis-full md:flex-row gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:justify-between md:pt-3 md:pb-4 lg:border-b-0 xl:pt-5 xl:pb-4">
-    <h1 class="pl-2 text-4xl font-medium">{{ __('Create New Project') }}</h1>
+    <h1 class="pl-2 text-4xl font-medium">{{ __('Create New ProjectModel') }}</h1>
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
@@ -38,7 +38,7 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Sub-Title')->for('subtitle')->class('font-medium text-sm') }}
-        {{ html()->text('subtitle')->required()->placeholder(__('Project sub-title or tagline')) }}
+        {{ html()->text('subtitle')->required()->placeholder(__('ProjectModel sub-title or tagline')) }}
       </div>
 
       <div class="flex flex-col gap-y-3">

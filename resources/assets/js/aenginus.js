@@ -71,6 +71,7 @@ if (exists(repeatable)) {
             let fieldNameLabel = fieldName.match(/\[([a-z]+)\]/)[1];
 
             field.setAttribute("name", "showcase_images[" + fieldsetCount +"][" + fieldNameLabel + "]");
+            field.value = null;
         });
 
         repeatable.appendChild(cloned);

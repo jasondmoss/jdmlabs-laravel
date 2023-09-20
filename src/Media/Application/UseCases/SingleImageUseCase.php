@@ -34,16 +34,12 @@ final readonly class SingleImageUseCase
      */
     public function attach(Model $model, object $image, string $mediaCollection = ''): void
     {
-        if ($image->file->isValid()) {
-            $imageEntity = new ImageEntity($image);
+        $imageEntity = new ImageEntity($image);
 
-            try {
-                $this->repository->attach($model, $imageEntity, $mediaCollection);
-            } catch (Exception) {
-                throw new RuntimeException('Signature image could not  be saved.');
-            }
-        } else {
-            throw new RuntimeException('Signature image is not valid.');
+        try {
+            $this->repository->attach($model, $imageEntity, $mediaCollection);
+        } catch (Exception) {
+            throw new RuntimeException('Image could not  be saved.');
         }
     }
 

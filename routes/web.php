@@ -24,7 +24,7 @@ Route::middleware(['web'])->group(static function () {
     Route::get('/client/{slug}', Client\SingleController::class)
         ->name('client-single');
 
-    // Project
+    // ProjectModel
     Route::get('/projects', Project\PublishedController::class)
         ->name('project-list');
     Route::get('/project/{client_slug}/{slug}', Project\SingleController::class)
@@ -72,7 +72,7 @@ Route::middleware(['web'])->group(static function () {
         Route::put('/client/update/{id}', Client\UpdateController::class);
         Route::delete('/client/{id}', Client\DestroyController::class);
 
-        // Project
+        // ProjectModel
         Route::get('/projects', Project\IndexController::class)
             ->name('ae-project-list');
         Route::get('/project/create', Project\CreateController::class)

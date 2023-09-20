@@ -19,7 +19,7 @@ final readonly class MultiImageUseCase
     /**
      * @param \Aenginus\Media\Application\Repositories\Eloquent\MultiImageRepository $repository
      */
-    public function __construct (MultiImageRepository $repository)
+    public function __construct(MultiImageRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -30,7 +30,7 @@ final readonly class MultiImageUseCase
      * @param array $images
      * @param string $mediaCollection
      */
-    public function attach (Model $model, array $images, string $mediaCollection = ''): void
+    public function attach(Model $model, array $images, string $mediaCollection = ''): void
     {
         $multiImages = [];
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Requests;
 
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Aenginus\Project\Domain\Validation\CreateSubmissionRules;
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 
 /**
  * @property mixed $showcase_images
@@ -21,7 +21,7 @@ final class CreateRequest extends CreateSubmissionRules
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', ProjectEloquentModel::class);
+        return $this->user()->can('create', ProjectModel::class);
     }
 
 }

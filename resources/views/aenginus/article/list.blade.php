@@ -52,7 +52,7 @@
                 <figure class="">
                   <a class="block" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
                     @if ($article->hasMedia('signature'))
-                      <img class="mx-auto" src="{{ $article->getFirstMediaUrl('signature', 'thumb100') }}" alt="">
+                      <img class="mx-auto" src="{{ $article->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
                     @else
                       <img class="mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
                     @endif

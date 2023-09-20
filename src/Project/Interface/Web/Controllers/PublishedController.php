@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -17,7 +17,7 @@ class PublishedController extends Controller
      */
     public function __invoke(): View
     {
-        $projects = ProjectEloquentModel::published()
+        $projects = ProjectModel::published()
             ->orderBy('created_at', 'desc')
             ->with('clients')
             ->get()

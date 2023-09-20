@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use App\Controller;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
@@ -12,13 +12,13 @@ use Illuminate\View\View;
 class SingleController extends Controller
 {
 
-    private ProjectEloquentModel $project;
+    private ProjectModel $project;
 
 
     /**
-     * @param \Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel $project
+     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
      */
-    public function __construct(ProjectEloquentModel $project)
+    public function __construct(ProjectModel $project)
     {
         $this->project = $project;
     }
@@ -35,13 +35,10 @@ class SingleController extends Controller
     {
         $project = $this->project->find($key);
 
-        $signature = $project->getFirstMedia('signature');
-        $showcase = $project->getMedia('showcase');
+        // $signature = $project->getFirstMedia('signature');
+        // $showcases = $project->getMedia('showcase');
 
-        return ViewFacade::make(
-            'ProjectPublic::single',
-            compact('project', 'signature', 'showcase')
-        );
+        return ViewFacade::make('ProjectPublic::single', compact('project'));
     }
 
 }

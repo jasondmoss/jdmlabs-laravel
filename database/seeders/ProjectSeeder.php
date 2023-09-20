@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
+use Aenginus\Project\Domain\Model\ProjectModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        ProjectEloquentModel::factory(20)->create();
+        ProjectModel::factory(20)->create();
     }
 
 }

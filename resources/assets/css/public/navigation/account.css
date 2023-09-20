@@ -1,3 +1,7 @@
+/*  ------------------------------------------------------------------------
+      Account Menu
+    ------------------------------------------------------------------------  */
+
 menu.account {
   visibility: hidden;
   flex-flow: row wrap;
@@ -5,6 +9,7 @@ menu.account {
   justify-content: flex-end;
   gap: 1rem;
   height: 0;
+  padding: 0.25rem 0;
   transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
@@ -19,22 +24,22 @@ menu.account > li > a {
   font-size: 0.8rem;
 }
 
+menu.account > li > a svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 @media only screen {
-  @media (min-width: 42.5rem) {
+  @media (min-width: 800px) {
     menu.account {
       justify-content: flex-end;
       gap: 0 1rem;
+      visibility: visible;
+      height: auto;
     }
 
     menu.account > li {
       width: fit-content;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    menu.account {
-      visibility: visible;
-      height: auto;
     }
   }
 }

@@ -11,12 +11,11 @@
   <x-shared.session/>
 
   <header>
-    {{ $signature }}
+    {{ $project->getFirstMedia('signature') }}
     <h1>{{ $project->title }}</h1>
     <h2>{{ $project->subtitle }}</h2>
     @if ($project->website)
-      <p><a rel="external" href="{{ $project->website }}" title="{{ __('Visit website') }}">{{ $project->website }}</a>
-      </p>
+      <p><a rel="external" href="{{ $project->website }}" title="{{ __('Visit website') }}">{{ $project->website }}</a></p>
     @endif
     @if ($project->category !==  null)
       <p class="">
@@ -28,10 +27,10 @@
   <div class="">
     <p class="">{!! $project->body !!}</p>
   </div>
-  <div class="">
-    @foreach ($showcase as $image)
-      {{ $image }}
-    @endforeach
+   <div class="">
+     @foreach ($project->getMedia('showcase') as $showcase_image)
+       {{ $showcase_image }}
+     @endforeach
   </div>
   <div class="">
     <p class=""><strong>Client:</strong>
