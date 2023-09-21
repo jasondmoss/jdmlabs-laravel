@@ -1,7 +1,7 @@
 <?php
 
-use Aenginus\User\Infrastructure\EloquentModels\PermissionEloquentModel;
-use Aenginus\User\Infrastructure\EloquentModels\RoleEloquentModel;
+use Aenginus\User\Domain\Models\PermissionModel;
+use Aenginus\User\Domain\Models\RoleModel;
 
 return [
 
@@ -17,7 +17,7 @@ return [
          */
 
         // Custom 'Permission' model.
-        'permission' => PermissionEloquentModel::class,
+        'permission' => PermissionModel::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -29,7 +29,7 @@ return [
          */
 
         // Custom 'Role' model.
-        'role' => RoleEloquentModel::class,
+        'role' => RoleModel::class,
 
     ],
 

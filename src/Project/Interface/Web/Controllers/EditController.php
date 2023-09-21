@@ -7,7 +7,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Controller;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\View\View;
@@ -43,7 +43,7 @@ class EditController extends Controller
         $showcase_images = $project->getMedia('showcase');
 
         $clients = ClientModel::get()->pluck('name', 'id');
-        $categories = CategoryEloquentModel::get()->pluck('name', 'id');
+        $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
             'ProjectAdmin::edit',

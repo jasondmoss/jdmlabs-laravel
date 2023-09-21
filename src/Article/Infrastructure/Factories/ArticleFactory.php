@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Infrastructure\Factories;
 
 use Aenginus\Article\Domain\Models\ArticleModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -35,7 +35,7 @@ final class ArticleFactory extends Factory
             'body' => $faker->paragraphs(4, true),
             'status' => 'published',
             'promoted' => 'not_promoted',
-            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')
+            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')
                 ->first()
                 ->id,
             'published_at' => $created,

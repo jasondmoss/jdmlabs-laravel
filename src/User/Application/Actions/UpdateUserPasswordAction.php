@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Application\Actions;
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
@@ -17,10 +17,10 @@ class UpdateUserPasswordAction implements UpdatesUserPasswords
     /**
      * Validate and update the user's password.
      *
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param array $input
      */
-    final public function update(UserEloquentModel $user, array $input): void
+    final public function update(UserModel $user, array $input): void
     {
         Validator::make($input, [
             'current_password' => [

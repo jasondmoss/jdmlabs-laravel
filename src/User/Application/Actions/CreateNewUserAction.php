@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Application\Actions;
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,9 +20,9 @@ class CreateNewUserAction implements CreatesNewUsers
      *
      * @param array $input
      *
-     * @return \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel
+     * @return \Aenginus\User\Domain\Models\UserModel
      */
-    final public function create (array $input): UserEloquentModel
+    final public function create (array $input): UserModel
     {
         Validator::make($input, [
             'name' => [ 'required', 'string', 'max:255' ],
@@ -31,12 +31,12 @@ class CreateNewUserAction implements CreatesNewUsers
                 'string',
                 'email',
                 'max:255',
-                Rule::unique(UserEloquentModel::class)
+                Rule::unique(UserModel::class)
             ],
             'password' => $this->passwordRules()
         ])->validate();
 
-        return UserEloquentModel::create([
+        return UserModel::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password'])

@@ -6,7 +6,7 @@ namespace Aenginus\Media\Domain\Policies;
 
 use Aenginus\Media\Infrastructure\EloquentModels\MediaEloquentModel;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -16,12 +16,12 @@ final readonly class MediaPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel|null $user
+     * @param \Aenginus\User\Domain\Models\UserModel|null $user
      * @param \Aenginus\Media\Infrastructure\EloquentModels\MediaEloquentModel $media
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserEloquentModel|null $user, MediaEloquentModel $media): Response
+    public function view(UserModel|null $user, MediaEloquentModel $media): Response
     {
         if ($media->status === Status::Published) {
             return Response::allow();
@@ -42,11 +42,11 @@ final readonly class MediaPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(UserEloquentModel $user): Response
+    public function create(UserModel $user): Response
     {
         if ($user->can('media-create')) {
             return Response::allow();
@@ -57,12 +57,12 @@ final readonly class MediaPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param \Aenginus\Media\Infrastructure\EloquentModels\MediaEloquentModel $media
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, MediaEloquentModel $media): Response
+    public function update(UserModel $user, MediaEloquentModel $media): Response
     {
         if ($user->can('media-edit')) {
             return Response::allow();
@@ -73,11 +73,11 @@ final readonly class MediaPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function delete(UserEloquentModel $user): Response
+    public function delete(UserModel $user): Response
     {
         if ($user->can('media-delete')) {
             return Response::allow();

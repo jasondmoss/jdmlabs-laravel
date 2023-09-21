@@ -6,7 +6,7 @@ namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
 use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,7 +28,7 @@ class CategoryEloquentModel extends Model
      */
     final public function user(): BelongsTo
     {
-        return $this->belongsTo(UserEloquentModel::class, 'user_id');
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 
 

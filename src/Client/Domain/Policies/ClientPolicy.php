@@ -6,7 +6,7 @@ namespace Aenginus\Client\Domain\Policies;
 
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -16,12 +16,12 @@ final readonly class ClientPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel|null $user
+     * @param \Aenginus\User\Domain\Models\UserModel|null $user
      * @param \Aenginus\Client\Domain\Models\ClientModel $client
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserEloquentModel|null $user, ClientModel $client): Response
+    public function view(UserModel|null $user, ClientModel $client): Response
     {
         if ($client->status === Status::Published) {
             return Response::allow();
@@ -42,11 +42,11 @@ final readonly class ClientPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(UserEloquentModel $user): Response
+    public function create(UserModel $user): Response
     {
         if ($user->can('clients-create')) {
             return Response::allow();
@@ -57,12 +57,12 @@ final readonly class ClientPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param \Aenginus\Client\Domain\Models\ClientModel $client
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, ClientModel $client): Response
+    public function update(UserModel $user, ClientModel $client): Response
     {
         if ($user->can('clients-update') && $user->id === $client->user_id) {
             return Response::allow();
@@ -73,11 +73,11 @@ final readonly class ClientPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function delete(UserEloquentModel $user): Response
+    public function delete(UserModel $user): Response
     {
         if ($user->can('clients-delete')) {
             return Response::allow();

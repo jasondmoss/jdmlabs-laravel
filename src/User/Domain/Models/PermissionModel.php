@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\User\Infrastructure\EloquentModels;
+namespace Aenginus\User\Domain\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\Permission\Models\Permission;
 
-class PermissionEloquentModel extends Permission
+class PermissionModel extends Permission
 {
     use HasUlids;
 }

@@ -6,7 +6,7 @@ namespace Aenginus\Project\Domain\Policies;
 
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -16,12 +16,12 @@ final readonly class ProjectPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel|null $user
+     * @param \Aenginus\User\Domain\Models\UserModel|null $user
      * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserEloquentModel|null $user, ProjectModel $project): Response
+    public function view(UserModel|null $user, ProjectModel $project): Response
     {
         if ($project->status === Status::Published) {
             return Response::allow();
@@ -42,11 +42,11 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(UserEloquentModel $user): Response
+    public function create(UserModel $user): Response
     {
         if ($user->can('projects-create')) {
             return Response::allow();
@@ -57,12 +57,12 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, ProjectModel $project): Response
+    public function update(UserModel $user, ProjectModel $project): Response
     {
         if ($user->can('projects-update') && $user->id === $project->user_id) {
             return Response::allow();
@@ -73,11 +73,11 @@ final readonly class ProjectPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function delete(UserEloquentModel $user): Response
+    public function delete(UserModel $user): Response
     {
         if ($user->can('projects-delete')) {
             return Response::allow();

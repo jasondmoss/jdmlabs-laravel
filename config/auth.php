@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 
 return [
 
@@ -66,7 +66,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => UserEloquentModel::class
+            'model' => UserModel::class
         ]
     ],
 

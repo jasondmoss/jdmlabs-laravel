@@ -6,7 +6,7 @@ namespace Aenginus\Project\Infrastructure\Factories;
 
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -40,7 +40,7 @@ final class ProjectFactory extends Factory
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',
             'client_id' => ClientModel::inRandomOrder()->first(),
-            'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
+            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')->first()->id,
             'published_at' => $created,
             'created_at' => $created,
             'updated_at' => Date::now()

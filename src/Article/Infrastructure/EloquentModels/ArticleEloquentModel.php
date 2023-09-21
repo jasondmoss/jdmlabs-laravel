@@ -8,7 +8,7 @@ use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Aenginus\Taxonomy\Domain\Models\CategoryModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -54,7 +54,7 @@ class ArticleEloquentModel extends Model
      */
     final public function user(): BelongsTo
     {
-        return $this->belongsTo(UserEloquentModel::class, 'user_id');
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 
 

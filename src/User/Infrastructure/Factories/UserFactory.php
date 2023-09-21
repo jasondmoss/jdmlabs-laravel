@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Infrastructure\Factories;
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Config;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 final class UserFactory extends Factory
 {
 
-    protected $model = UserEloquentModel::class;
+    protected $model = UserModel::class;
 
 
     public function definition(): array
@@ -35,7 +35,7 @@ final class UserFactory extends Factory
     public function unverified(): self
     {
         return $this->state(static fn (array $attributes) => [
-            'email_verified_at' => null,
+            'email_verified_at' => null
         ]);
     }
 

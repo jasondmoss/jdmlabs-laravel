@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Application\Actions;
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -16,10 +16,10 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
     /**
      * Validate and update the given user's profile information.
      *
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param array $input
      */
-    final public function update (UserEloquentModel $user, array $input): void
+    final public function update (UserModel $user, array $input): void
     {
         Validator::make($input, [
             'name' => [ 'required', 'string', 'max:255' ],
@@ -46,10 +46,10 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
     /**
      * Update the given verified user's profile information.
      *
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param array $input
      */
-    private function updateVerifiedUser (UserEloquentModel $user, array $input): void
+    private function updateVerifiedUser (UserModel $user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

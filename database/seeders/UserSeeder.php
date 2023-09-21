@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        UserEloquentModel::factory(1)->create();
+        UserModel::factory(1)->create();
     }
 
 }

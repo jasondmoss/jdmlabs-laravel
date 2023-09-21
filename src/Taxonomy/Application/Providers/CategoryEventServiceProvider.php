@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\Providers;
 
 use Aenginus\Shared\Observers\ModelEntityObserver;
-use Aenginus\Taxonomy\Domain\Observers\CategoryObserver;
 use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Providers\EventServiceProvider;
 
@@ -18,10 +17,7 @@ class CategoryEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        CategoryModel::class => [
-            /*CategoryObserver::class*/
-            ModelEntityObserver::class
-        ]
+        CategoryModel::class => [ ModelEntityObserver::class ]
     ];
 
 }

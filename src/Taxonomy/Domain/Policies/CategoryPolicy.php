@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Domain\Policies;
 
 use Aenginus\Taxonomy\Domain\Models\CategoryModel;
-use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
+use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -24,11 +24,11 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function create(UserEloquentModel $user): Response
+    public function create(UserModel $user): Response
     {
         if ($user->can('categories-create')) {
             return Response::allow();
@@ -39,16 +39,14 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, CategoryModel $category): Response
+    public function update(UserModel $user, CategoryModel $category): Response
     {
-        if ($user->can('categories-update')
-            && $user->id === $category->user_id
-        ) {
+        if ($user->id === $category->user_id) {
             return Response::allow();
         }
 
@@ -57,11 +55,11 @@ final readonly class CategoryPolicy
 
 
     /**
-     * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
+     * @param \Aenginus\User\Domain\Models\UserModel $user
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function delete(UserEloquentModel $user): Response
+    public function delete(UserModel $user): Response
     {
         if ($user->can('categories-delete')) {
             return Response::allow();
