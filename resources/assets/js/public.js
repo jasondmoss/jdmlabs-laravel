@@ -9,6 +9,20 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
 (function () {
     "use strict";
 
+    const focusPlate = document.getElementById("FocusPlate");
+    if (exists(focusPlate)) {
+        const mainmenu = document.querySelector(".site--header menu.main");
+
+        mainmenu.addEventListener("mouseenter", () => {
+            focusPlate.classList.add("hover-focus");
+            mainmenu.classList.add("hover-focus");
+        });
+        mainmenu.addEventListener("mouseleave", () => {
+            focusPlate.classList.remove("hover-focus");
+            mainmenu.classList.remove("hover-focus");
+        });
+    }
+
     const overlayToggle = document.getElementById("toggle");
     if (exists(overlayToggle)) {
         const panel = document.querySelector("div.panel");

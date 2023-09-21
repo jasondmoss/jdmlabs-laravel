@@ -15,8 +15,11 @@ menu.main {
     height 0.3s ease-in-out;
 
   @media only screen and (min-width: 800px) {
+    justify-self: end;
     visibility: visible;
     height: auto;
+    width: fit-content;
+    border-radius: 2rem;
   }
 }
 
@@ -44,6 +47,13 @@ menu.main > li[aria-current="page"] > a {
 }
 
 @media only screen {
+  @media (min-width: 800px) {
+    menu.main {
+      z-index: 99998;
+      background-color: #fff;
+    }
+  }
+
   @media (min-width: 960px) {
     menu.main {
       gap: 0 3rem;

@@ -13,8 +13,6 @@ body {
   height: 100%;
   margin: 0;
 
-  background-color: var(--debug--yellow);
-
   @media only screen {
     @media (min-width: 480px) {
       grid-template-columns: 3.5rem 1fr;
@@ -33,6 +31,12 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 72rem;
+}
+
+.endo main {
+  min-height: 100%;
+
+  background-color: var(--debug--yellow);
 }
 
 @media only screen and (max-width: 1023px) {
