@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -38,7 +38,7 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $clientModel = new ClientEloquentModel;
+        $clientModel = new ClientModel;
 
         $client = $clientModel->find($id);
 
@@ -60,7 +60,7 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $clientModel = new ClientEloquentModel;
+        $clientModel = new ClientModel;
 
         $client = $clientModel->find($id);
 
@@ -83,7 +83,7 @@ final class ClientAdminListing extends Component
      */
     public function render(): View
     {
-        $clients = ClientEloquentModel::where('user_id', auth()->user()->id)
+        $clients = ClientModel::where('user_id', auth()->user()->id)
             ->where('name', 'LIKE', '%' . $this->query . '%')
             ->latest('created_at')
             ->withCount('projects')

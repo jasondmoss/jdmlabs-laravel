@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class SingleController extends Controller
 {
 
-    private ClientEloquentModel $client;
+    private ClientModel $client;
 
 
-    public function __construct(ClientEloquentModel $client)
+    public function __construct(ClientModel $client)
     {
         $this->client = $client;
     }

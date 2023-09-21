@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Application\Repositories\Eloquent;
 
 use Aenginus\Client\Domain\Contracts\DestroyContract;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 
 final class DestroyRepository implements DestroyContract
 {
@@ -13,7 +13,7 @@ final class DestroyRepository implements DestroyContract
     /**
      * @inheritDoc
      */
-    public function delete(ClientEloquentModel $client): void
+    public function delete(ClientModel $client): void
     {
         $client->delete();
     }

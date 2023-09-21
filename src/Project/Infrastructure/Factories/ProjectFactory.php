@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Infrastructure\Factories;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Faker\Factory as FakerFactory;
@@ -39,7 +39,7 @@ final class ProjectFactory extends Factory
             'status' => 'published',
             'promoted' => 'not_promoted',
             'pinned' => 'not_pinned',
-            'client_id' => ClientEloquentModel::inRandomOrder()->first(),
+            'client_id' => ClientModel::inRandomOrder()->first(),
             'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')->first()->id,
             'published_at' => $created,
             'created_at' => $created,

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Requests;
 
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Client\Domain\Validation\DestroySubmissionRules;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 
 class DestroyRequest extends DestroySubmissionRules
 {
@@ -17,7 +17,7 @@ class DestroyRequest extends DestroySubmissionRules
      */
     public function authorize(): bool
     {
-        return $this->user()->can('delete', ClientEloquentModel::class);
+        return $this->user()->can('delete', ClientModel::class);
     }
 
 }

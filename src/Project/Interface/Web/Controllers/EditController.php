@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
@@ -42,7 +42,7 @@ class EditController extends Controller
         $signature = $project->getFirstMedia('signature');
         $showcase_images = $project->getMedia('showcase');
 
-        $clients = ClientEloquentModel::get()->pluck('name', 'id');
+        $clients = ClientModel::get()->pluck('name', 'id');
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(

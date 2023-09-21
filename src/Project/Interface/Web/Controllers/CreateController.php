@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -18,7 +18,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $clients = ClientEloquentModel::get()->pluck('name', 'id');
+        $clients = ClientModel::get()->pluck('name', 'id');
         $categories = CategoryEloquentModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(

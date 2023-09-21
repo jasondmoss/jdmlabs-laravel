@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        ClientEloquentModel::factory(5)->create();
+        ClientModel::factory(5)->create();
     }
 
 }

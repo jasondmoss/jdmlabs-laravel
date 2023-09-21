@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Application\Repositories\Eloquent;
 
 use Aenginus\Client\Domain\Contracts\StoreContract;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 
 final class StoreRepository implements StoreContract
 {
@@ -13,9 +13,9 @@ final class StoreRepository implements StoreContract
     /**
      * @inheritDoc
      */
-    public function save(object $clientEntity): ClientEloquentModel
+    public function save(object $clientEntity): ClientModel
     {
-        return ClientEloquentModel::create((array) $clientEntity);
+        return ClientModel::create((array) $clientEntity);
     }
 
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Application\UseCases;
 
 use Aenginus\Client\Application\Repositories\Eloquent\StoreRepository;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 
 final readonly class StoreUseCase
 {
@@ -25,9 +25,9 @@ final readonly class StoreUseCase
     /**
      * @param object $clientEntity
      *
-     * @return \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel
+     * @return \Aenginus\Client\Domain\Models\ClientModel
      */
-    public function store(object $clientEntity): ClientEloquentModel
+    public function store(object $clientEntity): ClientModel
     {
         return $this->repository->save($clientEntity);
     }

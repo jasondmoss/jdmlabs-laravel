@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Controllers;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class EditController extends Controller
 {
 
-    protected ClientEloquentModel $client;
+    protected ClientModel $client;
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
+     * @param \Aenginus\Client\Domain\Models\ClientModel $client
      */
-    public function __construct(ClientEloquentModel $client)
+    public function __construct(ClientModel $client)
     {
         $this->client = $client;
     }

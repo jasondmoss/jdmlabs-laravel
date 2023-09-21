@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Infrastructure\Factories;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 final class ClientFactory extends Factory
 {
 
-    protected $model = ClientEloquentModel::class;
+    protected $model = ClientModel::class;
 
 
     /**

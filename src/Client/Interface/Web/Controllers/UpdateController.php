@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Interface\Web\Controllers;
 
 use Aenginus\Client\Application\UseCases\UpdateUseCase;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 use Aenginus\Client\Interface\Web\Requests\UpdateRequest;
 use Aenginus\Media\Application\UseCases\SingleImageUseCase;
@@ -15,18 +15,18 @@ use Illuminate\Http\RedirectResponse;
 class UpdateController extends Controller
 {
 
-    protected ClientEloquentModel $client;
+    protected ClientModel $client;
     protected UpdateUseCase $bridge;
     protected SingleImageUseCase $logo;
 
 
     /**
-     * @param \Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel $client
+     * @param \Aenginus\Client\Domain\Models\ClientModel $client
      * @param \Aenginus\Client\Application\UseCases\UpdateUseCase $bridge
      * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $logo
      */
     public function __construct(
-        ClientEloquentModel $client,
+        ClientModel $client,
         UpdateUseCase $bridge,
         SingleImageUseCase $logo
     ) {

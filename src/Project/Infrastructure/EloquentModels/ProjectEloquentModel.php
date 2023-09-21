@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Infrastructure\EloquentModels;
 
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
@@ -68,7 +68,7 @@ class ProjectEloquentModel extends Model
      */
     final public function clients(): BelongsTo
     {
-        return $this->belongsTo(ClientEloquentModel::class, 'client_id');
+        return $this->belongsTo(ClientModel::class, 'client_id');
     }
 
 

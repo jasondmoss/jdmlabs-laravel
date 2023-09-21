@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Requests;
 
+use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Client\Domain\Validation\UpdateSubmissionRules;
-use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
 
 /**
  * @property array $logo_image
@@ -21,7 +21,7 @@ class UpdateRequest extends UpdateSubmissionRules
      */
     final public function authorize(): bool
     {
-        $client = ClientEloquentModel::where('id', '=', $this->route('id'))
+        $client = ClientModel::where('id', '=', $this->route('id'))
             ->get()
             ->first();
 
