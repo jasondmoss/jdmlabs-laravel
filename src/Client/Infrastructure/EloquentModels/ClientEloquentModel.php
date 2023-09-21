@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Client\Infrastructure\EloquentModels;
 
 use Aenginus\Client\Infrastructure\Factories\ClientFactory;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;

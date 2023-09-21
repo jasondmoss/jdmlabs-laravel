@@ -7,7 +7,7 @@ namespace Aenginus\Project\Interface\Web\Controllers;
 use Aenginus\Media\Application\UseCases\MultiImageUseCase;
 use Aenginus\Media\Application\UseCases\SingleImageUseCase;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
@@ -23,7 +23,7 @@ class UpdateController extends Controller
 
 
     /**
-     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
+     * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $bridge
      * @param \Aenginus\Media\Application\UseCases\SingleImageUseCase $signature
      * @param \Aenginus\Media\Application\UseCases\MultiImageUseCase $showcase

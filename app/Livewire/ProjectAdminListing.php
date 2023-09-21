@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;

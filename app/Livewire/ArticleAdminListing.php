@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -38,7 +38,7 @@ final class ArticleAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $articleModel = new ArticleEloquentModel;
+        $articleModel = new ArticleModel;
 
         $article = $articleModel->find($id);
 
@@ -60,7 +60,7 @@ final class ArticleAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $articleModel = new ArticleEloquentModel;
+        $articleModel = new ArticleModel;
 
         $article = $articleModel->find($id);
 
@@ -83,7 +83,7 @@ final class ArticleAdminListing extends Component
      */
     public function render(): View
     {
-        $articles = ArticleEloquentModel::where('title', 'LIKE', '%' . $this->query . '%')
+        $articles = ArticleModel::where('title', 'LIKE', '%' . $this->query . '%')
             ->with('category')
             ->latest('created_at')
             ->paginate(20);

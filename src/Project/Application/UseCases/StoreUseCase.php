@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\UseCases;
 
 use Aenginus\Project\Application\Repositories\Eloquent\StoreRepository;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 
 final readonly class StoreUseCase
 {
@@ -25,7 +25,7 @@ final readonly class StoreUseCase
     /**
      * @param object $projectEntity
      *
-     * @return \Aenginus\Project\Domain\Model\ProjectModel
+     * @return \Aenginus\Project\Domain\Models\ProjectModel
      */
     public function store(object $projectEntity): ProjectModel
     {

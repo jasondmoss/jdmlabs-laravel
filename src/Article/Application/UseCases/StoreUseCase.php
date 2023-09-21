@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Application\UseCases;
 
 use Aenginus\Article\Application\Repositories\Eloquent\StoreRepository;
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 
 final readonly class StoreUseCase
@@ -26,9 +26,9 @@ final readonly class StoreUseCase
     /**
      * @param \Aenginus\Article\Infrastructure\Entities\ArticleEntity $entity
      *
-     * @return \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel
+     * @return \Aenginus\Article\Domain\Models\ArticleModel
      */
-    public function store(ArticleEntity $entity): ArticleEloquentModel
+    public function store(ArticleEntity $entity): ArticleModel
     {
         return $this->repository->save($entity);
     }

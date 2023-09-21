@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Infrastructure\Factories;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 final class ArticleFactory extends Factory
 {
 
-    protected $model = ArticleEloquentModel::class;
+    protected $model = ArticleModel::class;
 
 
     /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Application\Providers;
 
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Domain\Policies\ArticlePolicy;
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 use App\Providers\AuthServiceProvider;
 
 class ArticleAuthServiceProvider extends AuthServiceProvider
@@ -17,7 +17,7 @@ class ArticleAuthServiceProvider extends AuthServiceProvider
      * @var array
      */
     protected $policies = [
-        ArticleEloquentModel::class => ArticlePolicy::class
+        ArticleModel::class => ArticlePolicy::class
     ];
 
 }

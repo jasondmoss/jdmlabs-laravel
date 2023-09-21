@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Article\Application\UseCases;
 
 use Aenginus\Article\Application\Repositories\Eloquent\DestroyRepository;
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Exception;
@@ -13,15 +13,15 @@ use Exception;
 final readonly class DestroyUseCase
 {
 
-    protected ArticleEloquentModel $article;
+    protected ArticleModel $article;
     private DestroyRepository $repository;
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      * @param \Aenginus\Article\Application\Repositories\Eloquent\DestroyRepository $repository
      */
-    public function __construct(ArticleEloquentModel $article, DestroyRepository $repository)
+    public function __construct(ArticleModel $article, DestroyRepository $repository)
     {
         $this->article = $article;
         $this->repository = $repository;

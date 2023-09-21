@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Domain\Policies;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Shared\Enums\Status;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -17,11 +17,11 @@ final readonly class ArticlePolicy
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel|null $user
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserEloquentModel|null $user, ArticleEloquentModel $article): Response
+    public function view(UserEloquentModel|null $user, ArticleModel $article): Response
     {
         if ($article->status === Status::Published) {
             return Response::allow();
@@ -58,11 +58,11 @@ final readonly class ArticlePolicy
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, ArticleEloquentModel $article): Response
+    public function update(UserEloquentModel $user, ArticleModel $article): Response
     {
         if ($user->can('articles-update') && $user->id === $article->user_id) {
             return Response::allow();

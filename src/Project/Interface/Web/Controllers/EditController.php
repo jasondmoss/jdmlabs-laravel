@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Client\Infrastructure\EloquentModels\ClientEloquentModel;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
@@ -19,7 +19,7 @@ class EditController extends Controller
 
 
     /**
-     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
+     * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      */
     public function __construct(ProjectModel $project)
     {

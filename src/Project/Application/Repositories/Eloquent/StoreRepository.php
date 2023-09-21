@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Application\Repositories\Eloquent;
 
 use Aenginus\Project\Domain\Contracts\StoreContract;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 
 final class StoreRepository implements StoreContract
 {

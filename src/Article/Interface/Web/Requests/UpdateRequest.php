@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Requests;
 
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Domain\Validation\UpdateSubmissionRules;
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 
 /**
  * @property mixed $signature_image
@@ -21,7 +21,7 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $article = ArticleEloquentModel::where('id', '=', $this->route('id'))
+        $article = ArticleModel::where('id', '=', $this->route('id'))
             ->get()
             ->first();
 

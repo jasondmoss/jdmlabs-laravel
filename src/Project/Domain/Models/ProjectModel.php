@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aenginus\Project\Domain\Model;
+namespace Aenginus\Project\Domain\Models;
 
 use Aenginus\Project\Infrastructure\EloquentModels\ProjectEloquentModel;
 use Aenginus\Project\Infrastructure\Factories\ProjectFactory;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Interface\Web\Requests;
 
 use Aenginus\Project\Domain\Validation\DestroySubmissionRules;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 
 class DestroyRequest extends DestroySubmissionRules
 {

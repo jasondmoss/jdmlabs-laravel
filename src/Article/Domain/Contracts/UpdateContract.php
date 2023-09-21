@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Domain\Contracts;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 
 interface UpdateContract
 {
 
     /**
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      * @param ArticleEntity $entity
      *
-     * @return \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel
+     * @return \Aenginus\Article\Domain\Models\ArticleModel
      */
-    public function update(ArticleEloquentModel $article, ArticleEntity $entity): ArticleEloquentModel;
+    public function update(ArticleModel $article, ArticleEntity $entity): ArticleModel;
 
 }

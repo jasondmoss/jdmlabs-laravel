@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
@@ -76,7 +76,7 @@ class CategoryEloquentModel extends Model
      */
     final public function articles(): HasMany
     {
-        return $this->hasMany(ArticleEloquentModel::class, 'category_id');
+        return $this->hasMany(ArticleModel::class, 'category_id');
     }
 
 

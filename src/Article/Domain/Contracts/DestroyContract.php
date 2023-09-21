@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Domain\Contracts;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 
 interface DestroyContract
 {
 
     /**
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      *
      * @return void
      */
-    public function delete(ArticleEloquentModel $article): void;
+    public function delete(ArticleModel $article): void;
 
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Controllers;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use App\Controller;
@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class EditController extends Controller
 {
 
-    protected ArticleEloquentModel $article;
+    protected ArticleModel $article;
 
 
     /**
-     * @param \Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel $article
+     * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      */
-    public function __construct(ArticleEloquentModel $article)
+    public function __construct(ArticleModel $article)
     {
         $this->article = $article;
     }

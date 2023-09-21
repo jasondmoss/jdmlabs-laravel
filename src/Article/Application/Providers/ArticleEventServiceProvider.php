@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Application\Providers;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Shared\Observers\ModelEntityObserver;
 use App\Providers\EventServiceProvider;
 
@@ -17,7 +17,7 @@ class ArticleEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        ArticleEloquentModel::class => [
+        ArticleModel::class => [
             ModelEntityObserver::class
         ]
     ];

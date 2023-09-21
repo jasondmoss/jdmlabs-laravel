@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Application\Providers;
 
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Observers\ModelEntityObserver;
 use App\Providers\EventServiceProvider;
 

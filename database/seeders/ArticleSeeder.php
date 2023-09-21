@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        ArticleEloquentModel::factory(20)->create();
+        ArticleModel::factory(20)->create();
     }
 
 }

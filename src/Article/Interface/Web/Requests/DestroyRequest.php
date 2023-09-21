@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Interface\Web\Requests;
 
+use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Domain\Validation\DestroySubmissionRules;
-use Aenginus\Article\Infrastructure\EloquentModels\ArticleEloquentModel;
 
 /**
  * @property array $signature_image
@@ -20,7 +20,7 @@ final class DestroyRequest extends DestroySubmissionRules
      */
     public function authorize(): bool
     {
-        return $this->user()->can('delete', ArticleEloquentModel::class);
+        return $this->user()->can('delete', ArticleModel::class);
     }
 
 }

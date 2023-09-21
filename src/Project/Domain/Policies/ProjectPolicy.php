@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Domain\Policies;
 
-use Aenginus\Project\Domain\Model\ProjectModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Enums\Status;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -17,7 +17,7 @@ final readonly class ProjectPolicy
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel|null $user
-     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
+     * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
@@ -58,7 +58,7 @@ final readonly class ProjectPolicy
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
-     * @param \Aenginus\Project\Domain\Model\ProjectModel $project
+     * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      *
      * @return \Illuminate\Auth\Access\Response
      */
