@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
@@ -32,7 +32,7 @@ final class CategoryAdminListing extends Component
      */
     public function render(): View
     {
-        $categories = CategoryEloquentModel::where('name', 'LIKE', '%' . $this->query . '%')
+        $categories = CategoryModel::where('name', 'LIKE', '%' . $this->query . '%')
             ->withCount('articles', 'projects')
             ->orderBy('name')
             ->paginate(50);

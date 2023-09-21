@@ -6,7 +6,7 @@ namespace Aenginus\Taxonomy\Application\Providers;
 
 use Aenginus\Shared\Observers\ModelEntityObserver;
 use Aenginus\Taxonomy\Domain\Observers\CategoryObserver;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Providers\EventServiceProvider;
 
 class CategoryEventServiceProvider extends EventServiceProvider
@@ -18,7 +18,7 @@ class CategoryEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        CategoryEloquentModel::class => [
+        CategoryModel::class => [
             /*CategoryObserver::class*/
             ModelEntityObserver::class
         ]

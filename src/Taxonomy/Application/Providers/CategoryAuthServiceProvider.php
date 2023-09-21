@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\Providers;
 
 use Aenginus\Taxonomy\Domain\Policies\CategoryPolicy;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Providers\AuthServiceProvider;
 
 class CategoryAuthServiceProvider extends AuthServiceProvider
 {
 
     protected $policies = [
-        CategoryEloquentModel::class => CategoryPolicy::class
+        CategoryModel::class => CategoryPolicy::class
     ];
 
 }

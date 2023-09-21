@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
 use Aenginus\Shared\ValueObjects\UlidValueObject;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\View as ViewFacade;
 class EditController extends Controller
 {
 
-    protected CategoryEloquentModel $category;
+    protected CategoryModel $category;
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      */
-    public function __construct(CategoryEloquentModel $category)
+    public function __construct(CategoryModel $category)
     {
         $this->category = $category;
     }

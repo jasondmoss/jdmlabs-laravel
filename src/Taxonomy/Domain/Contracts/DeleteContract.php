@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Domain\Contracts;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 interface DeleteContract
 {
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      *
      * @return void
      */
-    public function delete(CategoryEloquentModel $category): void;
+    public function delete(CategoryModel $category): void;
 
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\UseCases;
 
 use Aenginus\Taxonomy\Application\Repositories\Eloquent\StoreRepository;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 final class StoreUseCase
 {
@@ -25,9 +25,9 @@ final class StoreUseCase
     /**
      * @param object $validatedRequest
      *
-     * @return \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel
+     * @return \Aenginus\Taxonomy\Domain\Models\CategoryModel
      */
-    public function store(object $validatedRequest): CategoryEloquentModel
+    public function store(object $validatedRequest): CategoryModel
     {
         return $this->repository->save($validatedRequest);
     }

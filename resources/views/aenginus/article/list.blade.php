@@ -2,7 +2,7 @@
   use Aenginus\Article\Interface\Web\Controllers as Article;
   use Aenginus\Shared\Enums\Promoted;
   use Aenginus\Shared\Enums\Status;
-  use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel as Category;
+  use Aenginus\Taxonomy\Domain\Models\CategoryModel as Category;
   use Aenginus\Taxonomy\Interface\Web\Controllers as Taxonomy;
   use Carbon\Carbon;
   use Illuminate\Support\Facades\Date;

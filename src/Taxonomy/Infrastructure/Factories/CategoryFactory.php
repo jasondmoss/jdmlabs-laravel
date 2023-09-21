@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Infrastructure\Factories;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 final class CategoryFactory extends Factory
 {
 
-     protected $model = CategoryEloquentModel::class;
+     protected $model = CategoryModel::class;
 
 
     /**

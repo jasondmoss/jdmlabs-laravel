@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Application\Repositories\Eloquent;
 
 use Aenginus\Taxonomy\Domain\Contracts\StoreContract;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 final class StoreRepository implements StoreContract
 {
@@ -13,11 +13,11 @@ final class StoreRepository implements StoreContract
     /**
      * @param object $validatedRequest
      *
-     * @return \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel
+     * @return \Aenginus\Taxonomy\Domain\Models\CategoryModel
      */
-    public function save(object $validatedRequest): CategoryEloquentModel
+    public function save(object $validatedRequest): CategoryModel
     {
-        return CategoryEloquentModel::create((array) $validatedRequest);
+        return CategoryModel::create((array) $validatedRequest);
     }
 
 }

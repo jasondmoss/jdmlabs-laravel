@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Interface\Web\Requests;
 
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\Taxonomy\Domain\Validation\CreateSubmissionRules;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 
 final class CreateRequest extends CreateSubmissionRules
 {
@@ -17,7 +17,7 @@ final class CreateRequest extends CreateSubmissionRules
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', CategoryEloquentModel::class);
+        return $this->user()->can('create', CategoryModel::class);
     }
 
 }

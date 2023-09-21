@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -50,7 +50,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat_name) {
-            CategoryEloquentModel::create([
+            CategoryModel::create([
                 'name' => $cat_name,
                 'user_id' => UserEloquentModel::whereEmail('jason@jdmlabs.com')
                     ->first()

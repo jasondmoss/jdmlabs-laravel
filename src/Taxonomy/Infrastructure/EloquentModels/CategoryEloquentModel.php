@@ -6,33 +6,13 @@ namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
 use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
-use Aenginus\Shared\Scopes\FindBySlugScope;
-use Aenginus\Shared\Scopes\WherePromotedScope;
-use Aenginus\Shared\Scopes\WherePublishedScope;
-use Aenginus\Shared\Scopes\WhereRelatedScope;
-use Aenginus\Shared\Traits\ModelExtended;
-use Aenginus\Shared\Traits\Observable;
-use Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 class CategoryEloquentModel extends Model
 {
-
-    use HasFactory, HasSlug, HasUlids, Observable;
-
-    /** -- Global Helpers */
-    use ModelExtended;
-
-    /** -- Global Scopes */
-    use FindBySlugScope, WherePromotedScope, WherePublishedScope, WhereRelatedScope;
-
 
     protected $table = "categories";
 
@@ -41,25 +21,6 @@ class CategoryEloquentModel extends Model
         'slug',
         'user_id'
     ];
-
-
-    /**
-     * @return \Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory
-     */
-    private static function newFactory(): CategoryFactory
-    {
-        return CategoryFactory::new();
-    }
-
-
-    /**
-     * @return \Spatie\Sluggable\SlugOptions
-     */
-    final public function getSlugOptions(): SlugOptions
-    {
-        /** @see \Aenginus\Shared\Traits\ModelExtended */
-        return $this->getCustomSlugOptions('name');
-    }
 
 
     /**

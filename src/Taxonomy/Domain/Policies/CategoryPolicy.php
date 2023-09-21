@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Domain\Policies;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -40,11 +40,11 @@ final readonly class CategoryPolicy
 
     /**
      * @param \Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel $user
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function update(UserEloquentModel $user, CategoryEloquentModel $category): Response
+    public function update(UserEloquentModel $user, CategoryModel $category): Response
     {
         if ($user->can('categories-update')
             && $user->id === $category->user_id

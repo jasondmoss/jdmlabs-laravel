@@ -3,7 +3,7 @@
   use Aenginus\Shared\Enums\Pinned;
   use Aenginus\Shared\Enums\Promoted;
   use Aenginus\Shared\Enums\Status;
-  use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel as Category;
+  use Aenginus\Taxonomy\Domain\Models\CategoryModel as Category;
 ?>
 <x-aenginus.layout
   title="Edit Client"

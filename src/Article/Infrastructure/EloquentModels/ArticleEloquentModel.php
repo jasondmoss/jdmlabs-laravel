@@ -7,7 +7,7 @@ namespace Aenginus\Article\Infrastructure\EloquentModels;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Infrastructure\EloquentModels\UserEloquentModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -63,7 +63,7 @@ class ArticleEloquentModel extends Model
      */
     final public function category(): BelongsTo
     {
-        return $this->belongsTo(CategoryEloquentModel::class, 'category_id');
+        return $this->belongsTo(CategoryModel::class, 'category_id');
     }
 
 }

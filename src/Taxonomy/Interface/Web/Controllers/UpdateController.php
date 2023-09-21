@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
 use Aenginus\Taxonomy\Application\UseCases\UpdateUseCase;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 use Aenginus\Taxonomy\Interface\Web\Requests\UpdateRequest;
 use App\Controller;
@@ -14,15 +14,15 @@ use Illuminate\Http\RedirectResponse;
 class UpdateController extends Controller
 {
 
-    protected CategoryEloquentModel $category;
+    protected CategoryModel $category;
     protected UpdateUseCase $bridge;
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      * @param \Aenginus\Taxonomy\Application\UseCases\UpdateUseCase $bridge
      */
-    public function __construct(CategoryEloquentModel $category, UpdateUseCase $bridge)
+    public function __construct(CategoryModel $category, UpdateUseCase $bridge)
     {
         $this->category = $category;
         $this->bridge = $bridge;

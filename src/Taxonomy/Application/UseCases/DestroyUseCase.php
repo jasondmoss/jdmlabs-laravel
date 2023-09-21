@@ -7,21 +7,21 @@ namespace Aenginus\Taxonomy\Application\UseCases;
 use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Aenginus\Taxonomy\Application\Repositories\Eloquent\DeleteRepository;
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Exception;
 
 final readonly class DestroyUseCase
 {
 
-    private CategoryEloquentModel $category;
+    private CategoryModel $category;
     private DeleteRepository $repository;
 
 
     /**
-     * @param \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel $category
+     * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      * @param \Aenginus\Taxonomy\Application\Repositories\Eloquent\DeleteRepository $repository
      */
-    public function __construct(CategoryEloquentModel $category, DeleteRepository $repository)
+    public function __construct(CategoryModel $category, DeleteRepository $repository)
     {
         $this->category = $category;
         $this->repository = $repository;

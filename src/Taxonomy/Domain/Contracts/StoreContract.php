@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Taxonomy\Domain\Contracts;
 
-use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 interface StoreContract
 {
@@ -12,8 +12,8 @@ interface StoreContract
     /**
      * @param object $validatedRequest
      *
-     * @return \Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel
+     * @return \Aenginus\Taxonomy\Domain\Models\CategoryModel
      */
-    public function save(object $validatedRequest): CategoryEloquentModel;
+    public function save(object $validatedRequest): CategoryModel;
 
 }
