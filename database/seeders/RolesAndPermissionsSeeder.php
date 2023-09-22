@@ -47,7 +47,7 @@ class RolesAndPermissionsSeeder extends Seeder
             }
         }
 
-        // Assign 'me' as the administrator.
+        // Assign myself as the administrator.
         UserModel::whereEmail(Config::get('jdmlabs.admin_email'))
             ->first()
             ->assignRole([ 'administrator' ]);

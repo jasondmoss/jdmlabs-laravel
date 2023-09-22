@@ -49,26 +49,26 @@ class StoreController extends Controller
         $project = $this->usecase->store($projectEntity);
 
         // Signature image (single).
-        if ($request->hasFile('signature_image')) {
+        /*if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
                 (object) $request->signature_image,
                 'signature'
             );
-        }
+        }*/
 
         // Showcase images (multiple).
-        if ($request->file('showcase_images') !== null) {
+        /*if ($request->file('showcase_images') !== null) {
             $this->showcase->attach(
                 $project,
                 $request->showcase_images,
                 'showcase'
             );
-        }
+        }*/
 
         return redirect()
             ->action(IndexController::class)
-            ->with('create', 'ProjectModel created successfully.');
+            ->with('create', 'Project created successfully.');
     }
 
 }

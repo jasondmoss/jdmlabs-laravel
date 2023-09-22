@@ -140,7 +140,12 @@
                       </svg>
                       <span class="pl-3">{{ __('Delete') }}</span>
                     </a>
-                    <form id="Delete_{{ $client->id }}" class="sr-only" method="POST" action="{{ action(Client\DestroyController::class, $client->id) }}">@csrf{{ method_field('DELETE') }}</form>
+                    <form id="Delete_{{ $client->id }}" class="sr-only" method="POST" action="{{ action(Client\DestroyController::class, $client->id) }}">
+                      @csrf
+                      {{ method_field('DELETE') }}
+                      {{ html()->hidden('user_id', auth()->user()->id) }}
+                      {{ html()->hidden('id', $client->id) }}
+                    </form>
                     <a rel="external" href="{{ $permalink }}" class="flex items-center group w-full rounded-sm px-3 py-2 divide-x divide-slate-300 space-x-3 text-gray-700 hover:bg-lime-500 hover:text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 group-hover:text-white">
                         <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z" clip-rule="evenodd" />

@@ -46,7 +46,8 @@ final readonly class CategoryPolicy
      */
     public function update(UserModel $user, CategoryModel $category): Response
     {
-        if ($user->id === $category->user_id) {
+        /*if ($user->id === $category->user_id) {*/
+        if ($user->can('categories-update')) {
             return Response::allow();
         }
 

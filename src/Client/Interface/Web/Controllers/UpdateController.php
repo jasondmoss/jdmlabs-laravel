@@ -51,13 +51,13 @@ class UpdateController extends Controller
         $client = $this->bridge->update($clientInstance, $clientEntity);
 
         // Logo image (single).
-        if ($request->hasFile('logo_image')) {
+        /*if ($request->hasFile('logo_image')) {
             $this->logo->attach(
                 $client,
                 (object) $request->file('logo_image'),
                 'logo'
             );
-        }
+        }*/
 
         return redirect()
             ->to($request->listing_page)

@@ -42,13 +42,13 @@ class StoreController extends Controller
         $client = $this->bridge->store($clientEntity);
 
         // Logo image (single).
-        if ($request->hasFile('logo_image')) {
+        /*if ($request->hasFile('logo_image')) {
             $this->logo->attach(
                 $client,
                 (object) $request->file('logo_image'),
                 'logo'
             );
-        }
+        }*/
 
         return redirect()
             ->action(IndexController::class)

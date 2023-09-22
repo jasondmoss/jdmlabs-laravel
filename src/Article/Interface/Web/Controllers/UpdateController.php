@@ -51,13 +51,13 @@ class UpdateController extends Controller
         $article = $this->bridge->update($articleInstance, $articleEntity);
 
         // Signature image (single).
-        if ($request->hasFile('signature_image')) {
+        /*if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $article,
                 (object) $request->signature_image,
                 'signature'
             );
-        }
+        }*/
 
         return redirect()
             ->to($request->listing_page)

@@ -56,26 +56,26 @@ class UpdateController extends Controller
         $project = $this->bridge->update($projectInstance, $projectEntity);
 
         // Signature image (single).
-        // if ($request->hasFile('signature_image')) {
+        /*if ($request->hasFile('signature_image')) {
             $this->signature->attach(
                 $project,
                 (object) $request->signature_image,
                 'signature'
             );
-        // }
+        }*/
 
         // Showcase images (multiple).
-        // if ($request->file('showcase_images') !== null) {
+        /*if ($request->file('showcase_images') !== null) {
             $this->showcase->attach(
                 $project,
                 $request->showcase_images,
                 'showcase'
             );
-        // }
+        }*/
 
         return redirect()
             ->to($request->listing_page)
-            ->with('update', 'ProjectModel updated successfully');
+            ->with('update', 'Project updated successfully');
     }
 
 }

@@ -39,7 +39,7 @@ class DestroyController extends Controller
 
         return redirect()
             ->action(IndexController::class)
-            ->with('delete', 'ProjectModel successfully deleted.');
+            ->with('delete', 'Project successfully deleted.');
     }
 
 }

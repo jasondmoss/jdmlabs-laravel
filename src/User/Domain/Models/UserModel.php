@@ -11,12 +11,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticationProvider;
+use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 class UserModel extends UserEloquentModel
 {
 
-    use HasFactory, HasRoles, HasUlids, TwoFactorAuthenticatable;
+    use HasFactory, HasPermissions, HasRoles, HasUlids, TwoFactorAuthenticatable;
 
 
     /**
