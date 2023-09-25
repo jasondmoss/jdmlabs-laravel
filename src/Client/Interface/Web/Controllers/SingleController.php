@@ -30,9 +30,8 @@ class SingleController extends Controller
     public function __invoke(string $key): View
     {
         $client = $this->client->find($key);
-        $logo = $client->getFirstMedia('logo');
 
-        return ViewFacade::make('ClientPublic::single', compact('client', 'logo'));
+        return ViewFacade::make('ClientPublic::single', compact('client'));
     }
 
 }

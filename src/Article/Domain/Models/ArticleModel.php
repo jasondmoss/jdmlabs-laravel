@@ -16,17 +16,13 @@ use Aenginus\Shared\Traits\Observable;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class ArticleModel extends ArticleEloquentModel implements HasMedia
+class ArticleModel extends ArticleEloquentModel
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids, InteractsWithMedia, Observable;
+    use HasEvents, HasFactory, HasSlug, HasUlids, Observable;
 
     /** -- Global Helpers */
     use MediaExtended, ModelExtended;
@@ -59,47 +55,6 @@ class ArticleModel extends ArticleEloquentModel implements HasMedia
     {
         /** @see \Aenginus\Shared\Traits\ModelExtended */
         return $this->getCustomSlugOptions();
-    }
-
-
-    /**
-     * @return void
-     */
-    final public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('signature')
-            ->singleFile()
-            ->acceptsMimeTypes([
-                'image/jpg',
-                'image/png',
-                'image/svg'
-            ])
-            ->useFallbackUrl(asset('/images/placeholder/signature.png'))
-            ->useFallbackPath(public_path('/images/placeholder/signature.png'));
-    }
-
-
-    /**
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
-     *
-     * @return void
-     * @throws \Spatie\Image\Exceptions\InvalidManipulation
-     */
-    final public function registerMediaConversions(Media|null $media = null): void
-    {
-        $this->addMediaConversion('thumbnail')
-            ->fit(Manipulations::FIT_CROP, 100, 100)
-            ->nonQueued();
-
-        $this->addMediaConversion('card')
-            ->fit(Manipulations::FIT_CROP, 800, 400)
-            ->withResponsiveImages()
-            ->nonQueued();
-
-        $this->addMediaConversion('signature_detail')
-            ->fit(Manipulations::FIT_CROP, 1400, 600)
-            ->withResponsiveImages()
-            ->nonQueued();
     }
 
 }

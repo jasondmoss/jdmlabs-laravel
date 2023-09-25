@@ -183,7 +183,7 @@
       Menu Focus Overlay
     ------------------------------------------------------------------------  */
 
-.focusplate {
+/*.focusplate {
   visibility: hidden;
   opacity: 0;
   z-index: 99997;
@@ -202,4 +202,4 @@
     visibility: visible;
     opacity: 1;
   }
-}
+}*/

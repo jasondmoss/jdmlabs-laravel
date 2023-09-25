@@ -39,9 +39,6 @@ class EditController extends Controller
         $project->entityDates();
         $project->generatePermalink();
 
-        $signature = $project->getFirstMedia('signature');
-        $showcase_images = $project->getMedia('showcase');
-
         $clients = ClientModel::get()->pluck('name', 'id');
         $categories = CategoryModel::get()->pluck('name', 'id');
 

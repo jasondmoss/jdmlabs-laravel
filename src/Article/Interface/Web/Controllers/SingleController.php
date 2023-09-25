@@ -39,12 +39,7 @@ class SingleController extends Controller
 
         $this->authorize('view', $article);
 
-        $signature = $article->getFirstMedia('signature');
-
-        return ViewFacade::make(
-            'ArticlePublic::single',
-            compact('article', 'signature')
-        );
+        return ViewFacade::make('ArticlePublic::single', compact('article'));
     }
 
 }

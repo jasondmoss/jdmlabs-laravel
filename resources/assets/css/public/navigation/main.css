@@ -18,8 +18,8 @@ menu.main {
     justify-self: end;
     visibility: visible;
     height: auto;
-    width: fit-content;
-    border-radius: 2rem;
+    /*width: fit-content;*/
+    /*border-radius: 2rem;*/
   }
 }
 
@@ -47,12 +47,12 @@ menu.main > li[aria-current="page"] > a {
 }
 
 @media only screen {
-  @media (min-width: 800px) {
+  /*@media (min-width: 800px) {
     menu.main {
       z-index: 99998;
       background-color: #fff;
     }
-  }
+  }*/
 
   @media (min-width: 960px) {
     menu.main {

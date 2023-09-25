@@ -23,7 +23,7 @@
 
       <figure itemscope itemtype="https://schema.org/ImageObject" role="group" class="entry--image">
         <a href="{{ $article->permalink }}" title="{{ __('View article') }}">
-          <img src="{{ $article->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
+          {{-- <img src="{{ $article->getFirstMediaUrl('signature', 'thumbnail') }}" alt=""> --}}
         </a>
       </figure>
 

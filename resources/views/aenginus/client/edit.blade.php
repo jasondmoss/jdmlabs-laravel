@@ -114,11 +114,11 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          @if ($client->hasMedia('logo'))
+          {{--@if ($client->hasMedia('logo'))
             <img class="image-previewer" src="{{ $client->getFirstMediaUrl('logo') }}" alt="">
-          @else
+          @else--}}
             <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
-          @endif
+          {{--@endif--}}
         </figure>
       </div>
     </fieldset>
@@ -138,11 +138,11 @@
         <td class="block w-full md:table-cell md:w-20 py-2">
           <figure class="">
             <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-              @if ($project->hasMedia('signature'))
+              {{--@if ($project->hasMedia('signature'))
                 <img class="max-w-full mx-auto" src="{{ $project->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
-              @else
+              @else--}}
                 <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-              @endif
+              {{--@endif--}}
             </a>
           </figure>
         </td>

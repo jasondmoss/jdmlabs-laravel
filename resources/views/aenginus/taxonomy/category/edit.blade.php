@@ -51,11 +51,11 @@
               <dt>
                 <figure class="item--image">
                   <a href="{{ action(\Aenginus\Article\Interface\Web\Controllers\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-                    @if ($article->hasMedia('signature'))
+                    {{--@if ($article->hasMedia('signature'))
                       <img src="{{ $article->getFirstMediaUrl('signature', 'preview') }}" alt="">
-                    @else
+                    @else--}}
                       <img class="placeholder" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-                    @endif
+                    {{--@endif--}}
                   </a>
                 </figure>
               </dt>

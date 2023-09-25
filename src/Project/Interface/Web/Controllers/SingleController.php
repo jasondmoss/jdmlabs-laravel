@@ -35,9 +35,6 @@ class SingleController extends Controller
     {
         $project = $this->project->find($key);
 
-        // $signature = $project->getFirstMedia('signature');
-        // $showcases = $project->getMedia('showcase');
-
         return ViewFacade::make('ProjectPublic::single', compact('project'));
     }
 

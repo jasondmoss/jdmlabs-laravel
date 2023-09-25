@@ -143,11 +143,11 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          @if ($project->hasMedia('signature'))
+          {{--@if ($project->hasMedia('signature'))
             <img class="image-previewer" src="{{ $project->getFirstMediaUrl('signature') }}" alt="">
-          @else
+          @else--}}
             <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-          @endif
+          {{--@endif--}}
         </figure>
       </div>
     </fieldset>

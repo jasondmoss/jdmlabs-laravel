@@ -9,7 +9,7 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
 (function () {
     "use strict";
 
-    const focusPlate = document.getElementById("FocusPlate");
+    /*const focusPlate = document.getElementById("FocusPlate");
     if (exists(focusPlate)) {
         const mainmenu = document.querySelector(".site--header menu.main");
 
@@ -21,7 +21,7 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
             focusPlate.classList.remove("hover-focus");
             mainmenu.classList.remove("hover-focus");
         });
-    }
+    }*/
 
     const overlayToggle = document.getElementById("toggle");
     if (exists(overlayToggle)) {
