@@ -17,7 +17,11 @@ use Spatie\Permission\Traits\HasRoles;
 class UserModel extends UserEloquentModel
 {
 
-    use HasFactory, HasPermissions, HasRoles, HasUlids, TwoFactorAuthenticatable;
+    use HasFactory;
+    use HasPermissions;
+    use HasRoles;
+    use HasUlids;
+    use TwoFactorAuthenticatable;
 
 
     /**

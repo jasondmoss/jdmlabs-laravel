@@ -22,13 +22,21 @@ use Spatie\Sluggable\SlugOptions;
 class ClientModel extends ClientEloquentModel
 {
 
-    use HasEvents, HasFactory, HasSlug, HasUlids, Observable;
+    use HasEvents;
+    use HasFactory;
+    use HasSlug;
+    use HasUlids;
+    use Observable;
 
     /** -- Global Helpers */
-    use MediaExtended, ModelExtended;
+    use MediaExtended;
+    use ModelExtended;
 
     /** -- Global Scopes */
-    use FindBySlugScope, WherePromotedScope, WherePublishedScope, WhereRelatedScope;
+    use FindBySlugScope;
+    use WherePromotedScope;
+    use WherePublishedScope;
+    use WhereRelatedScope;
 
 
     /**

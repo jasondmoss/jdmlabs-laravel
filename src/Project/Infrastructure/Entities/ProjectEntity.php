@@ -22,7 +22,7 @@ final readonly class ProjectEntity
     public string $summary;
     public string $body;
     public string $client_id;
-    public string|null $category_id;
+    public ?string $category_id;
     public string $status;
     public string $promoted;
     public string $pinned;

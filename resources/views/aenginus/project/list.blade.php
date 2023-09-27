@@ -49,11 +49,7 @@
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-                    {{--@if ($project->hasMedia('signature'))
-                      <img class="max-w-full mx-auto" src="{{ $project->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
-                    @else--}}
-                      <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-                    {{--@endif--}}
+                    <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
                   </a>
                 </figure>
               </td>

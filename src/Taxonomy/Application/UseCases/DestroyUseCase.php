@@ -37,7 +37,8 @@ final readonly class DestroyUseCase
      */
     public function delete(string $id): void
     {
-        $toBeDeleted = $this->category->find((new UlidValueObject($id))->value());
+        $toBeDeleted = $this->category
+            ->find((new UlidValueObject($id))->value());
 
         try {
             $this->repository->delete($toBeDeleted);

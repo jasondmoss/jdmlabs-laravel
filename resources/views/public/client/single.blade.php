@@ -11,7 +11,7 @@
   <x-shared.session/>
 
   <header>
-    {{ $logo }}
+    {{--{{ $logo }}--}}
     <h1>{{ $client->name }}</h1>
     <p><a rel="external" href="{{ $client->website }}">{{ $client->website }}</a></p>
   </header>

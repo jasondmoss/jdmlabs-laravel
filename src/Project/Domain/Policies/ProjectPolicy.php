@@ -21,7 +21,7 @@ final readonly class ProjectPolicy
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserModel|null $user, ProjectModel $project): Response
+    public function view(?UserModel $user, ProjectModel $project): Response
     {
         if ($project->status === Status::Published) {
             return Response::allow();
@@ -33,7 +33,7 @@ final readonly class ProjectPolicy
         }
 
         // Admin overrides published status
-        if ($user->can('projects-view')) {
+        if ($user->can('projects-read')) {
             return Response::allow();
         }
 

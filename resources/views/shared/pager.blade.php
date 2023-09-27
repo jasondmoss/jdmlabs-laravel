@@ -6,7 +6,6 @@
         : $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1
   )
   <nav class="" role="navigation" aria-label="Pagination Navigation">
-
     <span>
       @if ($paginator->onFirstPage())
         <span class="">

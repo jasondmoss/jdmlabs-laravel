@@ -16,7 +16,8 @@ use Livewire\WithPagination;
 final class ArticleAdminListing extends Component
 {
 
-    use AuthorizesRequests, WithPagination;
+    use AuthorizesRequests;
+    use WithPagination;
 
     public string $query = '';
 
@@ -38,7 +39,7 @@ final class ArticleAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $articleModel = new ArticleModel;
+        $articleModel = new ArticleModel();
 
         $article = $articleModel->find($id);
 
@@ -60,7 +61,7 @@ final class ArticleAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $articleModel = new ArticleModel;
+        $articleModel = new ArticleModel();
 
         $article = $articleModel->find($id);
 

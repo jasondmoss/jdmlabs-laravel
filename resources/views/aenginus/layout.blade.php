@@ -12,13 +12,13 @@
  * @link {Profile} https://www.linkedin.com/in/jasondmoss
  * @link {Profile} https://www.last.fm/user/jasonmoss
 -->
-<title>{{ $title }} &#160;&#11825;&#160; {{ config('jdmlabs.title', 'JdmLabs') }}</title>
+<title>{{ $title }} &#160;&#11825;&#160; {{ config('jdmlabs.base.title', 'JdmLabs') }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="canonical" content="{{ config('app.url') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="title" content="@if ($title) {{ $title }} &#160;&#11825;&#160; @endif {{ config('jdmlabs.title', 'JdmLabs') }}">
-<meta name="description" content="{{ config('jdmlabs.description') }}">
+<meta name="title" content="@if ($title) {{ $title }} &#160;&#11825;&#160; @endif {{ config('jdmlabs.base.title', 'JdmLabs') }}">
+<meta name="description" content="{{ config('jdmlabs.base.description') }}">
 <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}" as="font" crossorigin>
 <link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}" as="font" crossorigin>
 <style>

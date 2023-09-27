@@ -10,10 +10,10 @@ use Aenginus\Shared\Traits\EnumValues;
 enum Promoted: string
 {
 
-    use EnumValues, EnumOptions;
+    use EnumOptions;
+    use EnumValues;
 
     case NO = 'not_promoted';
-
     case YES = 'promoted';
 
 

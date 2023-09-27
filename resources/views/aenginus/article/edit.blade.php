@@ -89,37 +89,33 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('signature_image[label]') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[label]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[alt]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('signature_image[caption]') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[caption]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {{--@if ($article->hasMedia('signature'))
-            <img class="image-previewer" src="{{ $article->getFirstMediaUrl('signature') }}" alt="">
-          @else--}}
-            <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-          {{--@endif--}}
+          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
         </figure>
       </div>
     </fieldset>

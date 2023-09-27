@@ -88,37 +88,33 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('logo_image[label]')->class('font-medium text-sm') }}
-          @if ($logo !== null)
+          {{--@if ($logo !== null)
             {{ html()->text('logo_image[label]', old('logo_image[label]', $logo->custom_properties['label'])) }}
-          @else
+          @else--}}
             {{ html()->text('logo_image[label]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('logo_image[alt]')->class('font-medium text-sm') }}
-          @if ($logo !== null)
+          {{--@if ($logo !== null)
             {{ html()->text('logo_image[alt]', old('logo_image[alt]', $logo->custom_properties['alt'])) }}
-          @else
+          @else--}}
             {{ html()->text('logo_image[alt]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('logo_image[caption]')->class('font-medium text-sm') }}
-          @if ($logo !== null)
+          {{--@if ($logo !== null)
             {{ html()->text('logo_image[caption]', old('logo_image[caption]', $logo->custom_properties['caption'])) }}
-          @else
+          @else--}}
             {{ html()->text('logo_image[caption]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {{--@if ($client->hasMedia('logo'))
-            <img class="image-previewer" src="{{ $client->getFirstMediaUrl('logo') }}" alt="">
-          @else--}}
-            <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
-          {{--@endif--}}
+          <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
         </figure>
       </div>
     </fieldset>
@@ -138,11 +134,7 @@
         <td class="block w-full md:table-cell md:w-20 py-2">
           <figure class="">
             <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-              {{--@if ($project->hasMedia('signature'))
-                <img class="max-w-full mx-auto" src="{{ $project->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
-              @else--}}
-                <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-              {{--@endif--}}
+              <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
             </a>
           </figure>
         </td>

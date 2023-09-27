@@ -43,10 +43,7 @@ class ArticleEloquentModel extends Model
         'promoted' => Promoted::class
     ];
 
-    protected $with = [
-        'category',
-        'media'
-    ];
+    protected $with = ['category'];
 
 
     /**

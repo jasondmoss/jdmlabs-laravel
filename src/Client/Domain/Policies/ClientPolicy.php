@@ -21,7 +21,7 @@ final readonly class ClientPolicy
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserModel|null $user, ClientModel $client): Response
+    public function view(?UserModel $user, ClientModel $client): Response
     {
         if ($client->status === Status::Published) {
             return Response::allow();
@@ -33,7 +33,7 @@ final readonly class ClientPolicy
         }
 
         // Admin overrides published status
-        if ($user->can('clients-view')) {
+        if ($user->can('clients-read')) {
             return Response::allow();
         }
 

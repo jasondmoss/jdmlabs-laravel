@@ -40,7 +40,10 @@ class EditController extends Controller
 
         $categories = CategoryModel::get()->pluck('name', 'id');
 
-        return ViewFacade::make('ArticleAdmin::edit', compact('article'));
+        return ViewFacade::make('ArticleAdmin::edit', compact(
+            'article',
+            'categories'
+        ));
     }
 
 }

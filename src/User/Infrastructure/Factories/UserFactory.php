@@ -17,14 +17,17 @@ final class UserFactory extends Factory
     protected $model = UserModel::class;
 
 
+    /**
+     * @return array
+     */
     public function definition(): array
     {
         return [
             'id' => Str::ulid(),
             'name' => 'Jason D. Moss',
-            'email' => Config::get('jdmlabs.admin_email'),
+            'email' => Config::get('jdmlabs.admin.admin_email'),
             'email_verified_at' => now(),
-            'password' => Hash::make(Config::get('jdmlabs.admin_password')),
+            'password' => Hash::make(Config::get('jdmlabs.admin.admin_password')),
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -32,6 +35,9 @@ final class UserFactory extends Factory
     }
 
 
+    /**
+     * @return self
+     */
     public function unverified(): self
     {
         return $this->state(static fn (array $attributes) => [

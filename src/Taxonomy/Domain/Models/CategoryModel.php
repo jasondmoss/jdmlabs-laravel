@@ -20,13 +20,19 @@ use Spatie\Sluggable\SlugOptions;
 class CategoryModel extends CategoryEloquentModel
 {
 
-    use HasFactory, HasSlug, HasUlids, Observable;
+    use HasFactory;
+    use HasSlug;
+    use HasUlids;
+    use Observable;
 
     /** -- Global Helpers */
     use ModelExtended;
 
     /** -- Global Scopes */
-    use FindBySlugScope, WherePromotedScope, WherePublishedScope, WhereRelatedScope;
+    use FindBySlugScope;
+    use WherePromotedScope;
+    use WherePublishedScope;
+    use WhereRelatedScope;
 
 
     /**

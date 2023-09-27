@@ -13,7 +13,7 @@ use Aenginus\Shared\ValueObjects\UrlValueObject;
 final readonly class ClientEntity
 {
 
-    public string|null $id;
+    public ?string $id;
     public string $user_id;
     public string $name;
     public string $itemprop;

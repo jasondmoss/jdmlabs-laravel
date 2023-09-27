@@ -33,7 +33,7 @@ class SingleController extends Controller
      * @return \Illuminate\Contracts\View\View
      * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
-    public function __invoke(int|null $year, int|null $month, int|null $day, string $key): View
+    public function __invoke(?int $year, ?int $month, ?int $day, string $key): View
     {
         $article = $this->article->find($key);
 

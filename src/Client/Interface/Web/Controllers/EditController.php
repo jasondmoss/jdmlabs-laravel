@@ -37,7 +37,7 @@ class EditController extends Controller
         $client->entityDates();
         $client->generatePermalink();
 
-        return ViewFacade::make('ClientAdmin::edit');
+        return ViewFacade::make('ClientAdmin::edit', compact('client'));
     }
 
 }

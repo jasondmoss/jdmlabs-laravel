@@ -16,7 +16,8 @@ use Livewire\WithPagination;
 final class ClientAdminListing extends Component
 {
 
-    use AuthorizesRequests, WithPagination;
+    use AuthorizesRequests;
+    use WithPagination;
 
     public string $query = '';
 
@@ -38,7 +39,7 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $clientModel = new ClientModel;
+        $clientModel = new ClientModel();
 
         $client = $clientModel->find($id);
 
@@ -60,7 +61,7 @@ final class ClientAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $clientModel = new ClientModel;
+        $clientModel = new ClientModel();
 
         $client = $clientModel->find($id);
 

@@ -45,11 +45,7 @@
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
-                    {{--@if ($client->hasMedia('logo'))
-                      <img class="max-w-full mx-auto" src="{{ $client->getFirstMediaUrl('logo', 'thumbnail') }}" alt="">
-                    @else--}}
-                      <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/logo.png') }}" alt="">
-                    {{--@endif--}}
+                    <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/logo.png') }}" alt="">
                   </a>
                 </figure>
               </td>

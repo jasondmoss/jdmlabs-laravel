@@ -118,7 +118,8 @@ trait ModelExtended
     {
         if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()->find((new UlidValueObject($key))->value());
+                return $this->newQuery()
+                    ->find((new UlidValueObject($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindModelEntity::withId($key);
             }

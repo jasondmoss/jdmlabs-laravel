@@ -13,7 +13,8 @@ use Livewire\WithPagination;
 final class CategoryAdminListing extends Component
 {
 
-    use AuthorizesRequests, WithPagination;
+    use AuthorizesRequests;
+    use WithPagination;
 
     public string $query = '';
 

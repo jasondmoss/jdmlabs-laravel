@@ -10,10 +10,10 @@ use Aenginus\Shared\Traits\EnumValues;
 enum Pinned: string
 {
 
-    use EnumValues, EnumOptions;
+    use EnumOptions;
+    use EnumValues;
 
     case NotPinned = 'not_pinned';
-
     case IsPinned = 'pinned';
 
 

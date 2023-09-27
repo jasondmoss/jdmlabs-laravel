@@ -117,37 +117,33 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label'])) }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[label]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt'])) }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[alt]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          @if ($signature !== null)
+          {{--@if ($signature !== null)
             {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption'])) }}
-          @else
+          @else--}}
             {{ html()->text('signature_image[caption]') }}
-          @endif
+          {{--@endif--}}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {{--@if ($project->hasMedia('signature'))
-            <img class="image-previewer" src="{{ $project->getFirstMediaUrl('signature') }}" alt="">
-          @else--}}
-            <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-          {{--@endif--}}
+          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
         </figure>
       </div>
     </fieldset>
@@ -160,61 +156,31 @@
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Showcase Images') }}</legend>
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
-        @if (count($showcase_images) > 0)
-          @foreach ($showcase_images as $key => $showcase)
-            <div class="repeatable grid items-start gap-5">
-              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-                {{ html()->label('Image')->for('showcase_images[' . $key . '][file]')->class('sr-only') }}
-                {{ html()->file('showcase_images[' . $key . '][file]')->forgetAttribute('id')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-lime-100') }}
-              </div>
-
-              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-                {{ html()->label('Name')->for('showcase_images[' . $key . '][label]')->class('font-medium text-sm') }}
-                {{ html()->text('showcase_images[' . $key . '][label]')->forgetAttribute('id')->class('label')->value($showcase->custom_properties['label'] ?? '') }}
-              </div>
-
-              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-                {{ html()->label('Alt Description')->for('showcase_images[' . $key . '][alt]')->class('font-medium text-sm') }}
-                {{ html()->text('showcase_images[' . $key . '][alt]')->forgetAttribute('id')->class('alt')->value($showcase->custom_properties['alt'] ?? '') }}
-              </div>
-
-              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-                {{ html()->label('Caption')->for('showcase_images[' . $key . '][caption]')->class('font-medium text-sm') }}
-                {{ html()->text('showcase_images[' . $key . '][caption]')->forgetAttribute('id')->class('caption')->value($showcase->custom_properties['caption'] ?? '') }}
-              </div>
-
-              <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-                {{ $showcase }}
-              </figure>
-            </div>
-          @endforeach
-        @else
-          <div class="repeatable grid items-start gap-5">
-            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-              {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-              {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}
-            </div>
-
-            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-              {{ html()->label('Name')->for('showcase_images[0][label]') }}
-              {{ html()->text('showcase_images[0][label]')->class('label')->forgetAttribute('id') }}
-            </div>
-
-            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-              {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
-              {{ html()->text('showcase_images[0][alt]')->class('alt')->forgetAttribute('id') }}
-            </div>
-
-            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-              {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
-              {{ html()->text('showcase_images[0][caption]')->class('caption')->forgetAttribute('id') }}
-            </div>
-
-            <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-              <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
-            </figure>
+        <div class="repeatable grid items-start gap-5">
+          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+            {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
+            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}
           </div>
-        @endif
+
+          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+            {{ html()->label('Name')->for('showcase_images[0][label]') }}
+            {{ html()->text('showcase_images[0][label]')->class('label')->forgetAttribute('id') }}
+          </div>
+
+          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+            {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
+            {{ html()->text('showcase_images[0][alt]')->class('alt')->forgetAttribute('id') }}
+          </div>
+
+          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+            {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
+            {{ html()->text('showcase_images[0][caption]')->class('caption')->forgetAttribute('id') }}
+          </div>
+
+          <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
+            <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+          </figure>
+        </div>
       </div>
 
       <div class="flex justify-end md:pr-5">

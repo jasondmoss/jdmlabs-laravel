@@ -17,7 +17,8 @@ use Livewire\WithPagination;
 final class ProjectAdminListing extends Component
 {
 
-    use AuthorizesRequests, WithPagination;
+    use AuthorizesRequests;
+    use WithPagination;
 
     public string $query = '';
 
@@ -39,7 +40,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePinned(string $id): void
     {
-        $projectModel = new ProjectModel;
+        $projectModel = new ProjectModel();
 
         $project = $projectModel->find($id);
 
@@ -61,7 +62,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePromoted(string $id): void
     {
-        $projectModel = new ProjectModel;
+        $projectModel = new ProjectModel();
 
         $project = $projectModel->find($id);
 
@@ -83,7 +84,7 @@ final class ProjectAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $projectModel = new ProjectModel;
+        $projectModel = new ProjectModel();
 
         $project = $projectModel->find($id);
 

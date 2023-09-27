@@ -25,114 +25,119 @@ class CreatePermissionTables extends Migration
 
 
         Schema::dropIfExists($tableNames['permissions']);
-        Schema::create($tableNames['permissions'],
-            static function (Blueprint $table)
-        {
-            $table->ulid('id')->primary();
+        Schema::create(
+            $tableNames['permissions'],
+            static function (Blueprint $table) {
+                $table->ulid('id')->primary();
 
-            $table->string('name');
-            $table->string('guard_name');
+                $table->string('name');
+                $table->string('guard_name');
 
-            $table->timestamps();
-        });
+                $table->timestamps();
+            }
+        );
 
 
         Schema::dropIfExists($tableNames['roles']);
-        Schema::create($tableNames['roles'],
-            static function (Blueprint $table) use ($columnNames)
-        {
-            $table->ulid('id')->primary();
+        Schema::create(
+            $tableNames['roles'],
+            static function (Blueprint $table) use ($columnNames) {
+                $table->ulid('id')->primary();
 
-            $table->string('name');
-            $table->string('guard_name');
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
+                $table->string('name');
+                $table->string('guard_name');
+                $table->string('display_name')->nullable();
+                $table->string('description')->nullable();
 
-            $table->timestamps();
-        });
+                $table->timestamps();
+            }
+        );
 
 
         Schema::dropIfExists($tableNames['model_has_permissions']);
-        Schema::create($tableNames['model_has_permissions'],
+        Schema::create(
+            $tableNames['model_has_permissions'],
             static function (Blueprint $table)
-            use ($columnNames, $tableNames)
-        {
-            $table->string('model_type');
+            use ($columnNames, $tableNames) {
+                $table->string('model_type');
 
-            $table->ulid($columnNames['model_morph_key']);
-            $table->index([
-                $columnNames['model_morph_key'],
-                'model_type'
-            ], 'model_has_permissions_model_ulid_model_type_index');
-
-            $table->ulid(PermissionRegistrar::$pivotPermission);
-            $table->foreign(PermissionRegistrar::$pivotPermission)
-                ->references('id')
-                ->on($tableNames['permissions'])
-                ->onDelete('cascade');
-
-            $table->primary(
-                [
-                    PermissionRegistrar::$pivotPermission,
+                $table->ulid($columnNames['model_morph_key']);
+                $table->index([
                     $columnNames['model_morph_key'],
                     'model_type'
-                ],
-                'model_has_permissions_permission_model_type_primary'
-            );
-        });
+                ], 'model_has_permissions_model_ulid_model_type_index');
+
+                $table->ulid(PermissionRegistrar::$pivotPermission);
+                $table->foreign(PermissionRegistrar::$pivotPermission)
+                    ->references('id')
+                    ->on($tableNames['permissions'])
+                    ->onDelete('cascade');
+
+                $table->primary(
+                    [
+                        PermissionRegistrar::$pivotPermission,
+                        $columnNames['model_morph_key'],
+                        'model_type'
+                    ],
+                    'model_has_permissions_permission_model_type_primary'
+                );
+            }
+        );
 
 
         Schema::dropIfExists($tableNames['model_has_roles']);
-        Schema::create($tableNames['model_has_roles'],
+        Schema::create(
+            $tableNames['model_has_roles'],
             static function (Blueprint $table)
-            use ($tableNames, $columnNames)
-        {
-            $table->string('model_type');
+            use ($tableNames, $columnNames) {
+                $table->string('model_type');
 
-            $table->ulid(PermissionRegistrar::$pivotRole);
-            $table->foreign(PermissionRegistrar::$pivotRole)
-                ->references('id')
-                ->on($tableNames['roles'])
-                ->onDelete('cascade');
+                $table->ulid(PermissionRegistrar::$pivotRole);
+                $table->foreign(PermissionRegistrar::$pivotRole)
+                    ->references('id')
+                    ->on($tableNames['roles'])
+                    ->onDelete('cascade');
 
-            $table->ulid($columnNames['model_morph_key']);
-            $table->index(
-                [$columnNames['model_morph_key'], 'model_type'],
-                'model_has_roles_model_ulid_model_type_index'
-            );
+                $table->ulid($columnNames['model_morph_key']);
+                $table->index(
+                    [$columnNames['model_morph_key'], 'model_type'],
+                    'model_has_roles_model_ulid_model_type_index'
+                );
 
-            $table->primary(
-                [
-                    PermissionRegistrar::$pivotRole,
-                    $columnNames['model_morph_key'],
-                    'model_type'
-                ],
-                'model_has_roles_role_model_type_primary'
-            );
-        });
+                $table->primary(
+                    [
+                        PermissionRegistrar::$pivotRole,
+                        $columnNames['model_morph_key'],
+                        'model_type'
+                    ],
+                    'model_has_roles_role_model_type_primary'
+                );
+            }
+        );
 
 
         Schema::dropIfExists($tableNames['role_has_permissions']);
-        Schema::create($tableNames['role_has_permissions'],
-            static function (Blueprint $table) use ($tableNames)
-        {
-            $table->ulid(PermissionRegistrar::$pivotPermission);
-            $table->foreign(PermissionRegistrar::$pivotPermission)
-                ->references('id')
-                ->on($tableNames['permissions'])
-                ->onDelete('cascade');
+        Schema::create(
+            $tableNames['role_has_permissions'],
+            static function (Blueprint $table) use ($tableNames) {
+                $table->ulid(PermissionRegistrar::$pivotPermission);
+                $table->foreign(PermissionRegistrar::$pivotPermission)
+                    ->references('id')
+                    ->on($tableNames['permissions'])
+                    ->onDelete('cascade');
 
-            $table->ulid(PermissionRegistrar::$pivotRole);
-            $table->foreign(PermissionRegistrar::$pivotRole)
-                ->references('id')
-                ->on($tableNames['roles'])
-                ->onDelete('cascade');
+                $table->ulid(PermissionRegistrar::$pivotRole);
+                $table->foreign(PermissionRegistrar::$pivotRole)
+                    ->references('id')
+                    ->on($tableNames['roles'])
+                    ->onDelete('cascade');
 
-            $table->primary([
-                PermissionRegistrar::$pivotPermission,
-                PermissionRegistrar::$pivotRole
-            ], 'role_has_permissions_permission_ulid_role_id_primary');
-        });
+                $table->primary([
+                    PermissionRegistrar::$pivotPermission,
+                    PermissionRegistrar::$pivotRole
+                ], 'role_has_permissions_permission_ulid_role_id_primary');
+            }
+        );
 
         app('cache')
             ->store(

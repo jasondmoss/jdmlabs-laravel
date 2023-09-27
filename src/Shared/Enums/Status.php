@@ -10,10 +10,10 @@ use Aenginus\Shared\Traits\EnumValues;
 enum Status: string
 {
 
-    use EnumValues, EnumOptions;
+    use EnumOptions;
+    use EnumValues;
 
     case Draft = 'draft';
-
     case Published = 'published';
 
 

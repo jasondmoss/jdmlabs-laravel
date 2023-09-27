@@ -48,10 +48,7 @@ class ProjectEloquentModel extends Model
         'pinned' => Pinned::class
     ];
 
-    protected $with = [
-        'category',
-        'media'
-    ];
+    protected $with = [ 'category' ];
 
 
     /**

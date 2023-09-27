@@ -10,8 +10,8 @@ use Aenginus\Shared\ValueObjects\UlidValueObject;
 final readonly class CategoryEntity
 {
 
-    public string|null $id;
-    public string|null $name;
+    public ?string $id;
+    public ?string $name;
     public string $user_id;
 
 

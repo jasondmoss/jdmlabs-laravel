@@ -21,7 +21,7 @@ final readonly class ArticlePolicy
      *
      * @return \Illuminate\Auth\Access\Response
      */
-    public function view(UserModel|null $user, ArticleModel $article): Response
+    public function view(?UserModel $user, ArticleModel $article): Response
     {
         if ($article->status === Status::Published) {
             return Response::allow();
@@ -33,7 +33,7 @@ final readonly class ArticlePolicy
         }
 
         // Admin overrides published status
-        if ($user->can('articles-view')) {
+        if ($user->can('articles-read')) {
             return Response::allow();
         }
 

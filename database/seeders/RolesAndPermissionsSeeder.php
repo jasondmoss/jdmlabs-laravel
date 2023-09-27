@@ -20,8 +20,8 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = Config::get('jdmlabs.permissions.roles');
-        $map = collect(config('jdmlabs.permissions.map'));
+        $roles = Config::get('jdmlabs.admin.permissions.roles');
+        $map = collect(config('jdmlabs.admin.permissions.map'));
 
         app()[ PermissionRegistrar::class ]->forgetCachedPermissions();
 
@@ -48,7 +48,7 @@ class RolesAndPermissionsSeeder extends Seeder
         }
 
         // Assign myself as the administrator.
-        UserModel::whereEmail(Config::get('jdmlabs.admin_email'))
+        UserModel::whereEmail(Config::get('jdmlabs.admin.admin_email'))
             ->first()
             ->assignRole([ 'administrator' ]);
     }

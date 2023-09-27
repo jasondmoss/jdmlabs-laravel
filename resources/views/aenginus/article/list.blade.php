@@ -51,11 +51,7 @@
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-                    {{--@if ($article->hasMedia('signature'))
-                      <img class="mx-auto" src="{{ $article->getFirstMediaUrl('signature', 'thumbnail') }}" alt="">
-                    @else--}}
-                      <img class="mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
-                    {{--@endif--}}
+                    <img class="mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
                   </a>
                 </figure>
               </td>
