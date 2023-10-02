@@ -19,7 +19,7 @@ final class UpdateRepository implements UpdateContract
      */
     public function update(CategoryModel $category, CategoryEntity $entity): CategoryModel
     {
-        $category->update((array) $entity);
+        $category->update((array)$entity);
 
         return $category;
     }

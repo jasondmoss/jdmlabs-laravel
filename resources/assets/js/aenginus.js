@@ -16,7 +16,9 @@ replaceDivWithParagraph();
 const listingHeader = document.getElementById("listingHeader");
 if (exists(listingHeader)) {
     const observer = new IntersectionObserver(
-        ([ entry ]) => entry.target.toggleAttribute("stuck", entry.intersectionRatio < 1),
+        ([ entry ]) => entry
+            .target
+            .toggleAttribute("stuck", entry.intersectionRatio < 1),
         {
             threshold: [ 1 ]
         }
@@ -70,8 +72,14 @@ if (exists(repeatable)) {
             let fieldName = field.getAttribute("name");
             let fieldNameLabel = fieldName.match(/\[([a-z]+)\]/)[1];
 
-            field.setAttribute("name", "showcase_images[" + fieldsetCount +"][" + fieldNameLabel + "]");
-            field.value = null;
+            field.setAttribute(
+                "name",
+                "showcase_images[" + fieldsetCount +"][" + fieldNameLabel + "]"
+            );
+
+            if (field.value !== "showcase") {
+                field.value = null;
+            }
         });
 
         repeatable.appendChild(cloned);

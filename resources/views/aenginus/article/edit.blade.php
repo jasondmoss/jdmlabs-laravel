@@ -79,6 +79,8 @@
     <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
+      {{ html()->hidden('signature_image[collection]', 'signature') }}
+
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
@@ -89,33 +91,21 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('signature_image[label]') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label']))->class('text') }}
-          @else--}}
-            {{ html()->text('signature_image[label]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[label]', old('signature_image[label]', $article->image->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('signature_image[alt]') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt']))->class('text') }}
-          @else--}}
-            {{ html()->text('signature_image[alt]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $article->image->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('signature_image[caption]') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption']))->class('text') }}
-          @else--}}
-            {{ html()->text('signature_image[caption]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $article->image->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          {!! $article->getSignatureImage() !!}
         </figure>
       </div>
     </fieldset>

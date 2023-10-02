@@ -14,7 +14,7 @@ return [
             'd' => 'delete',
             'pu' => 'publish',
             'pr' => 'promote',
-            'pi' => 'pin',
+            'pi' => 'pin'
         ],
 
         'roles' => [

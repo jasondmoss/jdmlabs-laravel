@@ -17,7 +17,7 @@ class CategoryEventServiceProvider extends EventServiceProvider
      * @var array
      */
     protected $observers = [
-        CategoryModel::class => [ ModelEntityObserver::class ]
+        CategoryModel::class => [ModelEntityObserver::class]
     ];
 
 }

@@ -23,7 +23,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $roles = Config::get('jdmlabs.admin.permissions.roles');
         $map = collect(config('jdmlabs.admin.permissions.map'));
 
-        app()[ PermissionRegistrar::class ]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         foreach ($roles as $name => $value) {
             $role = RoleModel::firstOrCreate([
@@ -38,7 +38,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 foreach (explode(',', $permission_key) as $p => $permission) {
                     $permission = PermissionModel::firstOrCreate([
                         'id' => (string) Str::ulid(),
-                        'name' => $entity . '-' . $map[ $permission ],
+                        'name' => $entity . '-' . $map[$permission],
                         'guard_name' => config('auth.defaults.guard')
                     ]);
 
@@ -50,7 +50,7 @@ class RolesAndPermissionsSeeder extends Seeder
         // Assign myself as the administrator.
         UserModel::whereEmail(Config::get('jdmlabs.admin.admin_email'))
             ->first()
-            ->assignRole([ 'administrator' ]);
+            ->assignRole(['administrator']);
     }
 
 }

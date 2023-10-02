@@ -12,7 +12,6 @@ use Aenginus\Article\Domain\Validation\CreateSubmissionRules;
  */
 final class CreateRequest extends CreateSubmissionRules
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

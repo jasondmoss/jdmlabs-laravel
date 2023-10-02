@@ -8,16 +8,14 @@ interface UlidInterface
 {
 
     /**
-     * @return string
-     */
-    public function __toString(): string;
-
-
-    /**
      * @return static
      */
     public static function random(): static;
 
+    /**
+     * @return string
+     */
+    public function __toString(): string;
 
     /**
      * @return string

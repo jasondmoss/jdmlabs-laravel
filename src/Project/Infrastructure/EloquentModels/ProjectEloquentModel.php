@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Infrastructure\EloquentModels;
 
 use Aenginus\Client\Domain\Models\ClientModel;
+use Aenginus\Media\Domain\Models\ImageModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
@@ -13,6 +14,8 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property \Illuminate\Validation\Rules\Enum $status
@@ -48,7 +51,10 @@ class ProjectEloquentModel extends Model
         'pinned' => Pinned::class
     ];
 
-    protected $with = [ 'category' ];
+    protected $with = [
+        'category',
+        'image'
+    ];
 
 
     /**
@@ -76,5 +82,23 @@ class ProjectEloquentModel extends Model
     {
         return $this->belongsTo(CategoryModel::class, 'category_id');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    final public function image(): MorphOne
+    {
+        return $this->morphOne(ImageModel::class, 'imageable');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    /*public function images(): MorphToMany
+    {
+        return $this->MorphToMany(ImageModel::class, 'imageable');
+    }*/
 
 }

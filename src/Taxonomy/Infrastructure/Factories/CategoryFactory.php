@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 final class CategoryFactory extends Factory
 {
 
-     protected $model = CategoryModel::class;
+    protected $model = CategoryModel::class;
 
 
     /**

@@ -14,6 +14,7 @@ final readonly class DestroyUseCase
 {
 
     private CategoryModel $category;
+
     private DeleteRepository $repository;
 
 

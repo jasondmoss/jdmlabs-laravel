@@ -65,6 +65,8 @@
     <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
+      {{ html()->hidden('signature_image[collection]', 'signature') }}
+
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}

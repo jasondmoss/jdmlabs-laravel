@@ -33,7 +33,7 @@ class DestroyController extends Controller
      */
     public function __invoke(DestroyRequest $request): RedirectResponse
     {
-        $validated = (object) $request->validated();
+        $validated = (object)$request->validated();
 
         $this->bridge->delete($validated->id);
 

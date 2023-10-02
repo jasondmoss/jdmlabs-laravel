@@ -14,6 +14,7 @@ final readonly class DestroyUseCase
 {
 
     protected ArticleModel $article;
+
     private DestroyRepository $repository;
 
 

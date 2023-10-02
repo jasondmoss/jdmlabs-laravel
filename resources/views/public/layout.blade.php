@@ -15,7 +15,6 @@
     </main>
     @include('public._partials.site-footer')
   </div>
-  <div id="FocusPlate" class="focusplate"></div>
 </div>
 @vite('resources/assets/js/public.js')
 </body></html>

@@ -14,6 +14,7 @@ enum Promoted: string
     use EnumValues;
 
     case NO = 'not_promoted';
+
     case YES = 'promoted';
 
 

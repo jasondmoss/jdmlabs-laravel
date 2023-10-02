@@ -80,6 +80,8 @@
     <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Company Logo') }}</legend>
 
+      {{ html()->hidden('logo_image[collection]', 'logo') }}
+
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
@@ -88,33 +90,36 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('logo_image[label]')->class('font-medium text-sm') }}
-          {{--@if ($logo !== null)
+          {{--@if ($client->image !== null)
             {{ html()->text('logo_image[label]', old('logo_image[label]', $logo->custom_properties['label'])) }}
-          @else--}}
+          @else
             {{ html()->text('logo_image[label]') }}
-          {{--@endif--}}
+          @endif--}}
+          {{ html()->text('logo_image[label]', old('logo_image[label]', $client->image->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('logo_image[alt]')->class('font-medium text-sm') }}
-          {{--@if ($logo !== null)
+          {{--@if ($client->image !== null)
             {{ html()->text('logo_image[alt]', old('logo_image[alt]', $logo->custom_properties['alt'])) }}
-          @else--}}
+          @else
             {{ html()->text('logo_image[alt]') }}
-          {{--@endif--}}
+          @endif--}}
+          {{ html()->text('logo_image[alt]', old('logo_image[alt]', $client->image->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('logo_image[caption]')->class('font-medium text-sm') }}
-          {{--@if ($logo !== null)
+          {{--@if ($client->image !== null)
             {{ html()->text('logo_image[caption]', old('logo_image[caption]', $logo->custom_properties['caption'])) }}
-          @else--}}
+          @else
             {{ html()->text('logo_image[caption]') }}
-          {{--@endif--}}
+          @endif--}}
+          {{ html()->text('logo_image[caption]', old('logo_image[caption]', $client->image->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+          {!! $client->getSignatureImage() !!}
         </figure>
       </div>
     </fieldset>

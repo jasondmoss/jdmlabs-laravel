@@ -12,13 +12,20 @@ use Aenginus\Shared\ValueObjects\UlidValueObject;
 final readonly class ArticleEntity
 {
 
-    public string|null $id;
+    public ?string $id;
+
     public string $user_id;
+
     public string $title;
+
     public string $summary;
+
     public string $body;
-    public string|null $category_id;
+
+    public ?string $category_id;
+
     public string $status;
+
     public string $promoted;
 
 

@@ -89,6 +89,10 @@ final class ArticleAdminListing extends Component
             ->latest('created_at')
             ->paginate(20);
 
+        $articles
+            ->each(static fn($article) => $article->entityDates())
+            ->each(static fn($article) => $article->generatePermalink('article'));
+
         return view('aenginus.article.list', compact('articles'));
     }
 

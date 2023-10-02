@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
 
     /**
      * Run the migrations.
@@ -15,9 +16,19 @@ return new class extends Migration {
         Schema::create('images', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 
+            $table->string('collection')->default('original');
             $table->string('filename');
+            $table->string('filepath');
+            $table->string('width');
+            $table->string('height');
+            $table->string('label')->nullable();
+            $table->string('alt')->nullable();
+            $table->string('caption')->nullable();
 
             $table->timestamps();
+
+            $table->ulid('imageable_id');
+            $table->string('imageable_type');
 
             $table->ulid('user_id');
             $table->foreign('user_id')

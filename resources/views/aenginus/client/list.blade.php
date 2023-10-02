@@ -45,7 +45,7 @@
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
-                    <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+                    {!! $client->getSignatureImage(); !!}
                   </a>
                 </figure>
               </td>

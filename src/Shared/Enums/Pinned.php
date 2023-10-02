@@ -14,6 +14,7 @@ enum Pinned: string
     use EnumValues;
 
     case NotPinned = 'not_pinned';
+
     case IsPinned = 'pinned';
 
 

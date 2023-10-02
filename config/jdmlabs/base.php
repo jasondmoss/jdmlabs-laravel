@@ -8,6 +8,13 @@ return [
     'description' => env('JDMLABS_DESC', 'The Online Laboratory of Jason D. Moss'),
     'image_share' => env('APP_IMAGE', 'mugshot--525.jpg'),
     'slug_locale' => 'en',
-
     'contact_email' => 'work@jdmlabs.com',
+
+    'responsive_images' => [
+        'mobile',
+        'tablet',
+        'desktop',
+        'desktop_lg',
+        'desktop_xl'
+    ],
 ];

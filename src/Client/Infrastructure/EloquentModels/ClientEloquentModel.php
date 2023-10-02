@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Infrastructure\EloquentModels;
 
+use Aenginus\Media\Domain\Models\ImageModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
@@ -12,6 +13,7 @@ use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @property \Illuminate\Validation\Rules\Enum $status
@@ -50,7 +52,8 @@ class ClientEloquentModel extends Model
     ];
 
     protected $with = [
-        'projects'
+        'projects',
+        'image'
     ];
 
 
@@ -69,6 +72,15 @@ class ClientEloquentModel extends Model
     final public function projects(): HasMany
     {
         return $this->hasMany(ProjectModel::class, 'client_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    final public function image(): morphOne
+    {
+        return $this->morphOne(ImageModel::class, 'imageable');
     }
 
 }

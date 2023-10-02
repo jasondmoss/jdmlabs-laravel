@@ -15,16 +15,27 @@ final readonly class ProjectEntity
 {
 
     public string|null $id;
+
     public string $user_id;
+
     public string $title;
+
     public string $subtitle;
+
     public string $website;
+
     public string $summary;
+
     public string $body;
+
     public string $client_id;
+
     public ?string $category_id;
+
     public string $status;
+
     public string $promoted;
+
     public string $pinned;
 
 

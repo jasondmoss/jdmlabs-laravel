@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Aenginus\Article\Application\Providers as Article;
 use Aenginus\Client\Application\Providers as Client;
+/*use Aenginus\Media\Application\Providers as Media;*/
 use Aenginus\Project\Application\Providers as Project;
 use Aenginus\Taxonomy\Application\Providers as Taxonomy;
 use Aenginus\User\Application\Providers as Fortify;
@@ -54,7 +55,7 @@ return [
     ],
     'providers' => [
 
-        /** -- Laravel Framework Service Providers. */
+        /** -- Laravel Core Service Providers. */
 
         AuthServiceProvider::class,
         BroadcastServiceProvider::class,
@@ -93,6 +94,8 @@ return [
         App\FolioServiceProvider::class,
         App\RouteServiceProvider::class,
 
+        /** -- Custom Service Providers. */
+
         Article\ArticleAuthServiceProvider::class,
         Article\ArticleEventServiceProvider::class,
         Article\ArticleServiceProvider::class,
@@ -100,6 +103,8 @@ return [
         Client\ClientAuthServiceProvider::class,
         Client\ClientEventServiceProvider::class,
         Client\ClientServiceProvider::class,
+
+        // Media\MediaServiceProvider::class,
 
         Project\ProjectAuthServiceProvider::class,
         Project\ProjectEventServiceProvider::class,

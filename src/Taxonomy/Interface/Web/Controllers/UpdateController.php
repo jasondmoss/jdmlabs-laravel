@@ -15,6 +15,7 @@ class UpdateController extends Controller
 {
 
     protected CategoryModel $category;
+
     protected UpdateUseCase $bridge;
 
 
@@ -37,7 +38,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $validated = (object) $request->validated();
+        $validated = (object)$request->validated();
         $categoryEntity = new CategoryEntity($validated);
         $categoryInstance = $this->category->find($categoryEntity->id);
 

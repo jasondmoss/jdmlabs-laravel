@@ -41,8 +41,6 @@
 
         <tbody class="flex flex-col gap-y-10 md:table-row-group w-full">
           @foreach ($articles as $article)
-            @php $permalink = url('/article/' . Carbon::parse($article->published_at)->format('Y/m/d') . '/' . $article->slug); @endphp
-
             <!-- Item -->
             <tr id="item-{{ $article->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
               <!--
@@ -51,7 +49,7 @@
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <figure class="">
                   <a class="block" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-                    <img class="mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+                    {!! $article->getSignatureImage(); !!}
                   </a>
                 </figure>
               </td>
@@ -59,7 +57,7 @@
                 TITLE + ID + CATEGORY
               -->
               <td class="block md:table-cell md:align-top md:px-6 py-2"><div class="flex flex-col gap-3">
-                <a rel="external" class="font-bold text-base xl:text-xl text-sky-600 hover:text-black" href="{{ $permalink }}" title="{{ __('View article') }}">{{ $article->title }}</a>
+                <a rel="external" class="font-bold text-base xl:text-xl text-sky-600 hover:text-black" href="{{ $article->permalink }}" title="{{ __('View article') }}">{{ $article->title }}</a>
                 <p class="flex gap-x-3" title="{{ __('Article Ulid') }}">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-default mt-0.5"><path fill-rule="evenodd" d="M12 3.75a6.715 6.715 0 00-3.722 1.118.75.75 0 11-.828-1.25 8.25 8.25 0 0112.8 6.883c0 3.014-.574 5.897-1.62 8.543a.75.75 0 01-1.395-.551A21.69 21.69 0 0018.75 10.5 6.75 6.75 0 0012 3.75zM6.157 5.739a.75.75 0 01.21 1.04A6.715 6.715 0 005.25 10.5c0 1.613-.463 3.12-1.265 4.393a.75.75 0 01-1.27-.8A6.715 6.715 0 003.75 10.5c0-1.68.503-3.246 1.367-4.55a.75.75 0 011.04-.211zM12 7.5a3 3 0 00-3 3c0 3.1-1.176 5.927-3.105 8.056a.75.75 0 11-1.112-1.008A10.459 10.459 0 007.5 10.5a4.5 4.5 0 119 0c0 .547-.022 1.09-.067 1.626a.75.75 0 01-1.495-.123c.041-.495.062-.996.062-1.503a3 3 0 00-3-3zm0 2.25a.75.75 0 01.75.75A15.69 15.69 0 018.97 20.738a.75.75 0 01-1.14-.975A14.19 14.19 0 0011.25 10.5a.75.75 0 01.75-.75zm3.239 5.183a.75.75 0 01.515.927 19.415 19.415 0 01-2.585 5.544.75.75 0 11-1.243-.84 17.912 17.912 0 002.386-5.116.75.75 0 01.927-.515z" clip-rule="evenodd" /></svg>
                   {{ $article->id }}
@@ -151,7 +149,7 @@
                       {{ html()->hidden('id', $article->id) }}
                       {{ html()->hidden('user_id', auth()->user()->id) }}
                     </form>
-                    <a rel="external" href="{{ $permalink }}" class="flex items-center group w-full rounded-sm px-3 py-2 divide-x divide-slate-300 space-x-3 text-gray-700 hover:bg-lime-500 hover:text-white">
+                    <a rel="external" href="{{ $article->permalink }}" class="flex items-center group w-full rounded-sm px-3 py-2 divide-x divide-slate-300 space-x-3 text-gray-700 hover:bg-lime-500 hover:text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                       <span class="pl-3">{{ __('View') }}</span>
                     </a>

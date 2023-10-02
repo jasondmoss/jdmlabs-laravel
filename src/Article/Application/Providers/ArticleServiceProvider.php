@@ -7,13 +7,11 @@ namespace Aenginus\Article\Application\Providers;
 use Aenginus\Article\Application\Repositories\Eloquent as Repository;
 use Aenginus\Article\Application\UseCases as UseCase;
 use Aenginus\Article\Domain\Contracts as Contract;
-use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
+use Aenginus\Shared\Providers\SharedServiceProvider;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 
 
-final class ArticleServiceProvider extends ServiceProvider
+final class ArticleServiceProvider extends SharedServiceProvider
 {
 
     /**
@@ -38,18 +36,8 @@ final class ArticleServiceProvider extends ServiceProvider
         // Templates paths.
         View::addNamespace('ArticleAdmin', resource_path('views/aenginus/article'));
         View::addNamespace('ArticlePublic', resource_path('views/public/article'));
-    }
 
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        // Configure Laravel to use CarbonImmutable for dates.
-        Date::use(CarbonImmutable::class);
+        parent::register();
     }
 
 }

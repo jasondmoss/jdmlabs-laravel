@@ -29,8 +29,8 @@ class UpdateSubmissionRules extends FormRequest
             'logo_image[label]' => 'nullable|string|max:255',
             'logo_image[alt]' => 'nullable|string|max:255',
             'logo_image[caption]' => 'nullable|string|max:255',
-            'status' => [ new Enum(Status::class) ],
-            'promoted' => [ new Enum(Promoted::class) ]
+            'status' => [new Enum(Status::class)],
+            'promoted' => [new Enum(Promoted::class)]
         ];
     }
 

@@ -7,12 +7,10 @@ namespace Aenginus\Client\Application\Providers;
 use Aenginus\Client\Application\Repositories\Eloquent as Repository;
 use Aenginus\Client\Application\UseCases as UseCase;
 use Aenginus\Client\Domain\Contracts as Contract;
-use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
+use Aenginus\Shared\Providers\SharedServiceProvider;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 
-final class ClientServiceProvider extends ServiceProvider
+final class ClientServiceProvider extends SharedServiceProvider
 {
 
     /**
@@ -37,17 +35,8 @@ final class ClientServiceProvider extends ServiceProvider
         // Templates paths.
         View::addNamespace('ClientAdmin', resource_path('views/aenginus/client'));
         View::addNamespace('ClientPublic', resource_path('views/public/client'));
-    }
 
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        Date::use(CarbonImmutable::class);
+        parent::register();
     }
 
 }

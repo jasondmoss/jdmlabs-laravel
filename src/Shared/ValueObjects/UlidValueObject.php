@@ -29,15 +29,6 @@ class UlidValueObject implements Stringable
 
 
     /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->value;
-    }
-
-
-    /**
      * @param string $value
      *
      * @return void
@@ -59,16 +50,16 @@ class UlidValueObject implements Stringable
      */
     public static function random(): static
     {
-        return new static((string) (new Ulid()));
+        return new static((string)(new Ulid()));
     }
 
 
     /**
      * @return string
      */
-    final public function value(): string
+    public function __toString(): string
     {
-        return Str::upper($this->value);
+        return $this->value;
     }
 
 
@@ -80,6 +71,15 @@ class UlidValueObject implements Stringable
     final public function equals(UlidInterface $other): bool
     {
         return $this->value() === $other->value();
+    }
+
+
+    /**
+     * @return string
+     */
+    final public function value(): string
+    {
+        return Str::upper($this->value);
     }
 
 }

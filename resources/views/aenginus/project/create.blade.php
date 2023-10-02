@@ -23,7 +23,7 @@
   {{ html()->hidden('user_id', auth()->user()->id) }}
 
   <header class="flex flex-col basis-full md:flex-row gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:justify-between md:pt-3 md:pb-4 lg:border-b-0 xl:pt-5 xl:pb-4">
-    <h1 class="pl-2 text-4xl font-medium">{{ __('Create New ProjectModel') }}</h1>
+    <h1 class="pl-2 text-4xl font-medium">{{ __('Create New Project') }}</h1>
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
@@ -38,7 +38,7 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Sub-Title')->for('subtitle')->class('font-medium text-sm') }}
-        {{ html()->text('subtitle')->required()->placeholder(__('ProjectModel sub-title or tagline')) }}
+        {{ html()->text('subtitle')->required()->placeholder(__('Project sub-title or tagline')) }}
       </div>
 
       <div class="flex flex-col gap-y-3">
@@ -82,6 +82,8 @@
     <fieldset class="signature-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
+      {{ html()->hidden('signature_image[collection]', 'signature') }}
+
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
@@ -114,6 +116,8 @@
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
         <div class="repeatable grid items-start gap-5">
+          {{ html()->hidden('showcase_images[0][collection]', 'showcase') }}
+
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
             {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}

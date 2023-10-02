@@ -14,12 +14,19 @@ final readonly class ClientEntity
 {
 
     public ?string $id;
+
     public string $user_id;
+
     public string $name;
+
     public string $itemprop;
+
     public string $website;
+
     public string $summary;
+
     public string $status;
+
     public string $promoted;
 
 

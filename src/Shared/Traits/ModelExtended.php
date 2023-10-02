@@ -23,7 +23,7 @@ trait ModelExtended
      */
     final public function entityDates(): void
     {
-        $this->date = (object) [
+        $this->date = (object)[
             'published' => $this->generatePublishDate(),
             'create' => $this->generateCreateDate(),
             'updated' => $this->generateUpdateDate()
@@ -34,9 +34,9 @@ trait ModelExtended
     /**
      * @return object
      */
-    private function generateCreateDate(): object
+    private function generatePublishDate(): object
     {
-        return (object) [
+        return (object)[
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
@@ -46,9 +46,9 @@ trait ModelExtended
     /**
      * @return object
      */
-    private function generatePublishDate(): object
+    private function generateCreateDate(): object
     {
-        return (object) [
+        return (object)[
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
@@ -60,7 +60,7 @@ trait ModelExtended
      */
     private function generateUpdateDate(): object
     {
-        return (object) [
+        return (object)[
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];

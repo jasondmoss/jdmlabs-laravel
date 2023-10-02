@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 class DestroyController extends Controller
 {
 
-    protected DestroyUseCase $bridge;
+    protected DestroyUseCase $articleUseCase;
 
 
     /**
-     * @param \Aenginus\Article\Application\UseCases\DestroyUseCase $bridge
+     * @param \Aenginus\Article\Application\UseCases\DestroyUseCase $articleUseCase
      */
-    public function __construct(DestroyUseCase $bridge)
+    public function __construct(DestroyUseCase $articleUseCase)
     {
-        $this->bridge = $bridge;
+        $this->articleUseCase = $articleUseCase;
     }
 
 
@@ -33,9 +33,9 @@ class DestroyController extends Controller
      */
     public function __invoke(DestroyRequest $request): RedirectResponse
     {
-        $validated = (object) $request->validated();
+        $validated = (object)$request->validated();
 
-        $this->bridge->delete($validated->id);
+        $this->articleUseCase->delete($validated->id);
 
         return redirect()
             ->action(IndexController::class)

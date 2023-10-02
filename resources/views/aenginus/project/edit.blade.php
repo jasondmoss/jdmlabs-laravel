@@ -55,7 +55,7 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Sub-Title')->for('subtitle')->class('font-medium text-sm') }}
-        {{ html()->text('subtitle')->required()->placeholder(__('ProjectModel sub-title or tagline')) }}
+        {{ html()->text('subtitle')->required()->placeholder(__('Project sub-title or tagline')) }}
       </div>
 
       <div class="flex flex-col gap-y-3">
@@ -109,6 +109,8 @@
     <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
+      {{ html()->hidden('signature_image[collection]', 'signature') }}
+
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
@@ -117,33 +119,21 @@
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[label]', old('signature_image[label]', $signature->custom_properties['label'])) }}
-          @else--}}
-            {{ html()->text('signature_image[label]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[label]', old('signature_image[label]', $project->image->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[alt]', old('signature_image[alt]', $signature->custom_properties['alt'])) }}
-          @else--}}
-            {{ html()->text('signature_image[alt]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $project->image->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          {{--@if ($signature !== null)
-            {{ html()->text('signature_image[caption]', old('signature_image[caption]', $signature->custom_properties['caption'])) }}
-          @else--}}
-            {{ html()->text('signature_image[caption]') }}
-          {{--@endif--}}
+          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $project->image->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          {!! $project->getSignatureImage() !!}
         </figure>
       </div>
     </fieldset>
@@ -157,6 +147,8 @@
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
         <div class="repeatable grid items-start gap-5">
+          {{ html()->hidden('showcase_images[0][collection]', 'showcase') }}
+
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
             {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}

@@ -17,4 +17,5 @@ trait FindBySlugScope
     {
         return $query->firstWhere('slug', $slug);
     }
+
 }

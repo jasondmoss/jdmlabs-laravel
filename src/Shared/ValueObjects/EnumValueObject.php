@@ -32,6 +32,50 @@ abstract class EnumValueObject implements Stringable
     /**
      * @param mixed $value
      *
+     * @return void
+     * @throws \ReflectionException
+     */
+    private function ensureIsBetweenAcceptedValues(mixed $value): void
+    {
+        if (! in_array($value, static::values(), true)) {
+            $this->throwExceptionForInvalidValue($value);
+        }
+    }
+
+
+    /**
+     * @return array
+     * @throws \ReflectionException
+     */
+    public static function values(): array
+    {
+        $class = static::class;
+
+        if (! isset(self::$cache[$class])) {
+            $reflected = new ReflectionClass($class);
+
+            self::$cache[$class] = reindex(
+                self::keysFormatter(),
+                $reflected->getConstants()
+            );
+        }
+
+        return self::$cache[$class];
+    }
+
+
+    /**
+     * @return callable
+     */
+    private static function keysFormatter(): callable
+    {
+        return static fn($unused, string $key): string => Str::camel(strtolower($key));
+    }
+
+
+    /**
+     * @param mixed $value
+     *
      * @return mixed
      */
     abstract public function throwExceptionForInvalidValue(mixed $value): mixed;
@@ -46,7 +90,7 @@ abstract class EnumValueObject implements Stringable
      */
     public static function __callStatic(string $name, array $args): self
     {
-        return new static(self::values()[ $name ]);
+        return new static(self::values()[$name]);
     }
 
 
@@ -63,37 +107,6 @@ abstract class EnumValueObject implements Stringable
 
 
     /**
-     * @return array
-     * @throws \ReflectionException
-     */
-    public static function values(): array
-    {
-        $class = static::class;
-
-        if (! isset(self::$cache[ $class ])) {
-            $reflected = new ReflectionClass($class);
-
-            self::$cache[ $class ] = reindex(
-                self::keysFormatter(),
-                $reflected->getConstants()
-            );
-        }
-
-        return self::$cache[ $class ];
-    }
-
-
-    /**
-     * @return mixed
-     * @throws \ReflectionException
-     */
-    public static function randomValue(): mixed
-    {
-        return self::values()[ array_rand(self::values()) ];
-    }
-
-
-    /**
      * @return static
      * @throws \ReflectionException
      */
@@ -104,20 +117,12 @@ abstract class EnumValueObject implements Stringable
 
 
     /**
-     * @return callable
-     */
-    private static function keysFormatter(): callable
-    {
-        return static fn ($unused, string $key): string => Str::camel(strtolower($key));
-    }
-
-
-    /**
      * @return mixed
+     * @throws \ReflectionException
      */
-    final public function value(): mixed
+    public static function randomValue(): mixed
     {
-        return $this->value;
+        return self::values()[array_rand(self::values())];
     }
 
 
@@ -137,21 +142,16 @@ abstract class EnumValueObject implements Stringable
      */
     public function __toString(): string
     {
-        return (string) $this->value();
+        return (string)$this->value();
     }
 
 
     /**
-     * @param mixed $value
-     *
-     * @return void
-     * @throws \ReflectionException
+     * @return mixed
      */
-    private function ensureIsBetweenAcceptedValues(mixed $value): void
+    final public function value(): mixed
     {
-        if (! in_array($value, static::values(), true)) {
-            $this->throwExceptionForInvalidValue($value);
-        }
+        return $this->value;
     }
 
 }
@@ -174,7 +174,7 @@ function reindex(callable $fn, iterable $coll): array
     $result = [];
 
     foreach ($coll as $key => $value) {
-        $result[ $fn($value, $key) ] = $value;
+        $result[$fn($value, $key)] = $value;
     }
 
     return $result;

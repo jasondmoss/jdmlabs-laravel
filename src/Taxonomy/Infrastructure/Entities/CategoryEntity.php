@@ -11,7 +11,9 @@ final readonly class CategoryEntity
 {
 
     public ?string $id;
+
     public ?string $name;
+
     public string $user_id;
 
 

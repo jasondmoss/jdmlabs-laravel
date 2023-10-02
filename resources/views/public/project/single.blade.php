@@ -10,6 +10,8 @@
 >
   <x-shared.session/>
 
+  {!! $project->getSignatureImage(); !!}
+
   <header>
     <h1>{{ $project->title }}</h1>
     <h2>{{ $project->subtitle }}</h2>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\User\Application\Providers;
 
+use Aenginus\Shared\Providers\SharedServiceProvider;
 use Aenginus\User\Application\Actions\CreateNewUserAction;
 use Aenginus\User\Application\Actions\RedirectIfTwoFactorConfirmedAction;
 use Aenginus\User\Application\Actions\ResetUserPasswordAction;
@@ -21,7 +22,7 @@ use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
-final class FortifyServiceProvider extends ServiceProvider
+final class FortifyServiceProvider extends SharedServiceProvider
 {
 
     /**
@@ -30,6 +31,8 @@ final class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         Fortify::ignoreRoutes();
+
+        parent::register();
     }
 
 
@@ -64,7 +67,7 @@ final class FortifyServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('login', static function (Request $request) {
-            $email = (string) $request->email;
+            $email = (string)$request->email;
 
             return Limit::perMinute(5)->by($email . $request->ip());
         });
@@ -80,6 +83,8 @@ final class FortifyServiceProvider extends ServiceProvider
         ], function () {
             $this->loadRoutesFrom(base_path('routes/auth.php'));
         });
+
+        parent::boot();
     }
 
 }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Aenginus\Article\Infrastructure\EloquentModels;
 
+/*use Aenginus\Media\Domain\Models\ImageModel;*/
+
+use Aenginus\Media\Domain\Models\ImageModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
@@ -11,6 +14,7 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * @property \Illuminate\Validation\Rules\Enum $status
@@ -43,7 +47,10 @@ class ArticleEloquentModel extends Model
         'promoted' => Promoted::class
     ];
 
-    protected $with = ['category'];
+    protected $with = [
+        'category',
+        'image'
+    ];
 
 
     /**
@@ -61,6 +68,15 @@ class ArticleEloquentModel extends Model
     final public function category(): BelongsTo
     {
         return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    final public function image(): MorphOne
+    {
+        return $this->morphOne(ImageModel::class, 'imageable');
     }
 
 }

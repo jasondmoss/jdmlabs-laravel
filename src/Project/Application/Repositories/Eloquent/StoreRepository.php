@@ -15,7 +15,7 @@ final class StoreRepository implements StoreContract
      */
     public function save(object $projectEntity): ProjectModel
     {
-        return ProjectModel::create((array) $projectEntity);
+        return ProjectModel::create((array)$projectEntity);
     }
 
 }

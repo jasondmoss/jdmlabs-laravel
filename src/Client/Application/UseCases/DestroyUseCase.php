@@ -14,6 +14,7 @@ final readonly class DestroyUseCase
 {
 
     protected ClientModel $client;
+
     private DestroyRepository $repository;
 
 

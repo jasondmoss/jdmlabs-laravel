@@ -20,15 +20,6 @@ class StringValueObject
 
 
     /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->value();
-    }
-
-
-    /**
      * @param string $value
      *
      * @return static
@@ -36,6 +27,15 @@ class StringValueObject
     public static function fromString(string $value): static
     {
         return new self($value);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->value();
     }
 
 

@@ -7,7 +7,9 @@ use Aenginus\Client\Interface\Web\Controllers as Client;
 use Aenginus\Project\Interface\Web\Controllers as Project;
 use Aenginus\Taxonomy\Interface\Web\Controllers as Category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 Route::middleware(['web'])->group(static function () {
 
@@ -32,6 +34,25 @@ Route::middleware(['web'])->group(static function () {
 
 //    Route::get('/taxonomy/category/{slug}', Category\SingleController::class)
 //        ->name('category-single');
+
+//    Route::get('/image_manipulaton/{name}', function (\Illuminate\Http\Request $request) {
+//        // according to path your image file
+//        $img = Image::make('uploads/' . $request->name);
+//
+//        //manipulate image
+//        $img->resize($request->width, $request->height, function ($constraint) {
+//            $constraint->aspectRatio();
+//        });
+//
+//        // create response and add encoded image data
+//        $response = Response::make($img->encode('jpg'));
+//
+//        // set content-type
+//        $response->header('Content-Type', 'image/jpg');
+//
+//        // output
+//        return $response;
+//    });
 
 
     // -- Dashboard (Redirect).

@@ -13,15 +13,15 @@ use Illuminate\Http\RedirectResponse;
 class StoreController extends Controller
 {
 
-    protected StoreUseCase $bridge;
+    protected StoreUseCase $CategoryUseCase;
 
 
     /**
-     * @param \Aenginus\Taxonomy\Application\UseCases\StoreUseCase $bridge
+     * @param \Aenginus\Taxonomy\Application\UseCases\StoreUseCase $CategoryUseCase
      */
-    public function __construct(StoreUseCase $bridge)
+    public function __construct(StoreUseCase $CategoryUseCase)
     {
-        $this->bridge = $bridge;
+        $this->CategoryUseCase = $CategoryUseCase;
     }
 
 
@@ -32,10 +32,10 @@ class StoreController extends Controller
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $validated = (object) $request->validated();
+        $validated = (object)$request->validated();
         $categoryEntity = new CategoryEntity($validated);
 
-        $this->bridge->store($categoryEntity);
+        $this->CategoryUseCase->store($categoryEntity);
 
         return redirect()
             ->action(IndexController::class)

@@ -19,10 +19,10 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param array $input
      */
-    final public function update (UserModel $user, array $input): void
+    final public function update(UserModel $user, array $input): void
     {
         Validator::make($input, [
-            'name' => [ 'required', 'string', 'max:255' ],
+            'name' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -49,7 +49,7 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
      * @param \Aenginus\User\Domain\Models\UserModel $user
      * @param array $input
      */
-    private function updateVerifiedUser (UserModel $user, array $input): void
+    private function updateVerifiedUser(UserModel $user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

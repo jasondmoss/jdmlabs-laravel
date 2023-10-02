@@ -14,6 +14,7 @@ enum Status: string
     use EnumValues;
 
     case Draft = 'draft';
+
     case Published = 'published';
 
 

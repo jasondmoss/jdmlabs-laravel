@@ -24,13 +24,16 @@ class UpdateSubmissionRules extends FormRequest
             'summary' => 'required',
             'body' => 'required',
             'category' => 'nullable|ulid',
-            'signature_image' => 'sometimes|array',
-            'signature_image[file]' => 'nullable|image|mimes:gif,jpeg,jpg,png,svg',
+
+            'signature_image' => 'sometimes|array:collection,label,alt,caption,file',
+            'signature_image[collection]' => 'nullable|string|max:255',
             'signature_image[label]' => 'nullable|string|max:255',
             'signature_image[alt]' => 'nullable|string|max:255',
             'signature_image[caption]' => 'nullable|string|max:255',
-            'status' => [ new Enum(Status::class) ],
-            'promoted' => [ new Enum(Promoted::class) ]
+            'signature_image[file]' => 'sometimes|image',
+
+            'status' => [new Enum(Status::class)],
+            'promoted' => [new Enum(Promoted::class)]
         ];
     }
 

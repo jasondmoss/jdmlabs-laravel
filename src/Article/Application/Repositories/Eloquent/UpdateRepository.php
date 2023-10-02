@@ -16,7 +16,7 @@ final class UpdateRepository implements UpdateContract
      */
     public function update(ArticleModel $article, ArticleEntity $entity): ArticleModel
     {
-        $article->update((array) $entity);
+        $article->update((array)$entity);
 
         return $article;
     }
