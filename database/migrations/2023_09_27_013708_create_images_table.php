@@ -18,7 +18,8 @@ return new class extends Migration
 
             $table->string('collection')->default('original');
             $table->string('filename');
-            $table->string('filepath');
+            $table->string('base_path');
+            $table->json('responsive_paths');
             $table->string('width');
             $table->string('height');
             $table->string('label')->nullable();

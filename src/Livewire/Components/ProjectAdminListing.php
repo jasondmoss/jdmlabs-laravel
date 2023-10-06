@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
+namespace Aenginus\Livewire\Components;
 
-use Aenginus\Article\Domain\Models\ArticleModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
+use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 use Illuminate\Contracts\View\View;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-final class ArticleAdminListing extends Component
+final class ProjectAdminListing extends Component
 {
 
     use AuthorizesRequests;
@@ -37,17 +38,39 @@ final class ArticleAdminListing extends Component
      * @return void
      * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
      */
+    public function toggleStatePinned(string $id): void
+    {
+        $projectModel = new ProjectModel();
+
+        $project = $projectModel->find($id);
+
+        $state = ($project->pinned->value === 'not_pinned')
+            ? Pinned::IsPinned->value
+            : Pinned::NotPinned->value;
+
+        $project->update([
+            'pinned' => $state
+        ]);
+    }
+
+
+    /**
+     * @param string $id
+     *
+     * @return void
+     * @throws \Aenginus\Shared\Exceptions\CouldNotFindModelEntity
+     */
     public function toggleStatePromoted(string $id): void
     {
-        $articleModel = new ArticleModel();
+        $projectModel = new ProjectModel();
 
-        $article = $articleModel->find($id);
+        $project = $projectModel->find($id);
 
-        $state = ($article->promoted->value === 'not_promoted')
+        $state = ($project->promoted->value === 'not_promoted')
             ? Promoted::YES->value
             : Promoted::NO->value;
 
-        $article->update([
+        $project->update([
             'promoted' => $state
         ]);
     }
@@ -61,17 +84,17 @@ final class ArticleAdminListing extends Component
      */
     public function toggleStatePublished(string $id): void
     {
-        $articleModel = new ArticleModel();
+        $projectModel = new ProjectModel();
 
-        $article = $articleModel->find($id);
+        $project = $projectModel->find($id);
 
-        if ($article->status->value === 'draft') {
-            $article->update([
+        if ($project->status->value === 'draft') {
+            $project->update([
                 'status' => Status::Published->value,
                 'published_at' => Date::now()
             ]);
         } else {
-            $article->update([
+            $project->update([
                 'status' => Status::Draft->value,
                 'published_at' => null
             ]);
@@ -84,16 +107,12 @@ final class ArticleAdminListing extends Component
      */
     public function render(): View
     {
-        $articles = ArticleModel::where('title', 'LIKE', '%' . $this->query . '%')
-            ->with('category')
+        $projects = ProjectModel::where('title', 'LIKE', '%' . $this->query . '%')
             ->latest('created_at')
+            ->with('clients')
             ->paginate(20);
 
-        $articles
-            ->each(static fn($article) => $article->entityDates())
-            ->each(static fn($article) => $article->generatePermalink('article'));
-
-        return view('aenginus.article.list', compact('articles'));
+        return view('aenginus.project.list', compact('projects'));
     }
 
 }

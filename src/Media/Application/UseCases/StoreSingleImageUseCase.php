@@ -8,7 +8,9 @@ use Aenginus\Media\Application\Respositories\Eloquent\StoreSingleImageRepository
 use Aenginus\Media\Domain\Models\ImageModel;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class StoreSingleImageUseCase
 {
@@ -35,19 +37,47 @@ class StoreSingleImageUseCase
     {
         $imageEntity = new ImageEntity($requestImage);
 
-        $imageEntityName = "{$model->id}."
-            . $imageEntity->file->getClientOriginalExtension();
+        $storePath = 'images/' . $model->getTable() . '/' . $model->id;
+        $filename = $imageEntity->file->getClientOriginalName();
 
-        $imageEntityPath = 'public/images/' . $model->getTable();
+        Storage::disk('public')->put(
+            $storePath . '/' . $filename,
+            fopen($imageEntity->file->getRealPath(), 'rb+')
+        );
 
-        $imageEntity->file->storeAs($imageEntityPath, $imageEntityName);
+        // Resizing.
+        $folders = collect(config('jdmlabs.base.images'));
+        $responsive_paths = [];
 
+        foreach ($folders as $groups) {
+            foreach ($groups as $folder => $size) {
+                $base_path = "{$storePath}/{$folder}/{$filename}";
+
+                if (! in_array($folder, [ 'thumb', 'preview' ])) {
+                    $responsive_paths[] = [
+                        $folder => $base_path
+                    ];
+                }
+
+                $rImg = Image::make($imageEntity->file)
+                    ->fit(
+                        $size[1],
+                        $size[2],
+                        static fn ($constraint) => $constraint->aspectRatio()
+                    )
+                    ->stream('png');
+
+                Storage::disk('public')->put($base_path, $rImg);
+            }
+        }
+
+        // Eloquent set-up.
         $image = new ImageModel();
-
-        $image->id = (string) Str::ulid();
+        $image->id = (string)Str::ulid();
         $image->collection = $imageEntity->collection;
-        $image->filename = $imageEntityName;
-        $image->filepath = 'storage/images/' . $model->getTable() . '/';
+        $image->filename = $filename;
+        $image->base_path = $storePath;
+        $image->responsive_paths = $responsive_paths;
         $image->width = $imageEntity->width;
         $image->height = $imageEntity->height;
         $image->label = $imageEntity->label;
@@ -55,30 +85,10 @@ class StoreSingleImageUseCase
         $image->caption = $imageEntity->caption;
         $image->user_id = $model->user_id;
 
+        // Associate image to requesting entity.
         $image->imageable()->associate($model);
+
         $this->repository->save($image);
-
-        /*$folders = collect(config('jdmlabs.base.responsive_images'));
-
-        foreach ($folders as $dir) {
-            $responsive_path = $base_path . '/' . $model->id . '/' . $dir;
-
-            if (! Storage::exists($responsive_path)) {
-                Storage::makeDirectory($responsive_path);
-            }
-
-            $breakpoint = match ($dir) {
-                'mobile' => 640,
-                'tablet' => 760,
-                'desktop' => 1024,
-                'desktop_lg' => 1200,
-                'desktop_xl' => 1500
-            };
-
-            $image->resize($breakpoint, null, static function ($constraint) {
-                $constraint->aspectRatio();
-            })->save("{$path_base}/{$imageModel->hash}", 85);
-        }*/
     }
 
 }

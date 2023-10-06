@@ -30,7 +30,7 @@ final class ProjectFactory extends Factory
         $created = Date::today()->subDays(random_int(0, 365));
 
         return [
-            'id' => Str::ulid(),
+            'id' => (string)Str::ulid(),
             'title' => $title,
             'subtitle' => $faker->sentence(),
             'website' => 'https://' . $faker->domainName() . '/',

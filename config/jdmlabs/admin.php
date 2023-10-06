@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'admin_email' => env('APP_EMAIL', 'jason@jdmlabs.com'),
-    'admin_password' => env('APP_PASSWORD', 'not_a_real_password'),
+    'admin_password' => env('APP_PASSWORD', 'not_a_password'),
 
     'permissions' => [
         'map' => [

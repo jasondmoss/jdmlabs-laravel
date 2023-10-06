@@ -8,6 +8,7 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -51,6 +52,7 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $cat_name) {
             CategoryModel::create([
+                'id' => (string)Str::ulid(),
                 'name' => $cat_name,
                 'user_id' => UserModel::whereEmail('jason@jdmlabs.com')
                     ->first()

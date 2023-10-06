@@ -72,7 +72,13 @@
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Categories')->for('category')->class('font-medium text-sm') }}
-        {{ html()->select('category', $categories)->class('form-select')->value($article->category_id)->placeholder('Choose a category') }}
+        {{
+            html()
+            ->select('category', $categories)
+            ->class('form-select')
+            ->placeholder('Choose a category')
+            ->value($article->category_id)
+        }}
       </div>
     </fieldset>
 
@@ -105,7 +111,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {!! $article->getSignatureImage() !!}
+          {{--{!! $article->getSignatureImage() !!}--}}
         </figure>
       </div>
     </fieldset>

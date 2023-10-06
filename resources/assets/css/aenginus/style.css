@@ -36,6 +36,16 @@
   text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.8);
 }
 
+figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*figure image,
+figure picture,
+figure svg {}*/
+
 .icon {
   width: 1.5rem;
   height: 1.5rem;

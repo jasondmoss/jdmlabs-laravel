@@ -16,17 +16,17 @@ class UpdateController extends Controller
 
     protected CategoryModel $category;
 
-    protected UpdateUseCase $bridge;
+    protected UpdateUseCase $categoryUseCase;
 
 
     /**
      * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
-     * @param \Aenginus\Taxonomy\Application\UseCases\UpdateUseCase $bridge
+     * @param \Aenginus\Taxonomy\Application\UseCases\UpdateUseCase $categoryUseCase
      */
-    public function __construct(CategoryModel $category, UpdateUseCase $bridge)
+    public function __construct(CategoryModel $category, UpdateUseCase $categoryUseCase)
     {
         $this->category = $category;
-        $this->bridge = $bridge;
+        $this->categoryUseCase = $categoryUseCase;
     }
 
 
@@ -42,7 +42,7 @@ class UpdateController extends Controller
         $categoryEntity = new CategoryEntity($validated);
         $categoryInstance = $this->category->find($categoryEntity->id);
 
-        $category = $this->bridge->update($categoryInstance, $categoryEntity);
+        $category = $this->categoryUseCase->update($categoryInstance, $categoryEntity);
 
         $keyword = '"<span class="font-bold">' . $category->name . '</span>"';
 

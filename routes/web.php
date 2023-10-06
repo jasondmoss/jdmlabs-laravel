@@ -35,24 +35,15 @@ Route::middleware(['web'])->group(static function () {
 //    Route::get('/taxonomy/category/{slug}', Category\SingleController::class)
 //        ->name('category-single');
 
-//    Route::get('/image_manipulaton/{name}', function (\Illuminate\Http\Request $request) {
-//        // according to path your image file
-//        $img = Image::make('uploads/' . $request->name);
-//
-//        //manipulate image
-//        $img->resize($request->width, $request->height, function ($constraint) {
-//            $constraint->aspectRatio();
-//        });
-//
-//        // create response and add encoded image data
-//        $response = Response::make($img->encode('jpg'));
-//
-//        // set content-type
-//        $response->header('Content-Type', 'image/jpg');
-//
-//        // output
-//        return $response;
-//    });
+    // --
+
+    Route::get('storage/images/{size}/{filename}', static function ($size, $filename) {
+        $image = Image::cache(static function ($image) use ($filename, $size) {
+            return $image->make(storage_path("app/public/images/{$filename}"))->fit($size);
+        }, 1440, true);
+
+        return $image->response('png');
+    })->where('size', '\d+x\d+')->where('filename', '.*');
 
 
     // -- Dashboard (Redirect).

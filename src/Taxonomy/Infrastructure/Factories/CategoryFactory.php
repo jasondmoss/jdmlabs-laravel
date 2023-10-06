@@ -25,7 +25,7 @@ final class CategoryFactory extends Factory
         $faker = FakerFactory::create();
 
         return [
-            'id' => Str::ulid(),
+            'id' => (string)Str::ulid(),
             'name' => Str::title($faker->words(random_int(1, 2), true)),
             'created_at' => Date::today()->subDays(random_int(0, 365)),
             'updated_at' => Date::now()

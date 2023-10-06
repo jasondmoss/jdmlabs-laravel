@@ -26,6 +26,10 @@ class ImageEloquentModel extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'responsive_paths' => 'array'
+    ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -30,7 +30,7 @@ final class ClientFactory extends Factory
         $created = Date::today()->subDays(random_int(0, 365));
 
         return [
-            'id' => Str::ulid(),
+            'id' => (string)Str::ulid(),
             'name' => $name,
             'slug' => $slug,
             'itemprop' => ucfirst($faker->word()),

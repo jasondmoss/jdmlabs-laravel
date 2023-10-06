@@ -13,7 +13,7 @@ use Spatie\Sluggable\SlugOptions;
 use Symfony\Component\Uid\Ulid;
 use UnexpectedValueException;
 
-trait ModelExtended
+trait IsModel
 {
 
     /**

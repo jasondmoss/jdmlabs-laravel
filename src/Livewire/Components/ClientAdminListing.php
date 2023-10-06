@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
+namespace Aenginus\Livewire\Components;
 
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Shared\Enums\Promoted;

@@ -10,8 +10,8 @@ use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
 use Aenginus\Shared\Scopes\WhereRelatedScope;
-use Aenginus\Shared\Traits\MediaExtended;
-use Aenginus\Shared\Traits\ModelExtended;
+use Aenginus\Shared\Traits\HasImage;
+use Aenginus\Shared\Traits\IsModel;
 use Aenginus\Shared\Traits\Observable;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -29,8 +29,8 @@ class ProjectModel extends ProjectEloquentModel
     use Observable;
 
     /** -- Global Helpers */
-    use MediaExtended;
-    use ModelExtended;
+    use HasImage;
+    use IsModel;
 
     /** -- Global Scopes */
     use FindBySlugScope;
@@ -58,7 +58,7 @@ class ProjectModel extends ProjectEloquentModel
      */
     final public function getSlugOptions(): SlugOptions
     {
-        /** @see \Aenginus\Shared\Traits\ModelExtended */
+        /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions();
     }
 

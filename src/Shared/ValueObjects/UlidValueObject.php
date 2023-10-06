@@ -79,7 +79,8 @@ class UlidValueObject implements Stringable
      */
     final public function value(): string
     {
-        return Str::upper($this->value);
+       // return Str::upper($this->value);
+        return $this->value;
     }
 
 }

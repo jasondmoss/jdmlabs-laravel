@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Aenginus\Article\Application\Providers as Article;
 use Aenginus\Client\Application\Providers as Client;
-/*use Aenginus\Media\Application\Providers as Media;*/
+use Aenginus\Media\Application\Providers as Media;
 use Aenginus\Project\Application\Providers as Project;
 use Aenginus\Taxonomy\Application\Providers as Taxonomy;
 use Aenginus\User\Application\Providers as Fortify;
@@ -34,7 +34,7 @@ use Illuminate\Translation\TranslationServiceProvider;
 use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 use Intervention\Image\Facades\Image;
-use Intervention\Image\ImageServiceProvider as InterventionImageServiceProvider;
+use Intervention\Image\ImageServiceProvider;
 use Spatie\Html\Facades\Html;
 
 return [
@@ -83,7 +83,7 @@ return [
         /** -- Package Service Providers. */
 
         Fortify\FortifyServiceProvider::class,
-        InterventionImageServiceProvider::class,
+        ImageServiceProvider::class,
 
         /** -- Application Service Providers. */
 
@@ -104,7 +104,7 @@ return [
         Client\ClientEventServiceProvider::class,
         Client\ClientServiceProvider::class,
 
-        // Media\MediaServiceProvider::class,
+        Media\MediaServiceProvider::class,
 
         Project\ProjectAuthServiceProvider::class,
         Project\ProjectEventServiceProvider::class,
@@ -112,7 +112,7 @@ return [
 
         Taxonomy\CategoryAuthServiceProvider::class,
         Taxonomy\CategoryEventServiceProvider::class,
-        Taxonomy\CategoryServiceProvider::class,
+        Taxonomy\CategoryServiceProvider::class
 
     ],
 

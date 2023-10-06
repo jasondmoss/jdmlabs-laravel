@@ -8,7 +8,7 @@ use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
 use Aenginus\Shared\Scopes\WhereRelatedScope;
-use Aenginus\Shared\Traits\ModelExtended;
+use Aenginus\Shared\Traits\IsModel;
 use Aenginus\Shared\Traits\Observable;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory;
@@ -26,7 +26,7 @@ class CategoryModel extends CategoryEloquentModel
     use Observable;
 
     /** -- Global Helpers */
-    use ModelExtended;
+    use IsModel;
 
     /** -- Global Scopes */
     use FindBySlugScope;
@@ -49,7 +49,7 @@ class CategoryModel extends CategoryEloquentModel
      */
     final public function getSlugOptions(): SlugOptions
     {
-        /** @see \Aenginus\Shared\Traits\ModelExtended */
+        /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions('name');
     }
 

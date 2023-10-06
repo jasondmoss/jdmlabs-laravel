@@ -10,8 +10,8 @@ use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
 use Aenginus\Shared\Scopes\WhereRelatedScope;
-use Aenginus\Shared\Traits\MediaExtended;
-use Aenginus\Shared\Traits\ModelExtended;
+use Aenginus\Shared\Traits\HasImage;
+use Aenginus\Shared\Traits\IsModel;
 use Aenginus\Shared\Traits\Observable;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -24,13 +24,11 @@ class ArticleModel extends ArticleEloquentModel
 
     use HasEvents;
     use HasFactory;
+    use HasImage;
     use HasSlug;
     use HasUlids;
+    use IsModel;
     use Observable;
-
-    /** -- Global Helpers */
-    use MediaExtended;
-    use ModelExtended;
 
     /** -- Global Scopes */
     use FindBySlugScope;
@@ -61,7 +59,7 @@ class ArticleModel extends ArticleEloquentModel
      */
     final public function getSlugOptions(): SlugOptions
     {
-        /** @see \Aenginus\Shared\Traits\ModelExtended */
+        /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions();
     }
 

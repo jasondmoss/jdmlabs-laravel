@@ -47,11 +47,9 @@
                 SIGNATURE IMAGE
               -->
               <td class="block w-full md:table-cell md:w-10 py-2">
-                <figure class="">
-                  <a class="block" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
-                    {!! $article->getSignatureImage(); !!}
-                  </a>
-                </figure>
+                <a class="block" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit') }}">
+                  <x-shared.media.thumbnail :model=$article />
+                </a>
               </td>
               <!--
                 TITLE + ID + CATEGORY

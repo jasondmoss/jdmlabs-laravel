@@ -8,7 +8,15 @@
   <x-shared.session/>
 
   <article itemscope itemtype="https://schema.org/Article" itemid="{{ url('/article/' . $article->slug) }}" id="{{ $article->id }}" class="h-entry h-as-article card">
-    {!! $article->getSignatureImage() !!}
+
+    <br><br><br>
+
+    <x-shared.media.thumbnail :model=$article />
+
+    <br><br><br>
+
+    {{--{!! $article->getSignatureImage() !!}--}}
+
     <header class="entry--header">
       <h1>{{ $article->title }}</h1>
       <time>{{ Date::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d M Y') }}</time>
@@ -25,6 +33,6 @@
     <footer class="entry--footer"></footer>
   </article>
 
-  {{ dump($article) }}
+  {{--{{ dump($article) }}--}}
 
 </x-public.layout>
