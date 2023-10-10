@@ -52,13 +52,16 @@ class UpdateController extends Controller
         $articleInstance = $this->article->find($articleEntity->id);
         $article = $this->articleUseCase->update($articleInstance, $articleEntity);
 
-        // Signature image (single).
-        if ($request->hasFile('signature_image')) {
-            $this->imageUseCase->store(
-                $article,
-                (object) $request->signature_image
-            );
+        $requestImages = [];
+
+        // Signature image.
+        if ($request->file('signature_image') !== null) {
+            foreach ($request->signature_image as $signature_image) {
+                $requestImages[] = (object) $signature_image;
+            }
         }
+
+        $this->imageUseCase->store($article, $requestImages);
 
         return redirect()
             ->to($request->listing_page)

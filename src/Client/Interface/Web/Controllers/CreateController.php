@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Client\Interface\Web\Controllers;
 
+use Aenginus\Client\Domain\Models\ClientModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\View as ViewFacade;
@@ -16,7 +17,9 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        return ViewFacade::make('ClientAdmin::create');
+        $client = new ClientModel();
+
+        return ViewFacade::make('ClientAdmin::create', compact('client'));
     }
 
 }

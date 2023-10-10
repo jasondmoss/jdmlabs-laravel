@@ -9,7 +9,6 @@ use Aenginus\Shared\Scopes\FindBySlugScope;
 use Aenginus\Shared\Scopes\WherePromotedScope;
 use Aenginus\Shared\Scopes\WherePublishedScope;
 use Aenginus\Shared\Scopes\WhereRelatedScope;
-use Aenginus\Shared\Traits\HasImage;
 use Aenginus\Shared\Traits\IsModel;
 use Aenginus\Shared\Traits\Observable;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
@@ -22,7 +21,6 @@ class ImageModel extends ImageEloquentModel
     use Observable;
 
     /** -- Global Helpers */
-    use HasImage;
     use IsModel;
 
     /** -- Global Scopes */

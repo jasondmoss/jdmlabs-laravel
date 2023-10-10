@@ -12,6 +12,7 @@ use Aenginus\Shared\Traits\IsModel;
 use Aenginus\Shared\Traits\Observable;
 use Aenginus\Taxonomy\Infrastructure\EloquentModels\CategoryEloquentModel;
 use Aenginus\Taxonomy\Infrastructure\Factories\CategoryFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Sluggable\HasSlug;
@@ -33,6 +34,20 @@ class CategoryModel extends CategoryEloquentModel
     use WherePromotedScope;
     use WherePublishedScope;
     use WhereRelatedScope;
+
+
+    /**
+     * @return void
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::addGlobalScope(
+            'order',
+            static fn (Builder $builder) => $builder->orderBy('name', 'asc')
+        );
+    }
 
 
     /**

@@ -14,6 +14,8 @@ final readonly class CategoryEntity
 
     public ?string $name;
 
+    public ?string $parent_id;
+
     public string $user_id;
 
 
@@ -25,7 +27,13 @@ final readonly class CategoryEntity
         $this->id = ! empty($validatedRequest->id)
             ? (new UlidValueObject($validatedRequest->id))->value()
             : null;
+
+        $this->parent_id =  ! empty($validatedRequest->parent_id)
+            ? (new UlidValueObject($validatedRequest->parent_id))->value()
+            : null;
+
         $this->name = (new StringValueObject($validatedRequest->name))->value();
+
         $this->user_id = (new UlidValueObject($validatedRequest->user_id))->value();
     }
 

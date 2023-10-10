@@ -16,6 +16,7 @@ class CreateSubmissionRules extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'parent_id' => 'nullable|ulid',
             'user_id' => 'required|ulid'
         ];
     }

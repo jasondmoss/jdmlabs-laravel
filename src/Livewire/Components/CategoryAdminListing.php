@@ -33,10 +33,10 @@ final class CategoryAdminListing extends Component
      */
     public function render(): View
     {
-        $categories = CategoryModel::where('name', 'LIKE', '%' . $this->query . '%')
-            ->withCount('articles', 'projects')
+        $categories = CategoryModel::where('parent_id', null)
             ->orderBy('name')
-            ->paginate(50);
+            ->withCount('articles', 'projects')
+            ->get();
 
         return view('aenginus.taxonomy.category.list', compact('categories'));
     }

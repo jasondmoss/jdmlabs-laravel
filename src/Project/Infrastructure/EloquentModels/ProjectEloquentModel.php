@@ -53,7 +53,8 @@ class ProjectEloquentModel extends Model
 
     protected $with = [
         'category',
-        'image'
+        'image',
+        'images'
     ];
 
 
@@ -96,9 +97,9 @@ class ProjectEloquentModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    /*public function images(): MorphToMany
+    public function images(): MorphToMany
     {
-        return $this->MorphToMany(ImageModel::class, 'imageable');
-    }*/
+        return $this->MorphToMany(ImageModel::class, 'imageables');
+    }
 
 }

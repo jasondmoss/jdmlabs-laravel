@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('images', static function (Blueprint $table) {
             $table->ulid('id')->primary();
 
-            $table->string('collection')->default('original');
+            // $table->string('collection')->default('original');
             $table->string('filename');
-            $table->string('base_path');
-            $table->json('responsive_paths');
+            $table->string('filepath');
+            $table->json('responsive');
             $table->string('width');
             $table->string('height');
             $table->string('label')->nullable();
@@ -30,6 +30,12 @@ return new class extends Migration
 
             $table->ulid('imageable_id');
             $table->string('imageable_type');
+
+            $table->ulid('category_id')->nullable();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('set null');
 
             $table->ulid('user_id');
             $table->foreign('user_id')

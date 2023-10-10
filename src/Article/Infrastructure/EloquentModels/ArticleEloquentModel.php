@@ -48,7 +48,7 @@ class ArticleEloquentModel extends Model
     ];
 
     protected $with = [
-        'category',
+        /*'category',*/ // Times out DB  :/
         'image'
     ];
 

@@ -27,7 +27,7 @@
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -61,10 +61,10 @@
 
       {{ html()->hidden('logo_image[collection]', 'logo') }}
 
-      <div class="grid items-start gap-5">
+      <div class="form-image grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
-          {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-gray-100') }}
+          {{ html()->file('logo_image[file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
@@ -83,7 +83,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/logo.png') }}" alt="">
+          <x-shared.media.preview :model=$client context="logo" />
         </figure>
       </div>
     </fieldset>
@@ -91,7 +91,7 @@
 
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
-      <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
         <div class="flex items-center justify-between">
@@ -113,7 +113,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
+      <fieldset class="form-actions my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">

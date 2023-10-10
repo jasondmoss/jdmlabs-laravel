@@ -44,7 +44,7 @@
         CONTENT
         ////////////////////////////////////////////////////////////////////////
     -->
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -93,7 +93,7 @@
         TAXONOMY
         ////////////////////////////////////////////////////////////////////////
     -->
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-taxonomy flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Taxonomy') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -106,34 +106,34 @@
         SIGNATURE IMAGE
         ////////////////////////////////////////////////////////////////////////
     -->
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
-      {{ html()->hidden('signature_image[collection]', 'signature') }}
+      {{ html()->hidden('signature_image[0][collection]', 'signature') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-gray-100') }}
+          {{ html()->label('Image')->for('signature_image[0][file]')->class('sr-only') }}
+          {{ html()->file('signature_image[0][file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[label]', old('signature_image[label]', $project->image->label ?? null)) }}
+          {{ html()->label('Name')->for('signature_image[0][label]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][label]', old('signature_image[0][label]', $project->image->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[alt]', old('signature_image[alt]', $project->image->alt ?? null)) }}
+          {{ html()->label('Alt Description')->for('signature_image[0][alt]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][alt]', old('signature_image[0][alt]', $project->image->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[caption]', old('signature_image[caption]', $project->image->caption ?? null)) }}
+          {{ html()->label('Caption')->for('signature_image[0][caption]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][caption]', old('signature_image[0][caption]', $project->image->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {!! $project->getSignatureImage() !!}
+          <x-shared.media.preview :model=$project context="signature" />
         </figure>
       </div>
     </fieldset>
@@ -142,7 +142,7 @@
         SHOWCASE IMAGES
         ////////////////////////////////////////////////////////////////////////
     -->
-    <fieldset class="showcase-images flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-images flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Showcase Images') }}</legend>
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
@@ -151,12 +151,13 @@
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}
+            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png') }}
           </div>
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Name')->for('showcase_images[0][label]') }}
-            {{ html()->text('showcase_images[0][label]')->class('label')->forgetAttribute('id') }}
+            {{--{{ html()->text('showcase_images[0][label]')->class('label')->forgetAttribute('id') }}--}}
+            {{ html()->text('showcase_images[0][label]', old('showcase_images[0][label]', $project->image->label ?? null)) }}
           </div>
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
@@ -187,7 +188,7 @@
   -->
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
-      <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
         <div class="flex items-center justify-between">
@@ -218,7 +219,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
+      <fieldset class="form-actions my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">

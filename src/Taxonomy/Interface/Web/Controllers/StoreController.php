@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Taxonomy\Interface\Web\Controllers;
 
 use Aenginus\Taxonomy\Application\UseCases\StoreUseCase;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 use Aenginus\Taxonomy\Interface\Web\Requests\CreateRequest;
 use App\Controller;
@@ -34,6 +35,10 @@ class StoreController extends Controller
     {
         $validated = (object)$request->validated();
         $categoryEntity = new CategoryEntity($validated);
+
+        $categories = CategoryModel::where('parent_id', null)
+            ->orderby('name', 'asc')
+            ->get();
 
         $this->categoryUseCase->store($categoryEntity);
 

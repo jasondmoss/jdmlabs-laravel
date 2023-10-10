@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Aenginus\Media\Application\Respositories\Eloquent;
 
 use Aenginus\Media\Domain\Contracts\StoreSingleImageContract;
-use Aenginus\Media\Domain\Models\ImageModel;
+use Illuminate\Database\Eloquent\Collection;
 
 class StoreSingleImageRepository implements StoreSingleImageContract
 {
 
     /**
-     * @param \Aenginus\Media\Domain\Models\ImageModel $image
+     * @param \Illuminate\Database\Eloquent\Collection $collection
      *
      * @return void
      */
-    public function save(ImageModel $image): void
+    public function save(Collection $collection): void
     {
-        $image->save();
+        $collection->map(static fn ($image) => $image->save());
     }
 
 }

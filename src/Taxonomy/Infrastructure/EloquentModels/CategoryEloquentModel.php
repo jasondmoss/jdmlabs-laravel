@@ -6,6 +6,7 @@ namespace Aenginus\Taxonomy\Infrastructure\EloquentModels;
 
 use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,7 +20,16 @@ class CategoryEloquentModel extends Model
     protected $fillable = [
         'name',
         'slug',
+        'parent_id',
+        'created_at',
+        'updated_at',
         'user_id'
+    ];
+
+    protected $with = [
+        'subcategory',
+        'articles',
+        'projects'
     ];
 
 
@@ -29,6 +39,24 @@ class CategoryEloquentModel extends Model
     final public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class, 'user_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(CategoryModel::class, 'parent_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subcategory(): HasMany
+    {
+        return $this->hasMany(CategoryModel::class, 'parent_id');
     }
 
 

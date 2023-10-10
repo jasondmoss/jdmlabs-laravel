@@ -52,13 +52,23 @@ class UpdateController extends Controller
         $projectInstance = $this->project->find($projectEntity->id);
         $project = $this->projectUseCase->update($projectInstance, $projectEntity);
 
-        // Signature image (single).
-        if ($request->hasFile('signature_image')) {
-            $this->imageUseCase->store(
-                $project,
-                (object) $request->signature_image
-            );
+        $requestImages = [];
+
+        // Signature image.
+        if ($request->file('signature_image') !== null) {
+            foreach ($request->signature_image as $signature_image) {
+                $requestImages[] = (object) $signature_image;
+            }
         }
+
+        // Showcase images.
+        if ($request->file('showcase_images') !== null) {
+            foreach ($request->showcase_images as $showcase_images) {
+                $requestImages[] = (object) $showcase_images;
+            }
+        }
+
+        $this->imageUseCase->store($project, $requestImages);
 
         return redirect()
             ->to($request->listing_page)

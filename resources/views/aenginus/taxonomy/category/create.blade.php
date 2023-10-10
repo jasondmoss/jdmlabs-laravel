@@ -1,9 +1,4 @@
-<x-aenginus.layout
-  title="Create New Category"
-  page=" taxonomy category"
-  context=" create"
-  livewire="true"
->
+<x-aenginus.layout title="Create New Category" page=" taxonomy category" context=" create" livewire="true">
   <!-- create.blade -->
 
   <x-shared.session/>
@@ -29,6 +24,24 @@
         {{ html()->label('Name')->for('name')->class('font-medium text-sm') }}
         {{ html()->text('name')->required() }}
         <p><span class="font-bold mr-5">{{ __('slug') }}:</span> ...</p>
+      </div>
+
+      <div class="flex flex-col gap-y-3 mt-10">
+        {{ html()->label('Parent Category')->for('parent_id')->class('font-medium text-sm') }}
+        <select name="parent_id" class="form-control" type="text">
+          <option value="">{{ __('Choose a parent category') }}</option>
+          @if ($categories->count())
+            @foreach($categories as $category)
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+              @if ($category->subcategory->count())
+                @include('aenginus.taxonomy.category.parts.option--subcategory', [
+                  'subcategories' => $category->subcategory
+                ])
+              @endif
+            @endforeach
+          @endif
+        </select>
       </div>
     </fieldset>
   </div>

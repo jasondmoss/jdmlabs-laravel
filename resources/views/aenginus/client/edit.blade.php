@@ -42,7 +42,7 @@
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -77,7 +77,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Company Logo') }}</legend>
 
       {{ html()->hidden('logo_image[collection]', 'logo') }}
@@ -85,41 +85,26 @@
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
-          {{ html()->file('logo_image[file]')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-gray-100') }}
+          {{ html()->file('logo_image[file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('logo_image[label]')->class('font-medium text-sm') }}
-          {{--@if ($client->image !== null)
-            {{ html()->text('logo_image[label]', old('logo_image[label]', $logo->custom_properties['label'])) }}
-          @else
-            {{ html()->text('logo_image[label]') }}
-          @endif--}}
           {{ html()->text('logo_image[label]', old('logo_image[label]', $client->image->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('logo_image[alt]')->class('font-medium text-sm') }}
-          {{--@if ($client->image !== null)
-            {{ html()->text('logo_image[alt]', old('logo_image[alt]', $logo->custom_properties['alt'])) }}
-          @else
-            {{ html()->text('logo_image[alt]') }}
-          @endif--}}
           {{ html()->text('logo_image[alt]', old('logo_image[alt]', $client->image->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('logo_image[caption]')->class('font-medium text-sm') }}
-          {{--@if ($client->image !== null)
-            {{ html()->text('logo_image[caption]', old('logo_image[caption]', $logo->custom_properties['caption'])) }}
-          @else
-            {{ html()->text('logo_image[caption]') }}
-          @endif--}}
           {{ html()->text('logo_image[caption]', old('logo_image[caption]', $client->image->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          {!! $client->getSignatureImage() !!}
+          <x-shared.media.preview :model=$client />
         </figure>
       </div>
     </fieldset>
@@ -130,12 +115,13 @@
     --}}
     @if (count($client->projects) > 0)
 <table class="flex flex-col gap-y-4 max-w-sm mx-auto mt-10 mb-0 md:table md:max-w-full md:m-0 lg:mt-4 text-left text-sm font-medium">
+  <summary class="list-none mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Client Projects') }}</summary>
   <tbody class="flex flex-col gap-y-10 md:table-row-group w-full">
     @foreach ($client->projects as $project)
       @php $permalink = url('/project/' . $project->slug); @endphp
 
       <!-- Item -->
-      <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50">
+      <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
         <td class="block w-full md:table-cell md:w-20 py-2">
           <figure class="">
             <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
@@ -183,7 +169,7 @@
 
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
-      <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
         <div class="flex items-center justify-between">
@@ -207,7 +193,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
+      <fieldset class="form-actions my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">

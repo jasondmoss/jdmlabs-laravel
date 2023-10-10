@@ -27,7 +27,7 @@
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -70,7 +70,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-taxonomy flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Taxonomy') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -79,39 +79,39 @@
       </div>
     </fieldset>
 
-    <fieldset class="signature-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
-      {{ html()->hidden('signature_image[collection]', 'signature') }}
+      {{ html()->hidden('signature_image[0][collection]', 'signature') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->class('file py-2 px-4 bg-gray-100') }}
+          {{ html()->label('Image')->for('signature_image[0][file]')->class('sr-only') }}
+          {{ html()->file('signature_image[0][file]')->accept('jpg,png')->class('file py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[label]') }}
+          {{ html()->label('Name')->for('signature_image[0][label]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][label]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[alt]') }}
+          {{ html()->label('Alt Description')->for('signature_image[0][alt]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][alt]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[caption]') }}
+          {{ html()->label('Caption')->for('signature_image[0][caption]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[0][caption]') }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          <x-shared.media.preview :model=$project context="signature" />
         </figure>
       </div>
     </fieldset>
 
-    <fieldset class="showcase-images flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-images flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Showcase Images') }}</legend>
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
@@ -120,7 +120,7 @@
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png,svg') }}
+            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png') }}
           </div>
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
@@ -139,7 +139,7 @@
           </div>
 
           <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-            <img class="image-previewer" src="{{ asset('images/placeholder/showcase.png') }}" alt="">
+            <x-shared.media.preview :model=$project context="showcase" />
           </figure>
         </div>
       </div>
@@ -152,7 +152,7 @@
 
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
-      <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
         <div class="flex items-center justify-between">
@@ -183,7 +183,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
+      <fieldset class="form-actions my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">

@@ -5,9 +5,19 @@ import { newWindow } from "./modules/new-window.js";
 
 import.meta.glob([ "../fonts/**", "../images/**" ]);
 
-// Initialize Trix Editor with our custom functionality.
+// Initialize Trix Editor with customizations.
 updateTrixToolbar();
 replaceDivWithParagraph();
+
+
+/**
+ * Disappear messages.
+ */
+document.querySelectorAll("figure.alert").forEach((alert) => setTimeout(() => {
+    alert.style.opacity = 0;
+
+    setTimeout(() => alert.remove(), 500);
+}, 3000));
 
 
 /**
@@ -31,22 +41,37 @@ if (exists(listingHeader)) {
 /**
  * Temporary image preview.
  */
-const single = document.querySelector(".container--images.single .wrapper");
-if (exists(single)) {
-    const input = single.querySelector(".file");
-    input.addEventListener("change", () => {
-        const file = input.files;
+let imagePreviewers = document.querySelectorAll("body.admin img.image-display");
+if (exists(imagePreviewers)) {
+    const handlePreview = (input, preview) => {
+        for (let i = 0; i < input.files.length; i++) {
+            const file = input.files[i];
 
-        if (file) {
-            const fileReader = new FileReader();
-            const preview = single.querySelector(".image-previewer");
+            if (! file.type.startsWith("image/")) {
+                continue;
+            }
 
-            fileReader.onload = (event) => {
-                preview.setAttribute("src", event.target.result);
+            preview.file = file;
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                preview.src = event.target.result;
             };
 
-            fileReader.readAsDataURL(file[0]);
+            reader.readAsDataURL(file);
         }
+    };
+
+    imagePreviewers.forEach((imagePreview, index) => {
+        let fieldset = imagePreview.closest(".form-image");
+        let fileInput = fieldset.querySelector(".file-uploader");
+
+        fileInput.addEventListener(
+            "change",
+            () => handlePreview(fileInput, imagePreview),
+            false
+        );
     });
 }
 
@@ -54,9 +79,10 @@ if (exists(single)) {
 /**
  * Multi-image replicator.
  */
-const repeatable = document.querySelector(".showcase-images .repeatable-wrapper");
+const repeatable = document.querySelector(".form-images .repeatable-wrapper");
 if (exists(repeatable)) {
     const repeater = repeatable.parentElement.querySelector("button.repeater");
+
     let fieldsetCount = 0;
 
     repeater.addEventListener("click", (event) => {

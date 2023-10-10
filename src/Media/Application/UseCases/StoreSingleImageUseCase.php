@@ -7,6 +7,7 @@ namespace Aenginus\Media\Application\UseCases;
 use Aenginus\Media\Application\Respositories\Eloquent\StoreSingleImageRepository;
 use Aenginus\Media\Domain\Models\ImageModel;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -29,31 +30,36 @@ class StoreSingleImageUseCase
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @param object $requestImage
+     * @param array $requestedImages
      *
      * @return void
      */
-    public function store(Model $model, object $requestImage): void
+    public function store(Model $model, array $requestedImages): void
     {
-        $imageEntity = new ImageEntity($requestImage);
+        $imagesCollection = new Collection();
 
-        $storePath = 'images/' . $model->getTable() . '/' . $model->id;
-        $filename = $imageEntity->file->getClientOriginalName();
+        foreach ($requestedImages as $requestedImage) {
+            $imageEntity = new ImageEntity($requestedImage);
 
-        Storage::disk('public')->put(
-            $storePath . '/' . $filename,
-            fopen($imageEntity->file->getRealPath(), 'rb+')
-        );
+            $storePath = 'images/' . $model->getTable() . '/' . $model->id
+                . '/' . $imageEntity->collection;
+            $filename = $imageEntity->file->getClientOriginalName();
 
-        // Resizing.
-        $folders = collect(config('jdmlabs.base.images'));
-        $responsive_paths = [];
+            // Store the original uploaded file.
+            Storage::disk('public')->put(
+                $storePath . '/' . $filename,
+                fopen($imageEntity->file->getRealPath(), 'rb+')
+            );
 
-        foreach ($folders as $groups) {
-            foreach ($groups as $folder => $size) {
+            // Resizing.
+            $folders = collect(config('jdmlabs.base.images'));
+            $responsive_paths = [];
+
+            foreach ($folders as $folder => $constraint) {
+                // Store each resized image into it's own folder.
                 $base_path = "{$storePath}/{$folder}/{$filename}";
 
-                if (! in_array($folder, [ 'thumb', 'preview' ])) {
+                if (! in_array($folder, ['thumbnail', 'preview'])) {
                     $responsive_paths[] = [
                         $folder => $base_path
                     ];
@@ -61,34 +67,38 @@ class StoreSingleImageUseCase
 
                 $rImg = Image::make($imageEntity->file)
                     ->fit(
-                        $size[1],
-                        $size[2],
-                        static fn ($constraint) => $constraint->aspectRatio()
+                        $constraint[1], // width
+                        $constraint[2], // height
+                        static fn($constraint) => $constraint->aspectRatio()
                     )
                     ->stream('png');
 
                 Storage::disk('public')->put($base_path, $rImg);
             }
+
+            // Eloquent set-up.
+            $image = new ImageModel();
+            $image->id = (string)Str::ulid();
+            $image->collection = $imageEntity->collection;
+            $image->filename = $filename;
+            $image->filepath = $storePath;
+            $image->responsive = $responsive_paths;
+            $image->width = $imageEntity->width;
+            $image->height = $imageEntity->height;
+            $image->label = $imageEntity->label;
+            $image->alt = $imageEntity->alt;
+            $image->caption = $imageEntity->caption;
+            $image->user_id = $model->user_id;
+
+            // Associate image to requesting entity.
+            $image->imageable()->associate($model);
+
+            // Collect.
+            $imagesCollection->push($image);
         }
 
-        // Eloquent set-up.
-        $image = new ImageModel();
-        $image->id = (string)Str::ulid();
-        $image->collection = $imageEntity->collection;
-        $image->filename = $filename;
-        $image->base_path = $storePath;
-        $image->responsive_paths = $responsive_paths;
-        $image->width = $imageEntity->width;
-        $image->height = $imageEntity->height;
-        $image->label = $imageEntity->label;
-        $image->alt = $imageEntity->alt;
-        $image->caption = $imageEntity->caption;
-        $image->user_id = $model->user_id;
-
-        // Associate image to requesting entity.
-        $image->imageable()->associate($model);
-
-        $this->repository->save($image);
+        // Send to repository.
+        $this->repository->save($imagesCollection);
     }
 
 }

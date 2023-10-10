@@ -17,7 +17,8 @@ class UpdateSubmissionRules extends FormRequest
         return [
             'id' => 'required|ulid',
             'user_id' => 'required|ulid',
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'parent_id' => 'nullable|ulid'
         ];
     }
 

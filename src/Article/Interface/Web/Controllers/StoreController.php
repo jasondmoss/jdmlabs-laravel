@@ -47,10 +47,16 @@ class StoreController extends Controller
         $articleEntity = new ArticleEntity($validated);
         $article = $this->articleUseCase->store($articleEntity);
 
+        $requestImages = [];
+
         // Signature image (single).
-        if ($request->hasFile('signature_image')) {
-             $this->imageUseCase->store($article, (object) $request->signature_image);
+        if ($request->file('signature_image') !== null) {
+            foreach ($request->signature_image as $signature_image) {
+                $requestImages[] = (object) $signature_image;
+            }
         }
+
+        $this->imageUseCase->store($article, $requestImages);
 
         return redirect()
             ->action(IndexController::class)

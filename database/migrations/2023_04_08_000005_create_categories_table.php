@@ -14,6 +14,7 @@ return new class extends Migration {
         Schema::dropIfExists('categories');
         Schema::create('categories', static function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->ulid('parent_id')->nullable();
 
             $table->string('name');
             $table->string('slug')->unique();

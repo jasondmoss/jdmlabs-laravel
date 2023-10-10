@@ -38,15 +38,9 @@ class EditController extends Controller
         $article->entityDates();
         $article->generatePermalink('article');
 
-        $categories = CategoryModel::get()->pluck('name', 'id');
+        $categories = CategoryModel::where('parent_id', null)->orderBy('name')->get();
 
-        return ViewFacade::make(
-            'ArticleAdmin::edit',
-            compact(
-                'article',
-                'categories'
-            )
-        );
+        return ViewFacade::make('ArticleAdmin::edit', compact('article', 'categories'));
     }
 
 }

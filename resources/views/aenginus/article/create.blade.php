@@ -27,7 +27,7 @@
   </header>
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -53,7 +53,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-taxonomy flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Taxonomy') }}</legend>
 
       <div class="flex flex-col gap-y-3">
@@ -62,34 +62,34 @@
       </div>
     </fieldset>
 
-    <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+    <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
-      {{ html()->hidden('signature_image[collection]', 'signature') }}
+      {{ html()->hidden('signature_image[][collection]', 'signature') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Image')->for('signature_image[file]')->class('sr-only') }}
-          {{ html()->file('signature_image[file]')->accept('jpg,png,svg')->class('file-uploader py-2 px-4 bg-gray-100') }}
+          {{ html()->label('Image')->for('signature_image[][file]')->class('sr-only') }}
+          {{ html()->file('signature_image[][file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Name')->for('signature_image[label]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[label]') }}
+          {{ html()->label('Name')->for('signature_image[][label]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[][label]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Alt Description')->for('signature_image[alt]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[alt]') }}
+          {{ html()->label('Alt Description')->for('signature_image[][alt]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[][alt]') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Caption')->for('signature_image[caption]')->class('font-medium text-sm') }}
-          {{ html()->text('signature_image[caption]') }}
+          {{ html()->label('Caption')->for('signature_image[][caption]')->class('font-medium text-sm') }}
+          {{ html()->text('signature_image[][caption]') }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <img class="image-previewer" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+          <x-shared.media.preview :model=$article context="signature" />
         </figure>
       </div>
     </fieldset>
@@ -97,7 +97,7 @@
 
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
-      <fieldset class="flex flex-col gap-y-5 px-2 border-t border-gray-300">
+      <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
         <div class="flex items-center justify-between">
@@ -119,7 +119,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-10 px-2 py-10 border-t border-gray-300">
+      <fieldset class="form-actions my-10 px-2 py-10 border-t border-gray-300">
         <legend class="sr-only">{{ __('Form Actions') }}</legend>
 
         <div class="flex justify-end">
@@ -128,15 +128,6 @@
       </fieldset>
     </div>
   </aside>
-
-  {{-- <footer class="basis-full mt-10 pl-10">
-    <a rel="prev" class="flex gap-x-3 text-blue-900" href="{{ URL::previous() }}">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-blue-700">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"/>
-      </svg>
-      {{ __('Back to last page') }}
-    </a>
-  </footer> --}}
 
   {{ html()->form()->close() }}
 </x-aenginus.layout>

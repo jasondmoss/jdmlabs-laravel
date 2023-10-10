@@ -11,17 +11,14 @@ return [
     'contact_email' => 'work@jdmlabs.com',
 
     'images' => [
-        'defaults' => [
-            'thumb' => [ null, 100, 100 ],
-            'preview' => [ null, 300, 300 ],
-        ],
+        'thumbnail' => [ null, 100, 100 ],
+        'preview' => [ null, 400, 400 ],
 
-        'responsive' => [
-            'mobile' => [ 480, 640, 500 ],
-            'mobilelg' => [ 640, 760, 500 ],
-            'tablet' => [ 760, 1024, 800 ],
-            'desktop' => [ 1024, 1200, 800 ],
-            'desktop_lg' => [ 1200, 1500, 1000 ]
-        ]
+        // Responsive
+        'mobile_classic' => [ 480, 640, 500 ],
+        'mobile_modern' => [ 640, 760, 500 ],
+        'tablet' => [ 760, 1024, 800 ],
+        'desktop' => [ 1024, 1200, 800 ],
+        'desktop_large' => [ 1200, 1500, 1000 ]
     ]
 ];

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aenginus\Project\Interface\Web\Controllers;
 
 use Aenginus\Client\Domain\Models\ClientModel;
+use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use App\Controller;
 use Illuminate\Contracts\View\View;
@@ -18,12 +19,13 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
+        $project = new ProjectModel();
         $clients = ClientModel::get()->pluck('name', 'id');
         $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
             'ProjectAdmin::create',
-            compact('clients', 'categories')
+            compact('project', 'clients', 'categories')
         );
     }
 

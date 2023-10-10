@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Infrastructure\EloquentModels;
 
+use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,19 +16,28 @@ class ImageEloquentModel extends Model
     protected $table = 'images';
 
     protected $fillable = [
-        'hash',
-        'path',
         'collection',
+        'filename',
+        'filepath',
+        'responsive',
+        'width',
+        'height',
         'label',
-        'caption',
         'alt',
+        'caption',
         'created_at',
         'updated_at',
+        'imageable_id',
+        'imageable_type',
         'user_id'
     ];
 
     protected $casts = [
-        'responsive_paths' => 'array'
+        'responsive' => 'array'
+    ];
+
+    protected $with = [
+        'category'
     ];
 
 
@@ -41,9 +51,18 @@ class ImageEloquentModel extends Model
 
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    final public function category(): BelongsTo
+    {
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function imageable(): MorphTo
+    final public function imageable(): MorphTo
     {
         return $this->morphTo();
     }
