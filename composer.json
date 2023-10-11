@@ -11,6 +11,7 @@
     "php": "^8.2",
     "ext-fileinfo": "*",
     "ext-pdo": "*",
+    "free2one/laravel-php-accessor": "~0.3",
     "free2one/php-accessor": "~0.4",
     "guzzlehttp/guzzle": "^7.2",
     "intervention/image": "^2.7",

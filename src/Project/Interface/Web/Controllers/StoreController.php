@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Media\Application\UseCases\StoreSingleImageUseCase;
+use Aenginus\Media\Application\UseCases\StoreImageUseCase;
 use Aenginus\Project\Application\UseCases\StoreUseCase as ProjectStoreCase;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
 use Aenginus\Project\Interface\Web\Requests\CreateRequest;
@@ -16,16 +16,16 @@ class StoreController extends Controller
 
     protected ProjectStoreCase $projectUseCase;
 
-    protected StoreSingleImageUseCase $imageUseCase;
+    protected StoreImageUseCase $imageUseCase;
 
 
     /**
      * @param \Aenginus\Project\Application\UseCases\StoreUseCase $projectUseCase
-     * @param \Aenginus\Media\Application\UseCases\StoreSingleImageUseCase $imageUseCase
+     * @param \Aenginus\Media\Application\UseCases\StoreImageUseCase $imageUseCase
      */
     public function __construct(
         ProjectStoreCase $projectUseCase,
-        StoreSingleImageUseCase $imageUseCase
+        StoreImageUseCase $imageUseCase
     ) {
         $this->projectUseCase = $projectUseCase;
         $this->imageUseCase = $imageUseCase;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Application\Respositories\Eloquent;
 
-use Aenginus\Media\Domain\Contracts\StoreSingleImageContract;
+use Aenginus\Media\Domain\Contracts\StoreImageContract;
 use Illuminate\Database\Eloquent\Collection;
 
-class StoreSingleImageRepository implements StoreSingleImageContract
+class StoreImageRepository implements StoreImageContract
 {
 
     /**

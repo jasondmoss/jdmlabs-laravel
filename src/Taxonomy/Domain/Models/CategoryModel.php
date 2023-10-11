@@ -24,10 +24,8 @@ class CategoryModel extends CategoryEloquentModel
     use HasFactory;
     use HasSlug;
     use HasUlids;
-    use Observable;
-
-    /** -- Global Helpers */
     use IsModel;
+    use Observable;
 
     /** -- Global Scopes */
     use FindBySlugScope;

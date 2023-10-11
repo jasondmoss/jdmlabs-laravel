@@ -48,7 +48,7 @@
             <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-                  <x-shared.media.thumbnail :model=$project />
+                  <x-shared.media.signature.thumbnail :model="$project" :image="$project->signature" />
                 </a>
               </td>
               <td class="block md:table-cell md:align-top md:px-6 py-2"><div class="flex flex-col gap-y-2">
@@ -106,7 +106,7 @@
                   x-on:keydown.escape.prevent.stop="close($refs.button)"
                   x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
                   x-id="['dropdown-button']"
-                  class="relative float-right mt-10"
+                  class="relative float-right mt-6"
               >
                 <div class="inline-flex overflow-hidden rounded-sm divide-x divide-amber-300 border border-amber-300 shadow-md shadow-amber-50">
                   <a class="flex items-center space-x-2 px-4 py-1 bg-amber-100 hover:bg-amber-300 text-center text-sm text-amber-600 hover:text-amber-800"

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Aenginus\Client\Infrastructure\EloquentModels;
 
 use Aenginus\Media\Domain\Models\ImageModel;
+use Aenginus\Media\Domain\Models\LogoModel;
+use Aenginus\Media\Infrastructure\EloquentModels\ImageEloquentModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
@@ -20,13 +22,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class ClientEloquentModel extends Model
 {
-
-    /**
-     * Generated 'permalink' per each client.
-     *
-     * @var string
-     */
-    public string $permalink;
 
     protected $table = 'clients';
 
@@ -52,8 +47,8 @@ class ClientEloquentModel extends Model
     ];
 
     protected $with = [
-        'projects',
-        'image'
+        /*'projects',*/
+        'logo'
     ];
 
 
@@ -78,9 +73,10 @@ class ClientEloquentModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    final public function image(): morphOne
+    final public function logo(): morphOne
     {
-        return $this->morphOne(ImageModel::class, 'imageable');
+        return $this->morphOne(ImageModel::class, 'imageable')
+            ->where('type', ImageEloquentModel::LOGO);
     }
 
 }

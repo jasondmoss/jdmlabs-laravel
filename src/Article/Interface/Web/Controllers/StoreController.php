@@ -7,7 +7,7 @@ namespace Aenginus\Article\Interface\Web\Controllers;
 use Aenginus\Article\Application\UseCases\StoreUseCase as ArticleStoreUseCase;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\CreateRequest;
-use Aenginus\Media\Application\UseCases\StoreSingleImageUseCase;
+use Aenginus\Media\Application\UseCases\StoreImageUseCase;
 use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -19,16 +19,16 @@ class StoreController extends Controller
 
     protected ArticleStoreUseCase $articleUseCase;
 
-    protected StoreSingleImageUseCase $imageUseCase;
+    protected StoreImageUseCase $imageUseCase;
 
 
     /**
      * @param \Aenginus\Article\Application\UseCases\StoreUseCase $articleUseCase
-     * @param \Aenginus\Media\Application\UseCases\StoreSingleImageUseCase $imageUseCase
+     * @param \Aenginus\Media\Application\UseCases\StoreImageUseCase $imageUseCase
      */
     public function __construct(
         ArticleStoreUseCase $articleUseCase,
-        StoreSingleImageUseCase $imageUseCase
+        StoreImageUseCase $imageUseCase
     ) {
         $this->articleUseCase = $articleUseCase;
         $this->imageUseCase = $imageUseCase;
@@ -49,7 +49,7 @@ class StoreController extends Controller
 
         $requestImages = [];
 
-        // Signature image (single).
+        // Signature image.
         if ($request->file('signature_image') !== null) {
             foreach ($request->signature_image as $signature_image) {
                 $requestImages[] = (object) $signature_image;

@@ -24,19 +24,24 @@ class ClientModel extends ClientEloquentModel
 
     use HasEvents;
     use HasFactory;
+    use HasImage;
     use HasSlug;
     use HasUlids;
-    use Observable;
-
-    /** -- Global Helpers */
-    use HasImage;
     use IsModel;
+    use Observable;
 
     /** -- Global Scopes */
     use FindBySlugScope;
     use WherePromotedScope;
     use WherePublishedScope;
     use WhereRelatedScope;
+
+    /**
+     * Generated 'permalink' per client.
+     *
+     * @var string
+     */
+    public string $permalink;
 
 
     /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e29bf34a174ce0698bf8caeb04551dde",
+    "content-hash": "c8599b1db6e4821d7802284c2e62412a",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -535,6 +535,57 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "free2one/laravel-php-accessor",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kkguan/laravel-php-accessor.git",
+                "reference": "7a7800cd818df21cf3e078344c6380738143a7d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kkguan/laravel-php-accessor/zipball/7a7800cd818df21cf3e078344c6380738143a7d5",
+                "reference": "7a7800cd818df21cf3e078344c6380738143a7d5",
+                "shasum": ""
+            },
+            "require": {
+                "free2one/php-accessor": "~0.4",
+                "illuminate/console": "^9.0|^10.0",
+                "illuminate/support": "^9.0|^10.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\PhpAccessor\\PhpAccessorProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\PhpAccessor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP Accessor SDK for Laravel framework",
+            "keywords": [
+                "laravel",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/kkguan/laravel-php-accessor/issues",
+                "source": "https://github.com/kkguan/laravel-php-accessor/tree/0.3.0"
+            },
+            "time": "2023-10-10T10:38:38+00:00"
         },
         {
             "name": "free2one/php-accessor",
@@ -1207,16 +1258,16 @@
         },
         {
             "name": "laravel/folio",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/folio.git",
-                "reference": "3070c3b7755cce732514cb573a5f79927e5585bc"
+                "reference": "bba13fb2278f8ed97fe3df92005d6f693f131cdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/folio/zipball/3070c3b7755cce732514cb573a5f79927e5585bc",
-                "reference": "3070c3b7755cce732514cb573a5f79927e5585bc",
+                "url": "https://api.github.com/repos/laravel/folio/zipball/bba13fb2278f8ed97fe3df92005d6f693f131cdc",
+                "reference": "bba13fb2278f8ed97fe3df92005d6f693f131cdc",
                 "shasum": ""
             },
             "require": {
@@ -1275,7 +1326,7 @@
                 "issues": "https://github.com/laravel/folio/issues",
                 "source": "https://github.com/laravel/folio"
             },
-            "time": "2023-09-25T00:48:28+00:00"
+            "time": "2023-10-09T14:30:57+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -1343,16 +1394,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.27.0",
+            "version": "v10.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b"
+                "reference": "09137f50f715c1efc649788a26092dcb1ec4ab6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b",
-                "reference": "616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/09137f50f715c1efc649788a26092dcb1ec4ab6e",
+                "reference": "09137f50f715c1efc649788a26092dcb1ec4ab6e",
                 "shasum": ""
             },
             "require": {
@@ -1539,7 +1590,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-10-09T15:15:28+00:00"
+            "time": "2023-10-10T13:01:37+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2123,16 +2174,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.0.7",
+            "version": "v3.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "a2fc40f6121362581e72d5da5d820a6af00f62b0"
+                "reference": "6f62019a0e821894f701ca463210c01d7369c929"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/a2fc40f6121362581e72d5da5d820a6af00f62b0",
-                "reference": "a2fc40f6121362581e72d5da5d820a6af00f62b0",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/6f62019a0e821894f701ca463210c01d7369c929",
+                "reference": "6f62019a0e821894f701ca463210c01d7369c929",
                 "shasum": ""
             },
             "require": {
@@ -2185,7 +2236,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.0.7"
+                "source": "https://github.com/livewire/livewire/tree/v3.0.8"
             },
             "funding": [
                 {
@@ -2193,7 +2244,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-09T13:59:17+00:00"
+            "time": "2023-10-10T20:44:46+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6792,16 +6843,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.13.2",
+            "version": "v1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "bbb13460d7f8c5c0cd9a58109beedd79cd7331ff"
+                "reference": "93b2d0d49719bc6e444ba21cd4dbbccec935413d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/bbb13460d7f8c5c0cd9a58109beedd79cd7331ff",
-                "reference": "bbb13460d7f8c5c0cd9a58109beedd79cd7331ff",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/93b2d0d49719bc6e444ba21cd4dbbccec935413d",
+                "reference": "93b2d0d49719bc6e444ba21cd4dbbccec935413d",
                 "shasum": ""
             },
             "require": {
@@ -6812,7 +6863,7 @@
                 "php": "^8.1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.26.1",
+                "friendsofphp/php-cs-fixer": "^3.34.1",
                 "illuminate/view": "^10.23.1",
                 "laravel-zero/framework": "^10.1.2",
                 "mockery/mockery": "^1.6.6",
@@ -6854,7 +6905,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2023-09-19T15:55:02+00:00"
+            "time": "2023-10-10T15:39:09+00:00"
         },
         {
             "name": "laravel/sail",
@@ -7133,16 +7184,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v7.9.0",
+            "version": "v7.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "296d0cf9fe462837ac0da8a568b56fc026b132da"
+                "reference": "49ec67fa7b002712da8526678abd651c09f375b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/296d0cf9fe462837ac0da8a568b56fc026b132da",
-                "reference": "296d0cf9fe462837ac0da8a568b56fc026b132da",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/49ec67fa7b002712da8526678abd651c09f375b2",
+                "reference": "49ec67fa7b002712da8526678abd651c09f375b2",
                 "shasum": ""
             },
             "require": {
@@ -7151,19 +7202,22 @@
                 "php": "^8.1.0",
                 "symfony/console": "^6.3.4"
             },
+            "conflict": {
+                "laravel/framework": ">=11.0.0"
+            },
             "require-dev": {
-                "brianium/paratest": "^7.2.7",
-                "laravel/framework": "^10.23.1",
-                "laravel/pint": "^1.13.1",
+                "brianium/paratest": "^7.3.0",
+                "laravel/framework": "^10.28.0",
+                "laravel/pint": "^1.13.3",
                 "laravel/sail": "^1.25.0",
                 "laravel/sanctum": "^3.3.1",
                 "laravel/tinker": "^2.8.2",
                 "nunomaduro/larastan": "^2.6.4",
-                "orchestra/testbench-core": "^8.11.0",
-                "pestphp/pest": "^2.19.1",
-                "phpunit/phpunit": "^10.3.5",
+                "orchestra/testbench-core": "^8.13.0",
+                "pestphp/pest": "^2.23.2",
+                "phpunit/phpunit": "^10.4.1",
                 "sebastian/environment": "^6.0.1",
-                "spatie/laravel-ignition": "^2.3.0"
+                "spatie/laravel-ignition": "^2.3.1"
             },
             "type": "library",
             "extra": {
@@ -7222,7 +7276,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-09-19T10:45:09+00:00"
+            "time": "2023-10-11T15:45:01+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7763,12 +7817,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "66dba7265a37e4081f443ed8211d507cd3cce5ef"
+                "reference": "efd339340c840237fad050f3ea6fd8bbbbfc7ed6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/66dba7265a37e4081f443ed8211d507cd3cce5ef",
-                "reference": "66dba7265a37e4081f443ed8211d507cd3cce5ef",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/efd339340c840237fad050f3ea6fd8bbbbfc7ed6",
+                "reference": "efd339340c840237fad050f3ea6fd8bbbbfc7ed6",
                 "shasum": ""
             },
             "conflict": {
@@ -8100,7 +8154,7 @@
                 "openmage/magento-lts": "<=19.5|>=20,<=20.1",
                 "opensource-workshop/connect-cms": "<1.7.2|>=2,<2.3.2",
                 "orchid/platform": ">=9,<9.4.4|>=14.0.0.0-alpha4,<14.5",
-                "oro/commerce": ">=4.1,<5.0.6",
+                "oro/commerce": ">=4.1,<5.0.11|>=5.1,<5.1.1",
                 "oro/crm": ">=1.7,<1.7.4|>=3.1,<4.1.17|>=4.2,<4.2.7",
                 "oro/platform": ">=1.7,<1.7.4|>=3.1,<3.1.29|>=4.1,<4.1.17|>=4.2,<4.2.8",
                 "oxid-esales/oxideshop-ce": "<4.5",
@@ -8221,7 +8275,7 @@
                 "slim/slim": "<2.6",
                 "slub/slub-events": "<3.0.3",
                 "smarty/smarty": "<3.1.48|>=4,<4.3.1",
-                "snipe/snipe-it": "<=6.2.1",
+                "snipe/snipe-it": "<=6.2.2",
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
                 "spatie/browsershot": "<3.57.4",
@@ -8436,7 +8490,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-09T22:04:13+00:00"
+            "time": "2023-10-11T21:04:21+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -9798,5 +9852,5 @@
         "ext-pdo": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

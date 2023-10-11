@@ -12,9 +12,7 @@
   livewire="true"
 >
   <!-- edit.blade -->
-
   <x-shared.session/>
-
   {{ html()
     ->modelForm($client, 'PUT', '/ae/client/update/' . $client->id)
     ->id('entryForm')
@@ -80,31 +78,31 @@
     <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Company Logo') }}</legend>
 
-      {{ html()->hidden('logo_image[collection]', 'logo') }}
+      {{ html()->hidden('logo_image[0][type]', 'logo') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-          {{ html()->label('Image')->for('logo_image[file]')->class('sr-only') }}
-          {{ html()->file('logo_image[file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
+          {{ html()->label('Image')->for('logo_image[0][file]')->class('sr-only') }}
+          {{ html()->file('logo_image[0][file]')->accept('jpg,png')->class('file-uploader py-2 px-4 bg-gray-100') }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Name')->for('logo_image[label]')->class('font-medium text-sm') }}
-          {{ html()->text('logo_image[label]', old('logo_image[label]', $client->image->label ?? null)) }}
+          {{ html()->text('logo_image[0][label]', old('logo_image[0][label]', $client->logo->label ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Alt Description')->for('logo_image[alt]')->class('font-medium text-sm') }}
-          {{ html()->text('logo_image[alt]', old('logo_image[alt]', $client->image->alt ?? null)) }}
+          {{ html()->text('logo_image[0][alt]', old('logo_image[0][alt]', $client->logo->alt ?? null)) }}
         </div>
 
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
           {{ html()->label('Caption')->for('logo_image[caption]')->class('font-medium text-sm') }}
-          {{ html()->text('logo_image[caption]', old('logo_image[caption]', $client->image->caption ?? null)) }}
+          {{ html()->text('logo_image[0][caption]', old('logo_image[0][caption]', $client->logo->caption ?? null)) }}
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.preview :model=$client />
+          <x-shared.media.signature.preview :model="$client" :image="$client->logo" />
         </figure>
       </div>
     </fieldset>
@@ -172,7 +170,7 @@
       <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Status')->for('status') }}
           <select name="status" id="status" class="form-select">
             @foreach(Status::cases() as $status)
@@ -183,7 +181,7 @@
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Featured?')->for('promoted') }}
           <select name="promoted" id="promoted" class="form-select">
             @foreach(Promoted::cases() as $promoted)

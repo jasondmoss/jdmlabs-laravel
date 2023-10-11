@@ -83,7 +83,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.preview :model=$client context="logo" />
+          <x-shared.media.logo.preview :model=$client />
         </figure>
       </div>
     </fieldset>
@@ -94,7 +94,7 @@
       <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Status')->for('status') }}
           <select name="status">
             @foreach (Status::cases() as $status)
@@ -103,7 +103,7 @@
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Featured?')->for('promoted') }}
           <select name="promoted">
             @foreach (Promoted::cases() as $promoted)

@@ -5,8 +5,6 @@
   livewire="true"
 >
   <!-- show.blade -->
-
   <x-shared.session />
-
   <livewire:client-admin-listing />
 </x-aenginus.layout>

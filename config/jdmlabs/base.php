@@ -11,14 +11,56 @@ return [
     'contact_email' => 'work@jdmlabs.com',
 
     'images' => [
-        'thumbnail' => [ null, 100, 100 ],
-        'preview' => [ null, 400, 400 ],
+        /**
+         * label => breakpoint, width, height
+         */
+
 
         // Responsive
-        'mobile_classic' => [ 480, 640, 500 ],
-        'mobile_modern' => [ 640, 760, 500 ],
-        'tablet' => [ 760, 1024, 800 ],
-        'desktop' => [ 1024, 1200, 800 ],
-        'desktop_large' => [ 1200, 1500, 1000 ]
+        'logo' => [
+            'default' => [
+                'thumbnail' => [ null, 100, 100 ],
+                'preview' => [ null, 400, 400 ]
+            ],
+
+            'responsive' => [
+                'mobile_classic' => [ 480, 640, 500 ],
+                'mobile_modern' => [ 640, 760, 500 ],
+                'tablet' => [ 760, 1024, 800 ],
+                'desktop' => [ 1024, 1200, 800 ],
+                'desktop_large' => [ 1200, 1500, 1000 ]
+            ]
+        ],
+
+        'showcase' => [
+            'default' => [
+                'thumbnail' => [ null, 100, 100 ],
+                'preview' => [ null, 400, 400 ]
+            ],
+
+            'responsive' => [
+                'mobile_classic' => [ 480, 640, 500 ],
+                'mobile_modern' => [ 640, 760, 500 ],
+                'tablet' => [ 760, 1024, 800 ],
+                'desktop' => [ 1024, 1200, 800 ],
+                'desktop_large' => [ 1200, 1500, 1000 ]
+            ]
+        ],
+
+        'signature' => [
+            'default' => [
+                'thumbnail' => [ null, 100, 100 ],
+                'preview' => [ null, 400, 400 ]
+            ],
+
+            'responsive' => [
+                'mobile_classic' => [ 480, 640, 500 ],
+                'mobile_modern' => [ 640, 760, 500 ],
+                'tablet' => [ 760, 1024, 800 ],
+                'desktop' => [ 1024, 1200, 800 ],
+                'desktop_large' => [ 1200, 1500, 1000 ]
+            ]
+        ]
+
     ]
 ];

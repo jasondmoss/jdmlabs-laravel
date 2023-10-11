@@ -7,6 +7,7 @@ namespace Aenginus\Shared\Providers;
 use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Project\Domain\Models\ProjectModel;
+use Aenginus\User\Domain\Models\UserModel;
 use App\Providers\AuthServiceProvider;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
@@ -44,11 +45,12 @@ class SharedServiceProvider extends AuthServiceProvider
          *
          * // Relation::enforceMorphMap([
          */
-        // Relation::morphMap([
-        //     'article' => ArticleModel::class,
-        //     'client' => ClientModel::class,
-        //     'project' => ProjectModel::class
-        // ]);
+         Relation::morphMap([
+             'article' => ArticleModel::class,
+             'client' => ClientModel::class,
+             'project' => ProjectModel::class,
+             'user' => UserModel::class
+         ]);
     }
 
 }

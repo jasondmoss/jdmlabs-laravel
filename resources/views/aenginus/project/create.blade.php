@@ -82,7 +82,7 @@
     <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
-      {{ html()->hidden('signature_image[0][collection]', 'signature') }}
+      {{ html()->hidden('signature_image[0][type]', 'signature') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
@@ -106,7 +106,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.preview :model=$project context="signature" />
+          <x-shared.media.signature.preview :model=$project />
         </figure>
       </div>
     </fieldset>
@@ -116,7 +116,8 @@
 
       <div class="repeatable-wrapper flex flex-col gap-y-10">
         <div class="repeatable grid items-start gap-5">
-          {{ html()->hidden('showcase_images[0][collection]', 'showcase') }}
+
+          {{ html()->hidden('showcase_images[0][type]', 'showcase') }}
 
           <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
             {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
@@ -139,7 +140,7 @@
           </div>
 
           <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-            <x-shared.media.preview :model=$project context="showcase" />
+            <x-shared.media.showcase.preview :model=$project />
           </figure>
         </div>
       </div>
@@ -155,7 +156,7 @@
       <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Status')->for('status') }}
           <select name="status">
             @foreach (Status::cases() as $status)
@@ -164,7 +165,7 @@
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Featured?')->for('promoted') }}
           <select name="promoted">
             @foreach (Promoted::cases() as $promoted)
@@ -173,7 +174,7 @@
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-x-20">
           {{ html()->label('Featured?')->for('pinned') }}
           <select name="pinned">
             @foreach(Pinned::cases() as $pinned)

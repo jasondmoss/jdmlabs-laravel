@@ -42,7 +42,7 @@ use Aenginus\Shared\Enums\Status;
 
   <div class="flex flex-col gap-y-10 p-2 lg:basis-2/3">
     <fieldset class="form-content flex flex-col gap-y-5 px-2 border-t border-gray-300">
-      <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
+      <legend class="w-full mb-10 pr-10 p-2 pl-2 border-b-2 border-b-gray-300 uppercase font-bold text-xl text-gray-500">{{ __('Content') }}</legend>
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Title')->for('title')->class('font-medium text-sm') }}
@@ -60,7 +60,7 @@ use Aenginus\Shared\Enums\Status;
     </fieldset>
 
     <fieldset class="form-taxonomy flex flex-col gap-y-5 px-2 border-t border-gray-300">
-      <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Taxonomy') }}</legend>
+      <legend class="w-full mb-10 pr-10 p-2 pl-2 border-b-2 border-b-gray-300 uppercase font-bold text-xl text-gray-500">{{ __('Taxonomy') }}</legend>
 
       <div class="flex flex-col gap-y-3">
         {{ html()->label('Categories')->for('category')->class('font-medium text-sm') }}
@@ -83,9 +83,9 @@ use Aenginus\Shared\Enums\Status;
     </fieldset>
 
     <fieldset class="form-image flex flex-col gap-y-5 px-2 border-t border-gray-300">
-      <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
+      <legend class="w-full mb-10 pr-10 p-2 pl-2 border-b-2 border-b-gray-300 uppercase font-bold text-xl text-gray-500">{{ __('Signature Image') }}</legend>
 
-      {{ html()->hidden('signature_image[0][collection]', 'signature') }}
+      {{ html()->hidden('signature_image[0][type]', 'signature') }}
 
       <div class="grid items-start gap-5">
         <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
@@ -111,7 +111,7 @@ use Aenginus\Shared\Enums\Status;
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.preview :model=$article context="signature"/>
+          <x-shared.media.signature.preview :model="$article" :image="$article->signature" />
         </figure>
       </div>
     </fieldset>
@@ -120,11 +120,11 @@ use Aenginus\Shared\Enums\Status;
   <aside class="lg:basis-1/3 p-2">
     <div class="md:sticky md:top-24">
       <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
-        <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
+        <legend class="w-full mb-10 p-2 border-b-2 border-b-gray-300 text-right uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-end gap-x-5">
           {{ html()->label('Status')->for('status') }}
-          <select name="status" id="status" class="form-select">
+          <select name="status" id="status" class="form-select w-48">
             @foreach(Status::cases() as $status)
               <option value="{{ $status->value }}" @if ($article->status && $article->status->value === $status->value) selected @endif>
                 {{ $status->name }}
@@ -133,9 +133,9 @@ use Aenginus\Shared\Enums\Status;
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-end gap-x-5">
           {{ html()->label('Featured?')->for('promoted') }}
-          <select name="promoted" id="promoted" class="form-select">
+          <select name="promoted" id="promoted" class="form-select w-48">
             @foreach(Promoted::cases() as $promoted)
               <option value="{{ $promoted->value }}" @if ($article->promoted && $article->promoted->value === $promoted->value) selected @endif>{{ $promoted->name }}</option>
             @endforeach

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Aenginus\Media\Infrastructure\EloquentModels;
 
-use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,12 +12,17 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class ImageEloquentModel extends Model
 {
 
+    public const LOGO = 'logo';
+
+    public const SHOWCASE = 'showcase';
+
+    public const SIGNATURE = 'signature';
+
     protected $table = 'images';
 
     protected $fillable = [
         'collection',
         'filename',
-        'filepath',
         'responsive',
         'width',
         'height',
@@ -36,9 +40,7 @@ class ImageEloquentModel extends Model
         'responsive' => 'array'
     ];
 
-    protected $with = [
-        'category'
-    ];
+    protected $hidden = ['type'];
 
 
     /**
@@ -47,15 +49,6 @@ class ImageEloquentModel extends Model
     final public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class, 'user_id');
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    final public function category(): BelongsTo
-    {
-        return $this->belongsTo(CategoryModel::class, 'category_id');
     }
 
 

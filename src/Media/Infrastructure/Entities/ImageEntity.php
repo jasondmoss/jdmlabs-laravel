@@ -11,7 +11,7 @@ use Illuminate\Http\UploadedFile;
 class ImageEntity
 {
 
-    public string $collection;
+    public string $type;
 
     public ?string $label;
 
@@ -31,7 +31,7 @@ class ImageEntity
      */
     public function __construct(object $image)
     {
-        $this->collection = (new StringValueObject($image->collection))->value();
+        $this->type = (new StringValueObject($image->type))->value();
 
         $this->label = ! empty($image->label)
             ? (new StringValueObject($image->label))->value()

@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/*@import "../modules/pico.css";*/
 @import "tailwindcss/tailwind.css";
 @import "../modules/trix.css";
 

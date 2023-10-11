@@ -7,7 +7,7 @@ namespace Aenginus\Client\Interface\Web\Controllers;
 use Aenginus\Client\Application\UseCases\StoreUseCase;
 use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 use Aenginus\Client\Interface\Web\Requests\CreateRequest;
-use Aenginus\Media\Application\UseCases\StoreSingleImageUseCase;
+use Aenginus\Media\Application\UseCases\StoreImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,16 +16,16 @@ class StoreController extends Controller
 
     protected StoreUseCase $ClientUseCase;
 
-    protected StoreSingleImageUseCase $imageUseCase;
+    protected StoreImageUseCase $imageUseCase;
 
 
     /**
      * @param \Aenginus\Client\Application\UseCases\StoreUseCase $ClientUseCase
-     * @param \Aenginus\Media\Application\UseCases\StoreSingleImageUseCase $imageUseCase
+     * @param \Aenginus\Media\Application\UseCases\StoreImageUseCase $imageUseCase
      */
     public function __construct(
         StoreUseCase $ClientUseCase,
-        StoreSingleImageUseCase $imageUseCase
+        StoreImageUseCase $imageUseCase
     ) {
         $this->ClientUseCase = $ClientUseCase;
         $this->imageUseCase = $imageUseCase;
@@ -46,13 +46,16 @@ class StoreController extends Controller
 
         $client = $this->ClientUseCase->store($clientEntity);
 
-        // Logo image (single).
-        if ($request->hasFile('logo_image')) {
-            $this->imageUseCase->store(
-                $client,
-                (object) $request->logo_image
-            );
+        $requestImages = [];
+
+        // Logo image.
+        if ($request->file('logo_image') !== null) {
+            foreach ($request->logo_image as $logo_image) {
+                $requestImages[] = (object) $logo_image;
+            }
         }
+
+        $this->imageUseCase->store($client, $requestImages);
 
         return redirect()
             ->action(IndexController::class)

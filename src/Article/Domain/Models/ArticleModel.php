@@ -37,8 +37,7 @@ class ArticleModel extends ArticleEloquentModel
     use WhereRelatedScope;
 
     /**
-     * Generated 'permalink' per each article, using the published_at
-     * date (Y/m/d), upon eloquent model query.
+     * Generated 'permalink' per article, using the published_at date (Y/m/d).
      *
      * @var string
      */

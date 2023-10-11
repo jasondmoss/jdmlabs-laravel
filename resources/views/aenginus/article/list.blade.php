@@ -10,17 +10,16 @@
 <!-- list.blade -->
 <div class="relative">
 
-  <header id="listingHeader" class="flex flex-col md:flex-row md:justify-between gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:px-4 md:pt-3 md:pb-4 lg:border-b-0 xl:pt-7 xl:pb-6">
+  <header id="listingHeader" class="flex flex-col md:flex-row md:justify-between gap-10 align-middle justify-center sticky top-0 z-10 pt-0 pb-4 bg-white border-solid border-b-2 border-slate-200 md:px-4 md:pt-3 lg:border-b-0 xl:pt-7">
     <h1 class="text-center pl-2 text-4xl font-medium">{{ __('Articles') }}</h1>
 
-    <nav class="flex flex-wrap justify-center items-center gap-10 sm:flex-row">
-      <a class="bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm" href="{{ action(Article\CreateController::class) }}">New Article</a>
-
+    <nav class="flex flex-wrap justify-center items-start gap-10 sm:flex-row">
+      <a class="mt-1 bg-emerald-600 hover:bg-emerald-700 shadow-sm shadow-emerald-200 text-white font-bold py-2 px-4 rounded-sm" href="{{ action(Article\CreateController::class) }}">New Article</a>
       <search>
-        <form wire:submit="search" wire:model="query" class="flex justify-center w-full px-5 sm:w-auto">
+        <form wire:submit="search" wire:model="query" class="flex justify-center w-full mb-0 px-5 sm:w-auto">
           <label for="search" class="w-full">
             <span class="sr-only">{{ __('Search') }}</span>
-            <input wire:model.live="search" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="{{ __('Search') }}">
+            <input wire:model.live="search" class="mt-0 mb-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="{{ __('Search') }}">
           </label>
         </form>
       </search>
@@ -48,7 +47,7 @@
               -->
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <a rel="external" class="block" href="{{ $article->permalink }}" title="{{ __('Edit') }}">
-                  <x-shared.media.thumbnail :model=$article />
+                  <x-shared.media.signature.thumbnail :model="$article" :image="$article->signature" />
                 </a>
               </td>
               <!--
@@ -108,7 +107,7 @@
                   x-on:keydown.escape.prevent.stop="close($refs.button)"
                   x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
                   x-id="['dropdown-button']"
-                  class="relative float-right mt-10"
+                  class="relative float-right mt-6"
                 >
                 <div class="inline-flex overflow-hidden rounded-sm divide-x divide-amber-300 border border-amber-300 shadow-md shadow-amber-50">
                   <a class="flex items-center space-x-2 px-4 py-1 bg-amber-100 hover:bg-amber-300 text-center text-sm text-amber-600 hover:text-amber-800" href="{{ action(Article\EditController::class, $article->id) }}" title="{{ __('Edit article') }}">

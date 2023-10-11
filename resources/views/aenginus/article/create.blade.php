@@ -89,7 +89,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.preview :model=$article context="signature" />
+          <x-shared.media.signature.preview :model=$article />
         </figure>
       </div>
     </fieldset>
@@ -100,18 +100,18 @@
       <fieldset class="form-meta flex flex-col gap-y-5 px-2 border-t border-gray-300">
         <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Meta') }}</legend>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-end gap-x-5">
           {{ html()->label('Status')->for('status') }}
-          <select name="status">
+          <select name="status" id="status" class="form-select w-48">
             @foreach (Status::cases() as $status)
               <option value="{{ $status->value }}">{{ $status->name }}</option>
             @endforeach
           </select>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-end gap-x-5">
           {{ html()->label('Featured?')->for('promoted') }}
-          <select name="promoted">
+          <select name="promoted" id="promoted" class="form-select w-48">
             @foreach (Promoted::cases() as $promoted)
               <option value="{{ $promoted->value }}">{{ $promoted->name }}</option>
             @endforeach

@@ -1,8 +1,6 @@
 <x-aenginus.layout title="Edit Category" page=" taxonomy category" context=" edit" livewire="true">
   <!-- edit.blade -->
-
   <x-shared.session/>
-
   {{ html()
     ->modelForm($category, 'PUT', '/ae/taxonomy/category/update/' . $category->id)
     ->id('entryForm')
@@ -39,9 +37,7 @@
           <option value="">{{ __('Choose a parent category') }}</option>
           @if ($categories->count())
             @foreach($categories as $cat)
-              <option value="{{ $cat->id }}"@if ($category->parent_id === $cat->id)
-                {{ ' selected' }}
-                @endif>{{ $cat->name }}</option>
+              <option value="{{ $cat->id }}"@if ($category->parent_id === $cat->id) {{ ' selected' }} @endif>{{ $cat->name }}</option>
 
               @if (isset($cat->subcategory))
                 @include('aenginus.taxonomy.category.parts.option--subcategory', [

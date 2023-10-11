@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aenginus\Project\Interface\Web\Controllers;
 
-use Aenginus\Media\Application\UseCases\StoreSingleImageUseCase;
+use Aenginus\Media\Application\UseCases\StoreImageUseCase;
 use Aenginus\Project\Application\UseCases\UpdateUseCase as ProjectUseCase;
 use Aenginus\Project\Domain\Models\ProjectModel;
 use Aenginus\Project\Infrastructure\Entities\ProjectEntity;
@@ -19,18 +19,18 @@ class UpdateController extends Controller
 
     protected ProjectUseCase $projectUseCase;
 
-    protected StoreSingleImageUseCase $imageUseCase;
+    protected StoreImageUseCase $imageUseCase;
 
 
     /**
      * @param \Aenginus\Project\Domain\Models\ProjectModel $project
      * @param \Aenginus\Project\Application\UseCases\UpdateUseCase $projectUseCase
-     * @param \Aenginus\Media\Application\UseCases\StoreSingleImageUseCase $imageUseCase
+     * @param \Aenginus\Media\Application\UseCases\StoreImageUseCase $imageUseCase
      */
     public function __construct(
         ProjectModel $project,
         ProjectUseCase $projectUseCase,
-        StoreSingleImageUseCase $imageUseCase
+        StoreImageUseCase $imageUseCase
     ) {
         $this->project = $project;
         $this->projectUseCase = $projectUseCase;

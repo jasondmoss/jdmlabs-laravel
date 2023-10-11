@@ -8,7 +8,7 @@ use Aenginus\Article\Application\UseCases\UpdateUseCase as ArticleUseCase;
 use Aenginus\Article\Domain\Models\ArticleModel;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\UpdateRequest;
-use Aenginus\Media\Application\UseCases\StoreSingleImageUseCase;
+use Aenginus\Media\Application\UseCases\StoreImageUseCase;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -19,18 +19,18 @@ class UpdateController extends Controller
 
     protected ArticleUseCase $articleUseCase;
 
-    protected StoreSingleImageUseCase $imageUseCase;
+    protected StoreImageUseCase $imageUseCase;
 
 
     /**
      * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      * @param \Aenginus\Article\Application\UseCases\UpdateUseCase $articleUseCase
-     * @param \Aenginus\Media\Application\UseCases\StoreSingleImageUseCase $imageUseCase
+     * @param \Aenginus\Media\Application\UseCases\StoreImageUseCase $imageUseCase
      */
     public function __construct(
         ArticleModel $article,
         ArticleUseCase $articleUseCase,
-        StoreSingleImageUseCase $imageUseCase
+        StoreImageUseCase $imageUseCase
     ) {
         $this->article = $article;
         $this->articleUseCase = $articleUseCase;

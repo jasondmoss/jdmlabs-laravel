@@ -25,8 +25,6 @@ class UpdateSubmissionRules extends FormRequest
             'body' => 'required',
             'category' => 'nullable|ulid',
 
-            'signature_image' => 'sometimes|array',
-            'signature_image[][collection]' => 'nullable|string|max:255',
             'signature_image[][file]' => 'nullable|image|mimes:jpeg,jpg,png',
             'signature_image[][label]' => 'nullable|string|max:255',
             'signature_image[][alt]' => 'nullable|required_with:signature_image[][file]|string|max:255',

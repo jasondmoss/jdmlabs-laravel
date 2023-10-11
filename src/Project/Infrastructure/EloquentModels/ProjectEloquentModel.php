@@ -6,6 +6,9 @@ namespace Aenginus\Project\Infrastructure\EloquentModels;
 
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Media\Domain\Models\ImageModel;
+use Aenginus\Media\Domain\Models\ShowcaseModel;
+use Aenginus\Media\Domain\Models\SignatureModel;
+use Aenginus\Media\Infrastructure\EloquentModels\ImageEloquentModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
@@ -53,8 +56,8 @@ class ProjectEloquentModel extends Model
 
     protected $with = [
         'category',
-        'image',
-        'images'
+        'showcase',
+        'signature'
     ];
 
 
@@ -88,18 +91,20 @@ class ProjectEloquentModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    final public function image(): MorphOne
+    final public function signature(): MorphOne
     {
-        return $this->morphOne(ImageModel::class, 'imageable');
+        return $this->morphOne(ImageModel::class, 'imageable')
+            ->where('type', ImageEloquentModel::SIGNATURE);
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function images(): MorphToMany
+    final public function showcase(): MorphOne
     {
-        return $this->MorphToMany(ImageModel::class, 'imageables');
+        return $this->morphOne(ImageModel::class, 'imageable')
+            ->where('type', ImageEloquentModel::SHOWCASE);
     }
 
 }

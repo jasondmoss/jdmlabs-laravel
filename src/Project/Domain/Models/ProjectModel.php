@@ -24,13 +24,11 @@ class ProjectModel extends ProjectEloquentModel
 
     use HasEvents;
     use HasFactory;
+    use HasImage;
     use HasSlug;
     use HasUlids;
-    use Observable;
-
-    /** -- Global Helpers */
-    use HasImage;
     use IsModel;
+    use Observable;
 
     /** -- Global Scopes */
     use FindBySlugScope;
