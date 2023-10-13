@@ -25,7 +25,6 @@ return new class extends Migration
 
             $table->timestamps();
 
-//            $table->morphs('imageable');
             $table->ulid('imageable_id');
             $table->string('imageable_type');
 

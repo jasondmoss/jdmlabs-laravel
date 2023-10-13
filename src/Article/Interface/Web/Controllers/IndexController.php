@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class IndexController extends Controller
 {
-
     /**
      * @return \Illuminate\Contracts\View\View
      */
@@ -18,5 +17,4 @@ class IndexController extends Controller
     {
         return ViewFacade::make('ArticleAdmin::show');
     }
-
 }

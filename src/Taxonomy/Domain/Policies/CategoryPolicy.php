@@ -11,7 +11,6 @@ use Illuminate\Auth\Access\Response;
 
 final readonly class CategoryPolicy
 {
-
     use HandlesAuthorization;
 
     /**
@@ -68,5 +67,4 @@ final readonly class CategoryPolicy
 
         return Response::deny('You are not the owner of this category.');
     }
-
 }

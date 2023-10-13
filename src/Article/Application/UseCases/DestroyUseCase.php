@@ -10,9 +10,8 @@ use Aenginus\Shared\Exceptions\CouldNotDeleteModelEntity;
 use Aenginus\Shared\ValueObjects\UlidValueObject;
 use Exception;
 
-final readonly class DestroyUseCase
+class DestroyUseCase
 {
-
     protected ArticleModel $article;
 
     private DestroyRepository $repository;
@@ -46,5 +45,4 @@ final readonly class DestroyUseCase
             throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
         }
     }
-
 }

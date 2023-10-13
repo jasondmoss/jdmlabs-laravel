@@ -8,7 +8,6 @@ use Aenginus\Media\Domain\Models\ImageModel;
 
 trait HasImage
 {
-
     /**
      * @param \Aenginus\Media\Domain\Models\ImageModel|null $image
      * @param bool $string
@@ -30,7 +29,8 @@ trait HasImage
         foreach ($folders as $folder => $constraint) {
             // Get each image with its dimensions.
             if (! in_array($folder, ['preview', 'thumbnail'])) {
-                $paths[] = asset("{$basepath}/{$folder}/{$this->signature->filename}") . " {$constraint[0]}px";
+                $paths[] = asset("{$basepath}/{$folder}/{$this->signature->filename}")
+                    . " {$constraint[0]}px";
             }
         }
 
@@ -103,5 +103,4 @@ trait HasImage
 
         return $image->alt;
     }
-
 }

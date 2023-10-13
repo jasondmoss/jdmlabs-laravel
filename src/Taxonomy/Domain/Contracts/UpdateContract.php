@@ -9,7 +9,6 @@ use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 
 interface UpdateContract
 {
-
     /**
      * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      * @param \Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity $entity
@@ -17,5 +16,4 @@ interface UpdateContract
      * @return \Aenginus\Taxonomy\Domain\Models\CategoryModel
      */
     public function update(CategoryModel $category, CategoryEntity $entity): CategoryModel;
-
 }

@@ -6,7 +6,6 @@ namespace Aenginus\Shared\ValueObjects;
 
 interface UlidInterface
 {
-
     /**
      * @return static
      */
@@ -31,5 +30,4 @@ interface UlidInterface
      * @return bool
      */
     public function equals(self $other): bool;
-
 }

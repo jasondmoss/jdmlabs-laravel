@@ -9,7 +9,6 @@ use Throwable;
 
 class ExceptionHandler extends Handler
 {
-
     /**
      * Register the exception handling callbacks for the application.
      */
@@ -17,5 +16,4 @@ class ExceptionHandler extends Handler
     {
         $this->reportable(static function (Throwable $e) {});
     }
-
 }

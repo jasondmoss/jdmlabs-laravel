@@ -10,7 +10,6 @@ use Symfony\Component\Uid\Ulid;
 
 class UlidValueObject implements Stringable
 {
-
     private string $value;
 
 
@@ -81,5 +80,4 @@ class UlidValueObject implements Stringable
         // return Str::upper($this->value);
         return $this->value;
     }
-
 }

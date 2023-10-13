@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CategoryEloquentModel extends Model
 {
-
     protected $table = "categories";
 
     protected $fillable = [
@@ -76,5 +75,4 @@ class CategoryEloquentModel extends Model
     {
         return $this->hasMany(ProjectModel::class, 'category_id');
     }
-
 }

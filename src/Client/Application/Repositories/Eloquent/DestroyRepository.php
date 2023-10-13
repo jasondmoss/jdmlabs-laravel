@@ -9,7 +9,6 @@ use Aenginus\Client\Domain\Models\ClientModel;
 
 final class DestroyRepository implements DestroyContract
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ final class DestroyRepository implements DestroyContract
     {
         $client->delete();
     }
-
 }

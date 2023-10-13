@@ -10,7 +10,6 @@ use App\Providers\AuthServiceProvider;
 
 class ArticleAuthServiceProvider extends AuthServiceProvider
 {
-
     /**
      * The model to policy mappings for the application.
      *
@@ -19,5 +18,4 @@ class ArticleAuthServiceProvider extends AuthServiceProvider
     protected $policies = [
         ArticleModel::class => ArticlePolicy::class
     ];
-
 }

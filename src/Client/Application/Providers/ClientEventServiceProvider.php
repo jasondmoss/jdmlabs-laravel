@@ -10,7 +10,6 @@ use App\Providers\EventServiceProvider;
 
 class ClientEventServiceProvider extends EventServiceProvider
 {
-
     /**
      * The event to listener mappings for the application.
      *
@@ -21,5 +20,4 @@ class ClientEventServiceProvider extends EventServiceProvider
             ModelEntityObserver::class
         ]
     ];
-
 }

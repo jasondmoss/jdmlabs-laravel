@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Date;
 
 class SharedServiceProvider extends AuthServiceProvider
 {
-
     /**
      * Register any application services.
      */
@@ -53,5 +52,4 @@ class SharedServiceProvider extends AuthServiceProvider
             'user' => UserModel::class
         ]);
     }
-
 }

@@ -9,7 +9,6 @@ use Aenginus\Project\Domain\Models\ProjectModel;
 
 final readonly class StoreUseCase
 {
-
     private StoreRepository $repository;
 
 
@@ -31,5 +30,4 @@ final readonly class StoreUseCase
     {
         return $this->repository->save($projectEntity);
     }
-
 }

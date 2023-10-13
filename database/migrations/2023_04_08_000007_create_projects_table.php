@@ -9,8 +9,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -35,21 +35,18 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->ulid('client_id');
-            $table->foreign('client_id')
-                ->references('id')
+            $table->foreign('client_id')->references('id')
                 ->on('clients')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->ulid('category_id')->nullable();
-            $table->foreign('category_id')
-                ->references('id')
+            $table->foreign('category_id')->references('id')
                 ->on('categories')
                 ->onDelete('set null');
 
             $table->ulid('user_id');
-            $table->foreign('user_id')
-                ->references('id')
+            $table->foreign('user_id')->references('id')
                 ->on('users')
                 ->onDelete('cascade');
         });
@@ -63,5 +60,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('projects');
     }
-
 };

@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
-
     protected ProjectStoreCase $projectUseCase;
 
     protected StoreImageUseCase $imageUseCase;
@@ -44,22 +43,26 @@ class StoreController extends Controller
         $projectEntity = new ProjectEntity($validated);
         $project = $this->projectUseCase->store($projectEntity);
 
-        // Signature image (single).
-        if ($request->hasFile('signature_image')) {
-            $this->imageUseCase->store($project, (object) $request->signature_image);
+        $requestImages = [];
+
+        // Signature image.
+        if ($request->file('signature_image') !== null) {
+            foreach ($request->signature_image as $signature_image) {
+                $requestImages[] = (object) $signature_image;
+            }
         }
 
-        // Showcase images (multiple).
-        /*$requestImages = [];
+        // Showcase images.
         if ($request->file('showcase_images') !== null) {
-            foreach ($request->showcase_images as $showcase_image) {
-                $requestImages[] = (object) $showcase_image;
+            foreach ($request->showcase_images as $showcase_images) {
+                $requestImages[] = (object) $showcase_images;
             }
+        }
 
-            $this->imageUseCase->store($project, $requestImages);
-        }*/
+        $this->imageUseCase->store($project, $requestImages);
 
-        return redirect()->action(IndexController::class)->with('create', 'Project created successfully.');
+        return redirect()
+            ->action(IndexController::class)
+            ->with('create', 'Project created successfully.');
     }
-
 }

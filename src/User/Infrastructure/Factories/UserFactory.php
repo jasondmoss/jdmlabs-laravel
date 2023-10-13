@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 final class UserFactory extends Factory
 {
-
     protected $model = UserModel::class;
 
 
@@ -44,5 +43,4 @@ final class UserFactory extends Factory
             'email_verified_at' => null
         ]);
     }
-
 }

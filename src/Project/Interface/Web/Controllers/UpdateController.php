@@ -14,7 +14,6 @@ use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
-
     protected ProjectModel $project;
 
     protected ProjectUseCase $projectUseCase;
@@ -70,7 +69,8 @@ class UpdateController extends Controller
 
         $this->imageUseCase->store($project, $requestImages);
 
-        return redirect()->to($request->listing_page)->with('update', 'Project updated successfully');
+        return redirect()
+            ->to($request->listing_page)
+            ->with('update', 'Project updated successfully');
     }
-
 }

@@ -21,7 +21,6 @@ use Spatie\Sluggable\SlugOptions;
 
 class ArticleModel extends ArticleEloquentModel
 {
-
     use HasEvents;
     use HasFactory;
     use HasImage;
@@ -61,5 +60,4 @@ class ArticleModel extends ArticleEloquentModel
         /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions();
     }
-
 }

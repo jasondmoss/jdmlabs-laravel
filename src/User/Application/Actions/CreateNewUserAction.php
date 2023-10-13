@@ -12,7 +12,6 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUserAction implements CreatesNewUsers
 {
-
     use PasswordValidationRulesAction;
 
     /**
@@ -42,5 +41,4 @@ class CreateNewUserAction implements CreatesNewUsers
             'password' => Hash::make($input['password'])
         ]);
     }
-
 }

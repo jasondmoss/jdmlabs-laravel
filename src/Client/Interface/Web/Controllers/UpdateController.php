@@ -14,7 +14,6 @@ use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
-
     protected ClientModel $client;
 
     protected ClientUseCase $clientUseCase;
@@ -63,7 +62,8 @@ class UpdateController extends Controller
 
         $this->imageUseCase->store($client, $requestImages);
 
-        return redirect()->to($request->listing_page)->with('update', 'Client updated successfully.');
+        return redirect()
+            ->to($request->listing_page)
+            ->with('update', 'Client updated successfully.');
     }
-
 }

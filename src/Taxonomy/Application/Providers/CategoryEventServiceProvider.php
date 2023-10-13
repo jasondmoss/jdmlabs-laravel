@@ -10,7 +10,6 @@ use App\Providers\EventServiceProvider;
 
 class CategoryEventServiceProvider extends EventServiceProvider
 {
-
     /**
      * The model observers for your application.
      *
@@ -19,5 +18,4 @@ class CategoryEventServiceProvider extends EventServiceProvider
     protected $observers = [
         CategoryModel::class => [ModelEntityObserver::class]
     ];
-
 }

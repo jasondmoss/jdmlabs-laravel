@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller
 {
-
     protected ArticleModel $article;
 
 
@@ -42,5 +41,4 @@ class EditController extends Controller
 
         return ViewFacade::make('ArticleAdmin::edit', compact('article', 'categories'));
     }
-
 }

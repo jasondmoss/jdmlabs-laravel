@@ -21,7 +21,6 @@ use Spatie\Sluggable\SlugOptions;
 
 class ClientModel extends ClientEloquentModel
 {
-
     use HasEvents;
     use HasFactory;
     use HasImage;
@@ -61,5 +60,4 @@ class ClientModel extends ClientEloquentModel
         /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions('name');
     }
-
 }

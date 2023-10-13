@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\View;
 
 final class CategoryServiceProvider extends SharedServiceProvider
 {
-
     /**
      * Register services.
      *
@@ -20,17 +19,20 @@ final class CategoryServiceProvider extends SharedServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(UseCase\DestroyUseCase::class)->needs(Contract\DeleteContract::class)->give(
-                Repository\DeleteRepository::class
-            );
+        $this->app
+            ->when(UseCase\DestroyUseCase::class)
+            ->needs(Contract\DeleteContract::class)
+            ->give(Repository\DeleteRepository::class);
 
-        $this->app->when(UseCase\StoreUseCase::class)->needs(Contract\StoreContract::class)->give(
-                Repository\StoreRepository::class
-            );
+        $this->app
+            ->when(UseCase\StoreUseCase::class)
+            ->needs(Contract\StoreContract::class)
+            ->give(Repository\StoreRepository::class);
 
-        $this->app->when(UseCase\UpdateUseCase::class)->needs(Contract\StoreContract::class)->give(
-                Repository\StoreRepository::class
-            );
+        $this->app
+            ->when(UseCase\UpdateUseCase::class)
+            ->needs(Contract\StoreContract::class)
+            ->give(Repository\StoreRepository::class);
 
         // Templates paths.
         View::addNamespace(
@@ -39,5 +41,4 @@ final class CategoryServiceProvider extends SharedServiceProvider
 
         parent::register();
     }
-
 }

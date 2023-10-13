@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
-
     protected StoreUseCase $categoryUseCase;
 
 
@@ -40,7 +39,8 @@ class StoreController extends Controller
 
         $this->categoryUseCase->store($categoryEntity);
 
-        return redirect()->action(IndexController::class)->with('create', 'Category created successfully.');
+        return redirect()
+            ->action(IndexController::class)
+            ->with('create', 'Category created successfully.');
     }
-
 }

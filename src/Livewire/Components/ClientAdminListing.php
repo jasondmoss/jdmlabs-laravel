@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 
 final class ClientAdminListing extends Component
 {
-
     use AuthorizesRequests;
     use WithPagination;
 
@@ -43,7 +42,9 @@ final class ClientAdminListing extends Component
 
         $client = $clientModel->find($id);
 
-        $state = ($client->promoted->value === 'not_promoted') ? Promoted::YES->value : Promoted::NO->value;
+        $state = ($client->promoted->value === 'not_promoted')
+            ? Promoted::YES->value
+            : Promoted::NO->value;
 
         $client->update([
             'promoted' => $state
@@ -90,5 +91,4 @@ final class ClientAdminListing extends Component
 
         return view('aenginus.client.list', compact('clients'));
     }
-
 }

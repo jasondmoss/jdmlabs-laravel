@@ -12,7 +12,6 @@ use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformationAction implements UpdatesUserProfileInformation
 {
-
     /**
      * Validate and update the given user's profile information.
      *
@@ -59,5 +58,4 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
 
         $user->sendEmailVerificationNotification();
     }
-
 }

@@ -6,7 +6,6 @@ namespace Aenginus\Shared\Scopes;
 
 trait FindBySlugScope
 {
-
     /**
      * @param $query
      * @param string $slug
@@ -17,5 +16,4 @@ trait FindBySlugScope
     {
         return $query->firstWhere('slug', $slug);
     }
-
 }

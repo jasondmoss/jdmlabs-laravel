@@ -10,7 +10,6 @@ use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 
 final class StoreRepository implements StoreContract
 {
-
     /**
      * @inheritDoc
      */
@@ -18,5 +17,4 @@ final class StoreRepository implements StoreContract
     {
         return ArticleModel::create((array) $entity);
     }
-
 }

@@ -8,7 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DestroySubmissionRules extends FormRequest
 {
-
     /**
      * @return array
      */
@@ -19,5 +18,4 @@ class DestroySubmissionRules extends FormRequest
             'user_id' => 'required|ulid'
         ];
     }
-
 }

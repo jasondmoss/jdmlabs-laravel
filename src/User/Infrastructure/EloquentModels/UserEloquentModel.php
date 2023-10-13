@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserEloquentModel extends Authenticatable
 {
-
     protected $table = 'users';
 
     /**
@@ -42,5 +41,4 @@ class UserEloquentModel extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime'
     ];
-
 }

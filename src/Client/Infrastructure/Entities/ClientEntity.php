@@ -12,21 +12,13 @@ use Aenginus\Shared\ValueObjects\UrlValueObject;
 
 final readonly class ClientEntity
 {
-
     public ?string $id;
-
     public string $user_id;
-
     public string $name;
-
     public string $itemprop;
-
     public string $website;
-
     public string $summary;
-
     public string $status;
-
     public string $promoted;
 
 
@@ -37,7 +29,9 @@ final readonly class ClientEntity
      */
     public function __construct(object $clientData)
     {
-        $this->id = ! empty($clientData->id) ? (new UlidValueObject($clientData->id))->value() : null;
+        $this->id = ! empty($clientData->id)
+            ? (new UlidValueObject($clientData->id))->value()
+            : null;
         $this->user_id = (new UlidValueObject($clientData->user_id))->value();
         $this->name = (new StringValueObject($clientData->name))->value();
         $this->itemprop = (new StringValueObject($clientData->itemprop))->value();
@@ -46,5 +40,4 @@ final readonly class ClientEntity
         $this->status = (new StatusValueObject($clientData->status))->value();
         $this->promoted = (new PromotedValueObject($clientData->promoted))->value();
     }
-
 }

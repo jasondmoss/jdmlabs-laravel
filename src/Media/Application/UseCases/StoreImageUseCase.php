@@ -41,17 +41,12 @@ class StoreImageUseCase
             $imageEntity = new ImageEntity($requestedImage);
             $storePath = 'images/' . $model->getTable() . '/' . $model->id . '/';
 
-            //            dump($requestedImage);
-
-            //            if (! isset($imageEntity->file)) {
-            //                dd($model);
-            //            }
-
             $filename = $imageEntity->file->getClientOriginalName();
 
             // Store the original uploaded file.
             Storage::disk('public')->put(
-                $storePath . '/' . $imageEntity->type . '/' . $filename, fopen($imageEntity->file->getRealPath(), 'rb+')
+                $storePath . '/' . $imageEntity->type . '/' . $filename,
+                fopen($imageEntity->file->getRealPath(), 'rb+')
             );
 
             $folders = collect(config('jdmlabs.base.images.' . $requestedImage->type));
@@ -61,7 +56,9 @@ class StoreImageUseCase
                 $resizePath = "{$storePath}/{$imageEntity->type}/{$folder}/{$filename}";
 
                 $resizedImage = Image::make($imageEntity->file)->fit(
-                    $constraint[1], $constraint[2], static fn ($constraint) => $constraint->aspectRatio()
+                    $constraint[1],
+                    $constraint[2],
+                    static fn ($constraint) => $constraint->aspectRatio()
                 )->stream('png');
 
                 Storage::disk('public')->put($resizePath, $resizedImage);

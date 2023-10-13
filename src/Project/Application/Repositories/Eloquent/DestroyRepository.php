@@ -9,7 +9,6 @@ use Aenginus\Project\Domain\Models\ProjectModel;
 
 final class DestroyRepository implements DestroyContract
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ final class DestroyRepository implements DestroyContract
     {
         $project->delete();
     }
-
 }

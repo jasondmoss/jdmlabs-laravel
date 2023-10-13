@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class SingleController extends Controller
 {
-
     private ArticleModel $article;
 
 
@@ -41,5 +40,4 @@ class SingleController extends Controller
 
         return ViewFacade::make('ArticlePublic::single', compact('article'));
     }
-
 }

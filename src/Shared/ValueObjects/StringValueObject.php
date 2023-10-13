@@ -6,7 +6,6 @@ namespace Aenginus\Shared\ValueObjects;
 
 class StringValueObject
 {
-
     protected string $value;
 
 
@@ -66,5 +65,4 @@ class StringValueObject
     {
         return empty($this->value());
     }
-
 }

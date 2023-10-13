@@ -6,7 +6,6 @@ namespace Aenginus\Shared\ValueObjects;
 
 final class StatusValueObject extends EnumValueObject
 {
-
     /**
      * @param $value
      *
@@ -16,5 +15,4 @@ final class StatusValueObject extends EnumValueObject
     {
         return $value;
     }
-
 }

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller
 {
-
     protected CategoryModel $category;
 
 
@@ -34,10 +33,8 @@ class EditController extends Controller
     public function __invoke(string $id): View
     {
         $category = $this->category->find((new UlidValueObject($id))->value());
-
         $categories = CategoryModel::where('parent_id', null)->orderby('name')->get();
 
         return ViewFacade::make('Category::edit', compact('category', 'categories'));
     }
-
 }

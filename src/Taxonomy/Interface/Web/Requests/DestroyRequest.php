@@ -9,7 +9,6 @@ use Aenginus\Taxonomy\Domain\Validation\DestroySubmissionRules;
 
 class DestroyRequest extends DestroySubmissionRules
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -19,5 +18,4 @@ class DestroyRequest extends DestroySubmissionRules
     {
         return $this->user()->can('delete', CategoryModel::class);
     }
-
 }

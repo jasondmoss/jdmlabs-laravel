@@ -6,10 +6,8 @@ namespace Aenginus\Shared\Traits;
 
 trait Observable
 {
-
     /**
      * @return void
      */
     public static function bootObservable(): void {}
-
 }

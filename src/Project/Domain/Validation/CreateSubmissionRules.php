@@ -12,7 +12,6 @@ use Illuminate\Validation\Rules\Enum;
 
 class CreateSubmissionRules extends FormRequest
 {
-
     /**
      * @return array
      */
@@ -47,5 +46,4 @@ class CreateSubmissionRules extends FormRequest
             'pinned' => [new Enum(Pinned::class)]
         ];
     }
-
 }

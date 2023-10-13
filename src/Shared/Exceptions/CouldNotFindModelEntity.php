@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class CouldNotFindModelEntity extends Exception implements HttpExceptionInterface
 {
-
     /**
      * @param string $id
      *
@@ -49,5 +48,4 @@ class CouldNotFindModelEntity extends Exception implements HttpExceptionInterfac
     {
         return [];
     }
-
 }

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class EditController extends Controller
 {
-
     protected ClientModel $client;
 
 
@@ -39,5 +38,4 @@ class EditController extends Controller
 
         return ViewFacade::make('ClientAdmin::edit', compact('client'));
     }
-
 }

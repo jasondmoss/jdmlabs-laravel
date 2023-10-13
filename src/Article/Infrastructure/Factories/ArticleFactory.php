@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 final class ArticleFactory extends Factory
 {
-
     protected $model = ArticleModel::class;
 
 
@@ -41,5 +40,4 @@ final class ArticleFactory extends Factory
             'updated_at' => Date::now()
         ];
     }
-
 }

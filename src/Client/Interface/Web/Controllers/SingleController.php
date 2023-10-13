@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class SingleController extends Controller
 {
-
     private ClientModel $client;
 
 
@@ -33,5 +32,4 @@ class SingleController extends Controller
 
         return ViewFacade::make('ClientPublic::single', compact('client'));
     }
-
 }

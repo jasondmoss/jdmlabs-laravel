@@ -6,7 +6,6 @@ namespace Aenginus\Shared\Traits;
 
 trait EnumValues
 {
-
     /**
      * @return array
      */
@@ -14,5 +13,4 @@ trait EnumValues
     {
         return array_column(self::cases(), 'value');
     }
-
 }

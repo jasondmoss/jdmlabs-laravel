@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreController extends Controller
 {
-
     protected ArticleStoreUseCase $articleUseCase;
 
     protected StoreImageUseCase $imageUseCase;
@@ -55,7 +54,8 @@ class StoreController extends Controller
 
         $this->imageUseCase->store($article, $requestImages);
 
-        return redirect()->action(IndexController::class)->with('create', 'Article created successfully.');
+        return redirect()
+            ->action(IndexController::class)
+            ->with('create', 'Article created successfully.');
     }
-
 }

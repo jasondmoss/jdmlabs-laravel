@@ -34,5 +34,4 @@ class CreateSubmissionRules extends FormRequest
             'promoted' => [new Enum(Promoted::class)]
         ];
     }
-
 }

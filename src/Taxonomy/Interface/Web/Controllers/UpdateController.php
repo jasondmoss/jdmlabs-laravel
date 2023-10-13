@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 
 class UpdateController extends Controller
 {
-
     protected CategoryModel $category;
 
     protected UpdateUseCase $categoryUseCase;
@@ -46,7 +45,8 @@ class UpdateController extends Controller
 
         $keyword = '"<span class="font-bold">' . $category->name . '</span>"';
 
-        return redirect()->to($request->listing_page)->with('update', "{$keyword} successfully updated.");
+        return redirect()
+            ->to($request->listing_page)
+            ->with('update', "{$keyword} successfully updated.");
     }
-
 }

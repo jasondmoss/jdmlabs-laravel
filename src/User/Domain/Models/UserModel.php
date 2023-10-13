@@ -16,7 +16,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class UserModel extends UserEloquentModel
 {
-
     use HasFactory;
     use HasPermissions;
     use HasRoles;
@@ -41,9 +40,7 @@ class UserModel extends UserEloquentModel
      */
     final public function canManageContent(): bool
     {
-        return $this->canAny([
-
-        ]);
+        return $this->canAny([]);
     }
 
 
@@ -54,7 +51,8 @@ class UserModel extends UserEloquentModel
      */
     final public function confirmTwoFactorAuth(string $code): bool
     {
-        $codeIsValid = app(TwoFactorAuthenticationProvider::class)->verify(decrypt($this->two_factor_secret), $code);
+        $codeIsValid = app(TwoFactorAuthenticationProvider::class)
+            ->verify(decrypt($this->two_factor_secret), $code);
 
         if ($codeIsValid) {
             $this->two_factor_confirmed = true;
@@ -65,5 +63,4 @@ class UserModel extends UserEloquentModel
 
         return false;
     }
-
 }

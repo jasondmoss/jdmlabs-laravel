@@ -8,7 +8,6 @@ use Illuminate\Http\UploadedFile;
 
 final readonly class UploadedFileValueObject
 {
-
     private UploadedFile $image;
 
 
@@ -28,5 +27,4 @@ final readonly class UploadedFileValueObject
     {
         return $this->image;
     }
-
 }

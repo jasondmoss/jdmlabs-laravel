@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 final readonly class UserCanManageContent
 {
-
     /**
      * Show 401 error if \Auth::user()->UserCanManageContent() == false
      *
@@ -22,7 +21,10 @@ final readonly class UserCanManageContent
     public function handle(Request $request, Closure $next): mixed
     {
         if (! Auth::check()) {
-            abort(401, "You are not authorised to manage this site's content: You are not logged in.");
+            abort(
+                401,
+                "You are not authorised to manage this site's content: You are not logged in."
+            );
         }
 
         if (! Auth::user()->canManageContent()) {
@@ -31,5 +33,4 @@ final readonly class UserCanManageContent
 
         return $next($request);
     }
-
 }

@@ -6,7 +6,6 @@ namespace Aenginus\Shared\Scopes;
 
 trait WherePublishedScope
 {
-
     /**
      * @param $query
      *
@@ -16,5 +15,4 @@ trait WherePublishedScope
     {
         return $query->where('status', 'published');
     }
-
 }

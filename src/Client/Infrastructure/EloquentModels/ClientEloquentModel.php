@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class ClientEloquentModel extends Model
 {
-
     protected $table = 'clients';
 
     protected $fillable = [
@@ -75,5 +74,4 @@ class ClientEloquentModel extends Model
     {
         return $this->morphOne(ImageModel::class, 'imageable')->where('type', 'logo');
     }
-
 }

@@ -11,7 +11,6 @@ use Laravel\Fortify\Contracts\ResetsUserPasswords;
 
 class ResetUserPasswordAction implements ResetsUserPasswords
 {
-
     use PasswordValidationRulesAction;
 
     /**
@@ -30,5 +29,4 @@ class ResetUserPasswordAction implements ResetsUserPasswords
             'password' => Hash::make($input['password']),
         ])->save();
     }
-
 }

@@ -11,7 +11,6 @@ use Illuminate\Validation\Rules\Enum;
 
 class UpdateSubmissionRules extends FormRequest
 {
-
     /**
      * @return array
      */
@@ -34,5 +33,4 @@ class UpdateSubmissionRules extends FormRequest
             'promoted' => [new Enum(Promoted::class)]
         ];
     }
-
 }

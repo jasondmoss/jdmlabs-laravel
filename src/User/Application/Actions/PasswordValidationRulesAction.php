@@ -8,7 +8,6 @@ use Laravel\Fortify\Rules\Password;
 
 trait PasswordValidationRulesAction
 {
-
     /**
      * Get the validation rules used to validate passwords.
      *
@@ -18,5 +17,4 @@ trait PasswordValidationRulesAction
     {
         return ['required', 'string', new Password(), 'confirmed'];
     }
-
 }

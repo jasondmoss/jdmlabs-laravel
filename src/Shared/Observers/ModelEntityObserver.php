@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\App;
 
 final readonly class ModelEntityObserver
 {
-
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function creating(Model $model): void
     {
         if (! App::runningInConsole()) {
@@ -18,18 +22,42 @@ final readonly class ModelEntityObserver
     }
 
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function created(Model $model): void {}
 
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function deleting(Model $model): void {}
 
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function deleted(Model $model): void {}
 
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function updating(Model $model): void {}
 
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return void
+     */
     public function updated(Model $model): void {}
-
 }

@@ -13,7 +13,6 @@ use Aenginus\Client\Domain\Validation\UpdateSubmissionRules;
  */
 class UpdateRequest extends UpdateSubmissionRules
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,5 +24,4 @@ class UpdateRequest extends UpdateSubmissionRules
 
         return $this->user()->can('update', $client);
     }
-
 }

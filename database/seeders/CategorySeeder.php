@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
-
     use RefreshDatabase;
 
     /**
@@ -52,13 +51,10 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $cat_name) {
             CategoryModel::create([
-                'id' => (string)Str::ulid(),
+                'id' => (string) Str::ulid(),
                 'name' => $cat_name,
-                'user_id' => UserModel::whereEmail('jason@jdmlabs.com')
-                    ->first()
-                    ->id
+                'user_id' => UserModel::whereEmail('jason@jdmlabs.com')->first()->id
             ]);
         }
     }
-
 }

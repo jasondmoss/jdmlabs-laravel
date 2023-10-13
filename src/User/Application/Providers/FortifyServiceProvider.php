@@ -23,7 +23,6 @@ use Laravel\Fortify\Fortify;
 
 final class FortifyServiceProvider extends SharedServiceProvider
 {
-
     /**
      * Register any application services.
      */
@@ -53,9 +52,9 @@ final class FortifyServiceProvider extends SharedServiceProvider
         Fortify::authenticateThrough(static function () {
             return array_filter([
                 config('fortify.limiters.login') ? null : EnsureLoginIsNotThrottled::class,
-                Features::enabled(
-                    Features::twoFactorAuthentication()
-                ) ? RedirectIfTwoFactorConfirmedAction::class : null,
+                Features::enabled(Features::twoFactorAuthentication())
+                    ? RedirectIfTwoFactorConfirmedAction::class
+                    : null,
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
             ]);
@@ -85,5 +84,4 @@ final class FortifyServiceProvider extends SharedServiceProvider
 
         parent::boot();
     }
-
 }

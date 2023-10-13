@@ -10,7 +10,6 @@ use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 
 final readonly class StoreUseCase
 {
-
     private StoreRepository $repository;
 
 
@@ -32,5 +31,4 @@ final readonly class StoreUseCase
     {
         return $this->repository->save($entity);
     }
-
 }

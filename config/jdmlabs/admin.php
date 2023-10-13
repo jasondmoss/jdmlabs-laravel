@@ -22,11 +22,11 @@ return [
                 'display_name' => 'Administrator',
                 'description' => "This is the 'God' role.",
                 'allowed' => [
-                    'image'      => 'c,r,u,d',
+                    'image' => 'c,r,u,d',
                     'categories' => 'c,r,u,d',
-                    'articles'   => 'c,r,u,d,pu,pr',
-                    'clients'    => 'c,r,u,d,pu,pr',
-                    'projects'   => 'c,r,u,d,pu,pr,pi'
+                    'articles' => 'c,r,u,d,pu,pr',
+                    'clients' => 'c,r,u,d,pu,pr',
+                    'projects' => 'c,r,u,d,pu,pr,pi'
                 ]
             ],
 
@@ -34,11 +34,11 @@ return [
                 'display_name' => 'Guest',
                 'description' => 'The default account for all non-active users.',
                 'allowed' => [
-                    'articles'   => 'r',
+                    'articles' => 'r',
                     'categories' => 'r',
-                    'clients'    => 'r',
-                    'image'      => 'r',
-                    'projects'   => 'r'
+                    'clients' => 'r',
+                    'image' => 'r',
+                    'projects' => 'r'
                 ]
             ]
         ]

@@ -6,4 +6,4 @@ namespace Aenginus\Shared\Exceptions;
 
 use DomainException;
 
-class RequiredException extends DomainException { }
+class RequiredException extends DomainException {}

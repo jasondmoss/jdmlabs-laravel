@@ -10,7 +10,6 @@ use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 
 final class UpdateRepository implements UpdateContract
 {
-
     /**
      * @inheritDoc
      */
@@ -20,5 +19,4 @@ final class UpdateRepository implements UpdateContract
 
         return $article;
     }
-
 }

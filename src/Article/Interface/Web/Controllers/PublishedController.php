@@ -11,19 +11,18 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class PublishedController extends Controller
 {
-
     /**
      * @return \Illuminate\Contracts\View\View
      */
     public function __invoke(): View
     {
-        $articles = ArticleModel::select(['id', 'title', 'slug', 'promoted'])->published()->orderBy(
-                'created_at', 'desc'
-            )->get()->each(static fn ($article) => $article->entityDates())->each(
-                static fn ($article) => $article->generatePermalink('article')
-            );
+        $articles = ArticleModel::select(['id', 'title', 'slug', 'promoted'])
+            ->published()
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->each(static fn ($article) => $article->entityDates())
+            ->each(static fn ($article) => $article->generatePermalink('article'));
 
         return ViewFacade::make('ArticlePublic::list', compact('articles'));
     }
-
 }

@@ -8,7 +8,6 @@ use Closure;
 
 final readonly class SecurityHeaders
 {
-
     /**
      * @param $request
      * @param \Closure $next
@@ -26,5 +25,4 @@ final readonly class SecurityHeaders
 
         return $response;
     }
-
 }

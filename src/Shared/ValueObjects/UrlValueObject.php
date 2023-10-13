@@ -8,7 +8,6 @@ use InvalidArgumentException;
 
 class UrlValueObject
 {
-
     private string $value;
 
 
@@ -72,5 +71,4 @@ class UrlValueObject
     {
         return empty($this->value());
     }
-
 }

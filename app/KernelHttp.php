@@ -15,7 +15,6 @@ use Illuminate\View\Middleware as ViewMiddleware;
 
 class KernelHttp extends Kernel
 {
-
     /**
      * The application's global HTTP middleware stack.
      *
@@ -74,5 +73,4 @@ class KernelHttp extends Kernel
         'throttle' => RoutingMiddleware\ThrottleRequests::class,
         'verified' => AuthMiddleware\EnsureEmailIsVerified::class
     ];
-
 }

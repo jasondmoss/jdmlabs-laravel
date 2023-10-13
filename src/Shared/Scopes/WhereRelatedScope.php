@@ -6,7 +6,6 @@ namespace Aenginus\Shared\Scopes;
 
 trait WhereRelatedScope
 {
-
     /**
      * @param $query
      * @param mixed $value
@@ -17,5 +16,4 @@ trait WhereRelatedScope
     {
         return $query->where('category_id', $value)->published();
     }
-
 }

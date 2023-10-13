@@ -13,7 +13,6 @@ use Aenginus\Project\Domain\Validation\CreateSubmissionRules;
  */
 final class CreateRequest extends CreateSubmissionRules
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,5 +22,4 @@ final class CreateRequest extends CreateSubmissionRules
     {
         return $this->user()->can('create', ProjectModel::class);
     }
-
 }

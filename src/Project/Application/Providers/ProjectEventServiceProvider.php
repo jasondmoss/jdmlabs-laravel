@@ -10,7 +10,6 @@ use App\Providers\EventServiceProvider;
 
 class ProjectEventServiceProvider extends EventServiceProvider
 {
-
     /**
      * The model observers for your application.
      *
@@ -21,5 +20,4 @@ class ProjectEventServiceProvider extends EventServiceProvider
             ModelEntityObserver::class
         ]
     ];
-
 }

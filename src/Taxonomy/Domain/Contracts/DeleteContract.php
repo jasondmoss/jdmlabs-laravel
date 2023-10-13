@@ -8,12 +8,10 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 interface DeleteContract
 {
-
     /**
      * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      *
      * @return void
      */
     public function delete(CategoryModel $category): void;
-
 }

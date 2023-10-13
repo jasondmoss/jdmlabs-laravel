@@ -9,7 +9,6 @@ use Intervention\Image\Image;
 
 class Tablet implements FilterInterface
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ class Tablet implements FilterInterface
     {
         return $image->fit($size[0], $size[1]);
     }
-
 }

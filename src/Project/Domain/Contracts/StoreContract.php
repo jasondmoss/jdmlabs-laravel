@@ -8,12 +8,10 @@ use Aenginus\Project\Domain\Models\ProjectModel;
 
 interface StoreContract
 {
-
     /**
      * @param object $projectEntity
      *
      * @return \Aenginus\Project\Domain\Models\ProjectModel
      */
     public function save(object $projectEntity): ProjectModel;
-
 }

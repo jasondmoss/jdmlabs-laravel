@@ -10,7 +10,6 @@ use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 
 class UpdateRepository implements UpdateContract
 {
-
     /**
      * @inheritDoc
      */
@@ -20,5 +19,4 @@ class UpdateRepository implements UpdateContract
 
         return $client;
     }
-
 }

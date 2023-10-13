@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 
 final class ArticleAdminListing extends Component
 {
-
     use AuthorizesRequests;
     use WithPagination;
 
@@ -43,7 +42,9 @@ final class ArticleAdminListing extends Component
 
         $article = $articleModel->find($id);
 
-        $state = ($article->promoted->value === 'not_promoted') ? Promoted::YES->value : Promoted::NO->value;
+        $state = ($article->promoted->value === 'not_promoted')
+            ? Promoted::YES->value
+            : Promoted::NO->value;
 
         $article->update([
             'promoted' => $state
@@ -82,9 +83,10 @@ final class ArticleAdminListing extends Component
      */
     public function render(): View
     {
-        $articles = ArticleModel::where('title', 'LIKE', '%' . $this->query . '%')->with('category')->latest(
-                'created_at'
-            )->paginate(20);
+        $articles = ArticleModel::where('title', 'LIKE', '%' . $this->query . '%')
+            ->with('category')
+            ->latest('created_at')
+            ->paginate(20);
 
         $articles->each(static fn ($article) => $article->entityDates())->each(
                 static fn ($article) => $article->generatePermalink('article')
@@ -92,5 +94,4 @@ final class ArticleAdminListing extends Component
 
         return view('aenginus.article.list', compact('articles'));
     }
-
 }

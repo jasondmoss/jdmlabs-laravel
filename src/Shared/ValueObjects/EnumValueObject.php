@@ -14,7 +14,6 @@ use Stringable;
  */
 abstract class EnumValueObject implements Stringable
 {
-
     private static array $cache;
 
 
@@ -152,8 +151,8 @@ abstract class EnumValueObject implements Stringable
     {
         return $this->value;
     }
-
 }
+
 
 /**
  * Returns a new collection with the keys reindexed by `$fn`.

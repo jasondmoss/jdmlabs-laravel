@@ -14,7 +14,6 @@ use Illuminate\View\View;
 
 class EditController extends Controller
 {
-
     protected ProjectModel $project;
 
 
@@ -48,5 +47,4 @@ class EditController extends Controller
             )
         );
     }
-
 }

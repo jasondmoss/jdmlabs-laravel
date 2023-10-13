@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class ProjectEloquentModel extends Model
 {
-
     protected $table = 'projects';
 
     protected $fillable = [
@@ -103,5 +102,4 @@ class ProjectEloquentModel extends Model
         return $this->morphMany(ImageModel::class, 'imageable')
             ->where('type', 'showcase');
     }
-
 }

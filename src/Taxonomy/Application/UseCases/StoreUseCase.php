@@ -9,7 +9,6 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 final class StoreUseCase
 {
-
     private StoreRepository $repository;
 
 
@@ -31,5 +30,4 @@ final class StoreUseCase
     {
         return $this->repository->save($validatedRequest);
     }
-
 }

@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 final class CategoryFactory extends Factory
 {
-
     protected $model = CategoryModel::class;
 
 
@@ -31,5 +30,4 @@ final class CategoryFactory extends Factory
             'updated_at' => Date::now()
         ];
     }
-
 }

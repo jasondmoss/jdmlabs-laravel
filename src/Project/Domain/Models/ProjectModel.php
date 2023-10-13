@@ -21,7 +21,6 @@ use Spatie\Sluggable\SlugOptions;
 
 class ProjectModel extends ProjectEloquentModel
 {
-
     use HasEvents;
     use HasFactory;
     use HasImage;
@@ -59,5 +58,4 @@ class ProjectModel extends ProjectEloquentModel
         /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions();
     }
-
 }

@@ -9,7 +9,6 @@ use Intervention\Image\Image;
 
 class Dynamic implements FilterInterface
 {
-
     /**
      * @inheritDoc
      */
@@ -25,5 +24,4 @@ class Dynamic implements FilterInterface
 
         return $image;
     }
-
 }

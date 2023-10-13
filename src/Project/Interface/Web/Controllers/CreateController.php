@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\View as ViewFacade;
 
 class CreateController extends Controller
 {
-
     /**
      * @return \Illuminate\Contracts\View\View
      */
@@ -24,8 +23,8 @@ class CreateController extends Controller
         $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
-            'ProjectAdmin::create', compact('project', 'clients', 'categories')
+            'ProjectAdmin::create',
+            compact('project', 'clients', 'categories')
         );
     }
-
 }

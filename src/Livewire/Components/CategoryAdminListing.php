@@ -12,7 +12,6 @@ use Livewire\WithPagination;
 
 final class CategoryAdminListing extends Component
 {
-
     use AuthorizesRequests;
     use WithPagination;
 
@@ -33,10 +32,11 @@ final class CategoryAdminListing extends Component
      */
     public function render(): View
     {
-        $categories = CategoryModel::where('parent_id', null)->orderBy('name')->withCount('articles', 'projects')->get(
-            );
+        $categories = CategoryModel::where('parent_id', null)
+            ->orderBy('name')
+            ->withCount('articles', 'projects')
+            ->get();
 
         return view('aenginus.taxonomy.category.list', compact('categories'));
     }
-
 }

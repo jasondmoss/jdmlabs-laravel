@@ -9,7 +9,6 @@ use Illuminate\Foundation\Console\Kernel;
 
 class KernelConsole extends Kernel
 {
-
     /**
      * Define the application's command schedule.
      */
@@ -25,5 +24,4 @@ class KernelConsole extends Kernel
 
         require base_path('routes/console.php');
     }
-
 }

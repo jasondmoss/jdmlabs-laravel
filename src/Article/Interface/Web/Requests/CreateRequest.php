@@ -21,5 +21,4 @@ final class CreateRequest extends CreateSubmissionRules
     {
         return $this->user()->can('create', ArticleModel::class);
     }
-
 }

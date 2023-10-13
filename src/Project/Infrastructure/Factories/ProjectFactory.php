@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 
 final class ProjectFactory extends Factory
 {
-
     protected $model = ProjectModel::class;
 
 
@@ -46,5 +45,4 @@ final class ProjectFactory extends Factory
             'updated_at' => Date::now()
         ];
     }
-
 }

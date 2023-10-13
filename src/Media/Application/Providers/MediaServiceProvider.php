@@ -11,7 +11,6 @@ use Aenginus\Shared\Providers\SharedServiceProvider;
 
 class MediaServiceProvider extends SharedServiceProvider
 {
-
     /**
      * Register application services.
      *
@@ -19,11 +18,10 @@ class MediaServiceProvider extends SharedServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(UseCase\StoreImageUseCase::class)->needs(Contract\StoreImageContract::class)->give(
-                Repository\StoreImageRepository::class
-            );
+        $this->app->when(UseCase\StoreImageUseCase::class)
+            ->needs(Contract\StoreImageContract::class)
+            ->give(Repository\StoreImageRepository::class);
 
         parent::register();
     }
-
 }

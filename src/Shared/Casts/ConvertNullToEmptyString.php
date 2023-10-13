@@ -10,7 +10,6 @@ use InvalidArgumentException;
 
 final readonly class ConvertNullToEmptyString implements CastsInboundAttributes
 {
-
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param string $key
@@ -31,5 +30,4 @@ final readonly class ConvertNullToEmptyString implements CastsInboundAttributes
 
         throw new InvalidArgumentException('You must provide null or a string.');
     }
-
 }

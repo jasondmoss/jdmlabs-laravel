@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 
 trait EnumOptions
 {
-
     /**
      * @return array
      */
@@ -32,5 +31,4 @@ trait EnumOptions
 
         return $options;
     }
-
 }

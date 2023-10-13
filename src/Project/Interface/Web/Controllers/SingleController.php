@@ -11,7 +11,6 @@ use Illuminate\View\View;
 
 class SingleController extends Controller
 {
-
     private ProjectModel $project;
 
 
@@ -37,5 +36,4 @@ class SingleController extends Controller
 
         return ViewFacade::make('ProjectPublic::single', compact('project'));
     }
-
 }

@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 
 class DestroyController extends Controller
 {
-
     protected DestroyUseCase $projectUseCase;
 
 
@@ -37,7 +36,8 @@ class DestroyController extends Controller
 
         $this->projectUseCase->delete($validated->id);
 
-        return redirect()->action(IndexController::class)->with('delete', 'Project successfully deleted.');
+        return redirect()
+            ->action(IndexController::class)
+            ->with('delete', 'Project successfully deleted.');
     }
-
 }

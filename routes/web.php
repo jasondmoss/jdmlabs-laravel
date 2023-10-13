@@ -7,12 +7,9 @@ use Aenginus\Client\Interface\Web\Controllers as Client;
 use Aenginus\Project\Interface\Web\Controllers as Project;
 use Aenginus\Taxonomy\Interface\Web\Controllers as Category;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-use Intervention\Image\Facades\Image;
 
 Route::middleware(['web'])->group(static function () {
-
     // Article
     Route::get('/articles', Article\PublishedController::class)
         ->name('article-list');
@@ -32,19 +29,7 @@ Route::middleware(['web'])->group(static function () {
     Route::get('/project/{client_slug}/{slug}', Project\SingleController::class)
         ->name('project-single');
 
-//    Route::get('/taxonomy/category/{slug}', Category\SingleController::class)
-//        ->name('category-single');
-
     // --
-
-    Route::get('storage/images/{size}/{filename}', static function ($size, $filename) {
-        $image = Image::cache(static function ($image) use ($filename, $size) {
-            return $image->make(storage_path("app/public/images/{$filename}"))->fit($size);
-        }, 1440, true);
-
-        return $image->response('png');
-    })->where('size', '\d+x\d+')->where('filename', '.*');
-
 
     // -- Dashboard (Redirect).
     Route::redirect('/ae', '/ae/dashboard');
@@ -52,11 +37,9 @@ Route::middleware(['web'])->group(static function () {
     Route::redirect('/dashboard', '/ae/dashboard');
     Route::redirect('/register', '/ae/access');
 
-
     Route::prefix('ae')->middleware([
         config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')
     ])->group(static function () {
-
         // Dashboard
         Route::get('/dashboard', static function () {
             return view('aenginus.page.dashboard');
@@ -112,7 +95,5 @@ Route::middleware(['web'])->group(static function () {
 
             return back()->with('update', 'All caches have been cleared.');
         })->name('clear-cache');
-
     });
-
 });

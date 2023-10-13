@@ -10,7 +10,6 @@ use App\Providers\AuthServiceProvider;
 
 class ClientAuthServiceProvider extends AuthServiceProvider
 {
-
     /**
      * The model to policy mappings for the application.
      *
@@ -19,5 +18,4 @@ class ClientAuthServiceProvider extends AuthServiceProvider
     protected $policies = [
         ClientModel::class => ClientPolicy::class
     ];
-
 }

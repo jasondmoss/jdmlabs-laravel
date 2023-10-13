@@ -9,7 +9,6 @@ use Aenginus\Client\Domain\Models\ClientModel;
 
 final class StoreRepository implements StoreContract
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ final class StoreRepository implements StoreContract
     {
         return ClientModel::create((array) $clientEntity);
     }
-
 }

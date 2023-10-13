@@ -8,12 +8,10 @@ use Aenginus\Article\Domain\Models\ArticleModel;
 
 interface DestroyContract
 {
-
     /**
      * @param \Aenginus\Article\Domain\Models\ArticleModel $article
      *
      * @return void
      */
     public function delete(ArticleModel $article): void;
-
 }

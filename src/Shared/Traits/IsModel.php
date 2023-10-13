@@ -15,7 +15,6 @@ use UnexpectedValueException;
 
 trait IsModel
 {
-
     /**
      * Generate specific dates for metadata and display purposes.
      *
@@ -77,9 +76,9 @@ trait IsModel
     final public function generatePermalink(string $entity = ''): void
     {
         $this->permalink = match ($entity) {
-            'article' => url(
-                "/article/" . Date::parse($this->date->published->iso)->format('Y/m/d') . "/" . $this->slug
-            ),
+            'article' => url("/article/"
+                . Date::parse($this->date->published->iso)->format('Y/m/d') . "/"
+                . $this->slug),
             'client' => url("/client/$this->slug"),
             'project' => url("/project/{$this->clients->slug}/$this->slug"),
             default => url("/$this->slug")
@@ -128,5 +127,4 @@ trait IsModel
             throw CouldNotFindModelEntity::withSlug($slug);
         }
     }
-
 }

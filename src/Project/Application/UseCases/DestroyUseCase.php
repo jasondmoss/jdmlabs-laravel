@@ -12,7 +12,6 @@ use Exception;
 
 final readonly class DestroyUseCase
 {
-
     private ProjectModel $project;
 
     private DestroyRepository $repository;
@@ -46,5 +45,4 @@ final readonly class DestroyUseCase
             throw CouldNotDeleteModelEntity::withId($toBeDeleted->id);
         }
     }
-
 }

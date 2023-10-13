@@ -10,7 +10,6 @@ use Illuminate\View\View;
 
 class IndexController extends Controller
 {
-
     /**
      * @return \Illuminate\View\View
      */
@@ -18,5 +17,4 @@ class IndexController extends Controller
     {
         return ViewFacade::make('ProjectAdmin::show');
     }
-
 }

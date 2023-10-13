@@ -12,7 +12,6 @@ use Illuminate\Auth\Access\Response;
 
 final readonly class ClientPolicy
 {
-
     use HandlesAuthorization;
 
     /**
@@ -85,5 +84,4 @@ final readonly class ClientPolicy
 
         return Response::deny('You are not the owner of this client.');
     }
-
 }

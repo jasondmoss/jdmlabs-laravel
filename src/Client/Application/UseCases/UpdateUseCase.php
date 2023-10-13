@@ -10,7 +10,6 @@ use Aenginus\Client\Infrastructure\Entities\ClientEntity;
 
 final readonly class UpdateUseCase
 {
-
     private UpdateRepository $repository;
 
 
@@ -33,5 +32,4 @@ final readonly class UpdateUseCase
     {
         return $this->repository->update($client, $entity);
     }
-
 }

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class TwoFactorAuthController extends Controller
 {
-
     /**
      * @param \Illuminate\Http\Request $request
      *
@@ -26,5 +25,4 @@ class TwoFactorAuthController extends Controller
 
         return back();
     }
-
 }

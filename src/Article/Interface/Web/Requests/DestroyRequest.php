@@ -12,7 +12,6 @@ use Aenginus\Article\Domain\Validation\DestroySubmissionRules;
  */
 final class DestroyRequest extends DestroySubmissionRules
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -22,5 +21,4 @@ final class DestroyRequest extends DestroySubmissionRules
     {
         return $this->user()->can('delete', ArticleModel::class);
     }
-
 }

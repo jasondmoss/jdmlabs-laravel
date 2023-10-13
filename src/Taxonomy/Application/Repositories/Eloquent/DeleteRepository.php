@@ -9,7 +9,6 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 final class DeleteRepository implements DeleteContract
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ final class DeleteRepository implements DeleteContract
     {
         $category->delete();
     }
-
 }

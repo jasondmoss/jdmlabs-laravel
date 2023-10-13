@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class ArticleEloquentModel extends Model
 {
-
     protected $table = 'articles';
 
     protected $fillable = [
@@ -74,7 +73,7 @@ class ArticleEloquentModel extends Model
      */
     final public function signature(): MorphOne
     {
-        return $this->morphOne(ImageModel::class, 'imageable')->where('type', 'signature');
+        return $this->morphOne(ImageModel::class, 'imageable')
+            ->where('type', 'signature');
     }
-
 }

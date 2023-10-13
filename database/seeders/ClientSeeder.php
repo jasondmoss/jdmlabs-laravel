@@ -10,7 +10,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ClientSeeder extends Seeder
 {
-
     use RefreshDatabase;
 
     /**
@@ -22,5 +21,4 @@ class ClientSeeder extends Seeder
     {
         ClientModel::factory(5)->create();
     }
-
 }

@@ -6,7 +6,6 @@ namespace Aenginus\Shared\Scopes;
 
 trait WherePromotedScope
 {
-
     /**
      * @param $query
      * @param string $value
@@ -21,5 +20,4 @@ trait WherePromotedScope
 
         return $query->where('promoted', '=', 'promoted')->get();
     }
-
 }

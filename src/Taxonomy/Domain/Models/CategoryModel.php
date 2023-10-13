@@ -20,7 +20,6 @@ use Spatie\Sluggable\SlugOptions;
 
 class CategoryModel extends CategoryEloquentModel
 {
-
     use HasFactory;
     use HasSlug;
     use HasUlids;
@@ -41,7 +40,8 @@ class CategoryModel extends CategoryEloquentModel
         parent::boot();
 
         static::addGlobalScope(
-            'order', static fn (Builder $builder) => $builder->orderBy('name', 'asc')
+            'order',
+            static fn (Builder $builder) => $builder->orderBy('name', 'asc')
         );
     }
 
@@ -63,5 +63,4 @@ class CategoryModel extends CategoryEloquentModel
         /** @see \Aenginus\Shared\Traits\IsModel */
         return $this->getCustomSlugOptions('name');
     }
-
 }

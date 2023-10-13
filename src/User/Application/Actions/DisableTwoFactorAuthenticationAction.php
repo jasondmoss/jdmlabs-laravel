@@ -8,7 +8,6 @@ use Laravel\Fortify\Actions\DisableTwoFactorAuthentication as Disable2FA;
 
 class DisableTwoFactorAuthenticationAction extends Disable2FA
 {
-
     /**
      * @param $user
      *
@@ -24,5 +23,4 @@ class DisableTwoFactorAuthenticationAction extends Disable2FA
             'two_factor_confirmed' => 0,
         ])->save();
     }
-
 }

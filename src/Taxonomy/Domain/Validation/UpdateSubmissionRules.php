@@ -8,7 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSubmissionRules extends FormRequest
 {
-
     /**
      * @return array
      */
@@ -21,5 +20,4 @@ class UpdateSubmissionRules extends FormRequest
             'parent_id' => 'nullable|ulid'
         ];
     }
-
 }

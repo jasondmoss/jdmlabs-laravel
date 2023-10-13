@@ -9,7 +9,6 @@ use Intervention\Image\Image;
 
 class Mobile implements FilterInterface
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ class Mobile implements FilterInterface
     {
         return $image->fit($size[0], $size[1]);
     }
-
 }

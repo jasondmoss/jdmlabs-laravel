@@ -9,7 +9,6 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 
 final class StoreRepository implements StoreContract
 {
-
     /**
      * @param object $validatedRequest
      *
@@ -19,5 +18,4 @@ final class StoreRepository implements StoreContract
     {
         return CategoryModel::create((array) $validatedRequest);
     }
-
 }

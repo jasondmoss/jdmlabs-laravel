@@ -10,9 +10,7 @@ use App\Providers\AuthServiceProvider;
 
 class CategoryAuthServiceProvider extends AuthServiceProvider
 {
-
     protected $policies = [
         CategoryModel::class => CategoryPolicy::class
     ];
-
 }

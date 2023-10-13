@@ -9,7 +9,6 @@ use Aenginus\Project\Domain\Models\ProjectModel;
 
 final class StoreRepository implements StoreContract
 {
-
     /**
      * @inheritDoc
      */
@@ -17,5 +16,4 @@ final class StoreRepository implements StoreContract
     {
         return ProjectModel::create((array) $projectEntity);
     }
-
 }

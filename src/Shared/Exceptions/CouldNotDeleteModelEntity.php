@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 final class CouldNotDeleteModelEntity extends Exception implements HttpExceptionInterface
 {
-
     /**
      * @param string $id
      *
@@ -38,5 +37,4 @@ final class CouldNotDeleteModelEntity extends Exception implements HttpException
     {
         return [];
     }
-
 }

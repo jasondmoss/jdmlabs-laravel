@@ -10,7 +10,6 @@ use Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity;
 
 final class UpdateRepository implements UpdateContract
 {
-
     /**
      * @param \Aenginus\Taxonomy\Domain\Models\CategoryModel $category
      * @param \Aenginus\Taxonomy\Infrastructure\Entities\CategoryEntity $entity
@@ -23,5 +22,4 @@ final class UpdateRepository implements UpdateContract
 
         return $category;
     }
-
 }
