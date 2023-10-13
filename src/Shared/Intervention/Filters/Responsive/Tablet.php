@@ -13,7 +13,7 @@ class Tablet implements FilterInterface
     /**
      * @inheritDoc
      */
-    public function applyFilter(Image $image, array $size = [ 800, 650 ]): Image
+    public function applyFilter(Image $image, array $size = [800, 650]): Image
     {
         return $image->fit($size[0], $size[1]);
     }

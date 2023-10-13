@@ -17,9 +17,7 @@ class CreateController extends Controller
      */
     public function __invoke(): View
     {
-        $categories = CategoryModel::where('parent_id', null)
-            ->orderby('name', 'asc')
-            ->get();
+        $categories = CategoryModel::where('parent_id', null)->orderby('name', 'asc')->get();
 
         return ViewFacade::make('Category::create', compact('categories'));
     }

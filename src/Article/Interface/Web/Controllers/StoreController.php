@@ -8,11 +8,8 @@ use Aenginus\Article\Application\UseCases\StoreUseCase as ArticleStoreUseCase;
 use Aenginus\Article\Infrastructure\Entities\ArticleEntity;
 use Aenginus\Article\Interface\Web\Requests\CreateRequest;
 use Aenginus\Media\Application\UseCases\StoreImageUseCase;
-use Aenginus\Media\Infrastructure\Entities\ImageEntity;
 use App\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class StoreController extends Controller
 {
@@ -43,7 +40,7 @@ class StoreController extends Controller
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $articleEntity = new ArticleEntity($validated);
         $article = $this->articleUseCase->store($articleEntity);
 
@@ -58,9 +55,7 @@ class StoreController extends Controller
 
         $this->imageUseCase->store($article, $requestImages);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'Article created successfully.');
+        return redirect()->action(IndexController::class)->with('create', 'Article created successfully.');
     }
 
 }

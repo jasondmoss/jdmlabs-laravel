@@ -48,7 +48,7 @@
             <tr id="item-{{ $project->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-                  <x-shared.media.signature.thumbnail :model="$project" :image="$project->signature" />
+                  <x-shared.media.thumbnail :model="$project" :image="$project->signature" />
                 </a>
               </td>
               <td class="block md:table-cell md:align-top md:px-6 py-2"><div class="flex flex-col gap-y-2">

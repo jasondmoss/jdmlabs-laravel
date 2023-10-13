@@ -21,9 +21,7 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $category = CategoryModel::where('id', '=', $this->route('id'))
-            ->get()
-            ->first();
+        $category = CategoryModel::where('id', '=', $this->route('id'))->get()->first();
 
         return $this->user()->can('update', $category);
     }

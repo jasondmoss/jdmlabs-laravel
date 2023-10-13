@@ -11,13 +11,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ImageEloquentModel extends Model
 {
-
-    public const LOGO = 'logo';
-
-    public const SHOWCASE = 'showcase';
-
-    public const SIGNATURE = 'signature';
-
     protected $table = 'images';
 
     protected $fillable = [
@@ -55,9 +48,8 @@ class ImageEloquentModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    final public function imageable(): MorphTo
+    public function imageable(): MorphTo
     {
         return $this->morphTo();
     }
-
 }

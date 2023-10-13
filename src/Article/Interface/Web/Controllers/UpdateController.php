@@ -47,7 +47,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $articleEntity = new ArticleEntity($validated);
         $articleInstance = $this->article->find($articleEntity->id);
         $article = $this->articleUseCase->update($articleInstance, $articleEntity);
@@ -63,9 +63,7 @@ class UpdateController extends Controller
 
         $this->imageUseCase->store($article, $requestImages);
 
-        return redirect()
-            ->to($request->listing_page)
-            ->with('update', 'Article updated successfully.');
+        return redirect()->to($request->listing_page)->with('update', 'Article updated successfully.');
     }
 
 }

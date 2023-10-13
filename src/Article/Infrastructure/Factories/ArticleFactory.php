@@ -29,15 +29,13 @@ final class ArticleFactory extends Factory
         $created = Date::today()->subDays(random_int(0, 365));
 
         return [
-            'id' => (string)Str::ulid(),
+            'id' => (string) Str::ulid(),
             'title' => $title,
             'summary' => $faker->text(170),
             'body' => $faker->paragraphs(4, true),
             'status' => 'published',
             'promoted' => 'not_promoted',
-            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')
-                ->first()
-                ->id,
+            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')->first()->id,
             'published_at' => $created,
             'created_at' => $created,
             'updated_at' => Date::now()

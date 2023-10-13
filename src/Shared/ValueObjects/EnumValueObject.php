@@ -55,8 +55,7 @@ abstract class EnumValueObject implements Stringable
             $reflected = new ReflectionClass($class);
 
             self::$cache[$class] = reindex(
-                self::keysFormatter(),
-                $reflected->getConstants()
+                self::keysFormatter(), $reflected->getConstants()
             );
         }
 
@@ -69,7 +68,7 @@ abstract class EnumValueObject implements Stringable
      */
     private static function keysFormatter(): callable
     {
-        return static fn($unused, string $key): string => Str::camel(strtolower($key));
+        return static fn ($unused, string $key): string => Str::camel(strtolower($key));
     }
 
 
@@ -142,7 +141,7 @@ abstract class EnumValueObject implements Stringable
      */
     public function __toString(): string
     {
-        return (string)$this->value();
+        return (string) $this->value();
     }
 
 
@@ -155,7 +154,6 @@ abstract class EnumValueObject implements Stringable
     }
 
 }
-
 
 /**
  * Returns a new collection with the keys reindexed by `$fn`.

@@ -102,7 +102,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.signature.preview :model="$client" :image="$client->logo" />
+          <x-shared.media.preview :model="$client" :image="$client->logo" />
         </figure>
       </div>
     </fieldset>
@@ -123,7 +123,7 @@
         <td class="block w-full md:table-cell md:w-20 py-2">
           <figure class="">
             <a class="block" href="{{ action(Project\EditController::class, $project->id) }}" title="{{ __('Edit') }}">
-              <img class="max-w-full mx-auto" src="{{ asset('images/placeholder/signature.png') }}" alt="">
+              <x-shared.media.thumbnail :model="$project" :image="$project->signature" />
             </a>
           </figure>
         </td>

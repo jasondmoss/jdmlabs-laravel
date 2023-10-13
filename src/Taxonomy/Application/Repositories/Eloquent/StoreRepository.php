@@ -17,7 +17,7 @@ final class StoreRepository implements StoreContract
      */
     public function save(object $validatedRequest): CategoryModel
     {
-        return CategoryModel::create((array)$validatedRequest);
+        return CategoryModel::create((array) $validatedRequest);
     }
 
 }

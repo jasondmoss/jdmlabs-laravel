@@ -33,22 +33,17 @@ class ImageEntity
     {
         $this->type = (new StringValueObject($image->type))->value();
 
-        $this->label = ! empty($image->label)
-            ? (new StringValueObject($image->label))->value()
-            : null;
+        $this->label = ! empty($image->label) ? (new StringValueObject($image->label))->value() : null;
 
-        $this->alt = ! empty($image->alt)
-            ? (new StringValueObject($image->alt))->value()
-            : 'A placeholder image description';
+        $this->alt = ! empty($image->alt) ? (new StringValueObject($image->alt))->value(
+        ) : 'A placeholder image description';
 
-        $this->caption = ! empty($image->caption)
-            ? (new StringValueObject($image->caption))->value()
-            : null;
+        $this->caption = ! empty($image->caption) ? (new StringValueObject($image->caption))->value() : null;
 
         if (! empty($image->file)) {
             $this->file = (new UploadedFileValueObject($image->file))->value();
 
-            [ $this->width, $this->height ] = getimagesize(
+            [$this->width, $this->height] = getimagesize(
                 $this->file->getRealPath()
             );
         }

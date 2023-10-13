@@ -13,7 +13,7 @@ class DesktopLarge implements FilterInterface
     /**
      * @inheritDoc
      */
-    public function applyFilter(Image $image, array $size = [ 1500, 1200 ]): Image
+    public function applyFilter(Image $image, array $size = [1500, 1200]): Image
     {
         return $image->fit($size[0], $size[1]);
     }

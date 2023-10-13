@@ -93,7 +93,12 @@ figure svg {}*/
   fill: var(--color-gray);
 }
 
-.content-editor .repeatable-wrapper .repeatable:not(:first-of-type) {
+.content-editor .repeatable-wrapper + .repeatable-wrapper,
+.content-editor .repeatable-wrapper .repeatable + .repeatable {
   padding-top: 2rem;
   border-top: 0.0125rem solid var(--color-gray-shadow);
+}
+
+.content-editor .repeatable-wrapper .repeatable + .repeatable {
+  margin-top: 1rem;
 }

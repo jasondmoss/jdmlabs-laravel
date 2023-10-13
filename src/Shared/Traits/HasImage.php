@@ -11,36 +11,39 @@ trait HasImage
 
     /**
      * @param \Aenginus\Media\Domain\Models\ImageModel|null $image
+     * @param bool $string
      *
-     * @return string
+     * @return array|string
      */
-    public function getImageResponsiveUrls(?ImageModel $image = null): string
-    {
+    public function getImageResponsiveUrls(
+        ?ImageModel $image = null,
+        bool $string = false
+    ): array|string {
         if ($image === null) {
-            return '';
+            return [];
         }
 
-        $basepath = "images/{$this->getTable()}/{$this->id}/{$image->type}";
+        $basepath = "storage/images/{$this->getTable()}/{$this->id}/{$image->type}";
         $paths = [];
 
         $folders = collect(config("jdmlabs.base.images.{$image->type}.responsive"));
         foreach ($folders as $folder => $constraint) {
-            $paths[] = asset("storage/{$basepath}/{$folder}/{$this->signature->filename}")
-                . " {$constraint[0]}px";
+            // Get each image with its dimensions.
+            if (! in_array($folder, ['preview', 'thumbnail'])) {
+                $paths[] = asset("{$basepath}/{$folder}/{$this->signature->filename}") . " {$constraint[0]}px";
+            }
         }
 
-        $paths[] = asset("storage/{$basepath}/{$this->signature->filename}") . ' 1500px';
+        // Include the original image for the largest desktop size.
+        $paths[] = asset("{$basepath}/{$this->signature->filename}") . ' 1500px';
 
-        return implode(', ', $paths);
-    }
+        // Return as string.
+        if ($string) {
+            return implode(', ', $paths);
+        }
 
-
-    /**
-     * @return string
-     */
-    public function getImagePlaceholderUrl(): string
-    {
-        return asset("images/placeholder.png");
+        // Return as array.
+        return $paths;
     }
 
 
@@ -58,6 +61,15 @@ trait HasImage
         $basepath = "images/{$this->getTable()}/{$this->id}/{$image->type}/preview/";
 
         return asset("storage/{$basepath}/$image->filename");
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getImagePlaceholderUrl(): string
+    {
+        return asset("images/placeholder.png");
     }
 
 
@@ -89,7 +101,7 @@ trait HasImage
             return __('Placeholder image');
         }
 
-        return $this->signature->alt;
+        return $image->alt;
     }
 
 }

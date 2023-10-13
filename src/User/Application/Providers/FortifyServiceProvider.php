@@ -14,7 +14,6 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
@@ -53,10 +52,10 @@ final class FortifyServiceProvider extends SharedServiceProvider
 
         Fortify::authenticateThrough(static function () {
             return array_filter([
-                config('fortify.limiters.login')
-                    ? null : EnsureLoginIsNotThrottled::class,
-                Features::enabled(Features::twoFactorAuthentication())
-                    ? RedirectIfTwoFactorConfirmedAction::class : null,
+                config('fortify.limiters.login') ? null : EnsureLoginIsNotThrottled::class,
+                Features::enabled(
+                    Features::twoFactorAuthentication()
+                ) ? RedirectIfTwoFactorConfirmedAction::class : null,
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
             ]);
@@ -67,7 +66,7 @@ final class FortifyServiceProvider extends SharedServiceProvider
         });
 
         RateLimiter::for('login', static function (Request $request) {
-            $email = (string)$request->email;
+            $email = (string) $request->email;
 
             return Limit::perMinute(5)->by($email . $request->ip());
         });

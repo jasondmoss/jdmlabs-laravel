@@ -24,8 +24,7 @@ class CreateController extends Controller
         $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
-            'ProjectAdmin::create',
-            compact('project', 'clients', 'categories')
+            'ProjectAdmin::create', compact('project', 'clients', 'categories')
         );
     }
 

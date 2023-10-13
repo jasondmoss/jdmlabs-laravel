@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class StoreImageRepository implements StoreImageContract
 {
-
     /**
      * @param \Illuminate\Database\Eloquent\Collection $collection
      *
@@ -19,5 +18,4 @@ class StoreImageRepository implements StoreImageContract
     {
         $collection->map(static fn ($image) => $image->save());
     }
-
 }

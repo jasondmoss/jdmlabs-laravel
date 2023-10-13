@@ -30,7 +30,7 @@ final class ClientFactory extends Factory
         $created = Date::today()->subDays(random_int(0, 365));
 
         return [
-            'id' => (string)Str::ulid(),
+            'id' => (string) Str::ulid(),
             'name' => $name,
             'slug' => $slug,
             'itemprop' => ucfirst($faker->word()),
@@ -38,9 +38,7 @@ final class ClientFactory extends Factory
             'summary' => $faker->text(170),
             'status' => 'published',
             'promoted' => 'not_promoted',
-            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')
-                ->first()
-                ->id,
+            'user_id' => UserModel::whereEmail('jason@jdmlabs.com')->first()->id,
             'published_at' => $created,
             'created_at' => $created,
             'updated_at' => Date::now()

@@ -22,9 +22,7 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $project = ProjectModel::where('id', '=', $this->route('id'))
-            ->get()
-            ->first();
+        $project = ProjectModel::where('id', '=', $this->route('id'))->get()->first();
 
         return $this->user()->can('update', $project);
     }

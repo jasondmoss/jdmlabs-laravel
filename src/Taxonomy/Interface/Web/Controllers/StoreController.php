@@ -33,18 +33,14 @@ class StoreController extends Controller
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $categoryEntity = new CategoryEntity($validated);
 
-        $categories = CategoryModel::where('parent_id', null)
-            ->orderby('name', 'asc')
-            ->get();
+        $categories = CategoryModel::where('parent_id', null)->orderby('name', 'asc')->get();
 
         $this->categoryUseCase->store($categoryEntity);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'Category created successfully.');
+        return redirect()->action(IndexController::class)->with('create', 'Category created successfully.');
     }
 
 }

@@ -40,49 +40,36 @@ class StoreImageUseCase
         foreach ($requestedImages as $requestedImage) {
             $imageEntity = new ImageEntity($requestedImage);
             $storePath = 'images/' . $model->getTable() . '/' . $model->id . '/';
+
+            //            dump($requestedImage);
+
+            //            if (! isset($imageEntity->file)) {
+            //                dd($model);
+            //            }
+
             $filename = $imageEntity->file->getClientOriginalName();
 
             // Store the original uploaded file.
             Storage::disk('public')->put(
-                $storePath . '/' . $imageEntity->type . '/' . $filename,
-                fopen($imageEntity->file->getRealPath(), 'rb+')
+                $storePath . '/' . $imageEntity->type . '/' . $filename, fopen($imageEntity->file->getRealPath(), 'rb+')
             );
 
-            $path_base = 'jdmlabs.base.images.' . $requestedImage->type;
-            $defaults = collect(config("{$path_base}.default"));
-            $responsive = collect(config("{$path_base}..responsive"));
+            $folders = collect(config('jdmlabs.base.images.' . $requestedImage->type));
 
-            // Store each resized image into it's own folder.
+            // Resize images and store each into a separate folder.
+            foreach ($folders as $folder => $constraint) {
+                $resizePath = "{$storePath}/{$imageEntity->type}/{$folder}/{$filename}";
 
-            // Re-sizing: Default.
-            foreach ($defaults as $folder => $constraint) {
-                $path = "{$storePath}/{$imageEntity->type}/{$folder}/{$filename}";
-
-                $responsiveImage = Image::make($imageEntity->file)->fit(
-                    $constraint[1],
-                    $constraint[2],
-                    static fn ($constraint) => $constraint->aspectRatio()
+                $resizedImage = Image::make($imageEntity->file)->fit(
+                    $constraint[1], $constraint[2], static fn ($constraint) => $constraint->aspectRatio()
                 )->stream('png');
 
-                Storage::disk('public')->put($path, $responsiveImage);
-            }
-
-            // Re-sizing: Responsive.
-            foreach ($responsive as $folder => $constraint) {
-                $path = "{$storePath}/{$imageEntity->type}/{$folder}/{$filename}";
-
-                $responsiveImage = Image::make($imageEntity->file)->fit(
-                    $constraint[1],
-                    $constraint[2],
-                    static fn ($constraint) => $constraint->aspectRatio()
-                )->stream('png');
-
-                Storage::disk('public')->put($path, $responsiveImage);
+                Storage::disk('public')->put($resizePath, $resizedImage);
             }
 
             // Eloquent set-up.
             $image = new ImageModel();
-            $image->id = (string)Str::ulid();
+            $image->id = (string) Str::ulid();
             $image->type = $imageEntity->type;
             $image->filename = $filename;
             $image->width = $imageEntity->width;
@@ -98,6 +85,7 @@ class StoreImageUseCase
             // Collect.
             $imagesCollection->push($image);
         }
+        //        exit();
 
         // Send to repository.
         $this->repository->save($imagesCollection);

@@ -33,13 +33,11 @@ class DestroyController extends Controller
      */
     public function __invoke(DestroyRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
 
         $this->articleUseCase->delete($validated->id);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('delete', 'Article successfully deleted.');
+        return redirect()->action(IndexController::class)->with('delete', 'Article successfully deleted.');
     }
 
 }

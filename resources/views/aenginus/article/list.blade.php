@@ -47,7 +47,7 @@
               -->
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <a rel="external" class="block" href="{{ $article->permalink }}" title="{{ __('Edit') }}">
-                  <x-shared.media.signature.thumbnail :model="$article" :image="$article->signature" />
+                  <x-shared.media.thumbnail :model="$article" :image="$article->signature" />
                 </a>
               </td>
               <!--

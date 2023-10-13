@@ -21,9 +21,7 @@ final class UpdateRequest extends UpdateSubmissionRules
      */
     public function authorize(): bool
     {
-        $article = ArticleModel::where('id', '=', $this->route('id'))
-            ->get()
-            ->first();
+        $article = ArticleModel::where('id', '=', $this->route('id'))->get()->first();
 
         return $this->user()->can('update', $article);
     }

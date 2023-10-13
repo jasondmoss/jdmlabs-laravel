@@ -89,7 +89,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.signature.preview :model=$article />
+          <x-shared.media.preview :model=$article />
         </figure>
       </div>
     </fieldset>

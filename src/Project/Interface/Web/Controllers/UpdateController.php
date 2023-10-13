@@ -47,7 +47,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $projectEntity = new ProjectEntity($validated);
         $projectInstance = $this->project->find($projectEntity->id);
         $project = $this->projectUseCase->update($projectInstance, $projectEntity);
@@ -70,9 +70,7 @@ class UpdateController extends Controller
 
         $this->imageUseCase->store($project, $requestImages);
 
-        return redirect()
-            ->to($request->listing_page)
-            ->with('update', 'Project updated successfully');
+        return redirect()->to($request->listing_page)->with('update', 'Project updated successfully');
     }
 
 }

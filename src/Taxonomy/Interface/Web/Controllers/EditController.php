@@ -35,9 +35,7 @@ class EditController extends Controller
     {
         $category = $this->category->find((new UlidValueObject($id))->value());
 
-        $categories = CategoryModel::where('parent_id', null)
-            ->orderby('name')
-            ->get();
+        $categories = CategoryModel::where('parent_id', null)->orderby('name')->get();
 
         return ViewFacade::make('Category::edit', compact('category', 'categories'));
     }

@@ -43,11 +43,8 @@ class EditController extends Controller
         $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
-            'ProjectAdmin::edit',
-            compact(
-                'project',
-                'clients',
-                'categories'
+            'ProjectAdmin::edit', compact(
+                'project', 'clients', 'categories'
             )
         );
     }

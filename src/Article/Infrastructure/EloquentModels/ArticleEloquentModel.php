@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aenginus\Article\Infrastructure\EloquentModels;
 
 use Aenginus\Media\Domain\Models\ImageModel;
-use Aenginus\Media\Infrastructure\EloquentModels\ImageEloquentModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
@@ -47,7 +46,7 @@ class ArticleEloquentModel extends Model
     ];
 
     protected $with = [
-        /*'category',*/ // Times out DB  :/
+        // 'category', // Times out DB  :/
         'signature'
     ];
 
@@ -75,8 +74,7 @@ class ArticleEloquentModel extends Model
      */
     final public function signature(): MorphOne
     {
-        return $this->morphOne(ImageModel::class, 'imageable')
-            ->where('type', ImageEloquentModel::SIGNATURE);
+        return $this->morphOne(ImageModel::class, 'imageable')->where('type', 'signature');
     }
 
 }

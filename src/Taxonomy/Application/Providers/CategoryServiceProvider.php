@@ -20,22 +20,21 @@ final class CategoryServiceProvider extends SharedServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(UseCase\DestroyUseCase::class)
-            ->needs(Contract\DeleteContract::class)
-            ->give(Repository\DeleteRepository::class);
+        $this->app->when(UseCase\DestroyUseCase::class)->needs(Contract\DeleteContract::class)->give(
+                Repository\DeleteRepository::class
+            );
 
-        $this->app->when(UseCase\StoreUseCase::class)
-            ->needs(Contract\StoreContract::class)
-            ->give(Repository\StoreRepository::class);
+        $this->app->when(UseCase\StoreUseCase::class)->needs(Contract\StoreContract::class)->give(
+                Repository\StoreRepository::class
+            );
 
-        $this->app->when(UseCase\UpdateUseCase::class)
-            ->needs(Contract\StoreContract::class)
-            ->give(Repository\StoreRepository::class);
+        $this->app->when(UseCase\UpdateUseCase::class)->needs(Contract\StoreContract::class)->give(
+                Repository\StoreRepository::class
+            );
 
         // Templates paths.
         View::addNamespace(
-            'Category',
-            resource_path('views/aenginus/taxonomy/category')
+            'Category', resource_path('views/aenginus/taxonomy/category')
         );
 
         parent::register();

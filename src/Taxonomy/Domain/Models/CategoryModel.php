@@ -33,7 +33,6 @@ class CategoryModel extends CategoryEloquentModel
     use WherePublishedScope;
     use WhereRelatedScope;
 
-
     /**
      * @return void
      */
@@ -42,8 +41,7 @@ class CategoryModel extends CategoryEloquentModel
         parent::boot();
 
         static::addGlobalScope(
-            'order',
-            static fn (Builder $builder) => $builder->orderBy('name', 'asc')
+            'order', static fn (Builder $builder) => $builder->orderBy('name', 'asc')
         );
     }
 

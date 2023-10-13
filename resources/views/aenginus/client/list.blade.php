@@ -44,7 +44,7 @@
             <tr id="item-{{ $client->id }}" class="flex flex-col max-w-full md:table-row border-b odd:bg-white even:bg-slate-50 hover:bg-lime-50">
               <td class="block w-full md:table-cell md:w-10 py-2">
                 <a class="block" href="{{ action(Client\EditController::class, $client->id) }}" title="{{ __('Edit') }}">
-                  <x-shared.media.signature.thumbnail :model="$client" :image="$client->logo" />
+                  <x-shared.media.thumbnail :model="$client" :image="$client->logo" />
                 </a>
               </td>
               <td class="block md:table-cell md:align-top md:px-6 py-2"><div class="flex flex-col gap-3">

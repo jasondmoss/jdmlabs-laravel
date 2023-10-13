@@ -44,9 +44,7 @@ final class ProjectAdminListing extends Component
 
         $project = $projectModel->find($id);
 
-        $state = ($project->pinned->value === 'not_pinned')
-            ? Pinned::IsPinned->value
-            : Pinned::NotPinned->value;
+        $state = ($project->pinned->value === 'not_pinned') ? Pinned::IsPinned->value : Pinned::NotPinned->value;
 
         $project->update([
             'pinned' => $state
@@ -66,9 +64,7 @@ final class ProjectAdminListing extends Component
 
         $project = $projectModel->find($id);
 
-        $state = ($project->promoted->value === 'not_promoted')
-            ? Promoted::YES->value
-            : Promoted::NO->value;
+        $state = ($project->promoted->value === 'not_promoted') ? Promoted::YES->value : Promoted::NO->value;
 
         $project->update([
             'promoted' => $state
@@ -107,10 +103,9 @@ final class ProjectAdminListing extends Component
      */
     public function render(): View
     {
-        $projects = ProjectModel::where('title', 'LIKE', '%' . $this->query . '%')
-            ->latest('created_at')
-            ->with('clients')
-            ->paginate(20);
+        $projects = ProjectModel::where('title', 'LIKE', '%' . $this->query . '%')->latest('created_at')->with(
+                'clients'
+            )->paginate(20);
 
         return view('aenginus.project.list', compact('projects'));
     }

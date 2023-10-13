@@ -111,7 +111,7 @@ use Aenginus\Shared\Enums\Status;
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.signature.preview :model="$article" :image="$article->signature" />
+          <x-shared.media.preview :model="$article" :image="$article->signature" />
         </figure>
       </div>
     </fieldset>

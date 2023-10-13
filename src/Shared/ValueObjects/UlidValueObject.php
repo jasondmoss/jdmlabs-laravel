@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Aenginus\Shared\ValueObjects;
 
 use Aenginus\Shared\Exceptions\InvalidArgumentException;
-use Illuminate\Support\Str;
 use Stringable;
 use Symfony\Component\Uid\Ulid;
 
@@ -50,7 +49,7 @@ class UlidValueObject implements Stringable
      */
     public static function random(): static
     {
-        return new static((string)(new Ulid()));
+        return new static((string) (new Ulid()));
     }
 
 
@@ -79,7 +78,7 @@ class UlidValueObject implements Stringable
      */
     final public function value(): string
     {
-       // return Str::upper($this->value);
+        // return Str::upper($this->value);
         return $this->value;
     }
 

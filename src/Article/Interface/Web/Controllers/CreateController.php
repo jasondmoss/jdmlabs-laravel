@@ -23,8 +23,7 @@ class CreateController extends Controller
         $categories = CategoryModel::get()->pluck('name', 'id');
 
         return ViewFacade::make(
-            'ArticleAdmin::create',
-            compact('article', 'categories')
+            'ArticleAdmin::create', compact('article', 'categories')
         );
     }
 

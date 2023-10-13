@@ -21,9 +21,7 @@ class UpdateRequest extends UpdateSubmissionRules
      */
     final public function authorize(): bool
     {
-        $client = ClientModel::where('id', '=', $this->route('id'))
-            ->get()
-            ->first();
+        $client = ClientModel::where('id', '=', $this->route('id'))->get()->first();
 
         return $this->user()->can('update', $client);
     }

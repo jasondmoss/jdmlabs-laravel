@@ -40,7 +40,7 @@ class StoreController extends Controller
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $projectEntity = new ProjectEntity($validated);
         $project = $this->projectUseCase->store($projectEntity);
 
@@ -59,10 +59,7 @@ class StoreController extends Controller
             $this->imageUseCase->store($project, $requestImages);
         }*/
 
-
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'Project created successfully.');
+        return redirect()->action(IndexController::class)->with('create', 'Project created successfully.');
     }
 
 }

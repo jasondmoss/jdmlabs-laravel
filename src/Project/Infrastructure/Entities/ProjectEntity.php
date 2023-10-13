@@ -46,9 +46,7 @@ final readonly class ProjectEntity
      */
     public function __construct(object $projectData)
     {
-        $this->id = ! empty($projectData->id)
-            ? (new UlidValueObject($projectData->id))->value()
-            : null;
+        $this->id = ! empty($projectData->id) ? (new UlidValueObject($projectData->id))->value() : null;
         $this->user_id = (new UlidValueObject($projectData->user_id))->value();
         $this->title = (new StringValueObject($projectData->title))->value();
         $this->subtitle = (new StringValueObject($projectData->subtitle))->value();
@@ -56,9 +54,9 @@ final readonly class ProjectEntity
         $this->summary = (new StringValueObject($projectData->summary))->value();
         $this->body = (new StringValueObject($projectData->body))->value();
         $this->client_id = (new UlidValueObject($projectData->client_id))->value();
-        $this->category_id = ! empty($projectData->category_id)
-            ? (new UlidValueObject($projectData->category_id))->value()
-            : null;
+        $this->category_id = ! empty($projectData->category_id) ? (new UlidValueObject(
+            $projectData->category_id
+        ))->value() : null;
         $this->status = (new StatusValueObject($projectData->status))->value();
         $this->promoted = (new PromotedValueObject($projectData->promoted))->value();
         $this->pinned = (new PinnedValueObject($projectData->pinned))->value();

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
@@ -26,6 +25,7 @@ return new class extends Migration
 
             $table->timestamps();
 
+//            $table->morphs('imageable');
             $table->ulid('imageable_id');
             $table->string('imageable_type');
 
@@ -45,5 +45,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('images');
     }
-
 };

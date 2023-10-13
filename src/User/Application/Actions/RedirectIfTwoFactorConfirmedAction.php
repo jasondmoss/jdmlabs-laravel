@@ -23,9 +23,7 @@ class RedirectIfTwoFactorConfirmedAction extends RedirectIfTwoFactorAuthenticata
         $user = $this->validateCredentials($request);
 
         if ($user?->two_factor_confirmed && in_array(
-                TwoFactorAuthenticatable::class,
-                class_uses_recursive($user),
-                true
+                TwoFactorAuthenticatable::class, class_uses_recursive($user), true
             )) {
             return $this->twoFactorChallengeResponse($request, $user);
         }

@@ -23,7 +23,7 @@ final class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string)Str::ulid(),
+            'id' => (string) Str::ulid(),
             'name' => 'Jason D. Moss',
             'email' => Config::get('jdmlabs.admin.admin_email'),
             'email_verified_at' => now(),
@@ -40,7 +40,7 @@ final class UserFactory extends Factory
      */
     public function unverified(): self
     {
-        return $this->state(static fn(array $attributes) => [
+        return $this->state(static fn (array $attributes) => [
             'email_verified_at' => null
         ]);
     }

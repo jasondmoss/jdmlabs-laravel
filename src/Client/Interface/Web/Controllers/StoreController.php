@@ -40,7 +40,7 @@ class StoreController extends Controller
      */
     public function __invoke(CreateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
 
         $clientEntity = new ClientEntity($validated);
 
@@ -57,9 +57,7 @@ class StoreController extends Controller
 
         $this->imageUseCase->store($client, $requestImages);
 
-        return redirect()
-            ->action(IndexController::class)
-            ->with('create', 'Client created successfully.');
+        return redirect()->action(IndexController::class)->with('create', 'Client created successfully.');
     }
 
 }

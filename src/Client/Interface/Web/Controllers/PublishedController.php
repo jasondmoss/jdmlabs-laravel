@@ -17,14 +17,12 @@ class PublishedController extends Controller
      */
     public function __invoke(): View
     {
-        $clients = ClientModel::published()
-            ->orderBy('created_at', 'desc')
-            ->with('projects')
-            ->get()
-            ->each(static function ($client) {
-                $client->entityDates();
-                $client->generatePermalink('client');
-            });
+        $clients = ClientModel::published()->orderBy('created_at', 'desc')->with('projects')->get()->each(
+                static function ($client) {
+                    $client->entityDates();
+                    $client->generatePermalink('client');
+                }
+            );
 
         return ViewFacade::make('ClientPublic::list', compact('clients'));
     }

@@ -47,7 +47,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $clientEntity = new ClientEntity($validated);
         $clientInstance = $this->client->find($clientEntity->id);
         $client = $this->clientUseCase->update($clientInstance, $clientEntity);
@@ -63,9 +63,7 @@ class UpdateController extends Controller
 
         $this->imageUseCase->store($client, $requestImages);
 
-        return redirect()
-            ->to($request->listing_page)
-            ->with('update', 'Client updated successfully.');
+        return redirect()->to($request->listing_page)->with('update', 'Client updated successfully.');
     }
 
 }

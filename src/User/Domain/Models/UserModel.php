@@ -23,7 +23,6 @@ class UserModel extends UserEloquentModel
     use HasUlids;
     use TwoFactorAuthenticatable;
 
-
     /**
      * @return Factory
      */
@@ -55,8 +54,7 @@ class UserModel extends UserEloquentModel
      */
     final public function confirmTwoFactorAuth(string $code): bool
     {
-        $codeIsValid = app(TwoFactorAuthenticationProvider::class)
-            ->verify(decrypt($this->two_factor_secret), $code);
+        $codeIsValid = app(TwoFactorAuthenticationProvider::class)->verify(decrypt($this->two_factor_secret), $code);
 
         if ($codeIsValid) {
             $this->two_factor_confirmed = true;

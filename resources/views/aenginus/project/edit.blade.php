@@ -133,7 +133,7 @@
         </div>
 
         <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-          <x-shared.media.signature.preview :model=$project />
+          <x-shared.media.preview :model="$project" :image="$project->signature" />
         </figure>
       </div>
     </fieldset>
@@ -145,36 +145,71 @@
     <fieldset class="form-images flex flex-col gap-y-5 px-2 border-t border-gray-300">
       <legend class="mb-5 pr-10 py-5 pl-2 uppercase font-bold text-xl text-gray-500">{{ __('Showcase Images') }}</legend>
 
-      <div class="repeatable-wrapper flex flex-col gap-y-10">
-        <div class="repeatable grid items-start gap-5">
+      @if ($project->showcases->count() > 0)
+        @foreach ($project->showcases as $showcase)
+          <div class="repeatable-wrapper flex flex-col gap-y-10">
+            <div class="repeatable grid items-start gap-5">
 
-          {{ html()->hidden('showcase_images[0][type]', 'showcase') }}
+              {{ html()->hidden('showcase_images[0][type]', 'showcase') }}
 
-          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-            {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
-            {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png') }}
+              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+                {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
+                {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png') }}
+              </div>
+
+              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+                {{ html()->label('Name')->for('showcase_images[0][label]') }}
+                {{ html()->text('showcase_images[0][label]', old('showcase_images[0][label]', $showcase->label ?? null)) }}
+              </div>
+
+              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+                {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
+                {{ html()->text('showcase_images[0][alt]', old('showcase_images[0][alt]', $showcase->alt ?? null))->class('alt')->forgetAttribute('id') }}
+              </div>
+
+              <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+                {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
+                {{ html()->text('showcase_images[0][caption]', old('showcase_images[0][caption]', $showcase->caption ?? null))->class('caption')->forgetAttribute('id') }}
+              </div>
+
+              <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
+                <x-shared.media.preview :model="$project" :image="$showcase" />
+              </figure>
+            </div>
           </div>
+        @endforeach
+      @else
+        <div class="repeatable-wrapper flex flex-col gap-y-10">
+          <div class="repeatable grid items-start gap-5">
 
-          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-            {{ html()->label('Name')->for('showcase_images[0][label]') }}
-            {{ html()->text('showcase_images[0][label]', old('showcase_images[0][label]', $project->showcase->label ?? null)) }}
+            {{ html()->hidden('showcase_images[0][type]', 'showcase') }}
+
+            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+              {{ html()->label('Image')->for('showcase_images[0][file]')->class('sr-only') }}
+              {{ html()->file('showcase_images[0][file]')->forgetAttribute('id')->class('file py-2 px-4 bg-gray-100')->accept('jpg,png') }}
+            </div>
+
+            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+              {{ html()->label('Name')->for('showcase_images[0][label]') }}
+              {{ html()->text('showcase_images[0][label]', old('showcase_images[0][label]', $project->showcase->label ?? null)) }}
+            </div>
+
+            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+              {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
+              {{ html()->text('showcase_images[0][alt]', old('showcase_images[0][alt]', $project->showcase->alt ?? null))->class('alt')->forgetAttribute('id') }}
+            </div>
+
+            <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
+              {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
+              {{ html()->text('showcase_images[0][caption]', old('showcase_images[0][caption]', $project->showcase->caption ?? null))->class('caption')->forgetAttribute('id') }}
+            </div>
+
+            <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
+              <x-shared.media.preview :model="$project" :image="$project->showcase" />
+            </figure>
           </div>
-
-          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-            {{ html()->label('Alt Description')->for('showcase_images[0][alt]') }}
-            {{ html()->text('showcase_images[0][alt]', old('showcase_images[0][alt]', $project->showcase->alt ?? null))->class('alt')->forgetAttribute('id') }}
-          </div>
-
-          <div class="sm:col-start-1 sm:col-span-3 flex flex-col gap-y-3">
-            {{ html()->label('Caption')->for('showcase_images[0][caption]') }}
-            {{ html()->text('showcase_images[0][caption]', old('showcase_images[0][caption]', $project->showcase->caption ?? null))->class('caption')->forgetAttribute('id') }}
-          </div>
-
-          <figure class="sm:col-start-4 sm:col-end-4 sm:row-start-1 sm:row-span-4 sm:max-w-xs">
-            <x-shared.media.showcase.preview :model=$project />
-          </figure>
         </div>
-      </div>
+      @endif
 
       <div class="flex justify-end md:pr-5">
         <button type="button" class="repeater w-fit bg-amber-300 hover:bg-amber-500 shadow-sm shadow-amber-200 text-amber-800 hover:text-white font-medium py-2 px-4 rounded-sm">{{ __('New Showcase Image') }}</button>

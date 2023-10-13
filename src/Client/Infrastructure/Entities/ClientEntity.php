@@ -37,9 +37,7 @@ final readonly class ClientEntity
      */
     public function __construct(object $clientData)
     {
-        $this->id = ! empty($clientData->id)
-            ? (new UlidValueObject($clientData->id))->value()
-            : null;
+        $this->id = ! empty($clientData->id) ? (new UlidValueObject($clientData->id))->value() : null;
         $this->user_id = (new UlidValueObject($clientData->user_id))->value();
         $this->name = (new StringValueObject($clientData->name))->value();
         $this->itemprop = (new StringValueObject($clientData->itemprop))->value();

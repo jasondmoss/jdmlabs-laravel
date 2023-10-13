@@ -24,13 +24,11 @@ final readonly class CategoryEntity
      */
     public function __construct(object $validatedRequest)
     {
-        $this->id = ! empty($validatedRequest->id)
-            ? (new UlidValueObject($validatedRequest->id))->value()
-            : null;
+        $this->id = ! empty($validatedRequest->id) ? (new UlidValueObject($validatedRequest->id))->value() : null;
 
-        $this->parent_id =  ! empty($validatedRequest->parent_id)
-            ? (new UlidValueObject($validatedRequest->parent_id))->value()
-            : null;
+        $this->parent_id = ! empty($validatedRequest->parent_id) ? (new UlidValueObject(
+            $validatedRequest->parent_id
+        ))->value() : null;
 
         $this->name = (new StringValueObject($validatedRequest->name))->value();
 

@@ -23,7 +23,7 @@ trait IsModel
      */
     final public function entityDates(): void
     {
-        $this->date = (object)[
+        $this->date = (object) [
             'published' => $this->generatePublishDate(),
             'create' => $this->generateCreateDate(),
             'updated' => $this->generateUpdateDate()
@@ -36,7 +36,7 @@ trait IsModel
      */
     private function generatePublishDate(): object
     {
-        return (object)[
+        return (object) [
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
@@ -48,7 +48,7 @@ trait IsModel
      */
     private function generateCreateDate(): object
     {
-        return (object)[
+        return (object) [
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
@@ -60,7 +60,7 @@ trait IsModel
      */
     private function generateUpdateDate(): object
     {
-        return (object)[
+        return (object) [
             'iso' => Date::parse($this->published_at)->format('c'),
             'display' => Date::parse($this->published_at)->format('F j, Y')
         ];
@@ -78,9 +78,7 @@ trait IsModel
     {
         $this->permalink = match ($entity) {
             'article' => url(
-                "/article/" .
-                Date::parse($this->date->published->iso)->format('Y/m/d') .
-                "/" . $this->slug
+                "/article/" . Date::parse($this->date->published->iso)->format('Y/m/d') . "/" . $this->slug
             ),
             'client' => url("/client/$this->slug"),
             'project' => url("/project/{$this->clients->slug}/$this->slug"),
@@ -96,9 +94,7 @@ trait IsModel
      */
     final public function getCustomSlugOptions(string $fieldName = 'title'): SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom($fieldName)
-            ->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom($fieldName)->saveSlugsTo('slug');
     }
 
 
@@ -118,8 +114,7 @@ trait IsModel
     {
         if (Ulid::isValid($key)) {
             try {
-                return $this->newQuery()
-                    ->find((new UlidValueObject($key))->value());
+                return $this->newQuery()->find((new UlidValueObject($key))->value());
             } catch (UnexpectedValueException) {
                 throw CouldNotFindModelEntity::withId($key);
             }

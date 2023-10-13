@@ -20,17 +20,17 @@ final class ClientServiceProvider extends SharedServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(UseCase\DestroyUseCase::class)
-            ->needs(Contract\DestroyContract::class)
-            ->give(Repository\DestroyRepository::class);
+        $this->app->when(UseCase\DestroyUseCase::class)->needs(Contract\DestroyContract::class)->give(
+                Repository\DestroyRepository::class
+            );
 
-        $this->app->when(UseCase\StoreUseCase::class)
-            ->needs(Contract\StoreContract::class)
-            ->give(Repository\StoreRepository::class);
+        $this->app->when(UseCase\StoreUseCase::class)->needs(Contract\StoreContract::class)->give(
+                Repository\StoreRepository::class
+            );
 
-        $this->app->when(UseCase\UpdateUseCase::class)
-            ->needs(Contract\UpdateContract::class)
-            ->give(Repository\UpdateRepository::class);
+        $this->app->when(UseCase\UpdateUseCase::class)->needs(Contract\UpdateContract::class)->give(
+                Repository\UpdateRepository::class
+            );
 
         // Templates paths.
         View::addNamespace('ClientAdmin', resource_path('views/aenginus/client'));

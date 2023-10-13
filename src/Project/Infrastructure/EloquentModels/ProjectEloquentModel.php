@@ -6,9 +6,6 @@ namespace Aenginus\Project\Infrastructure\EloquentModels;
 
 use Aenginus\Client\Domain\Models\ClientModel;
 use Aenginus\Media\Domain\Models\ImageModel;
-use Aenginus\Media\Domain\Models\ShowcaseModel;
-use Aenginus\Media\Domain\Models\SignatureModel;
-use Aenginus\Media\Infrastructure\EloquentModels\ImageEloquentModel;
 use Aenginus\Shared\Casts\ConvertNullToEmptyString;
 use Aenginus\Shared\Enums\Pinned;
 use Aenginus\Shared\Enums\Promoted;
@@ -17,8 +14,8 @@ use Aenginus\Taxonomy\Domain\Models\CategoryModel;
 use Aenginus\User\Domain\Models\UserModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property \Illuminate\Validation\Rules\Enum $status
@@ -56,7 +53,7 @@ class ProjectEloquentModel extends Model
 
     protected $with = [
         'category',
-        'showcase',
+        'showcases',
         'signature'
     ];
 
@@ -94,17 +91,17 @@ class ProjectEloquentModel extends Model
     final public function signature(): MorphOne
     {
         return $this->morphOne(ImageModel::class, 'imageable')
-            ->where('type', ImageEloquentModel::SIGNATURE);
+            ->where('type', 'signature');
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    final public function showcase(): MorphOne
+    final public function showcases(): MorphMany
     {
-        return $this->morphOne(ImageModel::class, 'imageable')
-            ->where('type', ImageEloquentModel::SHOWCASE);
+        return $this->morphMany(ImageModel::class, 'imageable')
+            ->where('type', 'showcase');
     }
 
 }

@@ -13,7 +13,7 @@ class Mobile implements FilterInterface
     /**
      * @inheritDoc
      */
-    public function applyFilter(Image $image, array $size = [ 480, 325 ]): Image
+    public function applyFilter(Image $image, array $size = [480, 325]): Image
     {
         return $image->fit($size[0], $size[1]);
     }

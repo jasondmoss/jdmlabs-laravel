@@ -45,12 +45,13 @@ class SharedServiceProvider extends AuthServiceProvider
          *
          * // Relation::enforceMorphMap([
          */
-         Relation::morphMap([
-             'article' => ArticleModel::class,
-             'client' => ClientModel::class,
-             'project' => ProjectModel::class,
-             'user' => UserModel::class
-         ]);
+        Relation::morphMap([
+            'article' => ArticleModel::class,
+            'client' => ClientModel::class,
+            'project' => ProjectModel::class,
+            'projects' => ProjectModel::class,
+            'user' => UserModel::class
+        ]);
     }
 
 }

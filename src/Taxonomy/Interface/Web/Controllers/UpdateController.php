@@ -38,7 +38,7 @@ class UpdateController extends Controller
      */
     public function __invoke(UpdateRequest $request): RedirectResponse
     {
-        $validated = (object)$request->validated();
+        $validated = (object) $request->validated();
         $categoryEntity = new CategoryEntity($validated);
         $categoryInstance = $this->category->find($categoryEntity->id);
 
@@ -46,9 +46,7 @@ class UpdateController extends Controller
 
         $keyword = '"<span class="font-bold">' . $category->name . '</span>"';
 
-        return redirect()
-            ->to($request->listing_page)
-            ->with('update', "{$keyword} successfully updated.");
+        return redirect()->to($request->listing_page)->with('update', "{$keyword} successfully updated.");
     }
 
 }
