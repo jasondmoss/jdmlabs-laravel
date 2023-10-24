@@ -1,0 +1,177 @@
+@layer ae.overlay  {
+  .panel {
+    position: fixed;
+    width: 1rem;
+    height: calc(100% + 0.25rem);
+    margin-top: -0.25rem;
+    padding: 1.75rem 0;
+
+    background-color: var(--background--primary-dark);
+    /* Diagonal stripes. */
+    background-image:
+      repeating-linear-gradient(-45deg, var(--background--primary) 0 6px, transparent 6px 12px),
+      linear-gradient(to right, var(--background--primary-light) 0% 100%, var(--background--primary-light) 100% 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 100% 100%, 0 0;
+    background-size: 100% 100%, 100% 100%;
+
+    @media only screen {
+      @media (min-width: 480px) {
+        width: 3.5rem;
+      }
+
+      @media (min-width: 768px) {
+        width: 4rem;
+      }
+    }
+  }
+
+  .panel > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    & > button {
+      position: sticky;
+      width: 2rem;
+      height: 2rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+  }
+
+  button[popovertargetaction="show"] {
+    margin-left: 0.75rem;
+    transition: margin 0.15s ease-in-out,
+    transform 0.5s ease-in-out;
+
+    & span {
+      display: inline-block;
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        width: 0.25rem;
+        height: 1.75rem;
+        border-radius: 0.2rem;
+        background-color: var(--color--white);
+        transition: 0.25s ease-in-out;
+      }
+
+      &:nth-child(1) {
+        left: 0.25rem;
+      }
+
+      &:nth-child(2) {
+        left: 1rem;
+      }
+
+      &:nth-child(3) {
+        left: 1.75rem;
+      }
+    }
+  }
+
+
+  /*& .toggle-button {
+    margin-left: 0.75rem;
+    transition: margin 0.15s ease-in-out,
+    transform 0.5s ease-in-out;
+
+    & span {
+      display: inline-block;
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        width: 0.25rem;
+        height: 1.75rem;
+        border-radius: 0.2rem;
+        background-color: var(--color--white);
+        transition: 0.25s ease-in-out;
+      }
+
+      &:nth-child(1) {
+        left: 0.25rem;
+      }
+
+      &:nth-child(2) {
+        left: 1rem;
+      }
+
+      &:nth-child(3) {
+        left: 1.75rem;
+      }
+    }
+  }
+
+  &.open .toggle-button span {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      width: 0.3rem;
+    }
+
+    &:nth-child(1) {
+      left: 1rem;
+      transform: rotate(135deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+      top: -1.75rem;
+    }
+
+    &:nth-child(3) {
+      left: 1rem;
+      transform: rotate(-135deg);
+    }
+  }*/
+
+  dialog {
+      :popover-open {
+        visibility: visible;
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        left: 2rem;
+        right: auto;
+        width: auto;
+        /*height: calc(100% - 0.25rem);*/
+        height: calc(100% - 0.25rem);
+        margin: 0.25rem auto 0;
+        background: var(--background--primary-dark);
+
+        display: flex;
+        flex-direction: column;
+        gap: 4vh 0;
+
+        @media screen {
+          @media (min-width: 480px) {
+            left: 3.5rem;
+          }
+
+          @media (min-width: 768px) {
+            left: 4rem;
+          }
+        }
+      }
+
+    ::backdrop {
+      backdrop-filter: blur(0.2rem);
+    }
+  }
+}
+
+/* <> */

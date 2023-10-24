@@ -7,8 +7,8 @@
 ?>
 <x-aenginus.layout
   title="Edit Client"
-  page=" client"
-  context=" edit"
+  page="client"
+  context="edit"
   livewire="true"
 >
   <!-- edit.blade -->

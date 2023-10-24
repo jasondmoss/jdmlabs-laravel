@@ -45,7 +45,7 @@ class ArticleEloquentModel extends Model
     ];
 
     protected $with = [
-        // 'category', // Times out DB  :/
+        'category', // Times out DB  :/
         'signature'
     ];
 

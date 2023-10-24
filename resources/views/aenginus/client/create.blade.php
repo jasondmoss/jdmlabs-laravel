@@ -4,8 +4,8 @@
 ?>
 <x-aenginus.layout
   title="Create New Client"
-  page=" client"
-  context=" create"
+  page="client"
+  context="create"
   livewire="true"
 >
   <!-- create.blade -->

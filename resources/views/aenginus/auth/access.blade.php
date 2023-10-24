@@ -1,8 +1,8 @@
 <x-public.layout
   schema="WebPage"
   title="Login"
-  page=" access"
-  context=" auth"
+  page="access"
+  context="auth"
   livewire="false"
 >
   <!-- access.blade -->

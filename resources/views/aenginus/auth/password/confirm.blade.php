@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Password Confirm"
-  page=" confirm"
-  context=" auth"
+  page="confirm"
+  context="auth"
   livewire="true"
 >
   <!-- confirm.blade -->

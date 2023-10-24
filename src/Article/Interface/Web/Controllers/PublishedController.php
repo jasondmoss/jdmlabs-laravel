@@ -18,6 +18,7 @@ class PublishedController extends Controller
     {
         $articles = ArticleModel::select(['id', 'title', 'slug', 'promoted'])
             ->published()
+            /*->with('category')*/
             ->orderBy('created_at', 'desc')
             ->get()
             ->each(static fn ($article) => $article->entityDates())

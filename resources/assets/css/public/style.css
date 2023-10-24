@@ -1,23 +1,34 @@
 @charset "utf-8";
 
-@import "_reset.css";
-@import "_variables.css";
+@import "core.css" layer(ae.core);
+@import "layout.css" layer(ae.layout);
+@import "overlay.css" layer(ae.overlay);
+@import "navigation.css" layer(ae.navigation);
+@import "components.css" layer(ae.components);
+@import "utilities.css" layer(ae.utilities);
+@import "page.css" layer(ae.override);
 
-@import "layout/base.css";
-@import "layout/header.css";
-@import "layout/footer.css";
-@import "layout/page.css";
-@import "layout/overlays.css";
+/* Focus Glow */
+@keyframes focus-glow {
+  0% { background-color: oklch(75.54% 0.153 231.64 / 50%); }
+  50% { background-color: oklch(75.54% 0.153 231.64 / 47.5%); }
+  100% { background-color: transparent; }
+}
 
-@import "navigation/base.css";
-@import "navigation/branding.css";
-@import "navigation/main.css";
-@import "navigation/account.css";
-@import "navigation/profiles.css";
-@import "navigation/overlay.css";
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-@import "component/message.css";
+/* Grow */
+@keyframes grow {
+  from { transform: scale(1); }
+  to { transform: scale(2); }
+}
 
-@import "_accessibility.css";
-
-/* <> */
+/* Spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

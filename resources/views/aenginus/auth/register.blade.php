@@ -1,8 +1,8 @@
 <x-public.layout
   schema="WebPage"
   title="Register"
-  page=" register"
-  context=" auth"
+  page="register"
+  context="auth"
   livewire="false"
 >
   <!-- register.blade -->

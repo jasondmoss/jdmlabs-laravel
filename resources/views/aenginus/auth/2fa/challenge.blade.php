@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Two-Factor Challenge"
-  page=" two-factor-challenge"
-  context=" auth"
+  page="two-factor-challenge"
+  context="auth"
   livewire="true"
 >
   <!-- challenge.blade -->

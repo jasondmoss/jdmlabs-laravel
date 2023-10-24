@@ -4,25 +4,28 @@
 <x-public.layout
   schema="ItemPage"
   title="{{ $client->title }}"
-  page=" client"
-  context=" detail"
+  page="client"
+  context="detail"
   livewire="true"
 >
   <x-shared.session/>
-
   {!! $client->getSignatureImage(); !!}
+
   <header>
     <h1>{{ $client->name }}</h1>
     <p><a rel="external" href="{{ $client->website }}">{{ $client->website }}</a></p>
   </header>
-  <div class="">
-    <p class="">{!! $client->summary !!}</p>
+
+  <div>
+    <p>{!! $client->summary !!}</p>
   </div>
-  <div class="">
+
+  <div>
     <h2>{{ __('Projects')  }}</h2>
+
     @if ($client->projects)
       @foreach ($client->projects as $project)
-        <p class="">
+        <p>
           <a href="{{ action(Project\SingleController::class, [ $client->slug, $project->slug ]) }}">{{ $project->title }}</a>
         </p>
       @endforeach

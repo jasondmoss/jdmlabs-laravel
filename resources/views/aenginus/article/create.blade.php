@@ -4,8 +4,8 @@
 ?>
 <x-aenginus.layout
   title="Create New Article"
-  page=" article"
-  context=" create"
+  page="article"
+  context="create"
   livewire="true"
 >
   <!-- create.blade -->

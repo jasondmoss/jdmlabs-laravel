@@ -1,0 +1,78 @@
+@layer ae.utilities  {
+  /*  ----------------------------------------------------------------------
+        'Flying Focus'
+        @link https://github.com/Q42/floating-focus-a11y
+      ----------------------------------------------------------------------  */
+  /*.floating-focus {
+    overflow: hidden;
+    opacity: 0;
+    z-index: 9999999999;
+    box-sizing: content-box;
+    position: absolute;
+    border: 0 solid currentColor;
+    will-change: top, left, width, height;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+
+    &.moving {
+      transition-property: opacity, left, top, width, height, border-width, border-radius;
+      transition-duration: 0.2s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s;
+      transition-timing-function: linear, ease, ease, ease, ease, ease, ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &.moving {
+        transition: none;
+      }
+    }
+
+    &.enabled.visible {
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 0;
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: currentColor;
+      transition: opacity 0.2s linear;
+    }
+
+    &.helper::after {
+      opacity: 0.3;
+      transition-duration: 0.1s;
+    }
+  }
+
+  .floating-focused {
+    outline-style: none !important;
+
+    &::-moz-focus-inner {
+      border: 0 !important;
+    }
+  }
+
+  .floating-focus-enabled :focus,
+  .floating-focus-enabled .focus {
+    outline: 0.125rem solid rgba(0, 187, 255, 1);
+    outline-offset: 0.15rem;
+  }
+
+  .floating-focus-enabled [type="button"]:focus {
+    outline-color: green;
+    outline-offset: 0.15rem;
+  }*/
+
+
+  @media only screen and (max-width: 1023px) {
+    .phpdebugbar {
+      display: none;
+    }
+  }
+}
+
+/* <> */

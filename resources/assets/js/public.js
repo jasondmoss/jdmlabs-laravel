@@ -1,17 +1,24 @@
 import { exists } from "./modules/exists.js";
 import { newWindow } from "./modules/new-window.js";
 
-import FloatingFocus from '@q42/floating-focus-a11y';
-new FloatingFocus();
-
 import.meta.glob([ "../fonts/**", "../images/**" ]);
 
 (function () {
     "use strict";
 
-    const overlayToggle = document.getElementById("toggle");
+    function supportsPopover()
+    {
+        return HTMLElement.prototype.hasOwnProperty("popover");
+    }
+
+    const popoverSupported = supportsPopover();
+    console.log(popoverSupported);
+
+
+    /*const overlayToggle = document.getElementById("toggle");
     if (exists(overlayToggle)) {
-        const panel = document.querySelector("div.panel");
+        const panel = document.querySelector("dialog.panel");
+        const close = panel.querySelector(".close-button");
 
         window.addEventListener("click", (event) => {
             if (overlayToggle.contains(event.target)) {
@@ -19,7 +26,7 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
             } else if (! (
                 overlayToggle.contains(event.target) ||
                 panel.contains(event.target)
-            )) {
+            ) || close.contains(event.target)) {
                 panel.classList.remove("open");
             }
         });
@@ -29,5 +36,5 @@ import.meta.glob([ "../fonts/**", "../images/**" ]);
                 panel.classList.remove("open");
             }
         });
-    }
+    }*/
 })();

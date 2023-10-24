@@ -1,8 +1,8 @@
 <x-public.layout
   schema="WebPage"
   title="Forgot Password"
-  page=" forgot"
-  context=" auth"
+  page="forgot"
+  context="auth"
   livewire="true"
 >
   <!-- forgot.blade -->

@@ -5,8 +5,8 @@
 ?>
 <x-aenginus.layout
   title="Create New Project"
-  page=" project"
-  context=" create"
+  page="project"
+  context="create"
   livewire="true"
 >
   <!-- create.blade -->

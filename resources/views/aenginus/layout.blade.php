@@ -1,52 +1,5 @@
-<!DOCTYPE html><html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
-<meta charset="utf-8">
-<!--
- * @author    Jason D. Moss <work@jdmlabs.com>
- * @copyright 2005-2023 Jason D. Moss. All rights freely given.
- * @license   https://www.jdmlabs.com/LICENSE.md [MIT License]
- *
- * @link {Profile} https://behance.net/jasondmoss
- * @link {Profile} https://github.com/jasondmoss
- * @link {Profile} https://twitter.com/jasondmoss
- * @link {Profile} https://about.me/jasondmoss
- * @link {Profile} https://www.linkedin.com/in/jasondmoss
- * @link {Profile} https://www.last.fm/user/jasonmoss
--->
-<title>{{ $title }} &#160;&#11825;&#160; {{ config('jdmlabs.base.title', 'JdmLabs') }}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
-<meta name="canonical" content="{{ config('app.url') }}">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="title" content="@if ($title) {{ $title }} &#160;&#11825;&#160; @endif {{ config('jdmlabs.base.title', 'JdmLabs') }}">
-<meta name="description" content="{{ config('jdmlabs.base.description') }}">
-<link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}" as="font" crossorigin>
-<link rel="preload" type="font/woff2" href="{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}" as="font" crossorigin>
-<style>
-@font-face {
-  font-family: "Berkeley Mono";
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url("{{ Vite::asset('resources/assets/fonts/bmono--400.woff2') }}") format("woff2");
-}
-@font-face {
-  font-family: "Berkeley Mono Bold";
-  font-style: normal;
-  font-weight: bold;
-  font-display: swap;
-  src: url("{{ Vite::asset('resources/assets/fonts/bmono--700.woff2') }}") format("woff2");
-}
-</style>
-
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<link rel="preconnect" href="https://unpkg.com">
-<link rel="dns-prefetch" href="https://unpkg.com">
-
-@stack('vendor-styles')
-@vite('resources/assets/css/aenginus/style.css')
-
-</head><body class="admin {{ Auth::check() ? 'logged-in ': '' }}page{{ $page . $context }} max-w-screen-xl mx-auto cursor-default">
+@include("aenginus._partials.prolog")
+<body class="admin {{ Auth::check() ? 'logged-in ': '' }}page--{{ $page }} {{ $context }} max-w-screen-xl mx-auto cursor-default">
 
 <header id="adminHeader" class="flex flex-wrap justify-between pb-0 pt-0 pr-4 border-solid border-b-2 border-slate-200 sm:bg-red-200 md:bg-lime-200 lg:pb-0 lg:bg-sky-200 xl:bg-yellow-200">
   <nav class="flex justify-center">

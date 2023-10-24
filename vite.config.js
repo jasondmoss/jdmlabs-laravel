@@ -23,7 +23,7 @@ export default defineConfig({
             },
             refresh: [
                 ...refreshPaths,
-                "app/Livewire/**"
+                "src/Livewire/Components/**"
             ]
         }),
         debug({

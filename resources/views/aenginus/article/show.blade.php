@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Articles"
-  page=" article"
-  context=" index"
+  page="article"
+  context="index"
   livewire="true"
 >
   <!-- show.blade -->

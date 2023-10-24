@@ -1,4 +1,4 @@
-<x-aenginus.layout title="Edit Category" page=" taxonomy category" context=" edit" livewire="true">
+<x-aenginus.layout title="Edit Category" page="taxonomy category" context="edit" livewire="true">
   <!-- edit.blade -->
   <x-shared.session/>
   {{ html()

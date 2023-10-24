@@ -1,10 +1,17 @@
 {
+  "plugins": [
+    "stylelint-gamut"
+  ],
   "rules": {
     "function-url-quotes": "always",
     "linebreaks": "unix",
     "max-empty-lines": 4,
     "no-empty-first-line": true,
     "number-leading-zero": "always",
-    "string-quotes": "double"
+    "string-quotes": "double",
+    "gamut/color-no-out-gamut-range": true,
+    "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
+    "color-function-notation": "modern",
+    "color-no-hex": true
   }
 }

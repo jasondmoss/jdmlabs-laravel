@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Clients"
-  page=" client"
-  context=" index"
+  page="client"
+  context="index"
   livewire="true"
 >
   <!-- show.blade -->

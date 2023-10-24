@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="User Account Management"
-  page=" account"
-  context=" auth"
+  page="account"
+  context="auth"
   livewire="true"
 >
   <!-- account.blade -->

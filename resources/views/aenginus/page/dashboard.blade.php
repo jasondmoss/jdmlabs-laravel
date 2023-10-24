@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Dashboard"
-  page=" dashboard"
-  context=" index"
+  page="dashboard"
+  context="index"
   livewire="true"
 >
   <!-- dashboard.blade -->

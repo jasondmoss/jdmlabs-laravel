@@ -1,8 +1,8 @@
 <x-public.layout
   schema="WebPage"
   title="Email Verification"
-  page=" email-verify"
-  context=" auth"
+  page="email-verify"
+  context="auth"
   livewire="true"
 >
   <!-- verify.blade -->

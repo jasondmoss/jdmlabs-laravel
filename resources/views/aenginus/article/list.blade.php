@@ -31,7 +31,7 @@
       <table class="flex flex-col gap-y-4 max-w-sm mx-auto mt-10 mb-0 md:table md:max-w-full md:m-0 lg:mt-4 text-left text-sm font-medium">
         <thead class="hidden md:table-header-group border-b dark:border-neutral-500">
           <tr>
-            <th scope="col" class="md:w-10 md:px-6 py-2 my-2">{{ __('Signature') }}</th>
+            <th scope="col" class="md:w-10 md:px-6 py-2 my-2">{{ __('Thumb') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Title') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Updated') }}</th>
             <th scope="col" class="px-6 py-2 my-2 border-l border-l-slate-200">{{ __('Actions') }}</th>

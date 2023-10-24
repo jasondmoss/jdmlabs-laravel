@@ -5,8 +5,8 @@
 ?>
 <x-aenginus.layout
   title="Edit Project"
-  page=" project"
-  context=" edit"
+  page="project"
+  context="edit"
   livewire="true"
 >
   <!-- edit.blade -->

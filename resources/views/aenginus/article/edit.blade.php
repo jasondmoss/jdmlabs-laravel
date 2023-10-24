@@ -4,7 +4,7 @@ use Aenginus\Shared\Enums\Promoted;
 use Aenginus\Shared\Enums\Status;
 
 ?>
-<x-aenginus.layout title="Edit Article" page=" article" context=" edit" livewire="true">
+<x-aenginus.layout title="Edit Article" page="article" context="edit" livewire="true">
   <!-- edit.blade -->
 
   <x-shared.session/>

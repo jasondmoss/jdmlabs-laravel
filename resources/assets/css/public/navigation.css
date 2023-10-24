@@ -1,0 +1,257 @@
+@layer ae.navigation {
+  menu {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+
+    &,
+    & > li > a,
+    & > li > a span {
+      width: 100%;
+    }
+
+    & > li {
+      display: block;
+    }
+
+    & > li > a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      font-weight: bold;
+    }
+
+    & > li > a svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  /**
+   * Brand & logo.
+   */
+  nav.branding {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 0.25rem 0;
+    padding: 1rem;
+
+    .u-url {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      width: fit-content;
+      text-decoration: none;
+      color: var(--color--primary);
+      transition:
+        width 0.3s ease-in-out,
+        height 0.3s ease-in-out,
+        margin 0.3s ease-in-out;
+    }
+
+    .u-logo {
+      width: 2rem;
+      margin: 0;
+      fill: #fff;
+    }
+
+    .u-url:active .u-logo,
+    .u-url:hover .u-logo,
+    .u-url:focus .u-logo {
+      animation-duration: 2000ms;
+      animation-delay: 150ms;
+      animation-name: spin;
+      animation-fill-mode: backwards;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    [itemprop="name"] {
+      width: 100%;
+      text-align: left;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+
+    [itemprop="slogan"] {
+      grid-column: 1/span 2;
+      grid-row: 3;
+      margin-bottom: 0;
+      text-align: right;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: font-size 0.3s ease-in-out;
+    }
+
+    @media only screen {
+      @media (min-width: 370px) {
+        .u-url {
+          gap: 0 5%;
+        }
+
+        [itemprop="name"] {
+          grid-row: 1;
+        }
+
+        [itemprop="slogan"] {
+          grid-column: 2;
+          grid-row: 2;
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 800px) {
+        align-items: flex-start;
+        gap: 1.75rem 0;
+
+        .u-url {
+          flex-direction: row-reverse;
+        }
+      }
+
+      /*@media (min-width: 960px) {
+        gap: 2rem 0;
+      }*/
+    }
+  }
+
+  /**
+   * Admin.
+   */
+  menu.admin {
+    visibility: hidden;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    height: 0;
+    padding: 0.25rem 0;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+
+    & li {
+      text-align: right;
+
+      & a {
+        padding: 0.25rem;
+        text-transform: lowercase;
+        text-underline-offset: 0.25rem;
+        font-size: 0.8rem;
+
+        & svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 800px) {
+      justify-content: flex-end;
+      gap: 0 1rem;
+      visibility: visible;
+      height: auto;
+
+      & li {
+        width: fit-content;
+      }
+    }
+  }
+
+  /**
+   * Main.
+   */
+  menu.main {
+    visibility: hidden;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-end;
+    gap: 0 2rem;
+    width: 100%;
+    height: 0;
+    padding: 0.25rem 1rem 0.25rem 0;
+    transition:
+      width 0.3s ease-in-out,
+      height 0.3s ease-in-out;
+
+    & a {
+      text-decoration: underline dotted;
+      text-underline-offset: 0.35rem;
+      transition:
+        font-size 0.3s ease-in-out,
+        text-decoration 0.5s linear;
+
+      &:active, &:hover, &:focus {
+        text-decoration: underline double;
+      }
+    }
+
+    & > li[aria-current="page"] > a {
+      color: red;
+    }
+
+    @media only screen {
+      /*@media (min-width: 411px) {
+        width: 53%;
+      }*/
+
+      @media (min-width: 800px) {
+        justify-self: end;
+        visibility: visible;
+        height: auto;
+        /*width: fit-content;*/
+        /*border-radius: 2rem;*/
+      }
+
+      /*@media (min-width: 880px) {
+        margin-right: -3%;
+      }*/
+
+      @media (min-width: 960px) {
+        gap: 0 3rem;
+
+        & > li > a {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  /**
+   * Profile links.
+   */
+  menu.ego {
+    align-items: center;
+    gap: 1.5rem;
+
+    & > li > a {
+      gap: 0 0.5rem;
+
+      & svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: #fff;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      & span {
+        text-indent: -1000em;
+        font-size: 0.85rem;
+      }
+
+      &:hover, &:focus, &:focus-visible {
+        & svg {
+          transform-origin: center;
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}
+
+/* <> */

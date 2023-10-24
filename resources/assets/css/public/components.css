@@ -1,0 +1,134 @@
+@layer ae.components {
+  /**
+   * Skip links.
+   */
+  .a11y-nav {
+    z-index: 99;
+    position: absolute;
+    top: -20em;
+    width: 100%;
+
+    & a {
+      position: absolute;
+      right: 0;
+      left: 0;
+      padding: 0.5rem;
+      background-color: #0ff;
+      font-weight: bold;
+      text-align: center;
+
+      &:focus {
+        top: 20em;
+        box-shadow: 0 1px 2px 0 rgba(43, 42, 51, 0.05);
+        text-decoration: none;
+      }
+    }
+  }
+
+  /**
+   * Main content area.
+   */
+  main {
+    & a {
+      display: inline;
+      padding: 2px 0 2px 2px;
+      white-space: break-spaces;
+      transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out;
+
+      &, &:link, &:visited {
+        text-decoration: underline dotted;
+      }
+
+      &:active, &:hover, &:focus {
+        background-color: #000;
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
+
+    & hr {
+      width: 25%;
+      height: 0.25rem;
+      margin: 1rem 37.5% 1.5rem;
+      border: 0;
+      border-bottom: 0.25rem solid var(--background--primary-light);
+
+      @media screen and (min-width: 550px) {
+        width: 6rem;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  /**
+   * Primary image (homepage)
+   */
+  .mugshot {
+    display: flex;
+    align-self: end;
+    justify-content: center;
+
+    & img {
+      width: 100%;
+      max-width: 525px;
+      margin: 0;
+      padding: 0.5rem;
+      border: 2px solid #28252b;
+      outline: 0.25rem solid #433c47;
+      background-color: #312b36;
+      transition: transform 0.125s ease-in-out;
+
+      @media screen and (min-width: 880px) {
+        margin-right: 1rem;
+        margin-left: 1rem;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.11),
+          0 2px 2px rgba(0, 0, 0, 0.11),
+          0 4px 4px rgba(0, 0, 0, 0.11),
+          0 8px 8px rgba(0, 0, 0, 0.11),
+          0 16px 16px rgba(0, 0, 0, 0.11),
+          0 32px 32px rgba(0, 0, 0, 0.11);
+      }
+
+      @media screen and (min-width: 1400px) {
+        transform: rotate(6deg);
+
+        &:hover {
+          transform: rotate(0deg);
+        }
+      }
+    }
+
+    @media screen and (min-width: 1265px) {
+      justify-content: end;
+    }
+  }
+
+  /**
+   *
+   */
+  .credits {
+    display: inline-block;
+    width: 100%;
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.75rem;
+
+    & a,
+    & a:link,
+    & a:visited {
+      text-decoration: underline dotted;
+
+      &:active, &:hover, &:focus {
+        background-color: #000;
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* <> */

@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Password Reset"
-  page=" reset"
-  context=" auth"
+  page="reset"
+  context="auth"
   livewire="true"
 >
   <!-- reset.blade -->

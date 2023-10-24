@@ -1,7 +1,7 @@
 <x-aenginus.layout
   title="Taxonomy: Categories"
-  page=" taxonomy category"
-  context=" index"
+  page="taxonomy category"
+  context="index"
   livewire="true"
 >
   <!-- show.blade -->

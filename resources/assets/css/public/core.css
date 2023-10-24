@@ -1,0 +1,257 @@
+@layer ae.core {
+  :root {
+    --container-max: 1280px;
+
+    --font-family--base: "Fira Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
+    --font-family--accent: "Fira Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
+    --font-family--fallback: "Helvetica Neue", Helvetica, Sans-Serif;
+    --font-family: "Fira Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Sans-Serif;
+    --font-base: 18px;
+
+    --color--primary: oklch(94.7% 0.019 312.8);                                    /* #f2eaf7 */
+    --color--secondary: oklch(88.43% 0.021 313.82);                                /* #ded5e3 */
+    --color--anchor: oklch(85.72% 0.18987697039464546 112.10088629393117);         /* #d4db00 */
+
+    --color--white: oklch(100% 0 0);
+
+    --background--primary: oklch(34.69% 0.019 311.95);                             /* #3d3741 */
+    --background--primary-dark: oklch(27.13% 0.012 314.61);                        /* #29252b */
+    --background--primary-darker: oklch(25.31% 0.01 312.06);                       /* #242126 */
+    --background--primary-light: oklch(38.69% 0.022 311.27);                       /* #48414d */
+    --background--highlight: oklch(96.03% 0.08553630008058304 99.92324541981547);  /* #fff4b1 */
+    --focus-ring: oklch(75.54% 0.153 231.64);                                      /* #00bfff */
+
+    --debug-blue: oklch(57.49% 0.23391740917072132 259.9541079564837 / 20%);       /* #006cff */
+    --debug-green: oklch(86.73% 0.293697825064467 142.28908492458527 / 20%);       /* #14ff00 */
+    --debug-lime: oklch(85.72% 0.18987697039464546 112.10088629393117 / 20%);      /* #c0ff00 */
+    --debug-orange: oklch(79.27% 0.171 70.67 / 20%);                               /* #ffa500 */
+    --debug-pink: oklch(67.31% 0.29092864321330936 341.14639739066996 / 15%);      /* #ff00c9 */
+    --debug-purple: oklch(58.25% 0.29884230622409425 307.31914192682456 /20%);     /* #ab00ff */
+    --debug-red: oklch(62.8% 0.25768330773615683 29.2338851923426 / 20%);          /* #ff0000 */
+    --debug-teal: oklch(90.54% 0.15455001106436891 194.76894793196382 / 50%);      /* #00ffff */
+    --debug-yellow: oklch(96.8% 0.21100590772552355 109.76923207652125 / 20%);     /* #ffff00 */
+  }
+
+  * {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    text-decoration: none;
+    line-height: 1.33;
+    font: inherit;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: var(--background--primary);
+    font-style: normal;
+    font-weight: 400;
+    font-family: var(--font-family--base);
+    font-size: var(--font-base);
+    line-height: 1.5;
+  }
+
+  body {
+    display: flex;
+    font: inherit;
+    color: var(--color--primary);
+    cursor: default;
+
+    animation-duration: 0.15s;
+    animation-fill-mode: both;
+    animation-delay: 0.15s;
+    animation-name: fadeIn;
+  }
+
+  a, hr, img {
+    display: inline-block;
+  }
+
+  img {
+    max-width: 100%;
+    border-style: none;
+    vertical-align: middle;
+    object-fit: cover;
+  }
+
+  svg {
+    /**
+     * Workaround for the SVG overflow bug in IE10/11 is still required.
+     *
+     * @link  https://github.com/twbs/bootstrap/issues/26878
+     */
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 400;
+    line-height: 1.2;
+    color: inherit;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-family--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  h2, h3, h4 {
+    margin-bottom: 2rem;
+  }
+
+  h3, h4 {
+    text-transform: capitalize;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.15rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  a, a:link, a:visited {
+    text-decoration: none;
+    color: var(--color--anchor);
+  }
+
+  button {
+    appearance: none;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  /**
+   * Always hide an element with the `hidden` HTML attribute (from PureCSS).
+   * Needed for proper display in IE 10-.
+   */
+  [hidden] {
+    display: none !important;
+  }
+
+  [disabled] {
+    cursor: not-allowed;
+  }
+
+  /**
+   * Suppress the focus outline on elements that cannot be accessed via
+   * keyboard. This prevents an unwanted focus outline from appearing around
+   * elements that might still respond to pointer events.
+   */
+  [tabindex="-1"]:focus {
+    outline: 0 !important;
+  }
+
+  /**
+   * Focused via mouse, touch, or stylus.
+   */
+  *:focus, *:focus:not(:focus-visible){
+    outline: none;
+  }
+
+  /**
+   * Show focus ring around targetable element, for accessibilty (Keyboard
+   * focus).
+   */
+  *:focus-visible {
+    outline: 0.2rem dashed var(--focus-ring);
+    animation-duration: 1s;
+    animation-name: focus-glow;
+    animation-iteration-count: 1;
+  }
+
+  ::selection {
+    background-color: var(--background--highlight);
+    color: #000;
+  }
+
+  /** -- Screen reader. */
+
+  .srt {
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border-width: 0;
+    white-space: nowrap;
+  }
+
+  .not-srt,
+  .srt:active,
+  .srt:focus {
+    overflow: visible;
+    clip: auto;
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+  }
+
+  @media screen and (min-width: 480px) {
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    h2 {
+      font-size: 1.95rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /*@media screen and (min-width: 880px) {
+    html {
+      background-color: var(--background--primary);
+      !* Diagonal stripes. *!
+      background-image:
+        repeating-linear-gradient(-45deg, var(--background--primary-darker) 0 6px, transparent 6px 12px),
+        linear-gradient(to right, var(--background--primary) 0% 50%, var(--background--primary-dark) 50% 100%);
+      background-repeat: no-repeat, no-repeat;
+      background-position: 100% 100%, 0 0;
+      background-size: 50% 100%, 100% 100%;
+    }
+  }*/
+}
+
+/* <> */
